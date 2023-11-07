@@ -16,7 +16,7 @@
                 <a href="{{ route('welcome') }}">
                     <figure class="container-icons-navbar active">
                         <img src="{{ asset('assets/icons/home_icon.svg') }}" alt="Accueil">
-                        <figcaption>accueil</figcaption>
+                        <figcaption>Accueil</figcaption>
                     </figure>
                 </a>
             </li>
@@ -24,7 +24,7 @@
                 <a href="{{ route('bouteille.index') }}">
                     <figure class="container-icons-navbar">
                         <img src="{{ asset('assets/icons/add_icon.svg') }}" alt="Recherche">
-                        <figcaption class="icons-label">ajouter</figcaption>
+                        <figcaption class="icons-label">Ajouter</figcaption>
                     </figure>
                 </a>
             </li>
@@ -32,26 +32,36 @@
                 <a href="{{ route('liste.index') }}">
                     <figure class="container-icons-navbar">
                         <img src="{{ asset('assets/icons/list_icon.svg') }}" alt="Liste d'achats">
-                        <figcaption>liste</figcaption>
+                        <figcaption>Liste</figcaption>
                     </figure>
                 </a>
             </li>
             <li class="main-nav-item">        
                 <a href="{{ route('cellier.index') }}">
                     <figure class="container-icons-navbar">
-                        <img src="{{ asset('assets/icons/cellars_icon.svg') }}" alt="Celliers">
-                        <figcaption>celliers</figcaption>
+                        <img src="{{ asset('assets/icons/cellars_icon.svg') }}" alt "Celliers">
+                        <figcaption>Celliers</figcaption>
+                    </figure>
+                </a>
+            </li>
+            @auth
+            <li class="main-nav-item">         
+                <a href="{{ route('profil.show', ['utilisateur_id' => Auth::user()->id]) }}">
+                    <figure class="container-icons-navbar">
+                        <img src="{{ asset('assets/icons/profile_icon.svg') }}" alt="Profil">
+                        <figcaption>Profil de {{ Auth::user()->nom }}</figcaption>
                     </figure>
                 </a>
             </li>
             <li class="main-nav-item">         
-                <a href="#">
+                <a href="{{ route('logout') }}">
                     <figure class="container-icons-navbar">
-                        <img src="{{ asset('assets/icons/profile_icon.svg') }}" alt="Profil">
-                        <figcaption>profil</figcaption>
+                        <img src="{{ asset('assets/icons/logout_icon.svg') }}" alt="Déconnexion">
+                        <figcaption>Déconnexion</figcaption>
                     </figure>
                 </a>
             </li>
+            @endauth
         </ul>
     </nav>
 </body>

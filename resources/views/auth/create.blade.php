@@ -17,15 +17,19 @@
             </div>
             <div class="welcome-input-container">
                 <label for="prenom" class="welcome-form-label">PRÉNOM</label>
-                <input type="text" id="prenom" name="prenom" class="welcome-form-input">
+                <input type text" id="prenom" name="prenom" class="welcome-form-input">
             </div>
             <div class="welcome-input-container">
                 <label for="email" class="welcome-form-label">EMAIL</label>
                 <input type="text" id="email" name="email" class="welcome-form-input">
             </div>
             <div class="welcome-input-container">
-                <label for="password" class="welcome-form-label">PASSWORD</label>
+                <label for="password" class="welcome-form-label">MOT DE PASSE</label>
                 <input type="password" id="password" name="password" class="welcome-form-input">
+            </div>
+            <div class="welcome-input-container">
+                <label for="password_confirmation" class="welcome-form-label">CONFIRMER LE MOT DE PASSE</label>
+                <input type="password" id="password_confirmation" name="password_confirmation" class="welcome-form-input">
             </div>
         </form>
         <div class="welcome-forgot-psw">

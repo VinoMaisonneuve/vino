@@ -1,16 +1,20 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BouteilleCellierController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\CellierController;
 use App\Http\Controllers\BouteilleController;
+use App\Http\Controllers\ListeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PermissionController;
+
 
 
 // Route d'accueil
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+})->name('welcome');
 
 // Routes nécessitant une authentification
 Route::middleware(['auth'])->group(function () {
@@ -20,6 +24,9 @@ Route::middleware(['auth'])->group(function () {
 
     // *************** Déconnexion ****************
     Route::get('/logout', [CustomAuthController::class, 'logout'])->name('logout');
+    // *************** Ajout de la route /cellier ****************
+    Route::get('/cellier', [CellierController::class, 'index'])->name('cellier.index');
+    
 
     // *************** Gestion du profil ****************
 
@@ -140,6 +147,15 @@ Route::get('/register', [CustomAuthController::class, 'create'])->name('register
 Route::post('/register', [CustomAuthController::class, 'store'])->name('register.store');
 // Importer data de la SAQ
 Route::get('/scrape', [Web2scraperController::class, 'scrapeData']);
+//Route::get('/register', [CustomAuthController::class, 'create'])->name('register');
+
+//Route::get('/register', [UserController::class, 'create'])->name('register');
+
+//Route::get('/register', 'UserController@showRegistrationForm')->name('register');
+//Route::get('/admin/dashboard', 'AdminController@dashboard')->middleware(['auth', 'role:Administrateur']);
+
+
+
 
 
 

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Bienvenue')
 @section('content')
-<!-- <header class="title-container"> -->
 <header>
     vino
 </header>
@@ -21,8 +20,8 @@
                 <input type="text" id="email" name="email">
             </div>
             <div class="form-input-container">
-                <label for="password">PASSWORD</label>
-                <input type="text" id="password" name="password">
+                <label for="password">MOT DE PASSE</label>
+                <input type="password" id="password" name="password">
             </div>
             <div class="form-forgot-psw link">
                 <a href="#">MOT DE PASSE OUBLIÉ</a>
@@ -31,12 +30,10 @@
             <div class="link">
                 <a href="{{ route('register') }}">CRÉER UN COMPTE</a>
             </div>
-
         </form>
     </div>
 </main>
 <footer>
     © <span>vino</span> 2023. (version 1.1) - Tous droits réservés.
 </footer>
-
 @endsection
