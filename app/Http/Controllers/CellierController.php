@@ -25,8 +25,8 @@ class CellierController extends Controller
             $cellier->prixTotal = 0; 
             $cellier->quantiteTotal = 0; 
             foreach($cellier->bouteillesCelliers as $bouteilleCellier) {
-                    $cellier->prixTotal += $bouteilleCellier->bouteille->prix * $bouteilleCellier->quantite;
-                    $cellier->quantiteTotal += $bouteilleCellier->quantite;
+                $cellier->prixTotal += $bouteilleCellier->bouteille->prix * $bouteilleCellier->quantite;
+                $cellier->quantiteTotal += $bouteilleCellier->quantite;
             }
         }); 
         
@@ -47,8 +47,10 @@ class CellierController extends Controller
 
         $celliers->each(function ($cellier) {
             $cellier->prixTotal = 0; 
+            $cellier->quantiteTotal = 0; 
             foreach($cellier->bouteillesCelliers as $bouteilleCellier) {
                 $cellier->prixTotal += $bouteilleCellier->bouteille->prix; 
+                $cellier->quantiteTotal += $bouteilleCellier->quantite;
             }
         }); 
         
@@ -112,6 +114,11 @@ class CellierController extends Controller
         } elseif ($sort == 'price-desc') {
             $cellier->bouteillesCelliers = $cellier->bouteillesCelliers->sortByDesc('bouteille.prix');
         }
+
+        foreach($cellier->bouteillesCelliers as $bouteilleCellier) {
+            $cellier->quantiteTotal += $bouteilleCellier->quantite;
+        }
+
     
         return view('cellier.show', ['cellier' => $cellier]);
     }
@@ -195,8 +202,8 @@ class CellierController extends Controller
         }
 
         return [
-            'totalPrix' => $totalPrix,
-            'totalQuantite' => $totalQuantite
+            'totalPrixCelliers' => $totalPrix,
+            'totalQuantiteCelliers' => $totalQuantite
         ];
     }
 

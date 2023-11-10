@@ -19,12 +19,15 @@ class CustomAuthController extends Controller
      */
     public function index()
     {
-        $totals = CellierController::calculerTotalCellier();
+        $totalsCelliers = CellierController::calculerTotalCellier();
+        $totalsListes = ListeController::calculerTotalListe();
 
-        $totalPrix = $totals['totalPrix'];
-        $totalQuantite = $totals['totalQuantite'];
+        $totalPrixCelliers = $totalsCelliers['totalPrixCelliers'];
+        $totalQuantiteCelliers = $totalsCelliers['totalQuantiteCelliers'];
+        $totalPrixListes = $totalsListes['totalPrixListes'];
+        $totalQuantiteListes = $totalsListes['totalQuantiteListes'];
     
-        return view('welcome', compact('totalPrix', 'totalQuantite'));
+        return view('welcome', compact('totalPrixCelliers', 'totalQuantiteCelliers', 'totalPrixListes', 'totalQuantiteListes'));
     }
 
     /**

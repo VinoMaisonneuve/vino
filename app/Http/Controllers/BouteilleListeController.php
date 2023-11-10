@@ -35,10 +35,21 @@ class BouteilleListeController extends Controller
      */
     public function store(Request $request)
     {
-        BouteilleListe::updateOrCreate(
-            ['liste_id' => $request->location_id, 'bouteille_id' => $request->bouteille_id],
-            ['quantite' => $request->quantite]
-        ); 
+        $bouteilleListe = BouteilleListe::where([
+            'liste_id' => $request->location_id,
+            'bouteille_id' => $request->bouteille_id
+        ])->first();
+        if ($bouteilleListe) {
+            $bouteilleListe->quantite += $request->quantite; 
+            $bouteilleListe->save();
+        }
+        else {
+            BouteilleListe::create([
+                'liste_id' => $request->location_id, 
+                'bouteille_id' => $request->bouteille_id,
+                'quantite' => $request->quantite
+            ]);
+        }
 
         return response()->json(['message' => 'Mise à jour réussie'], 200);
     }

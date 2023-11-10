@@ -35,10 +35,21 @@ class BouteilleCellierController extends Controller
      */
     public function store(Request $request)
     {   
-        BouteilleCellier::updateOrCreate(
-            ['cellier_id' => $request->location_id, 'bouteille_id' => $request->bouteille_id],
-            ['quantite' => $request->quantite]
-        ); 
+        $bouteilleCellier = BouteilleCellier::where([
+            'cellier_id' => $request->location_id,
+            'bouteille_id' => $request->bouteille_id
+        ])->first();
+        if ($bouteilleCellier) {
+            $bouteilleCellier->quantite += $request->quantite; 
+            $bouteilleCellier->save();
+        }
+        else {
+            BouteilleCellier::create([
+                'cellier_id' => $request->location_id, 
+                'bouteille_id' => $request->bouteille_id,
+                'quantite' => $request->quantite
+            ]);
+        }
 
         return response()->json(['message' => 'Mise à jour réussie'], 200);
     }

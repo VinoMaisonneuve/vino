@@ -15,8 +15,9 @@
                             <label for="search">RECHERCHE</label>
                             <input type="text" id="search" name="search" value="{{Request::input('search')}}">
                         </div>
+                        {{--
                          <hr>
-                        <details>
+                         <details>
                             <summary>Filtrer</summary>
                             <div class="form-input-container">
                                 <label for="couleur">Couleur</label>
@@ -91,9 +92,10 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </details>                        
+                        </details>                  
                         <div class="tag-container"></div>
                     <hr>
+                    --}}    
                     <div class="form-input-container">
                         <label for="sort">TRIER</label>
                         <select name="sort" id="sort">
@@ -163,19 +165,20 @@
                                 </div>
                                 <div class="form-input-container">
                                     <label for="select-location" id="label-location">Choisir le cellier</label>
-                                    {{-- <select name="select-location" id="select-location">
+                                    <select name="select-location" id="select-location">
                                         @forelse ($celliers as $cellier)
                                             <option value="{{ $cellier->id }}">{{ $cellier->nom }}</option>
                                         @empty 
                                             <option value="">Vous n'avez aucun cellier</option>
                                         @endforelse
-                                    </select> --}}
+                                    </select> 
                                 </div>
                                 <div class="card-bouteille-qt">
                                     <button class="btn-decrement">-</button>
                                     <input type="text" value="1" min="1" id="quantite-bouteille" readonly>
                                     <button class="btn-increment">+</button>
                                 </div>
+                                <div id="succes-ajouter"></div>
                                 <div class="btn-modal-container">
                                     <button class="btn-modal-action">ajouter</button>
                                     <button class="btn-modal-cancel">annuler</button>
@@ -184,11 +187,11 @@
                 </dialog>
             <!-- </div> -->
           
-            {{-- <script src="../../js/bottleCounterModal.js"></script>
+            <script src="../../js/bottleCounterModal.js"></script>
             <script src="../../js/modalAjouter.js"></script>
-            <script src="../../js/filterTag.js"></script>
-             <script src="../../js/sorting.js"></script>   --}}
-              {{-- - <script src="{{asset('assets/js/search.js')}}" ></script>    --}}
+            {{-- <script src="../../js/filterTag.js"></script>  
+            <script src="../../js/sorting.js"></script> --}}
+            <script src="{{asset('assets/js/search.js')}}" ></script>
 
            
         </main>

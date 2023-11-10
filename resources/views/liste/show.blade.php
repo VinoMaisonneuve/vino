@@ -45,7 +45,7 @@
         <div class="card-count">
             <p>                
                 @if($liste->bouteillesListes->count() > 0)
-                    {{ $liste->bouteillesListes->count() }} bouteille(s)
+                    {{ $liste->quantiteTotal }} bouteille(s)
                 @else 
                     Aucune bouteille
                 @endif
