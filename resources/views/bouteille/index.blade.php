@@ -254,7 +254,7 @@
                 </section>
                 @endforeach
                 <div id="pagination">
-                    {{ $bouteilles->links() }}
+                    {{ $bouteilles->onEachSide(2)->links() }}
                 </div>
             </div>
         </div>

@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// MutationObserver est utilisé ici pour surveiller les changements dans le container "card-results-container"
+// (pour ensuite pouvoir mettre des listeners sur chaque bouton "+ AJOUTER" à chaque fois que le contenu du contenu change)
 const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
         if (mutation.type === 'childList') {
@@ -64,23 +66,25 @@ function addEventListenersToElements(container) {
         }
     });
 
+    // Récupérér les éléments dans la fenêtre modale
     const form = document.querySelector('#form-ajouter'); 
     const listRadio = document.querySelector('#location-liste'); 
     const cellierRadio = document.querySelector('#location-cellier'); 
     let selectLocation = document.querySelector('#select-location'); 
     let labelLocation = document.querySelector('#label-location'); 
 
+    // Listeners pour le radio (choix entre cellier ou liste)
     listRadio.addEventListener('change', function(event) {
         selectLocation.innerHTML = ''; 
         labelLocation.innerHTML = 'Choisir la liste'; 
         loadOptions('liste'); 
     }); 
-
     cellierRadio.addEventListener('change', function(event) {
         selectLocation.innerHTML = 'Choisir le cellier'; 
         loadOptions('cellier'); 
     }); 
 
+    // Fonction pour charger les options (de celliers ou listes)
     async function loadOptions(type) {
         if (type === 'liste') {
             url = '/listes-json'; 
@@ -115,6 +119,7 @@ function addEventListenersToElements(container) {
         }
     }
 
+    // Listener pour le formulaire d'ajout de bouteille
     form.addEventListener('submit', function(event) {
         const quantiteBouteille = document.querySelector('#quantite-bouteille').value; 
         const idLocation = document.querySelector('#select-location').value;
