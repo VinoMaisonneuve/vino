@@ -7,7 +7,7 @@
         <main class="nav-margin">
             <section class="card-bouteille">
                 <picture>
-                    <img src="https://www.saq.com/media/catalog/product/1/1/11097477-1_1628019647.png" alt="">
+                    <img src="{{ $bouteille->srcImage }}" alt="{{ $bouteille->nom }}" class="zoomable-image" id="zoomableImage">
                 </picture>
                 <div class="card-bouteille-content">
                     <div class="card-bouteille-info">
@@ -17,7 +17,7 @@
                         <span>{{$bouteille->type}} | {{ $bouteille->format }} | {{$bouteille->pays}}</span>
                         <p>{{$bouteille->prix}}  $</p>
                     </div>
-                    <!-- <a href="" class="btn-ajouter">+ Ajouter</a> -->
+                    <a href="" class="btn-ajouter">+ Ajouter</a>
                 </div>
             </section>
             <table>
@@ -61,6 +61,12 @@
                 </tbody>
             </table>
 
+            <!-- Zoom de l'image -->
+            <div id="zoomModal" class="modal">
+                <span class="modal-close" id="modalClose">&times;</span>
+                <img src="{{ $bouteille->bigImageUrl() }}" alt="{{ $bouteille->nom }}" class="modal-content">
+            </div>
+
             <!-- <div class="modal-container"> -->
                 <dialog id="modal-ajouter" class="modal">
                         <h2>Confirmation d'ajout</h2>
@@ -95,6 +101,6 @@
                 </dialog>
             <!-- </div> -->
             <script src="../../js/bottleCounterModal.js"></script>
-            <script src="../../js/modalAjouter.js"></script>
+            <script src="{{ asset('js/zoom.js')  }}"></script>
         </main>
         @endsection
