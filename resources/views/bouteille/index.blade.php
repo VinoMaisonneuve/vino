@@ -300,8 +300,7 @@
 
         <script src="{{ asset('js/queryBottles.js') }}"></script>
         <script src="{{ asset('js/bottleCounterModal.js') }}"></script>
-        <script src="{{ asset('js/modalAjouter.js') }}"></script>
-        <script src="{{ asset('js/modalAjouterRes.js') }}"></script>
+        <script src="{{ asset('js/modalAjouterBouteilleIndex.js') }}"></script>
         <script src="{{ asset('js/filterTag.js') }}"></script>
         <script src="{{ asset('js/filterSlider.js') }}"></script>
 

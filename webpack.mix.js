@@ -20,8 +20,10 @@ mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/modalAjouter.js', 'public/js')
    .js('resources/js/modalDeplacer.js', 'public/js')
    .js('resources/js/modalSupprimer.js', 'public/js')
+   .js('resources/js/queryBottles.js', 'public/js')
    .js('resources/js/sortBottles.js', 'public/js')
    .js('resources/js/search-users.js', 'public/js')
+   .js('resources/js/modalAjouterBouteilleIndex.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);
