@@ -8,26 +8,6 @@ use Illuminate\Http\Request;
 class BouteilleCellierController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -52,28 +32,6 @@ class BouteilleCellierController extends Controller
         }
 
         return response()->json(['message' => 'Mise à jour réussie'], 200);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\BouteilleCellier  $bouteilleCellier
-     * @return \Illuminate\Http\Response
-     */
-    public function show(BouteilleCellier $bouteilleCellier)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\BouteilleCellier  $bouteilleCellier
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(BouteilleCellier $bouteilleCellier)
-    {
-        //
     }
 
     /**

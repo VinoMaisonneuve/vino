@@ -19,7 +19,7 @@
             <div class="card-container-total">
                 <h3>total</h3>
                 <div>
-                    <span>{{ number_format($totalPrix, 2, '.', '') }} $</span>
+                    <span>{{ number_format($totalPrixCelliers, 2, '.', '') }} $</span>
                 </div>
             </div>
             <div class="card-container-qt">
@@ -71,7 +71,7 @@
             </a>
         </div>
     </section>
-    {{--<section>
+    <section>
         <h2>Derniers ajouts</h2>
         <div class="carousel-container">
             <div class="carousel-slides">
@@ -91,7 +91,7 @@
             <button class="carousel-btn btn-prev">‹</button>
             <button class="carousel-btn btn-next">›</button>
         </div>
-    </section>--}}
+    </section>
     <div>
         <p>Pour trouver un SAQ le plus proche,<br>
             consulter ce lien externe Google Maps:</p>
@@ -103,7 +103,7 @@
             </svg>
         </a>
     </div>
-    {{--<script src="{{ asset('js/carousel.js') }}"></script>--}}
+    <script src="{{ asset('js/carousel.js') }}"></script>
 </main>
 @endif
 @else

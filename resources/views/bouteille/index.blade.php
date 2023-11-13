@@ -301,7 +301,6 @@
         <script src="{{ asset('js/queryBottles.js') }}"></script>
         <script src="{{ asset('js/bottleCounterModal.js') }}"></script>
         <script src="{{ asset('js/modalAjouterBouteilleIndex.js') }}"></script>
-        
         <script src="{{ asset('js/filterSlider.js') }}"></script>
 
         

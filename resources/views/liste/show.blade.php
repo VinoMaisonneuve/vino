@@ -77,12 +77,12 @@
                         @method('delete')
                     </form>
                 </div>
-                <!--<a href="#deplacerbouteille" class="btn-deplacer">Déplacer</a>-->
+                <a href="#deplacerbouteille" class="btn-deplacer">Déplacer</a>
             </div>
         </section>
         @endforeach
         <!-- <div class="modal-container"> -->
-        <!--<dialog id="modal-deplacer" class="modal">
+        <dialog id="modal-deplacer" class="modal">
                 <h2>Déplacer vers un cellier</h2>
                 <hr>
                 <form action="" class="form-modal">
@@ -110,11 +110,11 @@
                         <button class="btn-modal-cancel">annuler</button>
                     </div>
                 </form>
-            </dialog>-->
+            </dialog>
         <!-- </div> -->
         
         <script src="{{ asset('js/sortBottles.js') }}"></script>
         <script src="{{ asset('js/bottleCounter.js') }}"></script>
-        <!--<script src="{{ asset('js/modalDeplacer.js') }}"></script>-->
+        <script src="{{ asset('js/modalDeplacer.js') }}"></script>
     </main>
 @endsection
