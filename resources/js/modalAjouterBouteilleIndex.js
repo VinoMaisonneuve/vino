@@ -1,3 +1,4 @@
+// LISTENER au chargement de la page
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('.card-results-container');
     if (container) {
@@ -5,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// MutationObserver est utilisé ici pour surveiller les changements dans le container "card-results-container"
+// MUTATIONOBSERVER pour surveiller les changements dans le container "card-results-container"
 // (pour ensuite pouvoir mettre des listeners sur chaque bouton "+ AJOUTER" à chaque fois que le contenu du contenu change)
 const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
@@ -18,15 +19,13 @@ const observer = new MutationObserver(mutations => {
         }
     });
 });
-
 const config = { childList: true, subtree: true };
-
 const targetNode = document.querySelector('.card-results-container');
 if (targetNode) {
     observer.observe(targetNode, config);
 }
 
-
+// FONCTION pour ajouter des listeners (pour bouton +Ajouter et boutons de la fenêtre modale)
 function addEventListenersToElements(container) {
 
     let bouteilleID; 

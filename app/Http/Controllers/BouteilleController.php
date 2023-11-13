@@ -20,7 +20,8 @@ class BouteilleController extends Controller
      */
     public function index()
     {
-        $bouteilles = Bouteille::paginate(7);
+        $bouteilles = Bouteille::orderBy('nom')->paginate(7)->onEachSide(2);
+                        
         $celliers = Cellier::where('user_id', Auth::id())->get();
         
         // Récupérer les filtres distincts sans valeurs nulles et en ordre alphabétique

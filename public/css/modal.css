@@ -42,9 +42,10 @@ dialog p {
 }
 
 
-
+/* Par Ismail avec le Zoom */
+/* Ceci est commenté parce que ça brise les autres fenêtres modales */
 /*  style pour centrer le contenu du modal */
-.modal {
+/* .modal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -55,10 +56,10 @@ dialog p {
     max-width: 250px; 
     height: 80%; 
     max-height: 400px; 
-    overflow: hidden; /* Masque la barre de défilement */
+    overflow: hidden;
     background-color: rgba(0, 0, 0, 0.5);
     padding-top: 60px;
-}
+} */
 
 /*  ce style pour centrer l'image dans le modal */
 .modal-content {
