@@ -12,7 +12,7 @@
             </picture>
             <div class="card-bouteille-content">
                 <div class="card-bouteille-info">
-                    <h2><a href="#">{{ $result->nom }}</a></h2>
+                    <h2><a href="{{ route('bouteille.show',['bouteille_id'=> $result->id]) }}">{{ $result->nom }}</a></h2>
                     <span>{{ $result->type }} | {{ $result->format }} | {{ $result->pays }}</span>
                     <p>{{ $result->prix }} $</p>
                 </div>

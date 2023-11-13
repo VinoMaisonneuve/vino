@@ -61,11 +61,11 @@
                 </tbody>
             </table>
 
-            <!-- Zoom de l'image -->
-            <div id="zoomModal" class="modal">
+            <!-- Zoom de l'image (EN DEV - VICTOR) -->
+            <!-- <div id="zoomModal" class="modal">
                 <span class="modal-close" id="modalClose">&times;</span>
                 <img src="{{ $bouteille->bigImageUrl() }}" alt="{{ $bouteille->nom }}" class="modal-content">
-            </div>
+            </div> -->
 
             <!-- <div class="modal-container"> -->
                 <dialog id="modal-ajouter" class="modal">
@@ -101,6 +101,6 @@
                 </dialog>
             <!-- </div> -->
             <script src="../../js/bottleCounterModal.js"></script>
-            <script src="{{ asset('js/zoom.js')  }}"></script>
+            <!-- <script src="{{ asset('js/zoom.js')  }}"></script> (EN DEV - VICTOR) -->
         </main>
         @endsection
