@@ -1,3 +1,6 @@
+/**
+ * Fonction de recherche d'utilisateurs.
+ */
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
 /*!**************************************!*\
