@@ -48,6 +48,12 @@ form {
     border-radius: 10px;
     min-width: 100%;
 }
+option {
+    word-wrap: break-word;
+    white-space: normal;
+    overflow: auto;
+    max-width: 100%;
+}
 
 .form-input-container input[type='number'] {
     border-radius: 4px;

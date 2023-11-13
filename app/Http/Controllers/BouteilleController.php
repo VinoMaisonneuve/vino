@@ -7,6 +7,10 @@ use App\Models\Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+// Utiliser Log quand on ne peut débug avec var_dump (à cause de return JSON)
+// ex. Log::info('Information des couleurs', ['couleurs' => $couleurs]);
+// use Illuminate\Support\Facades\Log; 
+
 class BouteilleController extends Controller
 {
     /**
@@ -16,7 +20,8 @@ class BouteilleController extends Controller
      */
     public function index()
     {
-        $bouteilles = Bouteille::paginate(7);
+        $bouteilles = Bouteille::orderBy('nom')->paginate(7)->onEachSide(2);
+                        
         $celliers = Cellier::where('user_id', Auth::id())->get();
         
         // Récupérer les filtres distincts sans valeurs nulles et en ordre alphabétique
@@ -58,6 +63,9 @@ class BouteilleController extends Controller
 
     public function search(Request $request)
     {
+        // Initialisation de la requête
+        // $bouteillesQuery = DB::table('bouteilles');
+
         $bouteilles = Bouteille::paginate(7);
         $allHtml = view('partials.bouteilles', compact('bouteilles'))->render();
 
@@ -71,28 +79,27 @@ class BouteilleController extends Controller
             $bouteillesQuery->where('nom', 'LIKE', '%' . $query . '%');
         }
 
+
+        // Filtres
         $selectors = ['couleur', 'pays', 'format', 'designation', 'producteur', 'agentPromotion', 'type', 'millesime', 'cepage', 'region'];
+
         foreach ($selectors as $selector) {
-            $values = $request->input($selector);
-            if (!empty($values)) {
-                // Commencez une nouvelle sous-requête pour ce sélecteur
-                $bouteillesQuery->where(function ($query) use ($selector, $values) {
-                    // Initialisez le premier orWhere avec la première valeur si c'est un tableau
-                    if (is_array($values) && count($values) > 0) {
-                        // Commencez par le premier élément du tableau pour éviter le problème de la première condition "OR"
-                        $query->where($selector, '=', array_shift($values));
-                        // Puis ajoutez les autres valeurs avec orWhere
-                        foreach ($values as $value) {
-                            $query->orWhere($selector, '=', $value);
-                        }
-                    } else {
-                        // S'il n'y a qu'une seule valeur, ajoutez-la avec where
-                        $query->where($selector, '=', $values);
-                    }
-                });
+            $value = $request->input($selector);
+
+            if (!empty($value)) {
+                // Si la valeur est un string avec des valeurs séparées par des virgules, la convertir en array
+                if (is_string($value)) {
+                    $value = explode(',', $value);
+                }
+
+                // Si c'est un array
+                if (is_array($value)) {
+                    $bouteillesQuery->whereIn($selector, $value);
+                } else {
+                    $bouteillesQuery->where($selector, $value);
+                }
             }
         }
-
 
         // Trier
         if (!empty($sortOption)) {
@@ -111,11 +118,6 @@ class BouteilleController extends Controller
                     break;
             }
         }
-        
-        // // Paginer
-        // $results = $bouteillesQuery->paginate(7);
-        // $resultsHtml = view('partials.bouteilles', compact('results'))->render();
-        // return response()->json(['resultsHtml' => $resultsHtml]);
 
         $page = $request->input('page');
         $results = $bouteillesQuery->paginate(7)->appends([
