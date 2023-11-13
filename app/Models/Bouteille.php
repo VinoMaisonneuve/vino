@@ -57,4 +57,18 @@ class Bouteille extends Model
         return $this->hasMany(Favoris::class);
     }
 
+
+    /**
+     * Supprime la chaîne de requête de l'URL de l'image.
+     * 
+     * (pour avoir l'url de l'image en plus grand)
+     * ex.: https://www.saq.com/media/catalog/product/1/5/15111029-1_1680097084.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166&dpr=2
+     * pour avoir: https://www.saq.com/media/catalog/product/1/5/15111029-1_1680097084.png
+     *
+     * @return string
+     */
+    public function bigImageUrl()
+    {
+        return explode('?', $this->srcImage)[0];
+    }
 }

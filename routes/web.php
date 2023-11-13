@@ -54,16 +54,10 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/bouteilles-modifier/{bouteille_id}', [BouteilleController::class, 'update']);
     // Suppression d'une bouteille personnalisée
     Route::delete('/bouteilles-modifier/{bouteille_id}', [BouteilleController::class, 'destroy'])->name('bouteille.destroy');
-
-    //Ajout par ismail
     //affichage de toutes les bouteilles de la SAQ
     Route::get('/bouteilles', [BouteilleController::class, 'index'])->name('bouteille.index');
     //affichage par bouetille
     Route::get('/bouteilles/{bouteille_id}', [BouteilleController::class, 'show'])->name('bouteille.show');
-
-    // Recheche par mot clé dans le titre
-    //Route::get('/bouteilles-search', [BouteilleController::class, 'search'])->name('bouteille.search');
-   //tri
 
 
    Route::get('/search', [BouteilleController::class, 'search']);
@@ -156,17 +150,7 @@ Route::get('/register', [CustomAuthController::class, 'create'])->name('register
 // Stockage d'un nouvel utilisateur dans la BDD
 Route::post('/register', [CustomAuthController::class, 'store'])->name('register.store');
 
-
-// faire ces fomctionnalite sans auth
-
-//Route::get('/bouteilles', [BouteilleController::class, 'index'])->name('bouteille.index');
-// Recheche par mot clé dans le titre
-//Route::get('/bouteilles-search', [BouteilleController::class, 'search'])->name('bouteille.search');  /Route::get('/bouteilles/{bouteille_id}', [BouteilleController::class, 'show'])->name('bouteille.show');
-
-//tri a effacer
-//Route::get('/sorting', [BouteilleController::class, 'sorting'])->name('bouteille.sorting');
-//filtre
-//Route::get('/filtrer-produits', [BouteilleController::class, 'filtrerProduits'])->name('filtrer_produits');
+// importer les données de la saq
 
 Route::get('/scrape', [Web2scraperController::class, 'scrapeData']);
 

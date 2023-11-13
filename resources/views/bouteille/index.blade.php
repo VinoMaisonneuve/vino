@@ -31,6 +31,7 @@
                             </svg>
                             Réinitialiser les filtres
                         </button>
+                        <!-- SLIDERS À IMPLÉMENTER -->
                         <!-- <div class="form-input-container">
                             <label for="prix-range">Prix ($)</label>
                             <div class="form-range">
@@ -97,6 +98,7 @@
                                 </div>
                             </div>  
                         </div> -->
+
                         <!-- Couleur -->
                         <div class="form-input-container">
                             <label for="select_couleur">Couleur</label>
@@ -208,7 +210,7 @@
                         </div>
 
                     </details>                        
-                    <div class="tag-container">
+                    <div id="tag-container" class="tag-container">
                     </div>
                 </form>
             </div>
@@ -254,7 +256,7 @@
                 </section>
                 @endforeach
                 <div id="pagination">
-                    {{ $bouteilles->links() }}
+                    {{ $bouteilles->onEachSide(2)->links() }}
                 </div>
             </div>
         </div>
@@ -298,9 +300,8 @@
 
         <script src="{{ asset('js/queryBottles.js') }}"></script>
         <script src="{{ asset('js/bottleCounterModal.js') }}"></script>
-        <script src="{{ asset('js/modalAjouter.js') }}"></script>
-        <script src="{{ asset('js/modalAjouterRes.js') }}"></script>
-        <script src="{{ asset('js/filterTag.js') }}"></script>
+        <script src="{{ asset('js/modalAjouterBouteilleIndex.js') }}"></script>
+        
         <script src="{{ asset('js/filterSlider.js') }}"></script>
 
         
