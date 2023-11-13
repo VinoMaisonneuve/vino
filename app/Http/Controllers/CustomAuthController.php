@@ -13,7 +13,7 @@ use App\Http\Controllers\CellierController;
 class CustomAuthController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a dashboard of the cellars and lists.
      *
      * @return \Illuminate\Http\Response
      */
@@ -28,7 +28,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new user.
      *
      * @return \Illuminate\Http\Response
      */
@@ -38,7 +38,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created user in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -72,7 +72,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Authentification / log in of a resource.
+     * Authentification / log in of a user.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -113,7 +113,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Log out a resource in storage.
+     * Log out a user in storage.
      *
      * @return \Illuminate\Http\Response
      */
@@ -124,7 +124,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the user's informations.
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
@@ -135,7 +135,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the user's informations.
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
@@ -146,7 +146,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the user's informations in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user
@@ -191,7 +191,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Show the form for changing the password.
+     * Change and stock the new password.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user
@@ -226,7 +226,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the user from storage.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Request  $user
