@@ -22,6 +22,7 @@ selectElements.forEach(function (select) {
     tag.classList.add('tag');
     tag.textContent = text;
     tag.setAttribute('data-value', value);
+    tag.setAttribute('data-select-name', this.name); // Stocker le nom du select associé
 
     // Ajouter le tag au conteneur
     tagContainer.appendChild(tag);
@@ -31,13 +32,12 @@ selectElements.forEach(function (select) {
 
     // Listener pour supprimer le tag
     tag.addEventListener('click', function () {
-      // Ajouter l'option de nouveau au select
+      var selectName = this.getAttribute('data-select-name');
+      var associatedSelect = document.querySelector(`select[name="${selectName}"]`);
       var newOption = document.createElement('option');
       newOption.value = this.getAttribute('data-value');
       newOption.text = this.textContent;
-      select.appendChild(newOption);
-
-      // Supprimer le tag
+      associatedSelect.add(newOption);
       this.remove();
     });
   });
@@ -45,21 +45,22 @@ selectElements.forEach(function (select) {
 
 // Listener pour le bouton de réinitialisation
 resetButton.addEventListener('click', function () {
-  // Réinitialiser les sélecteurs (select)
-  selectElements.forEach(function (select) {
-    select.selectedIndex = 0;
-  });
-
-  // Réinitialiser les tags
+  // Réinitialiser les tags et les options dans les sélecteurs (select)
   var tags = tagContainer.querySelectorAll('.tag');
   tags.forEach(function (tag) {
+    var selectName = tag.getAttribute('data-select-name');
+    var associatedSelect = document.querySelector(`select[name="${selectName}"]`);
     var value = tag.getAttribute('data-value');
-    var select = selectElements[0]; // À modifier si nécessaire pour cibler le bon select
     var newOption = document.createElement('option');
     newOption.value = value;
     newOption.textContent = tag.textContent;
-    select.appendChild(newOption);
+    associatedSelect.add(newOption);
     tag.remove();
+  });
+
+  // Réinitialiser les selects à leur première option
+  selectElements.forEach(function (select) {
+    select.selectedIndex = 0;
   });
 
   // Réinitialiser les sliders et les champs numériques

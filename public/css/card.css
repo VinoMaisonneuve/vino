@@ -154,3 +154,12 @@
 .card-transparent {
     opacity: 0.5;
 }
+
+.card-container {
+    min-width: 100%;
+}
+.card-container>div {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}

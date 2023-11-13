@@ -1,9 +1,8 @@
 @extends('layouts.app')
 @section('title','Recherche')
 @section('content')
-<body>
         <header>
-            Détail du bouteille
+            fiche bouteille
         </header>
         <main class="nav-margin">
             <section class="card-bouteille">
@@ -18,46 +17,46 @@
                         <span>{{$bouteille->type}} | {{ $bouteille->format }} | {{$bouteille->pays}}</span>
                         <p>{{$bouteille->prix}}  $</p>
                     </div>
-                    <a href="" class="btn-ajouter">+ Ajouter</a>
+                    <!-- <a href="" class="btn-ajouter">+ Ajouter</a> -->
                 </div>
             </section>
             <table>
                 <tbody>
                     <tr>
                         <th>Appellation</th>
-                        <td>{{ $bouteille->nom}}</td>
+                        <td>{{ $bouteille->nom ?? '-'}}</td>
                     </tr>
                         <tr>
                         <th>Millésime</th>
-                        <td>{{$bouteille->millesime}}</td>
+                        <td>{{$bouteille->millesime ?? '-'}}</td>
                     </tr>
                     <tr>
                         <th>Degré d'alcool</th>
-                        <td>{{$bouteille->degre}}</td>
+                        <td>{{$bouteille->degre ?? '-'}}</td>
                     </tr>
                     <tr>
                         <th>Couleur</th>
-                        <td>{{$bouteille->couleur}}</td>
+                        <td>{{$bouteille->couleur ?? '-'}}</td>
                     </tr>
                     <tr>
                         <th>Producteur</th>
-                        <td>{{$bouteille->producteur}}</td>
+                        <td>{{$bouteille->producteur ?? '-'}}</td>
                     </tr>
                     <tr>
                         <th>Type</th>
-                        <td>{{$bouteille->type}}</td>
+                        <td>{{$bouteille->type ?? '-'}}</td>
                     </tr>
                     <tr>
                         <th>Cépage</th>
-                        <td>{{$bouteille->cepage}}</td>
+                        <td>{{ $bouteille->cepage ?? '-' }}</td>
                     </tr>
                     <tr>
                         <th>Région</th>
-                        <td>{{$bouteille->region}}</td>
+                        <td>{{$bouteille->region ?? '-'}}</td>
                     </tr>
                     <tr>
                         <th>Pastille de goût</th>
-                        <td><{{$bouteille->pastilleGoutTitre}}/td>
+                        <td><{{$bouteille->pastilleGoutTitre ?? '-'}}/td>
                     </tr>
                 </tbody>
             </table>
@@ -99,49 +98,3 @@
             <script src="../../js/modalAjouter.js"></script>
         </main>
         @endsection
-    {{-- <nav class="nav">
-        <ul class="nav-list">
-            <li class="nav-item">        
-                <a href="#">
-                    <figure class="nav-icon-container nav-active">
-                        <img src="../../../public/assets/icons/home_icon.svg" alt="Accueil">
-                        <figcaption>accueil</figcaption>
-                    </figure>
-                </a>
-            </li>
-            <li class="nav-item">        
-                <a href="#">
-                    <figure class="nav-icon-container">
-                        <img src="../../../public/assets/icons/add_icon.svg" alt="Recherche">
-                        <figcaption class="icons-label">ajouter</figcaption>
-                    </figure>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#">
-                    <figure class="nav-icon-container">
-                        <img src="../../../public/assets/icons/list_icon.svg" alt="Liste d'achats">
-                        <figcaption>liste</figcaption>
-                    </figure>
-                </a>
-            </li>
-            <li class="nav-item">        
-                <a href="#">
-                    <figure class="nav-icon-container">
-                        <img src="../../../public/assets/icons/cellars_icon.svg" alt="Celliers">
-                        <figcaption>celliers</figcaption>
-                    </figure>
-                </a>
-            </li>
-            <li class="nav-item">         
-                <a href="#">
-                    <figure class="nav-icon-container">
-                        <img src="../../../public/assets/icons/profile_icon.svg" alt="Profil">
-                        <figcaption>profil</figcaption>
-                    </figure>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</body>
-</html> --}}

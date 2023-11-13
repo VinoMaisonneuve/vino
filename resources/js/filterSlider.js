@@ -1,6 +1,6 @@
 // https://github.com/w3collective/price-range-slider
 // avec modification pour que ça s'applique sur plusieurs
-const rangeMin = 100;
+const rangeMin = 1;
 
 function updateRangeSlider(sliderGroup) {
   const range = sliderGroup.querySelector('.form-range-selected');

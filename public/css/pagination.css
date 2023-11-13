@@ -15,6 +15,7 @@
     padding: 10px;
 }
 
+li.active,
 .pagination-link {
     display: inline-block;
     padding: 8px 16px;
@@ -22,6 +23,11 @@
     background-color: #fff;
     color: #2d3748;
     text-decoration: none;
+}
+li.active {
+    text-decoration: underline;
+    font-weight: bold;
+    border: 1px solid black;
 }
 
 .pagination-link:hover {

@@ -5,7 +5,7 @@ var __webpack_exports__ = {};
   \**************************************/
 // https://github.com/w3collective/price-range-slider
 // avec modification pour que ça s'applique sur plusieurs
-var rangeMin = 100;
+var rangeMin = 1;
 function updateRangeSlider(sliderGroup) {
   var range = sliderGroup.querySelector('.form-range-selected');
   var rangeInputs = sliderGroup.querySelectorAll('.form-range-input input');

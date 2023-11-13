@@ -1,25 +1,17 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../../../public/css/styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.typekit.net/dox8qou.css">
-    <title></title>
-</head>
-<body>
+@extends('layouts.app')
+@section('title','Recherche')
+@section('content')
         <header>
             ajouter une bouteille
         </header>
         <main class="nav-margin">
-            <section class="form-ajouter-bouteille"> <!-- encadré noir (formulaires, filtres et tris) --> 
+        <section class="form-ajouter-bouteille"> <!-- encadré noir (formulaires, filtres et tris) --> 
                 <div class="form-container">
-                    <form action="" method="" id="">
+                    <form action="" method="" id="form-search">
                         <!-- @csrf -->
                         <div class="form-input-container">
                             <label for="search">RECHERCHE</label>
-                            <input type="search" id="search" name="search">
+                            <input type="search" id="search-input" name="search">
                         </div>
                     </form>
                     
@@ -28,7 +20,7 @@
                     <a href="#">BOUTEILLE PERSONNALISÉE</a>
                 </div>
                 <div class="form-container">
-                    <form action="" method="" id="">
+                    <form action="" method="" id="form-filter">
                         <hr>
                         <details>
                             <summary>Filtrer</summary>
@@ -46,17 +38,17 @@
                                         <span class="form-range-selected"></span>
                                     </div>
                                     <div class="form-range-input">
-                                        <input type="range" class="min" min="0" max="1000" value="0" step="1">
-                                        <input type="range" class="max" min="0" max="1000" value="1000" step="1">
+                                        <input type="range" class="min" min="{{ $prixMin }}" max="{{ $prixMax }}" value="{{ $prixMin }}" step="1">
+                                        <input type="range" class="max" min="{{ $prixMin }}" max="{{ $prixMax }}" value="{{ $prixMax }}" step="1">
                                     </div>
                                     <div class="form-range-number">      
                                         <div>
                                             <label for="min">Min</label>
-                                            <input type="number" name="min" value="0">
+                                            <input type="number" name="min" value="{{ $prixMin }}">
                                         </div>    
                                         <div>
                                             <label for="max">Max</label>
-                                            <input type="number" name="max" value="1000">
+                                            <input type="number" name="max" value="{{ $prixMax }}">
                                         </div>    
                                     </div>
                                 </div>  
@@ -105,52 +97,116 @@
                                     </div>
                                 </div>  
                             </div>
+                            <!-- Couleur -->
                             <div class="form-input-container">
-                                <label for="select_color">Couleur</label>
-                                <select name="color" id="select_color">
-                                    <option value="">Choisir les options</option>
-                                    <option value="white">Blanc</option>
+                                <label for="select_couleur">Couleur</label>
+                                <select name="couleur" id="select_couleur">
+                                    <option value="">Choisir des options</option>
+                                    @foreach($couleurs as $couleur)
+                                        <option value="{{ $couleur }}">{{ $couleur }}</option>
+                                    @endforeach
                                 </select>
                             </div>
+
+                            <!-- Pays -->
+                            <div class="form-input-container">
+                                <label for="select_pays">Pays</label>
+                                <select name="pays" id="select_pays">
+                                    <option value="">Choisir des options</option>
+                                    @foreach($pays as $paysOne)
+                                        <option value="{{ $paysOne }}">{{ $paysOne }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Format -->
                             <div class="form-input-container">
                                 <label for="select_format">Format</label>
                                 <select name="format" id="select_format">
-                                    <option value="">Choisir les options</option>
-                                    <option value="750">750ml</option>
+                                    <option value="">Choisir des options</option>
+                                    @foreach($formats as $format)
+                                        <option value="{{ $format }}">{{ $format }}</option>
+                                    @endforeach
                                 </select>
                             </div>
+
+                            <!-- Désignation -->
                             <div class="form-input-container">
-                                <label for="select_country">Pays</label>
-                                <select name="country" id="select_country">
-                                    <option value="">Choisir les options</option>
-                                    <option value="canada">Canada</option>
-                                    <option value="usa">États-Unis</option>
-                                    <option value="espagne">Espagne</option>
-                                    <option value="france">France</option>
-                                    <option value="italie">Italie</option>
+                                <label for="select_designation">Désignation</label>
+                                <select name="designation" id="select_designation">
+                                    <option value="">Choisir des options</option>
+                                    @foreach($designations as $designation)
+                                        <option value="{{ $designation }}">{{ $designation }}</option>
+                                    @endforeach
                                 </select>
                             </div>
+
+                            <!-- Producteur -->
+                            <div class="form-input-container">
+                                <label for="select_producteur">Producteur</label>
+                                <select name="producteur" id="select_producteur">
+                                    <option value="">Choisir des options</option>
+                                    @foreach($producteurs as $producteur)
+                                        <option value="{{ $producteur }}">{{ $producteur }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Agent Promotion -->
+                            <div class="form-input-container">
+                                <label for="select_agentPromotion">Agent de promotion</label>
+                                <select name="agentPromotion" id="select_agentPromotion">
+                                    <option value="">Choisir des options</option>
+                                    @foreach($agentPromotions as $agentPromotion)
+                                        <option value="{{ $agentPromotion }}">{{ $agentPromotion }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Type -->
+                            <div class="form-input-container">
+                                <label for="select_type">Type</label>
+                                <select name="type" id="select_type">
+                                    <option value="">Choisir des options</option>
+                                    @foreach($types as $type)
+                                        <option value="{{ $type }}">{{ $type }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Millésime -->
+                            <div class="form-input-container">
+                                <label for="select_millesime">Millésime</label>
+                                <select name="millesime" id="select_millesime">
+                                    <option value="">Choisir des options</option>
+                                    @foreach($millesimes as $millesime)
+                                        <option value="{{ $millesime }}">{{ $millesime }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Cépage -->
+                            <div class="form-input-container">
+                                <label for="select_cepage">Cépage</label>
+                                <select name="cepage" id="select_cepage">
+                                    <option value="">Choisir des options</option>
+                                    @foreach($cepages as $cepage)
+                                        <option value="{{ $cepage }}">{{ $cepage }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Région -->
                             <div class="form-input-container">
                                 <label for="select_region">Région</label>
                                 <select name="region" id="select_region">
-                                    <option value="">Choisir les options</option>
-                                    <option value="quebec">Québec</option>
+                                    <option value="">Choisir une option</option>
+                                    @foreach($regions as $region)
+                                        <option value="{{ $region }}">{{ $region }}</option>
+                                    @endforeach
                                 </select>
                             </div>
-                            <div class="form-input-container">
-                                <label for="select_year">Millésime</label>
-                                <select name="year" id="select_year">
-                                    <option value="">Choisir les options</option>
-                                    <option value="2001">2001</option>
-                                </select>
-                            </div>
-                            <div class="form-input-container">
-                                <label for="select_grape">Cépage</label>
-                                <select name="grape" id="select_grape">
-                                    <option value="">Choisir les options</option>
-                                    <option value="cabernet-sauv">Cabernet-Sauvignon</option>
-                                </select>
-                            </div>
+
                         </details>                        
                         <div class="tag-container">
                         </div>
@@ -172,61 +228,45 @@
                     </form>
                 </div>
             </section>
-            <div class="card-count">
-                <p>12 bouteilles :</p>
+            <div class="card-container">
+                <div id="search-results">
+                    <div class="card-count">
+                        <p>{{$bouteilles->total()}} bouteilles :</p>
+                    </div>
+
+                    @include('partials.bouteilles')
+
+                    @foreach ($bouteilles as $bouteille)
+                    <section class="card-bouteille">
+                        <picture>
+                            <img src="{{ $bouteille->srcImage }}" alt="{{ $bouteille->nom}}">
+                        </picture>
+                        <div class="card-bouteille-content">
+                            <div class="card-bouteille-info">
+                    
+                                    <h2><a href="#">{{ $bouteille->nom }}</a></h2>
+                    
+                                <span>{{$bouteille->type}} | {{ $bouteille->format }} | {{$bouteille->pays}}</span>
+                                <p>{{$bouteille->prix}} $</p>
+                            </div>
+                            <a href="#" class="btn-ajouter" data-bouteille-id="{{ $bouteille->id }}">+ Ajouter</a>
+                        </div>
+                    </section>
+                    @endforeach
+                    <div id="pagination">
+                        {{ $bouteilles->links() }}
+                    </div>
+                </div>
             </div>
-            <section class="card-bouteille">
-                <picture>
-                    <img src="https://www.saq.com/media/catalog/product/1/1/11097477-1_1628019647.png" alt="">
-                </picture>
-                <div class="card-bouteille-content">
-                    <div class="card-bouteille-info">
-                        <a href="">
-                            <h2>Argyros Atlantis 2021</h2>
-                        </a>
-                        <span>Vin blanc | 750 ml | Grèce</span>
-                        <p>23,40 $</p>
-                    </div>
-                    <a href="" class="btn-ajouter">+ Ajouter</a>
-                </div>
-            </section>
-            <section class="card-bouteille">
-                <picture>
-                    <img src="https://www.saq.com/media/catalog/product/1/2/12562182-1_1623675632.png" alt="">
-                </picture>
-                <div class="card-bouteille-content">
-                    <div class="card-bouteille-info">
-                        <a href="">
-                            <h2>Puy Redon Chardonnay 2016
-                            </h2>
-                        </a>
-                        <span>Vin blanc | 750 ml | France </span>
-                        <p>38,50 $</p>
-                    </div>
-                    <a href="" class="btn-ajouter">+ Ajouter</a>
-                </div>
-            </section>
-            <section class="card-bouteille">
-                <picture>
-                    <img src="https://www.saq.com/media/catalog/product/1/1/11097477-1_1628019647.png" alt="">
-                </picture>
-                <div class="card-bouteille-content">
-                    <div class="card-bouteille-info">
-                        <a href="">
-                            <h2>Argyros Atlantis 2021</h2>
-                        </a>
-                        <span>Vin blanc | 750 ml | Grèce</span>
-                        <p>23,40 $</p>
-                    </div>
-                    <a href="" class="btn-ajouter">+ Ajouter</a>
-                </div>
-            </section>
+
+    </main>
+    
 
             <!-- <div class="modal-container"> -->
                 <dialog id="modal-ajouter" class="modal">
                         <h2>Confirmation d'ajout</h2>
                         <hr>
-                        <form action="" class="form-modal">
+                        <form action="" class="form-modal" id="form-ajouter">
                                 <div class="form-radio">
                                     <input type="radio" id="location-cellier" name="location" checked >
                                     <label for="location-cellier">Celliers</label><br>
@@ -236,16 +276,18 @@
                                     <label for="location-liste">Listes</label>
                                 </div>
                                 <div class="form-input-container">
-                                    <label for="cellier-location">Millésime</label>
-                                    <select name="cellier-location" id="cellier-location">
-                                        <option value="">Maison</option>
-                                        <option value="">Cottage</option>
-                                        <option value="">Bureau</option>
+                                    <label for="select-location" id="label-location">Choisir le cellier</label>
+                                    <select name="select-location" id="select-location">
+                                        @forelse ($celliers as $cellier)
+                                            <option value="{{ $cellier->id }}">{{ $cellier->nom }}</option>
+                                        @empty 
+                                            <option value="">Vous n'avez aucun cellier</option>
+                                        @endforelse
                                     </select>
                                 </div>
                                 <div class="card-bouteille-qt">
                                     <button class="btn-decrement">-</button>
-                                    <input type="text" value="1" min="1" readonly>
+                                    <input type="text" value="1" min="1" id="quantite-bouteille" readonly>
                                     <button class="btn-increment">+</button>
                                 </div>
                                 <div class="btn-modal-container">
@@ -255,54 +297,14 @@
                         </form>
                 </dialog>
             <!-- </div> -->
-            <script src="../../js/bottleCounterModal.js"></script>
-            <script src="../../js/modalAjouter.js"></script>
-            <script src="../../js/filterTag.js"></script>
-            <script src="../../js/filterSlider.js"></script>
+
+            <script src="{{ asset('js/queryBottles.js') }}"></script>
+            <script src="{{ asset('js/bottleCounterModal.js') }}"></script>
+            <script src="{{ asset('js/modalAjouter.js') }}"></script>
+            <script src="{{ asset('js/filterTag.js') }}"></script>
+            <script src="{{ asset('js/filterSlider.js') }}"></script>
+
+
+           
         </main>
-    <nav class="nav">
-        <ul class="nav-list">
-            <li class="nav-item">        
-                <a href="#">
-                    <figure class="nav-icon-container">
-                        <img src="../../../public/assets/icons/home_icon.svg" alt="Accueil">
-                        <figcaption>accueil</figcaption>
-                    </figure>
-                </a>
-            </li>
-            <li class="nav-item">        
-                <a href="#">
-                    <figure class="nav-icon-container nav-active">
-                        <img src="../../../public/assets/icons/add_icon.svg" alt="Recherche">
-                        <figcaption class="icons-label">ajouter</figcaption>
-                    </figure>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#">
-                    <figure class="nav-icon-container">
-                        <img src="../../../public/assets/icons/list_icon.svg" alt="Liste d'achats">
-                        <figcaption>liste</figcaption>
-                    </figure>
-                </a>
-            </li>
-            <li class="nav-item">        
-                <a href="#">
-                    <figure class="nav-icon-container">
-                        <img src="../../../public/assets/icons/cellars_icon.svg" alt="Celliers">
-                        <figcaption>celliers</figcaption>
-                    </figure>
-                </a>
-            </li>
-            <li class="nav-item">         
-                <a href="#">
-                    <figure class="nav-icon-container">
-                        <img src="../../../public/assets/icons/profile_icon.svg" alt="Profil">
-                        <figcaption>profil</figcaption>
-                    </figure>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</body>
-</html>
+    @endsection

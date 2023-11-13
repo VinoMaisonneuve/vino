@@ -56,6 +56,68 @@ class BouteilleController extends Controller
         ]);
     }    
 
+
+    // public function search(Request $request) {
+
+    //     $searchTerm = $request->input('search');
+    //     $bouteilles = Bouteille::where('nom', 'like', "%$searchTerm%")->paginate(3);
+               
+    //   return view('bouteille.show-search', ['bouteilles' => $bouteilles]);
+    // }
+
+    // public function search(Request $request)
+    // {
+    //     $query = $request->input('query');
+    //     $page = $request->input('page', 1);
+        
+    //     $results = Bouteille::where('nom', 'LIKE', '%' . $query . '%')
+    //                     ->paginate(7, ['*'], 'page', $page);
+
+    //     $resultsHtml = view('partials.results', compact('results'))->render();
+    //     $paginationHtml = view('partials.pagination', compact('results'))->render();
+
+    //     return response()->json([
+    //         'resultsHtml' => $resultsHtml,
+    //         'paginationHtml' => $paginationHtml
+    //     ]);
+    // }
+
+    // public function search(Request $request)
+    // {
+    //     $query = $request->input('search');
+    //     // $category = $request->input('category');
+    //     // $sort = $request->input('sort', 'name');
+    //     // $direction = $request->input('direction', 'asc');
+        
+
+    //     // Commencez par la requête de base
+    //     $bouteillesQuery = Bouteille::query();
+
+    //     // Appliquez le filtre de recherche si un terme de recherche est fourni
+    //     if (!empty($query)) {
+    //         $bouteillesQuery->where('nom', 'like', "%{$query}%");
+    //     }
+
+    //     // Appliquez le filtre de catégorie si une catégorie est sélectionnée
+    //     // if (!empty($category)) {
+    //     //     $bouteillesQuery->where('category_id', $category);
+    //     // }
+
+    //     // Appliquez le tri
+    //     // $bouteillesQuery->orderBy($sort, $direction);
+
+    //     // Paginer les résultats
+    //     $bouteilles = $bouteillesQuery->paginate(10);
+
+    //     // Si la requête est une requête AJAX, retournez uniquement la vue partielle
+    //     if ($request->ajax()) {
+    //         return view('partials.bouteilles', ['bouteilles' => $bouteilles])->render();
+    //     }
+
+    //     // Sinon, retournez la vue complète
+    //     return view('bouteille.index', ['bouteilles' => $bouteilles]);
+    // }
+
     public function search(Request $request)
     {
         $bouteilles = Bouteille::paginate(7);
@@ -70,29 +132,6 @@ class BouteilleController extends Controller
         if (!empty($query)) {
             $bouteillesQuery->where('nom', 'LIKE', '%' . $query . '%');
         }
-
-        $selectors = ['couleur', 'pays', 'format', 'designation', 'producteur', 'agentPromotion', 'type', 'millesime', 'cepage', 'region'];
-        foreach ($selectors as $selector) {
-            $values = $request->input($selector);
-            if (!empty($values)) {
-                // Commencez une nouvelle sous-requête pour ce sélecteur
-                $bouteillesQuery->where(function ($query) use ($selector, $values) {
-                    // Initialisez le premier orWhere avec la première valeur si c'est un tableau
-                    if (is_array($values) && count($values) > 0) {
-                        // Commencez par le premier élément du tableau pour éviter le problème de la première condition "OR"
-                        $query->where($selector, '=', array_shift($values));
-                        // Puis ajoutez les autres valeurs avec orWhere
-                        foreach ($values as $value) {
-                            $query->orWhere($selector, '=', $value);
-                        }
-                    } else {
-                        // S'il n'y a qu'une seule valeur, ajoutez-la avec where
-                        $query->where($selector, '=', $values);
-                    }
-                });
-            }
-        }
-
 
         // Trier
         if (!empty($sortOption)) {
@@ -126,6 +165,17 @@ class BouteilleController extends Controller
     
         $resultsHtml = view('partials.bouteilles', compact('results'))->render();
         return response()->json(['resultsHtml' => $resultsHtml]);
+
+        // if (!empty($query)) {
+        //     $results = Bouteille::where('nom', 'LIKE', '%' . $query . '%')->paginate(10);
+        //     $resultsHtml = view('partials.bouteilles', compact('results'))->render();
+        //     return response()->json(['resultsHtml' => $resultsHtml]);
+        // }
+        // else if ($query === "") {
+        //     return response()->json(['resultsHtml' => $allHtml]);
+        // }
+
+        // return response()->json(['resultsHtml' => 'Aucun résultat trouvé']);
     }
 
 
@@ -161,7 +211,7 @@ class BouteilleController extends Controller
      */
     public function create()
     {
-        return view('bouteille.create');
+        //
     }
 
     /**

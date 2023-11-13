@@ -17,6 +17,7 @@ selectElements.forEach(select => {
         tag.classList.add('tag');
         tag.textContent = text;
         tag.setAttribute('data-value', value);
+        tag.setAttribute('data-select-id', this.id); // Stocker l'ID du select associé
 
         // Ajouter le tag au conteneur
         tagContainer.appendChild(tag);
@@ -26,11 +27,14 @@ selectElements.forEach(select => {
 
         // Listener pour supprimer le tag
         tag.addEventListener('click', function () {
-            // Ajouter l'option de nouveau au select
+            const selectId = this.getAttribute('data-select-id');
+            const associatedSelect = document.getElementById(selectId);
+
+            // Ajouter l'option de nouveau au select correct
             const newOption = document.createElement('option');
             newOption.value = this.getAttribute('data-value');
             newOption.text = this.textContent;
-            select.appendChild(newOption);
+            associatedSelect.appendChild(newOption);
 
             // Supprimer le tag
             this.remove();
@@ -40,21 +44,22 @@ selectElements.forEach(select => {
 
 // Listener pour le bouton de réinitialisation
 resetButton.addEventListener('click', function () {
-    // Réinitialiser les sélecteurs (select)
-    selectElements.forEach(select => {
-        select.selectedIndex = 0;
-    });
-
-    // Réinitialiser les tags
+    // Réinitialiser les tags et les options dans les sélecteurs (select)
     const tags = tagContainer.querySelectorAll('.tag');
     tags.forEach(tag => {
+        const selectId = tag.getAttribute('data-select-id');
+        const associatedSelect = document.getElementById(selectId);
         const value = tag.getAttribute('data-value');
-        const select = selectElements[0]; // À modifier si nécessaire pour cibler le bon select
         const newOption = document.createElement('option');
         newOption.value = value;
         newOption.textContent = tag.textContent;
-        select.appendChild(newOption);
+        associatedSelect.appendChild(newOption);
         tag.remove();
+    });
+
+    // Réinitialiser les selects à leur première option
+    selectElements.forEach(select => {
+        select.selectedIndex = 0;
     });
 
     // Réinitialiser les sliders et les champs numériques
@@ -74,5 +79,4 @@ resetButton.addEventListener('click', function () {
         range.style.left = (slider.min / slider.max) * 100 + "%";
         range.style.right = (1 - slider.value / slider.max) * 100 + "%";
     });
-
 });
