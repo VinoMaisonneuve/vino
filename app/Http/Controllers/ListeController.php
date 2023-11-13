@@ -23,8 +23,10 @@ class ListeController extends Controller
 
         $listes->each(function ($liste) {
             $liste->prixTotal = 0; 
+            $liste->quantiteTotal = 0; 
             foreach($liste->bouteillesListes as $bouteilleListe) {
                 $liste->prixTotal += $bouteilleListe->bouteille->prix * $bouteilleListe->quantite; 
+                $liste->quantiteTotal += $bouteilleListe->quantite;
             }
         }); 
         
@@ -44,9 +46,11 @@ class ListeController extends Controller
                             ->get(); 
 
         $listes->each(function ($liste) {
-            $liste->prixTotal = 0; 
+            $liste->prixTotal = 0;
+            $liste->quantiteTotal = 0;  
             foreach($liste->bouteillesListes as $bouteilleListe) {
                 $liste->prixTotal += $bouteilleListe->bouteille->prix; 
+                $liste->quantiteTotal += $bouteilleListe->quantite;
             }
         }); 
         
@@ -111,6 +115,10 @@ class ListeController extends Controller
             $liste->bouteillesListes = $liste->bouteillesListes->sortByDesc('bouteille.prix');
         }
 
+        foreach($liste->bouteillesListes as $bouteilleListe) {
+            $liste->quantiteTotal += $bouteilleListe->quantite;
+        }
+
         $celliers = Cellier::where('user_id', Auth::id())->get();
     
         return view('liste.show', ['liste' => $liste, 'celliers' => $celliers]);
@@ -168,7 +176,35 @@ class ListeController extends Controller
             return redirect(route('liste.index')); 
         }
         catch (\Exception $e) {
-            return redirect(route('liste.index'))->with('error', 'Le cellier n\'existe pas'); 
+            return redirect(route('liste.index'))->with('error', 'La liste n\'existe pas'); 
         }
+    }
+
+    /**
+     * Count the total price from a specific cellar.
+     *
+     * @return $totalPrix Total price
+     * @return $totalBouteille Number of bottles
+     */
+    public static function calculerTotalListe()
+    {
+        $listes = Liste::with('bouteillesListes.bouteille')
+        ->where('user_id', Auth::id())
+        ->get();
+
+        $totalPrix = 0;
+        $totalQuantite = 0;
+
+        foreach ($listes as $liste) {
+            foreach ($liste->bouteillesListes as $bouteilleListe) {
+                $totalPrix += $bouteilleListe->bouteille->prix * $bouteilleListe->quantite;
+                $totalQuantite += $bouteilleListe->quantite;
+            }
+        }
+
+        return [
+            'totalPrixListes' => $totalPrix,
+            'totalQuantiteListes' => $totalQuantite
+        ];
     }
 }

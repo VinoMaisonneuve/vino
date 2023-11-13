@@ -16,12 +16,22 @@ document.addEventListener('DOMContentLoaded', function () {
   // Sélectionner la fenêtre modale
   var modal = document.getElementById('modal-ajouter');
 
+  // Sélectionner le block de confirmation de l'ajout d'une bouteille
+  var succesAjouter = document.querySelector('#succes-ajouter');
+
   // Ajouter un événement d'écouteur de clic à chaque bouton "+ Ajouter"
   ajouterButtons.forEach(function (button) {
     button.addEventListener('click', function (event) {
       // Empêcher le comportement par défaut du lien (qui est de naviguer vers une nouvelle page)
       event.preventDefault();
       bouteilleID = button.getAttribute('data-bouteille-id');
+
+      // Remettre la quantité de bouteilles à 1
+      let quantiteBouteille = document.querySelector('#quantite-bouteille'); 
+      quantiteBouteille.value = 1; 
+
+      // Enlever le message de succès de l'ajout d'une bouteille
+      succesAjouter.style.display = "none"; 
 
       // Ouvrir la fenêtre modale
       modal.showModal();
@@ -46,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
   var form = document.querySelector('#form-ajouter');
+  var btnModalAction = document.querySelector('.btn-modal-action');  
   var listRadio = document.querySelector('#location-liste');
   var cellierRadio = document.querySelector('#location-cellier');
   var selectLocation = document.querySelector('#select-location');
@@ -114,9 +125,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }));
     return _loadOptions.apply(this, arguments);
   }
+  btnModalAction.addEventListener('click', function (event) {
+    console.log('test'); 
+  }); 
   form.addEventListener('submit', function (event) {
     var quantiteBouteille = document.querySelector('#quantite-bouteille').value;
     var idLocation = document.querySelector('#select-location').value;
+    succesAjouter.style.display = "block"; 
+    succesAjouter.innerHTML += 'La bouteille a été ajoutée avec succès!<br>'
     event.preventDefault();
     ajouterBouteille(quantiteBouteille, idLocation, bouteilleID);
     function ajouterBouteille(_x2, _x3, _x4) {

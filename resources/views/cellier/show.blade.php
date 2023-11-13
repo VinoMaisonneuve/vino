@@ -52,7 +52,7 @@
         <div class="card-count">
             <p>                
                 @if($cellier->bouteillesCelliers->count() > 0)
-                    {{ $cellier->bouteillesCelliers->count() }} bouteille(s)
+                    {{ $cellier->quantiteTotal }} bouteille(s)
                 @else 
                     Aucune bouteille
                 @endif

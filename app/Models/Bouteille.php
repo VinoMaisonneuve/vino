@@ -31,9 +31,6 @@ class Bouteille extends Model
         'millesime',
         'pastilleGoutTitre',
         'pastilleImageSrc',
-    
-
-      
     ];
 
 

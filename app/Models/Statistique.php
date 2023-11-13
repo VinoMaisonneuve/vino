@@ -10,6 +10,7 @@ class Statistique extends Model
     use HasFactory;
 
     protected $fillable = [
-        'informations'
+        'nom', 
+        'information'
     ]; 
 }
