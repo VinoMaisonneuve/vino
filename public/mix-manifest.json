@@ -11,6 +11,7 @@
     "/js/queryBottles.js": "/js/queryBottles.js",
     "/js/sortBottles.js": "/js/sortBottles.js",
     "/js/search-users.js": "/js/search-users.js",
+    "/js/search-cellar.js": "/js/search-cellar.js",
     "/js/modalAjouterBouteilleIndex.js": "/js/modalAjouterBouteilleIndex.js",
     "/css/app.css": "/css/app.css"
 }
