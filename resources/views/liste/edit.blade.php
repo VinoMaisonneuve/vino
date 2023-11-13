@@ -22,14 +22,28 @@
             </form>
         </div>
         <div class="form-container">
-            <form action="{{route('liste.destroy', $liste->id)}}" method="post" id="supprimerCellier">
+            <form action="{{route('liste.destroy', $liste->id)}}" method="post" id="supprimerListe">
                 @method('delete')
                 @csrf
                 <div class="form-button">
-                    <button type="submit" form="supprimerCellier" class="btn-action btn-round btn-red btn-supprimer">Supprimer</button>
+                    <button type="submit" form="supprimerListe" class="btn-action btn-round btn-red btn-supprimer">Supprimer</button>
                 </div>
             </form>
         </div>
+        <dialog id="modal-supprimer" class="modal">
+            <h2>Suppression de la liste {{ $liste->nom }}</h2>
+            <hr>
+            <p>Êtes-vous certain de vouloir supprimer la liste {{ $liste->nom }}?</p>
+            <form action="{{ route('liste.destroy', $liste->id) }}" method="post" class="form-modal" id="supprimerListe">
+                @csrf
+                @method('DELETE')
+                <div class="btn-modal-container">
+                    <button type="submit" form="supprimerListe" class="btn-modal-action btn-red">oui, supprimer</button>
+                    <button class="btn-modal-cancel btn-green">annuler</button>
+                </div>
+            </form>
+        </dialog>
+        <script src="{{ asset('js/modalSupprimer.js') }}"></script>
     </main>
 
 @endsection

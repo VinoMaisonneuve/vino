@@ -13,7 +13,7 @@ use App\Http\Controllers\CellierController;
 class CustomAuthController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a dashboard of the cellars and lists.
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,7 +31,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new user.
      *
      * @return \Illuminate\Http\Response
      */
@@ -41,7 +41,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created user in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -51,7 +51,7 @@ class CustomAuthController extends Controller
         $request->validate([
             'nom'      => 'required|min:2|max:20|alpha',
             'email'    => 'required|email',
-            'password' => 'required|min:6|confirmed'
+            'password' => 'required|min:6|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/'
         ],
         [
             'nom.required'      => 'Veuillez saisir votre nom',
@@ -62,6 +62,7 @@ class CustomAuthController extends Controller
             'email.email'       => 'Veuillez entrer un courriel valide',
             'password.required' => 'Veuillez saisir votre mot de passe',
             'password.min'      => 'Votre mot de passe doit contenir au moins 6 caractères',
+            'password.regex'    => 'Votre mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial',
             'password.confirmed'=> 'Les mots de passe ne correspondent pas'
         ]);
 
@@ -70,11 +71,11 @@ class CustomAuthController extends Controller
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->save();
-        return redirect(route('welcome'))->withSuccess('Compte créé avec succès, vous pouvez maintenant vous connecter.');
+        return view('welcome', ['successMessage' => 'Compte créé avec succès, vous pouvez maintenant vous connecter.']);
     }
 
     /**
-     * Authentification / log in of a resource.
+     * Authentification / log in of a user.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -115,7 +116,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Log out a resource in storage.
+     * Log out a user in storage.
      *
      * @return \Illuminate\Http\Response
      */
@@ -126,7 +127,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the user's informations.
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
@@ -137,7 +138,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the user's informations.
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
@@ -148,7 +149,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the user's informations in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user
@@ -182,7 +183,53 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Show the form for changing the password.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function changePassword(User $user)
+    {
+        return view('utilisateur.edit-password', ['user' => $user]);
+    }
+
+    /**
+     * Change and stock the new password.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function stockNewPassword(Request $request, User $user)
+    {
+        $request->validate([
+            'oldPassword' => 'required',
+            'password'    => 'required|min:6|confirmed|different:oldPassword|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/'
+        ],
+        [
+            'oldPassword.required'  => "Veuillez saisir votre ancien mot de passe",
+            'password.required'     => "Veuillez saisir votre nouveau mot de passe",
+            'password.min'          => "Votre mot de passe doit contenir au moins 6 caractères",
+            'password.regex'        => "Votre mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial",
+            'password.confirmed'    => "Les mots de passe ne correspondent pas",
+            'password.different'    => "Le nouveau mot de passe doit être différent de l'ancien"
+        ]); 
+
+        if (Hash::check($request->oldPassword, $user->password)) {
+            try {
+                $user->password = Hash::make($request->input('password'));
+                $user->save();
+                return redirect(route('profil.show', $user->id))->withSuccess('Mot de passe mis à jour avec succès');
+            } catch (\Exception $e) {
+                return redirect(route('profil.edit', $user->id))->withErrors(['erreur' => "Une erreur s'est produite lors du changement du mot de passe"]);
+            }
+        } else {
+            return redirect(route('profil.change-password', $user->id))->withErrors(['erreur' => "L'ancien mot de passe est incorrect"]);
+        }
+    }
+
+    /**
+     * Remove the user from storage.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Request  $user
@@ -212,7 +259,8 @@ class CustomAuthController extends Controller
             $user->listes()->delete();
 
             $user->delete();
-            return redirect()->route('welcome')->withSuccess('Compte supprimé avec succès.');
+            auth()->logout();
+            return view('welcome', ['successMessage' => 'Compte supprimé avec succès.']);
         } else {
             return back()->withErrors(['erreur' => 'Le mot de passe est incorrect.']);
         }
