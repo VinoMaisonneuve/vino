@@ -2,7 +2,6 @@
 @extends('layouts.app')
 @section('title', 'Cellier')
 @section('content')
-    <!-- <header class="title-container"> -->
     <header>
         <a href="{{ route('cellier.index') }}" class="btn-arrow-top">
             <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -11,7 +10,6 @@
             celliers
         </a>
     </header>
-    <!-- <main> -->
     <main class="nav-margin">
         <h1 class="btn-modify">{{ $cellier->nom }}
             <a href="{{ route('cellier.edit', $cellier->id) }}">
@@ -28,6 +26,14 @@
             </svg>
         </a>
         @if($cellier->bouteillesCelliers->count() > 1)
+        <div class="form-container" >
+            <form action="">
+                <div class="form-input-container">
+                    <label for="search_cellar">RECHERCHE</label>
+                    <input type="text" id="search_cellar" placeholder="Nom">
+                </div>
+            </form>
+        </div>
         <div class="form-container">
             <form action="{{ route('cellier.show', ['cellier_id' => $cellier->id]) }}" method="">
                 @csrf
@@ -60,7 +66,7 @@
             <div class="card-bouteille-content">
                 <div class="card-bouteille-info">
                     <a href="{{ route('bouteille.show', ['bouteille_id' => $bouteillesCelliers->bouteille->id]) }}">
-                        <h2>{{ $bouteillesCelliers->bouteille->nom }}</h2>
+                        <h2 class="bottle-name">{{ $bouteillesCelliers->bouteille->nom }}</h2>
                     </a>
                     <span>
                         {{ $bouteillesCelliers->bouteille->type }} | {{ $bouteillesCelliers->bouteille->format }} | {{ $bouteillesCelliers->bouteille->pays }}
@@ -84,5 +90,6 @@
         
         <script src="{{ asset('js/sortBottles.js') }}"></script>
         <script src="{{ asset('js/bottleCounter.js') }}"></script>
+        <script src="{{ asset('js/search-cellar.js') }}"></script>
     </main>
 @endsection

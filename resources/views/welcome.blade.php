@@ -115,9 +115,9 @@
     <picture class="welcome-image-container">
         <img src="{{ asset('assets/img/img_connexion.jpeg') }}" alt="Bouteille au marché" class="welcome-img">
     </picture>
-    @if(session('success'))
+    @if(isset($successMessage))
         <div>
-            {{ session('success') }}
+            {{ $successMessage }}
         </div>
     @endif
     @if($errors->has('erreur'))

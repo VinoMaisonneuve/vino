@@ -39,6 +39,20 @@
                 </div>
             </form>
         </div>
+        <dialog id="modal-supprimer" class="modal">
+            <h2>Suppression du cellier {{ $cellier->nom }}</h2>
+            <hr>
+            <p>Êtes-vous certain de vouloir supprimer le cellier {{ $cellier->nom }}?</p>
+            <form action="{{ route('cellier.destroy', $cellier->id) }}" method="post" class="form-modal" id="supprimerCellier">
+                @csrf
+                @method('DELETE')
+                <div class="btn-modal-container">
+                    <button type="submit" form="supprimerCellier" class="btn-modal-action btn-red">oui, supprimer</button>
+                    <button class="btn-modal-cancel btn-green">annuler</button>
+                </div>
+            </form>
+        </dialog>
+        <script src="{{ asset('js/modalSupprimer.js') }}"></script>
     </main>
 
 @endsection

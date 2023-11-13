@@ -37,7 +37,7 @@
                     @enderror
                 </div>
                 <div class="form-forgot-psw link">
-                    <a href="#" hidden>Changer mot de passe</a>
+                    <a href="{{ route('profil.change-password', $user->id) }}">Changer mot de passe</a>
                 </div>
                 <div class="form-button">
                     <button type="submit" form="modifierUtilisateur" class="btn-submit">Mettre à jour</button>

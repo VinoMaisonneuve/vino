@@ -1,3 +1,6 @@
+/**
+ * Fonction de recherche d'utilisateurs par son nom ou son identifiant.
+ */
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
 /*!**************************************!*\

@@ -57,6 +57,7 @@
                 @endforelse
             </tbody>
         </table>
+        {{ $users->links() }}
     </div>
 </main>
 <script src="{{ asset('js/search-users.js') }}"></script>
