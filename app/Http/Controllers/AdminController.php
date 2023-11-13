@@ -17,8 +17,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(8); 
         return view('admin.index-users', ['users'=>$users]);
+        // $users = User::all();
+        // return view('admin.index-users', ['users'=>$users]);
     }
 
     /**
