@@ -262,8 +262,6 @@
         </div>
 
     </main>
-
-
         <!-- <div class="modal-container"> -->
             <dialog id="modal-ajouter" class="modal">
                     <h2>Confirmation d'ajout</h2>
@@ -303,9 +301,7 @@
         <script src="{{ asset('js/queryBottles.js') }}"></script>
         <script src="{{ asset('js/bottleCounterModal.js') }}"></script>
         <script src="{{ asset('js/modalAjouterBouteilleIndex.js') }}"></script>
-        
         <script src="{{ asset('js/filterSlider.js') }}"></script>
-
 
         
     </main>
