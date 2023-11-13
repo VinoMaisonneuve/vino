@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of all the users.
      *
      * @return \Illuminate\Http\Response
      */
@@ -19,12 +19,10 @@ class AdminController extends Controller
     {
         $users = User::paginate(8); 
         return view('admin.index-users', ['users'=>$users]);
-        // $users = User::all();
-        // return view('admin.index-users', ['users'=>$users]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new user.
      *
      * @return \Illuminate\Http\Response
      */
@@ -34,7 +32,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created user in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -75,7 +73,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display a specific user.
      *
      * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
@@ -86,19 +84,18 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing a specific user.
      *
      * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, User $user)
     {
-        // $user = User::find($id);
         return view('admin.edit-user', ['user' => $user]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specific user in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user
@@ -132,7 +129,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specific user from storage with password confirmation.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Request  $request
