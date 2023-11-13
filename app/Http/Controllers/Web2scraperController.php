@@ -10,12 +10,22 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class Web2scraperController extends Controller
 {
+    /**
+     * Fonction de récupération de données à partir du site web de la SAQ .
+     *
+     * Cette fonction extrait des informations telles que le nom, le code, le lien, l'image, le prix,
+     * le type, le format et des détails supplémentaires pour chaque bouteille de vin à partir de plusieurs pages.
+     *
+     * @param  Request  $request
+     * @return void
+     */
+
     public function scrapeData(Request $request)
     {
         set_time_limit(0);
         $client = new Client();
 
-        $pageMax = 2;
+        $pageMax = 4;
         for ($page = 1; $page <= $pageMax; $page++) {
             $url = "https://www.saq.com/fr/produits/vin?p={$page}&product_list_limit=24&product_list_order=name_asc";
             $response = $client->request('GET', $url);
@@ -35,7 +45,7 @@ class Web2scraperController extends Controller
                 $prixText = $node->filter('.price')->text();
                 // Supprimer les caractères non numériques (virgules, espaces, etc.)
                 $prixText = preg_replace('/[^0-9,.]/', '', $prixText);
-                // Si le format est "29.95", on n'a pas besoin de remplacer les espaces
+                // Si le format est "29.95 par exmple  on n'a pas besoin de remplacer les espaces
                 if (strpos($prixText, '.') !== false) {
                     $prix = (float) $prixText;
                 } else {
@@ -57,7 +67,7 @@ class Web2scraperController extends Controller
                 if (isset($lesMatches[0])) {
                     $millesime = $lesMatches[0];
                 }
-
+                // extraire les information qui se trouve sur la page de chaque bouteille à travers son lien
                 $detailResponse = $client->request('GET', $lienProduit);
 
                 if ($detailResponse->getStatusCode() === 200) {
@@ -96,7 +106,7 @@ class Web2scraperController extends Controller
                     $imagePastille = $detailCrawler->filter('.wrapper-taste-tag img');                    if ($imagePastille->count() > 0) {
                     $pastilleImageSrc = $imagePastille->attr('src');
                     }
-                    // Gérer le cas où l'imagen'est pas trouvé
+                    // Gérer le cas où l'image n'est pas trouvée
                     $pastilleImageSrc = isset($pastilleImageSrc) ? $pastilleImageSrc : null;
 
                      //Mettre à jour ou créer une nouvelle bouteille
@@ -126,10 +136,11 @@ class Web2scraperController extends Controller
                          ]
                      );
 
-                    echo $pastilleGoutTitre . '<br>';
+                    echo 'Importation des données réussie';
                 } else {
+                     // En cas d'échec de la requête on affiche un message d'erreur.
                     echo 'La requête a échoué avec le code : ' . $detailResponse->getStatusCode();
-                    // Gérer l'échec de la requête, par exemple, en enregistrant un message d'erreur.
+                   
                 }
             });
         }

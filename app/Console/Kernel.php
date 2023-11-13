@@ -15,9 +15,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //programmer le scripping a minuit
-        $schedule->command('scraping:run')->dailyAt('00:00');
+        // Programmer le scraping une fois par semaine le dimanche à minuit
+        $schedule->command('scraping:run')->weekly()->sundays()->at('00:00');
     }
+    
 
     /**
      * Register the commands for the application.
