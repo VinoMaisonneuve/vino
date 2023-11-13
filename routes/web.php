@@ -20,25 +20,30 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
 
     // *************** Connexion (redirection) ****************
+
     Route::get('/', [CustomAuthController::class, 'index'])->name('welcome');
 
     // *************** Déconnexion ****************
+
     Route::get('/logout', [CustomAuthController::class, 'logout'])->name('logout');
 
     // *************** Gestion du profil ****************
+
     // Affichage du profil de l'utilisateur
     Route::get('/profil/{user}', [CustomAuthController::class, 'show'])->name('profil.show');
     // Modification du profil de l'utilisateur
     Route::get('/profil-modifier/{user}', [CustomAuthController::class, 'edit'])->name('profil.edit');
     // Stockage de la modification du profil de l'utilisateur
     Route::put('/profil-modifier/{user}', [CustomAuthController::class, 'update']);
+    // Changement de mot de passe de l'utilisateur
+    Route::get('/profil/changer-mdp/{user}', [CustomAuthController::class, 'changePassword'])->name('profil.change-password');
+    // Stockage du changement de mot de passe de l'utilisateur
+    Route::put('/profil/changer-mdp/{user}', [CustomAuthController::class, 'stockNewPassword']);
     // Suppression d'un profil
     Route::delete('/profil-modifier/{user}', [CustomAuthController::class, 'destroy'])->name('profil.destroy');
 
     // *************** Gestion des bouteilles ****************
-
     
-    // Importer data de la SAQ
     Route::get('/scrape', [Web2scraperController::class, 'scrapeData']);
     // Affichage de toutes les bouteilles
     Route::get('/bouteilles', [BouteilleController::class, 'index'])->name('bouteille.index');
@@ -120,6 +125,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/listes/{liste_id}/bouteilles/{bouteille_id}', [BouteilleController::class, 'modifierQuantiteListe'])->name('bouteilles.modifierQuantiteListe');
 
     // *************** Admin ****************
+
     Route::middleware('role:Admin')->group(function () {
         // Affichage de tous les utilisateurs
         Route::get('/admin/users', [AdminController::class, 'index'])->name('admin.index');

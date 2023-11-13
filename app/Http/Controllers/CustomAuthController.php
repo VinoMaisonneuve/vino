@@ -48,7 +48,7 @@ class CustomAuthController extends Controller
         $request->validate([
             'nom'      => 'required|min:2|max:20|alpha',
             'email'    => 'required|email',
-            'password' => 'required|min:6|confirmed'
+            'password' => 'required|min:6|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/'
         ],
         [
             'nom.required'      => 'Veuillez saisir votre nom',
@@ -59,6 +59,7 @@ class CustomAuthController extends Controller
             'email.email'       => 'Veuillez entrer un courriel valide',
             'password.required' => 'Veuillez saisir votre mot de passe',
             'password.min'      => 'Votre mot de passe doit contenir au moins 6 caractères',
+            'password.regex'    => 'Votre mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial',
             'password.confirmed'=> 'Les mots de passe ne correspondent pas'
         ]);
 
@@ -175,6 +176,52 @@ class CustomAuthController extends Controller
             return redirect(route('profil.show', $user->id))->withSuccess('Profil mis à jour avec succès');
         } catch (\Exception $e) {
             return redirect(route('profil.edit', $user->id))->withErrors(['erreur' => "Une erreur s'est produite lors de la mise à jour du profil"]);
+        }
+    }
+
+    /**
+     * Show the form for changing the password.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function changePassword(User $user)
+    {
+        return view('utilisateur.edit-password', ['user' => $user]);
+    }
+
+    /**
+     * Show the form for changing the password.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function stockNewPassword(Request $request, User $user)
+    {
+        $request->validate([
+            'oldPassword' => 'required',
+            'password'    => 'required|min:6|confirmed|different:oldPassword|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/'
+        ],
+        [
+            'oldPassword.required'  => "Veuillez saisir votre ancien mot de passe",
+            'password.required'     => "Veuillez saisir votre nouveau mot de passe",
+            'password.min'          => "Votre mot de passe doit contenir au moins 6 caractères",
+            'password.regex'        => "Votre mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial",
+            'password.confirmed'    => "Les mots de passe ne correspondent pas",
+            'password.different'    => "Le nouveau mot de passe doit être différent de l'ancien"
+        ]); 
+
+        if (Hash::check($request->oldPassword, $user->password)) {
+            try {
+                $user->password = Hash::make($request->input('password'));
+                $user->save();
+                return redirect(route('profil.show', $user->id))->withSuccess('Mot de passe mis à jour avec succès');
+            } catch (\Exception $e) {
+                return redirect(route('profil.edit', $user->id))->withErrors(['erreur' => "Une erreur s'est produite lors du changement du mot de passe"]);
+            }
+        } else {
+            return redirect(route('profil.change-password', $user->id))->withErrors(['erreur' => "L'ancien mot de passe est incorrect"]);
         }
     }
 
