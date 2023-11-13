@@ -67,7 +67,7 @@ class CustomAuthController extends Controller
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->save();
-        return redirect(route('welcome'))->withSuccess('Compte créé avec succès, vous pouvez maintenant vous connecter.');
+        return view('welcome', ['successMessage' => 'Compte créé avec succès, vous pouvez maintenant vous connecter.']);
     }
 
     /**
@@ -209,7 +209,8 @@ class CustomAuthController extends Controller
             $user->listes()->delete();
 
             $user->delete();
-            return redirect()->route('welcome')->withSuccess('Compte supprimé avec succès.');
+            auth()->logout();
+            return view('welcome', ['successMessage' => 'Compte supprimé avec succès.']);
         } else {
             return back()->withErrors(['erreur' => 'Le mot de passe est incorrect.']);
         }
