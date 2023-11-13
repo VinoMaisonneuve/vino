@@ -31,7 +31,7 @@
                             </svg>
                             Réinitialiser les filtres
                         </button>
-                        <!-- SLIDERS À IMPLÉMENTER -->
+                        <!-- SLIDERS À IMPLÉMENTER (EN DEV - VICTOR)-->
                         <!-- <div class="form-input-container">
                             <label for="prix-range">Prix ($)</label>
                             <div class="form-range">

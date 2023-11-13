@@ -7,14 +7,10 @@ use App\Models\Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-// Utiliser Log quand on ne peut débug avec var_dump (à cause de return JSON)
-// ex. Log::info('Information des couleurs', ['couleurs' => $couleurs]);
-// use Illuminate\Support\Facades\Log; 
-
 class BouteilleController extends Controller
 {
     /**
-     * Affiche la liste des bouteilles en page.
+     * Affiche la page "Ajouter une bouteille" initiale avec toutes les bouteilles.
      *
      * @return \Illuminate\Http\Response
      */
@@ -61,11 +57,13 @@ class BouteilleController extends Controller
         ]);
     }    
 
+    /**
+     * Affiche une partie de la page "Ajouter une bouteille" avec résultats des bouteilles.
+     *
+     * @return resultsHtml en JSON
+     */
     public function search(Request $request)
     {
-        // Initialisation de la requête
-        // $bouteillesQuery = DB::table('bouteilles');
-
         $bouteilles = Bouteille::paginate(7);
         $allHtml = view('partials.bouteilles', compact('bouteilles'))->render();
 
@@ -128,32 +126,6 @@ class BouteilleController extends Controller
     
         $resultsHtml = view('partials.bouteilles', compact('results'))->render();
         return response()->json(['resultsHtml' => $resultsHtml]);
-    }
-
-
-
-    public function sorting (Request $request) {
-
-        $sort = $request->input('sort');
-        switch ($sort) {
-            case 'price-asc':
-                $bouteilles = Bouteille::orderBy('prix', 'asc')->paginate(3);
-                break;
-            case 'price-desc':
-                $bouteilles = Bouteille::orderBy('prix', 'desc')->paginate(3);
-                break;
-            case 'name-asc':
-                $bouteilles = Bouteille::orderBy('nom', 'asc')->paginate(3);
-                break;
-            case 'name-desc':
-                $bouteilles = Bouteille::orderBy('nom', 'desc')->paginate(3);
-                break;
-            default:
-                $bouteilles = Bouteille::all();
-                break;
-        }
-        return view('bouteille.show-sorting', compact('bouteilles'));
-        
     }
 
     /**
