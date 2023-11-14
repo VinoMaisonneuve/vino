@@ -18,6 +18,8 @@ class CreateFavorisTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('bouteille_id'); 
             $table->foreign('bouteille_id')->references('id')->on('bouteilles'); 
+            $table->unsignedBigInteger('bouteille_personnalisee_id'); 
+            $table->foreign('bouteille_personnalisee_id')->references('id')->on('bouteilles_personnalisees'); 
             $table->unsignedBigInteger('user_id'); 
             $table->foreign('user_id')->references('id')->on('users'); 
         });

@@ -90,7 +90,8 @@ function addEventListenersToElements(container) {
     loadOptions('liste');
   });
   cellierRadio.addEventListener('change', function (event) {
-    selectLocation.innerHTML = 'Choisir le cellier';
+    selectLocation.innerHTML = '';
+    labelLocation.innerHTML = 'Choisir le cellier';
     loadOptions('cellier');
   });
 
@@ -130,12 +131,19 @@ function addEventListenersToElements(container) {
             return response.json();
           case 9:
             data = _context2.sent;
-            data.forEach(function (option) {
+            if (data && data.length > 0) {
+              data.forEach(function (option) {
+                var optionElement = document.createElement('option');
+                optionElement.value = option.id;
+                optionElement.textContent = option.nom;
+                selectLocation.appendChild(optionElement);
+              });
+            }
+            else {
               var optionElement = document.createElement('option');
-              optionElement.value = option.id;
-              optionElement.textContent = option.nom;
+              optionElement.textContent = "Vous n'avez pas de " + type;
               selectLocation.appendChild(optionElement);
-            });
+            }
             _context2.next = 16;
             break;
           case 13:
