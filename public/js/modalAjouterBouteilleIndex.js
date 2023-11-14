@@ -42,6 +42,13 @@ function addEventListenersToElements(container) {
   var bouteilleID;
   var url = '/celliers-json';
   var ajouterButtons = document.querySelectorAll('.btn-ajouter');
+  var windowLocation = window.location.toString(); 
+  if (windowLocation.includes('listes')) {
+    loadOptions('liste');
+  }
+  else {
+    loadOptions('cellier'); 
+  }
 
   // Sélectionner la fenêtre modale
   var modal = document.getElementById('modal-ajouter');
@@ -82,17 +89,45 @@ function addEventListenersToElements(container) {
   var cellierRadio = document.querySelector('#location-cellier');
   var selectLocation = document.querySelector('#select-location');
   var labelLocation = document.querySelector('#label-location');
+  var selectListes = []; 
+  var selectCelliers = [];   
 
   // Listeners pour le radio (choix entre cellier ou liste)
   listRadio.addEventListener('change', function (event) {
-    selectLocation.innerHTML = '';
     labelLocation.innerHTML = 'Choisir la liste';
-    loadOptions('liste');
+    if (selectListes.length === 0) {
+      loadOptions('liste');
+    }
+    else {
+      selectLocation.innerHTML = ""; 
+      selectListes.forEach(function(liste) {
+        selectLocation.appendChild(liste);
+      }); 
+      if (selectLocation.querySelector('option').textContent == "Vous n'avez pas de liste") {
+        form.querySelector('.btn-modal-action').disabled = true; 
+      }
+      else {
+        form.querySelector('.btn-modal-action').disabled = false; 
+      }
+    }
   });
   cellierRadio.addEventListener('change', function (event) {
-    selectLocation.innerHTML = '';
     labelLocation.innerHTML = 'Choisir le cellier';
-    loadOptions('cellier');
+    if (Object.keys(selectCelliers).length === 0) {
+      loadOptions('cellier');
+    }
+    else {
+      selectLocation.innerHTML = ""; 
+      selectCelliers.forEach(function(cellier) {
+        selectLocation.appendChild(cellier);
+      }); 
+      if (selectLocation.querySelector('option').textContent == "Vous n'avez pas de cellier") {
+        form.querySelector('.btn-modal-action').disabled = true; 
+      }
+      else {
+        form.querySelector('.btn-modal-action').disabled = false; 
+      }
+    }
   });
 
   // Fonction pour charger les options (de celliers ou listes)
@@ -131,18 +166,40 @@ function addEventListenersToElements(container) {
             return response.json();
           case 9:
             data = _context2.sent;
+            selectLocation.innerHTML = '';
             if (data && data.length > 0) {
               data.forEach(function (option) {
                 var optionElement = document.createElement('option');
                 optionElement.value = option.id;
                 optionElement.textContent = option.nom;
                 selectLocation.appendChild(optionElement);
+                if (type === "cellier") {
+                  selectCelliers.push(optionElement); 
+                }
+                else {
+                  selectListes.push(optionElement); 
+                  console.log(selectListes); 
+                }
               });
+              if (windowLocation.includes('celliers') && cellierRadio.checked) {
+                //Trouver l'ID du cellier dans l'URL
+                var cellier_id = windowLocation.match(/\/celliers\/(\d+)\//)[1];
+                //Selectionner le cellier à partir duquel l'utilisateur est venu
+                var cellierOrigine = selectLocation.querySelector('option[value="' + cellier_id + '"]'); 
+                cellierOrigine.selected = true; 
+              }
             }
             else {
               var optionElement = document.createElement('option');
               optionElement.textContent = "Vous n'avez pas de " + type;
               selectLocation.appendChild(optionElement);
+              form.querySelector('.btn-modal-action').disabled = true; 
+              if (type === "cellier") {
+                selectCelliers.push(optionElement); 
+              }
+              else {
+                selectListes.push(optionElement); 
+              }
             }
             _context2.next = 16;
             break;
@@ -162,6 +219,7 @@ function addEventListenersToElements(container) {
     var quantiteBouteille = document.querySelector('#quantite-bouteille').value;
     var idLocation = document.querySelector('#select-location').value;
     event.preventDefault();
+    console.log(bouteilleID); 
     ajouterBouteille(quantiteBouteille, idLocation, bouteilleID);
     function ajouterBouteille(_x2, _x3, _x4) {
       return _ajouterBouteille.apply(this, arguments);
