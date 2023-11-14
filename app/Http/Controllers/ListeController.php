@@ -34,7 +34,7 @@ class ListeController extends Controller
     }
     
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource (version JSON).
      *
      * @return \Illuminate\Http\Response
      */
@@ -54,7 +54,7 @@ class ListeController extends Controller
             }
         }); 
         
-        return response()->json($listes);
+        return response()->json($listes); 
     }
 
     /**
@@ -96,7 +96,7 @@ class ListeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Liste  $liste
+     * @param  \App\Models\Liste  $liste_id
      * @return \Illuminate\Http\Response
      */
     public function show(Liste $liste_id, Request $request)
@@ -127,7 +127,7 @@ class ListeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Liste  $liste
+     * @param  $liste_id
      * @return \Illuminate\Http\Response
      */
     public function edit($liste_id)
@@ -141,7 +141,7 @@ class ListeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Liste  $liste
+     * @param  $liste_id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $liste_id)
@@ -164,7 +164,7 @@ class ListeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Liste  $liste
+     * @param  $liste_id
      * @return \Illuminate\Http\Response
      */
     public function destroy($liste_id)

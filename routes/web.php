@@ -99,6 +99,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Affichage de toutes les listes
     Route::get('/listes', [ListeController::class, 'index'])->name('liste.index'); 
+    // Affichage de tous les celliers en JSON
+    Route::get('/listes-json', [ListeController::class, 'indexJSON']); 
     // Affichage d'une liste et de ses bouteilles
     Route::get('/listes/{liste_id}/bouteilles', [ListeController::class, 'show'])->name('liste.show');
     // Création d'une liste

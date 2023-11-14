@@ -33,7 +33,7 @@ class CellierController extends Controller
     }
     
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource (version JSON).
      *
      * @return \Illuminate\Http\Response
      */
@@ -52,8 +52,7 @@ class CellierController extends Controller
                 $cellier->quantiteTotal += $bouteilleCellier->quantite;
             }
         }); 
-        
-        return response()->json($celliers);
+        return response()->json($celliers); 
     }
 
     /**
@@ -95,7 +94,7 @@ class CellierController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cellier  $cellier
+     * @param  \App\Models\Cellier  $cellier_id
      * @return \Illuminate\Http\Response
      */
     public function show(Cellier $cellier_id, Request $request)
@@ -125,7 +124,7 @@ class CellierController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cellier  $cellier
+     * @param  $cellier_id
      * @return \Illuminate\Http\Response
      */
     public function edit($cellier_id)
@@ -139,7 +138,7 @@ class CellierController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cellier  $cellier
+     * @param  $cellier_id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $cellier_id)
@@ -162,7 +161,7 @@ class CellierController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cellier  $cellier
+     * @param  $cellier_id
      * @return \Illuminate\Http\Response
      */
     public function destroy($cellier_id)

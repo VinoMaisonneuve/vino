@@ -38,7 +38,7 @@ class BouteilleListeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BouteilleListe  $bouteilleListe
+     * @param $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -62,6 +62,7 @@ class BouteilleListeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param $liste_id
      * @param  \App\Models\BouteilleListe  $bouteilleListe
      * @return \Illuminate\Http\Response
      */
