@@ -38,7 +38,7 @@ class BouteilleCellierController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BouteilleCellier  $bouteilleCellier
+     * @param $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -62,7 +62,8 @@ class BouteilleCellierController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BouteilleCellier  $bouteilleCellier
+     * @param $cellier_id
+     * @param  \App\Models\BouteilleCellier  $bouteille_cellier
      * @return \Illuminate\Http\Response
      */
     public function destroy($cellier_id, BouteilleCellier $bouteille_cellier)

@@ -72,7 +72,7 @@
                         {{ $bouteillesCelliers->bouteille->type }} | {{ $bouteillesCelliers->bouteille->format }} | {{ $bouteillesCelliers->bouteille->pays }}
                     </span>
                     <p>
-                        {{ number_format($bouteillesCelliers->bouteille->prix * $bouteillesCelliers->quantite, 2) }}$
+                        {{ number_format($bouteillesCelliers->bouteille->prix, 2) }}$
                     </p>
                 </div>
                 <div class="card-bouteille-qt">

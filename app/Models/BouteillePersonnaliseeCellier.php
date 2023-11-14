@@ -9,7 +9,7 @@ class BouteilleCellier extends Model
 {
     use HasFactory;
     
-    protected $table = 'bouteilles_celliers';
+    protected $table = 'bouteilles_personnalisees_celliers';
 
     protected $fillable = [
         'bouteille_id',
@@ -17,11 +17,11 @@ class BouteilleCellier extends Model
         'quantite' 
     ]; 
 
-    public function bouteille() 
+    public function bouteillePersonnalisee() 
     {
-        return $this->belongsTo(Bouteille::class);
+        return $this->belongsTo(BouteillePersonnalisee::class);
     }
-    
+
     public function cellier() 
     {
         return $this->belongsTo(Cellier::class);
