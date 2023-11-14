@@ -13,5 +13,9 @@
     --space-s: .5rem; 
     --space: 1rem; 
     --space-wide: 2rem; 
-    --h1-size: 20px; 
+    --h1-size: 20px;
+
+    --radius-s: 5px;
+    --radius-m: 10px;
+    --radius-wide: 25px;
     }

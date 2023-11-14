@@ -1,6 +1,5 @@
 .welcome {
     padding: 0 3rem;
-    /* max-width: 175px; */
 }
 
 .welcome-title {
@@ -13,9 +12,7 @@
 }
 
 .welcome-img-container {
-    /* width: 20%; */
     height: 180px;
-    /* max-width: 600px; */
 }
 
 /* à résoudre */

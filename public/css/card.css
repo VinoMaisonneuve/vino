@@ -1,44 +1,14 @@
 /*
 	(composante) */
 
-.card-container-stats {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
-.card-container-total {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: .25rem;
-    font-weight: bold;
-    /* max-width: 50%; */
-}
-.card-container-qt {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: .25rem;
-    border-left: .5px solid black;
-    font-weight: bold;
-    /* max-width: 50%; */
-}
-.card-container-qt div span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-}
+/* CARTE APERÇU DANS /CELLIERS et /LISTES ======================================================= */
 
 .card-cellier {
     color: white;
     background-color: rgba(59, 59, 59, 1);
     border-radius: 25px;
-    padding-right: 3rem;
-    /* display: flex; */
-    /* align-items: center; */
+    position: relative; /* Pour que le SVG soit positionné par rapport au lien <a> */
 }
 .card-cellier .card-container-qt {
     border-left: none;
@@ -48,60 +18,63 @@
     border-right: .5px solid white;
     font-weight: normal;
 }
-
-
-
-/* Positionnement par défaut du SVG */
-.card-cellier {
-    position: relative; /* Pour que le SVG soit positionné par rapport au lien <a> */
+.card-container-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-
+.card-container-total {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    font-weight: bold;
+}
+.card-container-qt {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-xs);
+    border-left: .5px solid black;
+    font-weight: bold;
+}
+.card-container-qt div span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space);
+}
 .card-arrow-icon {
     position: absolute;
     top: 40%;
     transform: translateY(-50%);
-    right: 1rem; /* Pour le positionner à droite avec un peu d'espace */
+    right: var(--space); /* Pour le positionner à droite avec un peu d'espace */
     transition: right 0.3s ease-in-out; /* Ajout de la transition */
 }
-
-/* Style lors du survol du lien <a> */
 .card-cellier a:hover .card-arrow-icon {
-    right: .5rem; /* Pour le déplacer légèrement vers la droite lors du survol */
+    right: var(--space-s); /* Pour le déplacer légèrement vers la droite lors du survol */
 }
 
+
+/* CARTES BOUTEILLES ======================================================================= */
 
 /* Ex. 12 bouteilles: */
 .card-count {
     min-width: 100%;
     text-align: left;
 }
-
-
-/* .card-cellier>a>div {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-around;
-    gap: auto;
-}
-.card-cellier>a {
-    display: flex;
-    min-width: 100%;
-} */
-
+/* carte bouteille */
 .card-bouteille {
-    /* color: white; */
-    /* background-color: rgba(59, 59, 59, 1); */
     display: flex;
     border-radius: 25px;
     border: 1px solid black;
     text-align: left;
     position: relative;
-    /* display: flex; */
-    /* align-items: center; */
+    align-items: center;
 }
 .card-bouteille picture {
-    margin: 0 .25rem;
+    margin: 0 var(--space-xs);
 }
 .card-bouteille img {
     height: 120px;
@@ -110,56 +83,45 @@
     text-decoration: underline;
 }
 .card-bouteille-info> * + * {
-    margin-top: .25rem;
+    margin-top: var(--space-xs);
     font-size: 12px;
 }
 .card-bouteille-info p {
     font-size: 16px;
 }
 
+/* CARTE BOUTEILLE seulement dans CELLIERS ou LISTES */
 .card-bouteille-qt {
     display: flex;
     align-items: center;
 }
-
 .card-bouteille-qt input {
     width: 30px;
     height: 30px;
     text-align: center;
     border: 1px solid #ccc;
-    margin: 0 10px;
+    margin: 0 var(--space-s);
 }
-
-
-/* ======= */
-/* .card-bouteille {
-    display: flex;
-    flex-direction: column;
-} */
-
-.card-bouteille-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.card-bouteille-qt {
-    display: flex;
-    align-items: center;
-    /* justify-content: center; */
-}
-
 /* Lorsqu'il y a zéro bouteille */
 .card-transparent {
     opacity: 0.5;
 }
 
+/* CARTE BOUTEILLE seulement dans /BOUTEILLES */
+.card-bouteille-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-xs);
+}
+
+/* Conteneur des CARTES BOUTEILLES */
 .card-container {
     min-width: 100%;
 }
 .card-container>div {
     display: flex;
     flex-direction: column;
-    gap: .5rem;
+    gap: var(--space-s);
 }

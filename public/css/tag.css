@@ -1,0 +1,27 @@
+.tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap:  var(--space-s);
+    margin-bottom:  var(--space-s);
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+    padding: var(--space-xs)  var(--space-s);
+    background-color: #ddd;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.tag:hover {
+    background-color: #ccc;
+}
+
+.tag::after {
+    content: "×";
+    display: block;
+    margin-left: var(--space-s);
+    font-weight: bold;
+}

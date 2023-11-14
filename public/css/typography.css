@@ -30,11 +30,8 @@ body {
 	line-height: 1.5;
 }
 
-main,
-.container {
+main {
     text-align: center;
-    /* font-family: 'Helvetica', Helvetica; */
-    /* font-size: 16px; */
 }
 
 h1, h2, h3, h4, h5, h6 {

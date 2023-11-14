@@ -1,15 +1,7 @@
-.main-nav-list,
 .nav-list {
-    /* width: 100%;
-    display: grid; */
     grid-template-columns: repeat(5, minmax(20%, auto));
-    /* position: fixed;
-    bottom: 0;
-    padding-bottom: 0.5em;
-    background-color: white; */
 }
 
-.main-nav-list,
 .nav-list,
 .nav-admin-list {
     width: 100%;
@@ -24,20 +16,15 @@
     grid-template-columns: repeat(4, minmax(20%, auto));
 }
 
-.main-nav-item,
 .nav-item {
     list-style: none;
-    font-family: 'Helvetica', Helvetica;
     font-weight: lighter;
 }
 
-.main-nav-item a,
 .nav-item a {
     text-decoration: none;
-    color: var(--black); 
 }
 
-.container-icons-navbar,
 .nav-icon-container {
     display: flex;
     flex-flow: column;
@@ -48,7 +35,6 @@
 .active,
 .nav-active {
     text-decoration: underline;
-    /* text-decoration-color: var(--dark-red); */
     text-decoration-thickness: 4px;
     text-underline-offset: .5em;
 }

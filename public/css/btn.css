@@ -1,17 +1,17 @@
 /*
 	(composante) */
 
+/* Bouton submit dans les formulaires */
 .btn-submit {
     background-color: black;
-    /* padding: 0.5em; */
     padding: calc(var(--space-xs) - 2px) calc(var(--space-s) - 2px) calc(var(--space-xs) - 2px) calc(var(--space-s) - 2px);
     border: 2px solid transparent;
     color: var(--white);
     font-size: 1rem;
-    border-radius: 5px;
+    border-radius: var(--radius-s);
     min-width: 100%;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: var(--space);
+    margin-bottom: var(--space);
     text-transform: uppercase;
     font-weight: bold;
 }
@@ -21,57 +21,55 @@
     color: black;
 }
 
-
+/* Bouton dans <Header> - Ex.: "<- celliers" */
 .btn-arrow-top {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    /* text-align: center; */
-    /* justify-content: space-between; */
     border: 2px solid black;
-    border-radius: 25px;
-    gap: 0.5rem;
+    border-radius: var(--radius-wide);
+    gap: var(--space-s);
     min-width: 100%;
     padding: 0 var(--space-sx) 0 var(--space-sx);
-    /* padding-right: 1rem; */
     /* Ajout de la transition pour padding-left */
     transition: gap 0.3s ease-in-out, padding-left 0.3s ease-in-out;
 }
 .btn-arrow-top>svg {
     position: absolute;
-    left: 10px;
+    left: var(--space-s);
     top: 50%;
     transform: translateY(-50%); /* Pour le centrer verticalement */
     transition: left 0.3s ease-in-out;
 }
 header>.btn-arrow-top:hover svg {
-    left: 5px;
+    left: var(--space-xs);
 }
 
+/* Bouton "direction" avec une flèche; Ex.: "Voir vos cellier ->" */
 .btn-arrow {
     display: flex;
     justify-content: space-between;
     font-style: italic;
-    gap: 0.5rem;
+    gap: var(--space-s);
     min-width: 100%;
     padding: var(--space-s) var(--space) var(--space-s) var(--space);
-    padding-right: 1rem;
-    /* Ajout de la transition pour padding-right */
+    padding-right: var(--space);
     transition: gap 0.3s ease-in-out, padding-right 0.3s ease-in-out;
 }
 .btn-arrow:hover {
-    padding-right: .5rem;
+    padding-right: var(--space-s);
 }
 
+/* Ex.: Bouton "+ AJOUTER UN CELLIER" */
 .btn-action {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
+    gap: var(--space-s);
     min-width: 100%;
+    /* padding de sorte que le bouton ne bouge pas en hover */
     padding: calc(var(--space-s) - 2px) calc(var(--space) - 2px) calc(var(--space-s) - 2px) calc(var(--space) - 2px);
     border: 2px solid transparent;
-    /* Ajout de transitions pour border-color, background-color et color */
     transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 .btn-action:hover {
@@ -80,6 +78,7 @@ header>.btn-arrow-top:hover svg {
     color: black;
 }
 
+/* bouton arrondi de base */
 .btn-round {
     display: flex;
     align-items: center;
@@ -89,17 +88,9 @@ header>.btn-arrow-top:hover svg {
     text-transform: uppercase;
     background-color: black;
     color: white;
-    /* padding: var(--space-s); */
-    /* border: 0.5px solid var(--couleur-accent); */
-    border-radius: 25px;
-    /* color: var(--couleur-accent); */
+    border-radius: var(--radius-wide);
     box-shadow: none;
 }
-
-/* à effacer */
-/* .btn-container {
-    margin: 0 var(--space-s) var(--space-s) var(--space-s);
-} */
 
 /* Boutons dans le carousel de l'accueil */
 .btn-prev {
@@ -109,20 +100,18 @@ header>.btn-arrow-top:hover svg {
     right: 0;
 }
 
-/* Pour modifier le nom du cellier ou de la liste */
+/* Bouton pour modifier le nom du cellier ou de la liste */
 .btn-modify {
-    margin: .5rem 0;
+    margin: var(--space-s) 0;
     position: relative;
     min-width: 100%;
 }
-
 .btn-modify svg {
     position: absolute;
-    right: 10px; /* Positionner le SVG à la limite droite de la balise h1 */
+    right: var(--space-s); /* Positionner le SVG à la limite droite de la balise h1 */
     top: 50%;
     transform: translateY(-50%); /* Pour le centrer verticalement par rapport au texte */
 }
-
 
 /* boutons - et + dans les card-bouteille */
 .btn-decrement, .btn-increment {
@@ -157,6 +146,7 @@ header>.btn-arrow-top:hover svg {
     text-decoration: underline;
 }
 
+/* Bouton "+ AJOUTER" sur les cartes */
 .btn-ajouter {
     display: flex;
     justify-content: center;
@@ -164,22 +154,21 @@ header>.btn-arrow-top:hover svg {
     font-weight: bold;
     background-color: black;
     color: white;
-    border-radius: 25px;
-    padding: .25rem .5rem;
+    border-radius: var(--radius-wide);
+    padding: var(--space-xs) var(--space-s);
     width: 8rem;
 }
 
-
-/* Dans MODAL */
+/* Pour fenêtres modales */
 .btn-modal-container {
     display: flex;
     min-width: 100%;
-    gap: .25rem;
-    margin-top: .5rem;
+    gap: var(--space-xs);
+    margin-top: var(--space-s);
 }
 .btn-modal-container button {
     text-transform: uppercase;
-    border-radius: 5px;
+    border-radius: var(--radius-s);
     padding: .5em 0;
     font-weight: bold;
     /* background-color: black; */
@@ -196,20 +185,18 @@ header>.btn-arrow-top:hover svg {
     flex-grow: 1;
 }
 
-
+/* Bouton reset pour les filtres */
 .btn-reset {
     display: flex;
     align-items: center;
-    gap: .25rem;
-    padding: 5px 10px;
-    border-radius: 10px;
-    margin-top: .5rem;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-s);
+    border-radius: var(--radius-m);
+    margin-top: var(--space-s);
+    cursor: pointer;
 }
 
-.btn-mt {
-    margin-top: 1rem;
-}
-
+/* COULEURS =============================================================================== */
 .btn-grey {
     background-color: rgb(63, 63, 63);
 }
@@ -232,4 +219,8 @@ header>.btn-arrow-top:hover svg {
 .btn-green:hover {
     border-color: rgb(34, 108, 0);
     background-color: rgb(34, 108, 0);
+}
+
+.btn-mt {
+    margin-top: var(--space);
 }

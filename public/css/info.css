@@ -1,7 +1,8 @@
+/* Information dans la page profil */
+
 .info-profil {
     display: flex;
     justify-items: space-between;
-    /* border-bottom: .25px solid; */
 }
 .info-value {
     flex-grow: 1;

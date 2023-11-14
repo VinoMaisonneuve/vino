@@ -5,7 +5,7 @@
             fiche bouteille
         </header>
         <main class="nav-margin">
-            <section class="card-bouteille">
+            <section class="card-bouteille fiche-main-info">
                 <picture>
                     <img src="{{ $bouteille->srcImage }}" alt="{{ $bouteille->nom }}" class="zoomable-image" id="zoomableImage">
                 </picture>
@@ -62,45 +62,44 @@
             </table>
 
             <!-- Zoom de l'image (EN DEV - VICTOR) -->
-            <!-- <div id="zoomModal" class="modal">
+            <dialog id="zoomModal" class="modal">
                 <span class="modal-close" id="modalClose">&times;</span>
                 <img src="{{ $bouteille->bigImageUrl() }}" alt="{{ $bouteille->nom }}" class="modal-content">
-            </div> -->
+            </dialog>
 
-            <!-- <div class="modal-container"> -->
                 <dialog id="modal-ajouter" class="modal">
-                        <h2>Confirmation d'ajout</h2>
-                        <hr>
-                        <form action="" class="form-modal">
-                                <div class="form-radio">
-                                    <input type="radio" id="location-cellier" name="location" checked >
-                                    <label for="location-cellier">Celliers</label><br>
-                                </div>
-                                <div class="form-radio">
-                                    <input type="radio" id="location-liste" name="location">
-                                    <label for="location-liste">Listes</label>
-                                </div>
-                                <div class="form-input-container">
-                                    <label for="cellier-location">DIRECTION</label>
-                                    <select name="cellier-location" id="cellier-location">
-                                        <option value="">Maison</option>
-                                        <option value="">Cottage</option>
-                                        <option value="">Bureau</option>
-                                    </select>
-                                </div>
-                                <div class="card-bouteille-qt">
-                                    <button class="btn-decrement">-</button>
-                                    <input type="text" value="1" min="1" readonly>
-                                    <button class="btn-increment">+</button>
-                                </div>
-                                <div class="btn-modal-container">
-                                    <button class="btn-modal-action">ajouter</button>
-                                    <button class="btn-modal-cancel">annuler</button>
-                                </div>
-                        </form>
+                    <h2>Confirmation d'ajout</h2>
+                    <hr>
+                    <form action="" class="form-modal">
+                        <div class="form-radio">
+                            <input type="radio" id="location-cellier" name="location" checked >
+                            <label for="location-cellier">Celliers</label><br>
+                        </div>
+                        <div class="form-radio">
+                            <input type="radio" id="location-liste" name="location">
+                            <label for="location-liste">Listes</label>
+                        </div>
+                        <div class="form-input-container">
+                            <label for="cellier-location">DIRECTION</label>
+                            <select name="cellier-location" id="cellier-location">
+                                <option value="">Maison</option>
+                                <option value="">Cottage</option>
+                                <option value="">Bureau</option>
+                            </select>
+                        </div>
+                        <div class="card-bouteille-qt">
+                            <button class="btn-decrement">-</button>
+                            <input type="text" value="1" min="1" readonly>
+                            <button class="btn-increment">+</button>
+                        </div>
+                        <div class="btn-modal-container">
+                            <button class="btn-modal-action">ajouter</button>
+                            <button class="btn-modal-cancel">annuler</button>
+                        </div>
+                    </form>
                 </dialog>
-            <!-- </div> -->
+
             <script src="../../js/bottleCounterModal.js"></script>
-            <!-- <script src="{{ asset('js/zoom.js')  }}"></script> (EN DEV - VICTOR) -->
+            <script src="{{ asset('js/zoom.js')  }}"></script> <!-- (EN DEV - VICTOR) -->
         </main>
         @endsection
