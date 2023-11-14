@@ -6,7 +6,7 @@
 </header>
     <main class="nav-margin">
         <a href="{{ route('liste.create') }}" class="btn-round btn-action">+ ajouter une liste</a>
-        <h1>Vos listes d'achats</h1>
+        <h1>Mes listes d'achats</h1>
         @forelse($listes as $liste)
             <section class="card-cellier">
                 <a href="{{ route('liste.show', $liste->id) }}">

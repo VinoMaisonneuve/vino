@@ -15,35 +15,35 @@
     <!-- Si authentifié et administrateur -->
     @auth
     @if(Auth::user()->hasRole("Admin"))
-    <nav class="main-nav">
+    <nav>
         <ul class="nav-admin-list">
-            <li class="main-nav-item">        
+            <li class="nav-item">        
                 <a href="{{ route('admin.index') }}">
-                    <figure class="container-icons-navbar @if(Route::currentRouteName() == 'admin.index') active @endif">
+                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'admin.index') active @endif">
                         <img src="{{ asset('assets/icons/admin_users_icon.svg') }}" alt="Accueil">
                         <figcaption>utilisateurs</figcaption>
                     </figure>
                 </a>
             </li>
-            <li class="main-nav-item">        
+            <li class="nav-item">        
                 <a href="{{ route('bouteille.index') }}">
-                    <figure class="container-icons-navbar @if(Route::currentRouteName() == 'bouteille.index') active @endif">
+                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'bouteille.index') active @endif">
                         <img src="{{ asset('assets/icons/add_icon.svg') }}" alt="Recherche">
                         <figcaption class="icons-label">bouteilles</figcaption>
                     </figure>
                 </a>
             </li>
-            <li class="main-nav-item">
+            <li class="nav-item">
                 <a href="#">
-                    <figure class="container-icons-navbar">
+                    <figure class="nav-icon-container">
                         <img src="{{ asset('assets/icons/admin_stats_icon.svg') }}" alt="Liste d'achats">
                         <figcaption>statistiques</figcaption>
                     </figure>
                 </a>
             </li>
-            <li class="main-nav-item">         
+            <li class="nav-item">         
                 <a href="{{ route('profil.show', Auth::user()->id) }}">
-                    <figure class="container-icons-navbar @if(Route::currentRouteName() == 'profil.show') active @endif">
+                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'profil.show') active @endif">
                         <img src="{{ asset('assets/icons/profile_icon.svg') }}" alt="Profil">
                         <figcaption>profil</figcaption>
                     </figure>
@@ -53,43 +53,43 @@
     </nav>
     <!-- Si authentifié mais pas administrateur-->
     @else
-    <nav class="main-nav">
-        <ul class="main-nav-list">
-            <li class="main-nav-item">        
+    <nav>
+        <ul class="nav-list">
+            <li class="nav-item">        
                 <a href="{{ route('welcome') }}">
-                    <figure class="container-icons-navbar @if(Route::currentRouteName() == 'welcome') active @endif">
+                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'welcome') active @endif">
                         <img src="{{ asset('assets/icons/home_icon.svg') }}" alt="Accueil">
                         <figcaption>accueil</figcaption>
                     </figure>
                 </a>
             </li>
-            <li class="main-nav-item">        
+            <li class="nav-item">        
                 <a href="{{ route('bouteille.index') }}">
-                    <figure class="container-icons-navbar @if(Route::currentRouteName() == 'bouteille.index') active @endif">
+                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'bouteille.index') active @endif">
                         <img src="{{ asset('assets/icons/add_icon.svg') }}" alt="Recherche">
                         <figcaption class="icons-label">ajouter</figcaption>
                     </figure>
                 </a>
             </li>
-            <li class="main-nav-item">
+            <li class="nav-item">
                 <a href="{{ route('liste.index') }}">
-                    <figure class="container-icons-navbar @if(Route::currentRouteName() == 'liste.index') active @endif">
+                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'liste.index') active @endif">
                         <img src="{{ asset('assets/icons/list_icon.svg') }}" alt="Liste d'achats">
-                        <figcaption>liste</figcaption>
+                        <figcaption>listes</figcaption>
                     </figure>
                 </a>
             </li>
-            <li class="main-nav-item">        
+            <li class="nav-item">        
                 <a href="{{ route('cellier.index') }}">
-                    <figure class="container-icons-navbar @if(Route::currentRouteName() == 'cellier.index') active @endif">
+                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'cellier.index') active @endif">
                         <img src="{{ asset('assets/icons/cellars_icon.svg') }}" alt="Celliers">
                         <figcaption>celliers</figcaption>
                     </figure>
                 </a>
             </li>
-            <li class="main-nav-item">         
+            <li class="nav-item">         
                 <a href="{{ route('profil.show', Auth::user()->id) }}">
-                    <figure class="container-icons-navbar @if(Route::currentRouteName() == 'profil.show') active @endif">
+                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'profil.show') active @endif">
                         <img src="{{ asset('assets/icons/profile_icon.svg') }}" alt="Profil">
                         <figcaption>profil</figcaption>
                     </figure>

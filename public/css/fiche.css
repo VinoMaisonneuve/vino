@@ -1,0 +1,33 @@
+.fiche-main-info {
+    display: flex;
+    border: none;
+    justify-content: space-around;
+}
+.fiche-main-info picture {
+    flex: 40%;
+    display: flex;
+    justify-content: center;
+}
+.fiche-main-info>div {
+    flex: 60%;
+}
+
+table {
+    border-collapse: collapse;
+    min-width: 100%;
+    border: 1px solid black;
+	border-radius: var(--radius-m);
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: var(--space-s) var(--space);
+    text-align: left;
+}
+th {
+    width: 40%;
+}
+td {
+    width: 60%;
+}

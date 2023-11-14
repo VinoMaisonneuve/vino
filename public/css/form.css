@@ -23,14 +23,10 @@
 
 form {
     flex-grow: 1;
-    /* max-width: 75ch; */
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--space-s);
 }
-/* .form > * + * {
-	margin-top: var(--space-);
-} */
 .form-input-container {
     display: flex;
     flex-flow: column;
@@ -39,13 +35,13 @@ form {
     margin-top: var(--space-s);
 }
 .form-input-container input:not(input[type='range']) {
-    padding: 5px 10px;
+    padding: var(--space-xs) var(--space-s);
 }
 .form-input-container select {
     background-color: white;
     border: 0.5px solid #000;
-    padding: 5px 10px;
-    border-radius: 10px;
+    padding: var(--space-xs) var(--space-s);
+    border-radius: var(--radius-m);
     min-width: 100%;
 }
 option {
@@ -56,8 +52,7 @@ option {
 }
 
 .form-input-container input[type='number'] {
-    border-radius: 4px;
-    /* padding: 5px 10px; */
+    border-radius: var(--radius-s);
 }
 
 form
@@ -68,19 +63,17 @@ form
     ) {
     min-width: 100%;
     border: 0.5px solid var(--black);
-    /* padding: 0.25em; */
 }
 
 form label,
 summary {
     text-transform: uppercase;
-    /* text-decoration: underline; */
     font-size: 12px;
 }
 
 .form-border {
     border: 0.5px black solid;
-    border-radius: 10px;
+    border-radius: var(--radius-m);
 }
 
 .form-button {
@@ -90,11 +83,11 @@ summary {
 
 /* seulement pour les h1 qui est titre du formulaire */
 .form-h1 {
-    margin-top: 1rem;
+    margin-top: var(--space);
 }
 
 .form-ajouter-bouteille {
-    padding-bottom: 1rem;
+    padding-bottom: var(--space);
 }
 
 .form-ajouter-bouteille div.form-container {
@@ -106,8 +99,6 @@ summary {
 
 summary {
     list-style: none;
-    /* padding-bottom: .5rem; */
-    /* font-weight: bold; */
     cursor: pointer;
 }
 summary::after {
@@ -120,70 +111,33 @@ details[open] summary::after {
     float: right;
 }
 details {
-    /* padding-bottom: .5rem; */
     text-transform: uppercase;
     text-align: left;
-    /* border-bottom: 0.25px darkgray solid; */
 }
 
 /* MODALE AJOUTER */
 .form-modal {
-    margin: 0 1rem 0.5rem 1rem;
-    padding-top: 0.5rem;
+    margin: 0 var(--space) 0 var(--space-s) var(--space);
+    padding-top: 0 var(--space-s);
 }
-/* .form-modal> * + * {
-    margin-top: .5rem;
-} */
 
 .form-radio {
     display: flex;
-    /* margin-left: 1rem; */
 }
 .form-radio input[type="radio"],
 .form-radio label {
     min-width: auto;
     display: inline-block;
-    margin-right: 10px; /* Pour ajouter un peu d'espace entre les éléments */
-}
-
-/* TAGS */
-
-.tag-container {
-    /* padding: 10px; */
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.tag {
-    display: flex;
-    align-items: center;
-    padding: 5px 10px;
-    background-color: #ddd;
-    border-radius: 15px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.tag:hover {
-    background-color: #ccc;
-}
-
-.tag::after {
-    content: "×";
-    display: block;
-    margin-left: 8px;
-    font-weight: bold;
+    margin-right: var(--space-s);
 }
 
 /* SLIDER */
 .form-range {
     min-width: 100%;
-    margin-top: 1rem;
+    margin-top: var(--space);
 }
 .form-range-slider {
-    height: 5px;
+    height: var(--space-xs);
     position: relative;
     background-color: #e1e9f6;
     border-radius: 2px;
@@ -193,7 +147,7 @@ details {
     left: 0%;
     right: 0%;
     position: absolute;
-    border-radius: 5px;
+    border-radius: var(--radius-s);
     background-color: #1b53c0;
 }
 
@@ -203,7 +157,7 @@ details {
 .form-range-input input {
     position: absolute;
     width: 100%;
-    height: 5px;
+    height: var(--space-xs);
     top: -7px;
     background: none;
     pointer-events: none;
@@ -228,23 +182,22 @@ details {
     pointer-events: auto;
     -moz-appearance: none;
 }
-
 .form-range-number {
     display: flex;
     justify-content: space-between;
-    margin: 1rem 0;
+    margin: var(--space) 0;
     width: 100%;
     display: flex;
     /* justify-content: center; */
     align-items: center;
 }
 .form-range-number label {
-    margin-right: 5px;
+    margin-right: var(--space-xs);
 }
 .form-range-number input {
     border: 0.5px solid black;
     width: 100px;
-    padding: 5px;
+    padding: var(--space-xs);
 }
 .form-range-number input:first-of-type {
     margin-right: 15px;

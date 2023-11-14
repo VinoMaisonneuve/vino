@@ -7,7 +7,7 @@
 </header>
 <main class="nav-margin">
     <a href="{{ route('cellier.create') }}" class="btn-round btn-action">+ ajouter un cellier</a>
-    <h1>Vos celliers</h1>
+    <h1>Mes celliers</h1>
     @forelse($celliers as $cellier)
         <section class="card-cellier">
             <a href="{{ route('cellier.show', $cellier->id) }}">

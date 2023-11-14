@@ -1,6 +1,6 @@
 .admin-table-container {
     width: 100%; 
-    padding: 1rem 1rem;
+    padding: var(--space) var(--space);
 }
 
 .admin-table th:nth-child(1),
@@ -22,8 +22,8 @@
     display: flex;
     flex-direction: column;
     border: 1px solid #000000;
-    border-radius: 10px;
-    margin: .5rem;
+    border-radius: var(--radius-m);
+    margin: var(--space-s);
 }
 
 .table-row {
@@ -38,12 +38,12 @@
 .table-header {
     width: 33.33%; /* 1/3 de la largeur */
     text-align: left;
-    margin: 1rem;
+    margin: var(--space);
 }
 
 .table-data {
     width: 66.66%; /* 2/3 de la largeur */
     max-width: 100%;
     word-break: break-all;
-    margin: 1rem;
+    margin: var(--space);
 }

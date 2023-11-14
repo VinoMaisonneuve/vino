@@ -1,21 +1,20 @@
+@import url('admin.css'); 
 @import url('btn.css');
 @import url('card.css');
 @import url('carousel.css');
 @import url('composition.css');
+@import url('fiche.css');
 @import url('form.css');
 @import url('footer.css');
 @import url('general.css');
-@import url('grid.css');
 @import url('info.css');
 @import url('link.css');
 @import url('modal.css');
 @import url('nav.css');
+@import url('tag.css');
 @import url('typography.css');
 @import url('variables.css');
 @import url('welcome.css');
-/* À enlever éventuellement */
-@import url('admin.css'); 
-@import url('btn-test.css');
 
 /* dev.css */
 
