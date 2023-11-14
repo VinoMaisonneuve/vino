@@ -131,6 +131,8 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('role:Admin')->group(function () {
         // Affichage de tous les utilisateurs
         Route::get('/admin/users', [AdminController::class, 'index'])->name('admin.index');
+        // Recherche d'un utilisateur dans la liste par nom ou par id
+        Route::get('/admin/search-users', [AdminController::class, 'searchUsers'])->name('admin.search-users');
         // Affichage d'un utilisateur
         Route::get('/admin/users-show/{user}', [AdminController::class, 'show'])->name('admin.show-user');
         // Création d'un nouvel utilisateur

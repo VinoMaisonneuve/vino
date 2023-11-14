@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\CustomAuthController;
 use Illuminate\Support\Facades\Auth;
+// AJOUT
+use Illuminate\Support\Facades\View;
 
 class AdminController extends Controller
 {
@@ -17,9 +19,32 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(8); 
+        $users = User::orderBy('nom')->paginate(8);
         return view('admin.index-users', ['users'=>$users]);
     }
+
+    /**
+     * Display a listing of all the users.
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function searchUsers(Request $request)
+    {
+        $searchTerm = $request->input('search_users');
+
+        $users = User::where('nom', 'LIKE', "%$searchTerm%")
+                    ->orWhere('id', 'LIKE', "%$searchTerm%")
+                    ->orderBy('nom')
+                    ->paginate(8);
+
+        if ($request->ajax()) {
+            return View::make('admin.users-table', ['users' => $users])->render();
+        }
+    
+        return view('admin.index-users', ['users' => $users]);
+    }
+
 
     /**
      * Show the form for creating a new user.
