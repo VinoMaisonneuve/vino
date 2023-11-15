@@ -49,7 +49,7 @@ class CustomAuthController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nom'      => 'required|min:2|max:20|alpha',
+            'nom'      => 'required|min:2|max:20|regex:/^[^<>]*$/u',
             'email'    => 'required|email',
             'password' => 'required|min:6|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/'
         ],
