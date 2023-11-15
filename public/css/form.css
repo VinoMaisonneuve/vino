@@ -42,7 +42,7 @@ form {
     border: 0.5px solid #000;
     padding: var(--space-xs) var(--space-s);
     border-radius: var(--radius-m);
-    min-width: 100%;
+    width: 100%;
 }
 option {
     word-wrap: break-word;
@@ -88,6 +88,7 @@ summary {
 
 .form-ajouter-bouteille {
     padding-bottom: var(--space);
+    max-width: 100%;
 }
 
 .form-ajouter-bouteille div.form-container {
@@ -117,8 +118,8 @@ details {
 
 /* MODALE AJOUTER */
 .form-modal {
-    margin: 0 var(--space) 0 var(--space-s) var(--space);
-    padding-top: 0 var(--space-s);
+    margin: 0 var(--space-s) 0 var(--space-s) var(--space);
+    padding: var(--space) var(--space-s) 0 var(--space-s);
 }
 
 .form-radio {

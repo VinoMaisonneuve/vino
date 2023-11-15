@@ -60,12 +60,15 @@
                     </tr>
                 </tbody>
             </table>
+            <p>Pour voir disponibilité, <br>
+            consulter ce lien externe SAQ:</p>
+            <!-- <a href="{{ $bouteille->lienProduit }}" class="link" target="_blank"> -->
 
             <!-- Zoom de l'image (EN DEV - VICTOR) -->
-            <dialog id="zoomModal" class="modal">
+            <!-- <dialog id="zoomModal" class="modal">
                 <span class="modal-close" id="modalClose">&times;</span>
                 <img src="{{ $bouteille->bigImageUrl() }}" alt="{{ $bouteille->nom }}" class="modal-content">
-            </dialog>
+            </dialog> -->
 
                 <dialog id="modal-ajouter" class="modal">
                     <h2>Confirmation d'ajout</h2>
@@ -98,6 +101,8 @@
                         </div>
                     </form>
                 </dialog>
+            
+
 
             <script src="../../js/bottleCounterModal.js"></script>
             <script src="{{ asset('js/zoom.js')  }}"></script> <!-- (EN DEV - VICTOR) -->

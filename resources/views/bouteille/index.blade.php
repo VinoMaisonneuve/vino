@@ -166,7 +166,7 @@
                         </div>
 
                         <!-- Type -->
-                        <div class="form-input-container">
+                        <!-- <div class="form-input-container">
                             <label for="select_type">Type</label>
                             <select name="type" id="select_type">
                                 <option value="">Choisir des options</option>
@@ -174,7 +174,7 @@
                                     <option value="{{ $type }}">{{ $type }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> -->
 
                         <!-- Millésime -->
                         <div class="form-input-container">
