@@ -59,13 +59,21 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/bouteilles-modifier/{bouteille_id}', [BouteilleController::class, 'update']);
     // Suppression d'une bouteille personnalisée
     Route::delete('/bouteilles-modifier/{bouteille_id}', [BouteilleController::class, 'destroy'])->name('bouteille.destroy');
-    //affichage de toutes les bouteilles de la SAQ
-    Route::get('/bouteilles', [BouteilleController::class, 'index'])->name('bouteille.index');
-    //affichage par bouetille
-    Route::get('/bouteilles/{bouteille_id}', [BouteilleController::class, 'show'])->name('bouteille.show');
-
 
    Route::get('/search', [BouteilleController::class, 'search']);
+
+    // *************** Commentaires ****************
+
+    // Affichage de la page de commentaire sur une bouteille
+    Route::get('/commentaires/{bouteille_id}', [CommentaireController::class, 'create'])->name('comment.show');
+    // Stockage du commentaire sur une bouteille
+    Route::post('/commentaires/{bouteille_id}', [CommentaireController::class, 'store']);
+    // Modification d'un commentaire
+    Route::get('/commentaires-modifier/{bouteille_id}', [CommentaireController::class, 'edit'])->name('comment.edit');
+    // Stockage de la modification d'un commentaire dans la BDD
+    Route::put('/commentaires-modifier/{bouteille_id}', [CommentaireController::class, 'update']);
+    // Suppression d'un commentaire sur une bouteille
+    Route::delete('/commentaires-modifier/{bouteille_id}', [CommentaireController::class, 'destroy'])->name('comment.destroy');
 
     // *************** Gestion des celliers ****************
 
