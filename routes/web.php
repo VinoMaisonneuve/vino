@@ -8,6 +8,7 @@ use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\Web2scraperController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ListeController;
+use App\Http\Controllers\CommentaireController;
 use Spatie\Permission\Middlewares\RoleMiddleware;
 use App\Http\Middleware\CheckRole;
 
@@ -64,10 +65,8 @@ Route::middleware(['auth'])->group(function () {
 
     // *************** Commentaires ****************
 
-    // Affichage de la page de commentaire sur une bouteille
-    Route::get('/commentaires/{bouteille_id}', [CommentaireController::class, 'create'])->name('comment.show');
     // Stockage du commentaire sur une bouteille
-    Route::post('/commentaires/{bouteille_id}', [CommentaireController::class, 'store']);
+    Route::post('/commentaires/{bouteille_id}', [CommentaireController::class, 'store'])->name('comment.store');
     // Modification d'un commentaire
     Route::get('/commentaires-modifier/{bouteille_id}', [CommentaireController::class, 'edit'])->name('comment.edit');
     // Stockage de la modification d'un commentaire dans la BDD

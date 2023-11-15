@@ -23,7 +23,6 @@
                         <p>{{$bouteille->prix}}  $</p>
                     </div>
                     <a href="" class="btn-ajouter">+ Ajouter</a>
-                    <a href="#" class="btn-ajouter">+ Note</a>
                 </div>
             </section>
             <table>
@@ -66,6 +65,21 @@
                     </tr>
                 </tbody>
             </table>
+            <h2>Ajouter une note</h2>
+            <div class="form-container">
+                <form action="{{ route('comment.store', ['bouteille_id' => $bouteille->id]) }}" method="post" id="comment">
+                    <div class="form-input-container">
+                        <label for="comment"></label>
+                        <input type="text" id="body" name="comment" placeholder="NOTE">
+                        @error('comment')
+                            <span class="error-message">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-button">
+                        <button type="submit" class="btn-submit">ajouter</button>
+                    </div>
+                </form>
+            </div>
 
             <!-- Zoom de l'image (EN DEV - VICTOR) -->
             <dialog id="zoomModal" class="modal">

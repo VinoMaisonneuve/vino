@@ -14,7 +14,9 @@ class CommentaireController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth::user()->id; 
+        Commentaire::where('user_id', $user_id)->get();
+
     }
 
     /**
@@ -35,7 +37,21 @@ class CommentaireController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'comment'  => 'required|min:2'
+        ],
+        [
+            'comment.required'  => 'Veuillez saisir votre commentaire',
+            'comment.min'       => 'Votre commentaire doit contenir au moins 2 caractères'
+        ]);
+
+        $bouteille_id = $request->route('bouteille_id');
+        $commentaire = new Commentaire;
+        $commentaire->text = $request->input('comment');
+        $commentaire->bouteille_id = $bouteille_id;
+        $commentaire->user_id = Auth::user->id();
+        $commentaire->save();
+        return redirect()->route('bouteille.show', ['bouteille_id' => $bouteille->id])->with('successMessage', 'Commentaire ajouté avec succès');
     }
 
     /**
