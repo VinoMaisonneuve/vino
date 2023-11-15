@@ -88,6 +88,8 @@ Route::middleware(['auth'])->group(function () {
 
     // *************** Gestion des bouteilles d'un cellier ****************
 
+    // Redirection vers l'ajout d'une bouteille à partir d'un cellier
+    Route::get('/celliers/{cellier_id}/bouteilles-celliers-modifier', [BouteilleController::class, 'index'])->name('ajout.index');
     // Ajout d'une bouteille à un cellier
     Route::post('/celliers-json', [BouteilleCellierController::class, 'store']);
     // Retrait d'une bouteille d'un cellier
