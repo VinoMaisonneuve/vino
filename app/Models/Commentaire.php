@@ -12,7 +12,8 @@ class Commentaire extends Model
     protected $fillable = [
         'bouteille_id',
         'bouteille_personnalisee_id',
-        'user_id'
+        'user_id',
+        'corps'
     ]; 
 
     public function bouteille() 
