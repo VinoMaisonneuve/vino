@@ -2,7 +2,12 @@
 @section('title','Recherche')
 @section('content')
         <header>
-            fiche bouteille
+            <a href="{{ route('bouteille.index') }}" class="btn-arrow-top">
+                <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.4247 7C17.977 7 18.4247 7.44772 18.4247 8C18.4247 8.55228 17.977 9 17.4247 9L17.4247 7ZM0.498398 8.70711C0.107874 8.31658 0.107874 7.68342 0.498398 7.29289L6.86236 0.928933C7.25288 0.538409 7.88605 0.538409 8.27657 0.928933C8.6671 1.31946 8.6671 1.95262 8.27657 2.34315L2.61972 8L8.27657 13.6569C8.6671 14.0474 8.6671 14.6805 8.27657 15.0711C7.88605 15.4616 7.25288 15.4616 6.86236 15.0711L0.498398 8.70711ZM17.4247 9L1.20551 9L1.20551 7L17.4247 7L17.4247 9Z" fill="black"/>
+                </svg>
+                bouteilles
+            </a>
         </header>
         <main class="nav-margin">
             <section class="card-bouteille fiche-main-info">
@@ -56,10 +61,56 @@
                     </tr>
                     <tr>
                         <th>Pastille de goût</th>
-                        <td><{{$bouteille->pastilleGoutTitre ?? '-'}}/td>
+                        <td>{{$bouteille->pastilleGoutTitre ?? '-'}}</td>
                     </tr>
                 </tbody>
             </table>
+            @if(!$commentaire)
+            <section>
+                <h2>Ajouter une note</h2>
+                <div class="form-container">
+                    <form action="{{ route('comment.store', ['bouteille_id' => $bouteille->id]) }}" method="post" id="comment">
+                        @csrf
+                        <div class="form-input-container">
+                            <label for="comment"></label>
+                            <input type="text" id="body" name="comment" placeholder="NOTE">
+                            @error('comment')
+                                <span class="error-message">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-button">
+                            <button type="submit" class="btn-submit">ajouter</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            @else
+            <section>
+                <h2>Note</h2>
+                @if(session()->has('successMessage'))
+                    <div>
+                        {{ session('successMessage') }}
+                    </div>
+                @endif
+                <div class="form-container">
+                    <form action="{{ route('comment.update', ['commentaire' => $commentaire->id]) }}" method="post" id="comment">
+                        @csrf
+                        @method('put')
+                        <div class="form-input-container">
+                            <label for="comment"></label>
+                            <input type="text" id="body" name="comment" value="{{ $commentaire->corps }}">
+                            @error('comment')
+                                <span class="error-message">{{ $message }}</span>
+                            @enderror
+                            <p><span>Ajouté le:</span>{{ $commentaire->updated_at }}</p>
+                        </div>
+                        <div class="form-button">
+                            <button type="submit" class="btn-submit">modifier</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            @endif
 
             <!-- Zoom de l'image (EN DEV - VICTOR) -->
             <dialog id="zoomModal" class="modal">

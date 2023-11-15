@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bouteille;
 use App\Models\Cellier;
+use App\Models\Commentaire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -159,7 +160,10 @@ class BouteilleController extends Controller
     {
         $bouteille = Bouteille::findOrFail($id);
         $celliers = Cellier::where('user_id', Auth::id())->get();
-        return view('bouteille.show', ['bouteille'=> $bouteille, 'celliers' => $celliers]);
+        $commentaire = Commentaire::where('user_id', Auth::id())
+        ->where('bouteille_id', $id)
+        ->first();
+        return view('bouteille.show', ['bouteille'=> $bouteille, 'celliers' => $celliers, 'commentaire' => $commentaire]);
     }
 
     /**
