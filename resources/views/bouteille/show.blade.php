@@ -61,25 +61,56 @@
                     </tr>
                     <tr>
                         <th>Pastille de goût</th>
-                        <td><{{$bouteille->pastilleGoutTitre ?? '-'}}/td>
+                        <td>{{$bouteille->pastilleGoutTitre ?? '-'}}</td>
                     </tr>
                 </tbody>
             </table>
-            <h2>Ajouter une note</h2>
-            <div class="form-container">
-                <form action="{{ route('comment.store', ['bouteille_id' => $bouteille->id]) }}" method="post" id="comment">
-                    <div class="form-input-container">
-                        <label for="comment"></label>
-                        <input type="text" id="body" name="comment" placeholder="NOTE">
-                        @error('comment')
-                            <span class="error-message">{{ $message }}</span>
-                        @enderror
+            @if(!$commentaire)
+            <section>
+                <h2>Ajouter une note</h2>
+                <div class="form-container">
+                    <form action="{{ route('comment.store', ['bouteille_id' => $bouteille->id]) }}" method="post" id="comment">
+                        @csrf
+                        <div class="form-input-container">
+                            <label for="comment"></label>
+                            <input type="text" id="body" name="comment" placeholder="NOTE">
+                            @error('comment')
+                                <span class="error-message">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-button">
+                            <button type="submit" class="btn-submit">ajouter</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            @else
+            <section>
+                <h2>Note</h2>
+                @if(session()->has('successMessage'))
+                    <div>
+                        {{ session('successMessage') }}
                     </div>
-                    <div class="form-button">
-                        <button type="submit" class="btn-submit">ajouter</button>
-                    </div>
-                </form>
-            </div>
+                @endif
+                <div class="form-container">
+                    <form action="{{ route('comment.update', ['commentaire' => $commentaire->id]) }}" method="post" id="comment">
+                        @csrf
+                        @method('put')
+                        <div class="form-input-container">
+                            <label for="comment"></label>
+                            <input type="text" id="body" name="comment" value="{{ $commentaire->corps }}">
+                            @error('comment')
+                                <span class="error-message">{{ $message }}</span>
+                            @enderror
+                            <p><span>Ajouté le:</span>{{ $commentaire->updated_at }}</p>
+                        </div>
+                        <div class="form-button">
+                            <button type="submit" class="btn-submit">modifier</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            @endif
 
             <!-- Zoom de l'image (EN DEV - VICTOR) -->
             <dialog id="zoomModal" class="modal">

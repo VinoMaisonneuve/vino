@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Commentaire;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentaireController extends Controller
 {
@@ -14,9 +15,7 @@ class CommentaireController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::user()->id; 
-        Commentaire::where('user_id', $user_id)->get();
-
+        //
     }
 
     /**
@@ -47,11 +46,16 @@ class CommentaireController extends Controller
 
         $bouteille_id = $request->route('bouteille_id');
         $commentaire = new Commentaire;
-        $commentaire->text = $request->input('comment');
+        $commentaire->corps = $request->input('comment');
         $commentaire->bouteille_id = $bouteille_id;
-        $commentaire->user_id = Auth::user->id();
+        $commentaire->user_id = Auth::user()->id;
         $commentaire->save();
-        return redirect()->route('bouteille.show', ['bouteille_id' => $bouteille->id])->with('successMessage', 'Commentaire ajouté avec succès');
+
+        $commentaire = Commentaire::find($commentaire->id);
+
+        return redirect()->route('bouteille.show', ['bouteille_id' => $bouteille_id])
+            ->with('successMessage', 'Commentaire ajouté avec succès')
+            ->with('commentaire', $commentaire);
     }
 
     /**
@@ -85,7 +89,24 @@ class CommentaireController extends Controller
      */
     public function update(Request $request, Commentaire $commentaire)
     {
-        //
+        $request->validate([
+            'comment'  => 'required|min:2'
+        ],
+        [
+            'comment.required'  => 'Veuillez saisir votre commentaire',
+            'comment.min'       => 'Votre commentaire doit contenir au moins 2 caractères'
+        ]);
+
+        try {
+            $commentaire->update([
+                'corps' => $request->comment
+            ]);
+    
+            return redirect()->back()->with('successMessage', 'Commentaire modifié avec succès')
+            ->with('commentaire', $commentaire);;
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['erreur' => "Une erreur s'est produite lors de la mise à jour du commentaire"]);
+        }
     }
 
     /**
