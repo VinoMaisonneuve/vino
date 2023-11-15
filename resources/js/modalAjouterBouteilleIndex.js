@@ -42,8 +42,10 @@ var selectCelliers = [];
 // Sélectionner le bouton "annuler" dans la fenêtre modale
 const closeModalButton = document.querySelector('.btn-modal-cancel');
 
+let url = '/celliers-json';
 //Fonction appelé par l'événement d'écouteur de changement aux radios
 function onListRadioChange(event) {
+    url = '/listes-json'; 
     labelLocation.innerHTML = 'Choisir la liste';
     if (selectListes.length === 0) {
         loadOptions('liste');
@@ -64,6 +66,7 @@ function onListRadioChange(event) {
 }
 
 function onCellierRadioChange(event) {
+    url = '/celliers-json'; 
     labelLocation.innerHTML = 'Choisir le cellier';
     if (Object.keys(selectCelliers).length === 0) {
         loadOptions('cellier');
@@ -83,25 +86,18 @@ function onCellierRadioChange(event) {
     }
 }
 
-
-let url = '/celliers-json';
 var windowLocation = window.location.toString(); 
 if (windowLocation.includes('listes')) {
-  loadOptions('liste');
+    url = '/listes-json'; 
+    loadOptions('liste');
 }
 else {
-  loadOptions('cellier'); 
+    url = '/celliers-json'; 
+    loadOptions('cellier'); 
 }
 
 // Fonction pour charger les options (de celliers ou listes)
 async function loadOptions(type) {
-    if (type === 'liste') {
-        url = '/listes-json'; 
-    }
-    else if (type === 'cellier') {
-        url = '/celliers-json'; 
-    }
-    
     try {
         const response = await fetch(url, { 
             method: 'GET',
