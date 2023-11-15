@@ -16,6 +16,7 @@ class CreateCommentairesTable extends Migration
         Schema::create('commentaires', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->text('corps'); 
             $table->unsignedBigInteger('bouteille_id'); 
             $table->foreign('bouteille_id')->references('id')->on('bouteilles'); 
             $table->unsignedBigInteger('bouteille_personnalisee_id'); 

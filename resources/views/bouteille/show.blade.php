@@ -22,7 +22,7 @@
                         <span>{{$bouteille->type}} | {{ $bouteille->format }} | {{$bouteille->pays}}</span>
                         <p>{{$bouteille->prix}}  $</p>
                     </div>
-                    <a href="" class="btn-ajouter">+ Ajouter</a>
+                    <a href="#" class="btn-ajouter" data-bouteille-id="{{ $bouteille->id }}">+ Ajouter</a>
                 </div>
             </section>
             <table>
@@ -90,36 +90,39 @@
                 <dialog id="modal-ajouter" class="modal">
                     <h2>Confirmation d'ajout</h2>
                     <hr>
-                    <form action="" class="form-modal">
-                        <div class="form-radio">
-                            <input type="radio" id="location-cellier" name="location" checked >
-                            <label for="location-cellier">Celliers</label><br>
-                        </div>
-                        <div class="form-radio">
-                            <input type="radio" id="location-liste" name="location">
-                            <label for="location-liste">Listes</label>
-                        </div>
-                        <div class="form-input-container">
-                            <label for="cellier-location">DIRECTION</label>
-                            <select name="cellier-location" id="cellier-location">
-                                <option value="">Maison</option>
-                                <option value="">Cottage</option>
-                                <option value="">Bureau</option>
-                            </select>
-                        </div>
-                        <div class="card-bouteille-qt">
-                            <button class="btn-decrement">-</button>
-                            <input type="text" value="1" min="1" readonly>
-                            <button class="btn-increment">+</button>
-                        </div>
-                        <div class="btn-modal-container">
-                            <button class="btn-modal-action">ajouter</button>
-                            <button class="btn-modal-cancel">annuler</button>
-                        </div>
+                    <form action="" class="form-modal" id="form-ajouter">
+                            <div class="form-radio">
+                                <input type="radio" id="location-cellier" name="location" checked >
+                                <label for="location-cellier">Celliers</label><br>
+                            </div>
+                            <div class="form-radio">
+                                <input type="radio" id="location-liste" name="location">
+                                <label for="location-liste">Listes</label>
+                            </div>
+                            <div class="form-input-container">
+                                <label for="select-location" id="label-location">Choisir le cellier</label>
+                                <select name="select-location" id="select-location">
+                                    @forelse ($celliers as $cellier)
+                                        <option value="{{ $cellier->id }}">{{ $cellier->nom }}</option>
+                                    @empty 
+                                        <option value="">Vous n'avez aucun cellier</option>
+                                    @endforelse
+                                </select>
+                            </div>
+                            <div class="card-bouteille-qt">
+                                <button class="btn-decrement">-</button>
+                                <input type="text" value="1" min="1" id="quantite-bouteille" readonly>
+                                <button class="btn-increment">+</button>
+                            </div>
+                            <div class="btn-modal-container">
+                                <button class="btn-modal-action">ajouter</button>
+                                <button class="btn-modal-cancel">annuler</button>
+                            </div>
                     </form>
                 </dialog>
 
             <script src="../../js/bottleCounterModal.js"></script>
+            <script src="../../js/modalAjouter.js"></script>
             <script src="{{ asset('js/zoom.js')  }}"></script> <!-- (EN DEV - VICTOR) -->
         </main>
         @endsection

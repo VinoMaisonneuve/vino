@@ -158,7 +158,8 @@ class BouteilleController extends Controller
     public function show($id)
     {
         $bouteille = Bouteille::findOrFail($id);
-        return view('bouteille.show', ['bouteille'=> $bouteille]);
+        $celliers = Cellier::where('user_id', Auth::id())->get();
+        return view('bouteille.show', ['bouteille'=> $bouteille, 'celliers' => $celliers]);
     }
 
     /**
