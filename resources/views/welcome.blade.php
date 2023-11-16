@@ -143,7 +143,7 @@
                 @enderror
             </div>
             <div class="form-forgot-psw link">
-                <a href="#">MOT DE PASSE OUBLIÉ</a>
+                <a href="{{ route('password.forgot') }}">MOT DE PASSE OUBLIÉ</a>
             </div>
             <button type="submit" form="login" class="btn-submit">CONNECTER</button>
             <div class="link">
