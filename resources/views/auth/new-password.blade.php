@@ -21,10 +21,6 @@
         <form method="post">
             @csrf
             <div class="form-input-container">
-                <label for="email">Courriel</label>
-                <input type="text" id="email" name="email">
-            </div>
-            <div class="form-input-container">
                 <label for="new-password">Nouveau mot de passe</label>
                 <input type="text" id="new-password" name="password">
             </div>
