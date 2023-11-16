@@ -68,12 +68,10 @@ Route::middleware(['auth'])->group(function () {
 
     // Stockage du commentaire sur une bouteille
     Route::post('/commentaires/{bouteille_id}', [CommentaireController::class, 'store'])->name('comment.store');
-    // Modification d'un commentaire
-    Route::get('/commentaires-modifier/{commentaire}', [CommentaireController::class, 'edit'])->name('comment.edit');
     // Stockage de la modification d'un commentaire dans la BDD
     Route::put('/commentaires-modifier/{commentaire}', [CommentaireController::class, 'update'])->name('comment.update');
     // Suppression d'un commentaire sur une bouteille
-    Route::delete('/commentaires-modifier/{bouteille_id}', [CommentaireController::class, 'destroy'])->name('comment.destroy');
+    Route::delete('/commentaires-modifier/{commentaire}', [CommentaireController::class, 'destroy'])->name('comment.destroy');
 
     // *************** Gestion des celliers ****************
 

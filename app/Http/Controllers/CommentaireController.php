@@ -117,6 +117,14 @@ class CommentaireController extends Controller
      */
     public function destroy(Commentaire $commentaire)
     {
-        //
+        try {
+
+            $commentaire->delete();
+
+            return redirect()->back()->withSuccess('Commentaire supprimé avec succès');
+        } catch (\Exception $e) {
+
+            return redirect()->back()->withErrors(['erreur' => "Une erreur s'est produite lors de la suppression du commentaire"]);
+        }
     }
 }

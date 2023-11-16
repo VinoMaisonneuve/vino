@@ -68,21 +68,19 @@
             @if(!$commentaire)
             <section>
                 <h2>Ajouter une note</h2>
-                <div class="form-container">
-                    <form action="{{ route('comment.store', ['bouteille_id' => $bouteille->id]) }}" method="post" id="comment">
-                        @csrf
-                        <div class="form-input-container">
-                            <label for="comment"></label>
-                            <input type="text" id="body" name="comment" placeholder="NOTE">
-                            @error('comment')
-                                <span class="error-message">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-button">
-                            <button type="submit" class="btn-submit">ajouter</button>
-                        </div>
-                    </form>
-                </div>
+                <form action="{{ route('comment.store', ['bouteille_id' => $bouteille->id]) }}" method="post" id="comment">
+                    @csrf
+                    <div class="form-input-container">
+                        <label for="comment"></label>
+                        <input type="text" id="body" name="comment" placeholder="NOTE">
+                        @error('comment')
+                            <span class="error-message">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-button">
+                        <button type="submit" class="btn-submit">ajouter</button>
+                    </div>
+                </form>
             </section>
             @else
             <section>
@@ -102,14 +100,35 @@
                             @error('comment')
                                 <span class="error-message">{{ $message }}</span>
                             @enderror
-                            <p><span>Ajouté le:</span>{{ $commentaire->updated_at }}</p>
+                            <p><span>Ajouté le: </span>{{ $commentaire->updated_at->setTimezone('America/Toronto') }}</p>
                         </div>
                         <div class="form-button">
                             <button type="submit" class="btn-submit">modifier</button>
                         </div>
-                    </form>
+                    </form> 
                 </div>
+                <form action="{{ route('comment.destroy', ['commentaire' => $commentaire->id]) }}" method="post" id="supprimerCommentaire">
+                    @method('delete')
+                    @csrf
+                    <div class="form-button">
+                        <button type="submit" form="supprimerCommentaire" class="link btn-supprimer">supprimer</button>
+                    </div>
+                </form>
             </section>
+            <!-- Modale suppression -->
+            <dialog id="modal-supprimer" class="modal">
+                <h2>Suppression de la note</h2>
+                <hr>
+                <p>Êtes-vous certain de vouloir supprimer la note?</p>
+                <form action="{{ route('comment.destroy', ['commentaire' => $commentaire->id]) }}" method="post" class="form-modal" id="supprimerCommentaire">
+                    @csrf
+                    @method('DELETE')
+                    <div class="btn-modal-container">
+                        <button type="submit" form="supprimerCommentaire" class="btn-modal-action btn-red">oui, supprimer</button>
+                        <button class="btn-modal-cancel btn-green">annuler</button>
+                    </div>
+                </form>
+            </dialog>
             @endif
 
             <!-- Zoom de l'image (EN DEV - VICTOR) -->
@@ -154,6 +173,7 @@
 
             <script src="../../js/bottleCounterModal.js"></script>
             <script src="../../js/modalAjouter.js"></script>
+            <script src="{{ asset('js/modalSupprimer.js') }}"></script>
             <script src="{{ asset('js/zoom.js')  }}"></script> <!-- (EN DEV - VICTOR) -->
         </main>
         @endsection
