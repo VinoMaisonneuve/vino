@@ -22,7 +22,7 @@
             </div>
             @endforeach
         @endif
-        <form action="{{ route('temp.password') }}" method="post" id="forgot-password">
+        <form action="{{ route('password.temp') }}" method="post" id="forgot-password">
             @csrf
             <div class="form-input-container">
                 <label for="email">Courriel</label>
@@ -39,7 +39,4 @@
         </form>
     </div>
 </main>
-<footer>
-    © <span>vino</span> 2023. (version 1.1) - Tous droits réservés.
-</footer>
 @endsection
