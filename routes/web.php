@@ -43,6 +43,17 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/profil/changer-mdp/{user}', [CustomAuthController::class, 'stockNewPassword']);
     // Suppression d'un profil
     Route::delete('/profil-modifier/{user}', [CustomAuthController::class, 'destroy'])->name('profil.destroy');
+    // Affichage du formulaire d'oubli de mot de passe
+    Route::get('forgot-password', [CustomAuthController::class, 'forgotPassword']);
+    // Envoi du formulaire d'oubli de mot de passe
+    Route::post('forgot-password', [CustomAuthController::class, 'tempPassword'])->name
+    ('temp.password');
+    // Affichage du formulaire de nouveau mot de passe
+    Route::get('new-password/{user}/{tempPassword}', [CustomAuthController::class,
+    'newPassword']);
+    // Envoi du formulaire de nouveau mot de passe
+    Route::post('new-password/{user}/{tempPassword}', [CustomAuthController::class,
+    'storeNewPassword']);
 
     // *************** Gestion des bouteilles ****************
     
