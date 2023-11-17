@@ -2,6 +2,10 @@ document.querySelectorAll('.card-bouteille-qt').forEach(function(counter) {
     let input = counter.querySelector('input');
     let decrementButton = counter.querySelector('.btn-decrement');
     let incrementButton = counter.querySelector('.btn-increment');
+    if (counter.parentNode.querySelector('.btn-deplacer')) {
+        let quantiteMax = counter.querySelector('.btn-deplacer').data-bouteille-id; 
+        console.log(quantiteMax); 
+    }
 
     decrementButton.addEventListener('click', function(event) {
         event.preventDefault();
@@ -17,6 +21,4 @@ document.querySelectorAll('.card-bouteille-qt').forEach(function(counter) {
         input.value = currentValue + 1;
     });
 });
-
-
 
