@@ -68,12 +68,10 @@ Route::middleware(['auth'])->group(function () {
 
     // Stockage du commentaire sur une bouteille
     Route::post('/commentaires/{bouteille_id}', [CommentaireController::class, 'store'])->name('comment.store');
-    // Modification d'un commentaire
-    Route::get('/commentaires-modifier/{commentaire}', [CommentaireController::class, 'edit'])->name('comment.edit');
     // Stockage de la modification d'un commentaire dans la BDD
     Route::put('/commentaires-modifier/{commentaire}', [CommentaireController::class, 'update'])->name('comment.update');
     // Suppression d'un commentaire sur une bouteille
-    Route::delete('/commentaires-modifier/{bouteille_id}', [CommentaireController::class, 'destroy'])->name('comment.destroy');
+    Route::delete('/commentaires-modifier/{commentaire}', [CommentaireController::class, 'destroy'])->name('comment.destroy');
 
     // *************** Gestion des celliers ****************
 
@@ -168,6 +166,18 @@ Route::post('/login', [CustomAuthController::class, 'authentication'])->name('lo
 Route::get('/register', [CustomAuthController::class, 'create'])->name('register');
 // Stockage d'un nouvel utilisateur dans la BDD
 Route::post('/register', [CustomAuthController::class, 'store'])->name('register.store');
+// Affichage du formulaire d'oubli de mot de passe
+Route::get('forgot-password', [CustomAuthController::class, 'forgotPassword'])->name
+('password.forgot');;
+// Envoi du formulaire d'oubli de mot de passe
+Route::post('forgot-password', [CustomAuthController::class, 'tempPassword'])->name
+('password.temp');
+// Affichage du formulaire de nouveau mot de passe
+Route::get('new-password/{user}/{tempPassword}', [CustomAuthController::class,
+'newPassword']);
+// Envoi du formulaire de nouveau mot de passe
+Route::post('new-password/{user}/{tempPassword}', [CustomAuthController::class,
+'storeNewPassword']);
 
 // *************** Importation des données de la SAQ ****************
 

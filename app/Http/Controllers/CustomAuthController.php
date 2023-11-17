@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-// use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 use App\Http\Controllers\CellierController;
 
 class CustomAuthController extends Controller
@@ -50,20 +52,25 @@ class CustomAuthController extends Controller
     {
         $request->validate([
             'nom'      => 'required|min:2|max:20|regex:/^[^<>]*$/u',
-            'email'    => 'required|email',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users', 'email')
+            ],
             'password' => 'required|min:6|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/'
         ],
         [
-            'nom.required'      => 'Veuillez saisir votre nom',
-            'nom.min'           => 'Votre nom doit contenir au moins 2 caractères',
-            'nom.max'           => 'Votre nom ne doit pas dépasser 20 caractères',
-            'nom.alpha'         => 'Votre nom ne doit contenir que des lettres',
-            'email.required'    => 'Veuillez saisir votre adresse email',
-            'email.email'       => 'Veuillez entrer un courriel valide',
-            'password.required' => 'Veuillez saisir votre mot de passe',
-            'password.min'      => 'Votre mot de passe doit contenir au moins 6 caractères',
-            'password.regex'    => 'Votre mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial',
-            'password.confirmed'=> 'Les mots de passe ne correspondent pas'
+            'nom.required'      => "Veuillez saisir votre nom",
+            'nom.min'           => "Votre nom doit contenir au moins 2 caractères",
+            'nom.max'           => "Votre nom ne doit pas dépasser 20 caractères",
+            'nom.alpha'         => "Votre nom ne doit contenir que des lettres",
+            'email.required'    => "Veuillez saisir votre adresse email",
+            'email.email'       => "Veuillez entrer un courriel valide",
+            'email.unique'      => "Le courriel est associé à un compte existant", 
+            'password.required' => "Veuillez saisir votre mot de passe",
+            'password.min'      => "Votre mot de passe doit contenir au moins 6 caractères",
+            'password.regex'    => "Votre mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial",
+            'password.confirmed'=> "Les mots de passe ne correspondent pas"
         ]);
 
         $user = new User;
@@ -98,7 +105,7 @@ class CustomAuthController extends Controller
             if (!Auth::validate($credentials)) {
                 return redirect('login')
                     ->withErrors([
-                        'erreur' => "L'adresse email ou le mot de passe est incorrect"
+                        'erreur' => "L'adresse courriel ou le mot de passe est incorrect"
                     ]);
             }
 
@@ -227,6 +234,86 @@ class CustomAuthController extends Controller
             return redirect(route('profil.change-password', $user->id))->withErrors(['erreur' => "L'ancien mot de passe est incorrect"]);
         }
     }
+
+    /**
+     * Display a forgot-password form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function forgotPassword() {
+        return view('auth.password-reset');
+    }
+
+    /**
+     * Send an email to user with a temporary password.
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function tempPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+        ],
+        [
+            'email.required'  => "Veuillez saisir votre courriel",
+            'email.email'     => "Veuillez saisir un courriel valide",
+            'email.exists'    => "Ce courriel n'est pas associé à un compte existant"
+        ]);
+
+        if (User::where('email', $request->email)->exists()) {
+            $user = User::where('email', $request->email)->get();
+            $user = $user[0];
+            $user_id=$user->id;
+            $temp_password= str::random(25);
+            $user->temp_password = $temp_password;
+            $user->save();
+            $to_name = $user->nom;
+            $to_email = $request->email;
+            $body="<a href='http://localhost:8000/new-password/".$user_id."/".$temp_password.
+            "'>Cliquez ici pour réinitialiser votre mot de passe</a>";
+            Mail::send('email.mail', ['name' => $to_name, 'body' => $body], function ($message) use ($to_name, $to_email) {
+                $message->to($to_email, $to_name)->subject('Réinitialisation du mot de passe');
+            });
+            return redirect()->back()->withSuccess("Un mot de passe temporaire vous a été envoyé. Veuillez consulter vos courriels.");    
+        }
+        return redirect()->back()->withErrors("Ce courriel n'est pas associé à un compte existant");
+    }
+
+    /**
+     * Display a form for the user to create a new password.
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function newPassword(User $user, $tempPassword)
+    {
+        if ($user->temp_password === $tempPassword) {
+            return view ('auth.new-password');
+        }
+        return redirect('password.forgot')->withErrors("L'adresse courriel ou le mot de passe est incorrect");
+    }
+
+    public function storeNewPassword(User $user, $tempPassword, Request $request)
+    {
+        if ($user->temp_password === $tempPassword) {
+            $request->validate([
+                'password'    => 'required|min:6|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/',
+            ],
+            [
+                'password.required'     => "Veuillez saisir votre nouveau mot de passe",
+                'password.min'          => "Votre mot de passe doit contenir au moins 6 caractères",
+                'password.regex'        => "Votre mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial",
+                'password.confirmed'    => "Les mots de passe ne correspondent pas"
+            ]);
+            $user->password = Hash::make($request->password);
+            $user->temp_password = NULL;
+            $user->save();
+            return redirect('login')->withSuccess('Mot de passe modifié avec succès ');
+        }
+        return redirect('password.forgot')->withErrors('Le mot de passe temporaire ne correspond pas');
+    }
+
 
     /**
      * Remove the user from storage.
