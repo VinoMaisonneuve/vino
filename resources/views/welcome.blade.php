@@ -115,6 +115,11 @@
     <picture class="welcome-image-container">
         <img src="{{ asset('assets/img/img_connexion.jpeg') }}" alt="Bouteille au marché" class="welcome-img">
     </picture>
+    @if(session('success'))
+        <div>
+            {{ session('success') }}
+        </div>
+    @endif
     @if(isset($successMessage))
         <div>
             {{ $successMessage }}

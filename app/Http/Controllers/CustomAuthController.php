@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use App\Http\Controllers\CellierController;
 
@@ -50,20 +52,25 @@ class CustomAuthController extends Controller
     {
         $request->validate([
             'nom'      => 'required|min:2|max:20|regex:/^[^<>]*$/u',
-            'email'    => 'required|email',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users', 'email')
+            ],
             'password' => 'required|min:6|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/'
         ],
         [
-            'nom.required'      => 'Veuillez saisir votre nom',
-            'nom.min'           => 'Votre nom doit contenir au moins 2 caractères',
-            'nom.max'           => 'Votre nom ne doit pas dépasser 20 caractères',
-            'nom.alpha'         => 'Votre nom ne doit contenir que des lettres',
-            'email.required'    => 'Veuillez saisir votre adresse email',
-            'email.email'       => 'Veuillez entrer un courriel valide',
-            'password.required' => 'Veuillez saisir votre mot de passe',
-            'password.min'      => 'Votre mot de passe doit contenir au moins 6 caractères',
-            'password.regex'    => 'Votre mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial',
-            'password.confirmed'=> 'Les mots de passe ne correspondent pas'
+            'nom.required'      => "Veuillez saisir votre nom",
+            'nom.min'           => "Votre nom doit contenir au moins 2 caractères",
+            'nom.max'           => "Votre nom ne doit pas dépasser 20 caractères",
+            'nom.alpha'         => "Votre nom ne doit contenir que des lettres",
+            'email.required'    => "Veuillez saisir votre adresse email",
+            'email.email'       => "Veuillez entrer un courriel valide",
+            'email.unique'      => "Le courriel est associé à un compte existant", 
+            'password.required' => "Veuillez saisir votre mot de passe",
+            'password.min'      => "Votre mot de passe doit contenir au moins 6 caractères",
+            'password.regex'    => "Votre mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial",
+            'password.confirmed'=> "Les mots de passe ne correspondent pas"
         ]);
 
         $user = new User;
@@ -246,8 +253,14 @@ class CustomAuthController extends Controller
     public function tempPassword(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email|exists:users,email',
+        ],
+        [
+            'email.required'  => "Veuillez saisir votre courriel",
+            'email.email'     => "Veuillez saisir un courriel valide",
+            'email.exists'    => "Ce courriel n'est pas associé à un compte existant"
         ]);
+
         if (User::where('email', $request->email)->exists()) {
             $user = User::where('email', $request->email)->get();
             $user = $user[0];
@@ -255,21 +268,16 @@ class CustomAuthController extends Controller
             $temp_password= str::random(25);
             $user->temp_password = $temp_password;
             $user->save();
-            $to_name = $user->name;
+            $to_name = $user->nom;
             $to_email = $request->email;
             $body="<a href='http://localhost:8000/new-password/".$user_id."/".$temp_password.
             "'>Cliquez ici pour réinitialiser votre mot de passe</a>";
-            Mail::send('email.mail', $data =['name'=>$to_name,
-                                            'body' => $body
-            ],
-            function($message) use ($to_name, $to_email)
-            {
-                $message->to($to_email, $to_name)->subject(
-                'Réinitialiser le mot de passe');
+            Mail::send('email.mail', ['name' => $to_name, 'body' => $body], function ($message) use ($to_name, $to_email) {
+                $message->to($to_email, $to_name)->subject('Réinitialisation du mot de passe');
             });
             return redirect()->back()->withSuccess("Un mot de passe temporaire vous a été envoyé. Veuillez consulter vos courriels.");    
         }
-        return redirect()->back()->withErrors("Utilisateur inexistant");
+        return redirect()->back()->withErrors("Ce courriel n'est pas associé à un compte existant");
     }
 
     /**

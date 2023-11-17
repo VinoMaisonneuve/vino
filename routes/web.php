@@ -174,10 +174,10 @@ Route::post('forgot-password', [CustomAuthController::class, 'tempPassword'])->n
 ('password.temp');
 // Affichage du formulaire de nouveau mot de passe
 Route::get('new-password/{user}/{tempPassword}', [CustomAuthController::class,
-'new-password']);
+'newPassword']);
 // Envoi du formulaire de nouveau mot de passe
 Route::post('new-password/{user}/{tempPassword}', [CustomAuthController::class,
-'new-password.store']);
+'storeNewPassword']);
 
 // *************** Importation des données de la SAQ ****************
 
