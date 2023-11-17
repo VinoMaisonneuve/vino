@@ -70,14 +70,14 @@
                 </div>
                 <div class="card-bouteille-qt">
                     <button class="btn-decrement">-</button>
-                    <input type="text" value="{{ $bouteillesListes->quantite }}" min="0" readonly>
+                    <input type="text" value="{{ $bouteillesListes->quantite }}" min="0" id="quantite-bouteille" readonly>
                     <button class="btn-increment">+</button>
                     <form action="{{ route('bouteilleListe.delete', ['liste_id' => $liste->id, 'bouteille_liste' => $bouteillesListes->id]) }}" class="form-delete" method="post">
                         @csrf
                         @method('delete')
                     </form>
                 </div>
-                <a href="#deplacerbouteille" class="btn-deplacer">Déplacer</a>
+                <a href="#deplacerbouteille" class="btn-deplacer" data-bouteille-id="{{ $bouteillesListes->bouteille->id }}">Déplacer</a>
             </div>
         </section>
         @endforeach
@@ -85,7 +85,7 @@
         <dialog id="modal-deplacer" class="modal">
                 <h2>Déplacer vers un cellier</h2>
                 <hr>
-                <form action="" class="form-modal">
+                <form action="" class="form-modal" id="form-deplacer">
                     <div class="form-input-container">
                         <label for="cellier-location">CELLIER</label>
                         <select name="cellier-location" id="cellier-location">
@@ -96,17 +96,19 @@
                             @endforelse
                         </select>
                     </div>
-                    <div class="card-bouteille-qt">
+                    <!--<div class="card-bouteille-qt-modal">
                         <button class="btn-decrement">-</button>
-                        <input type="text" value="1" min="1" readonly>
+                        <input type="text" value="1" min="1" id="quantite-bouteille" readonly>
                         <button class="btn-increment">+</button>
-                        <form action="" class="form-delete" method="post">
-                            @csrf
-                            @method('delete')
-                        </form>
-                    </div>
+                    </div>-->
                     <div class="btn-modal-container">
-                        <button class="btn-modal-action">déplacer</button>
+                        <button class="btn-modal-action">
+                            @if ($celliers->isEmpty()) 
+                                créer un cellier
+                            @else 
+                                déplacer 
+                            @endif
+                        </button>
                         <button class="btn-modal-cancel">annuler</button>
                     </div>
                 </form>
