@@ -77,6 +77,13 @@ class BouteilleController extends Controller
             $bouteillesQuery->where('nom', 'LIKE', '%' . $query . '%');
         }
 
+        // Prix
+        if ($prixMin = $request->input('prix-min')) {
+            $bouteillesQuery->where('prix', '>=', $prixMin);
+        }
+        if ($prixMax = $request->input('prix-max')) {
+            $bouteillesQuery->where('prix', '<=', $prixMax);
+        }
 
         // Filtres
         $selectors = ['couleur', 'pays', 'format', 'designation', 'producteur', 'agentPromotion', 'type', 'millesime', 'cepage', 'region'];

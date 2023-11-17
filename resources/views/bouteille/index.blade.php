@@ -32,28 +32,28 @@
                             Réinitialiser les filtres
                         </button>
                         <!-- SLIDERS À IMPLÉMENTER (EN DEV - VICTOR)-->
-                        <!-- <div class="form-input-container">
+                        <div class="form-input-container">
                             <label for="prix-range">Prix ($)</label>
                             <div class="form-range">
                                 <div class="form-range-slider">
                                     <span class="form-range-selected"></span>
                                 </div>
                                 <div class="form-range-input">
-                                    <input type="range" class="min" min="{{ $prixMin }}" max="{{ $prixMax }}" value="{{ $prixMin }}" step="1">
-                                    <input type="range" class="max" min="{{ $prixMin }}" max="{{ $prixMax }}" value="{{ $prixMax }}" step="1">
+                                    <input type="range" class="min" name="range-min" min="{{ $prixMin }}" max="{{ $prixMax }}" value="{{ $prixMin }}" step="0.01">
+                                    <input type="range" class="max" name="range-max" min="{{ $prixMin }}" max="{{ $prixMax }}" value="{{ $prixMax }}" step="0.01">
                                 </div>
                                 <div class="form-range-number">      
                                     <div>
                                         <label for="min">Min</label>
-                                        <input type="number" name="min" value="{{ $prixMin }}">
+                                        <input type="number" name="prix-min" value="{{ $prixMin }}" step="0.01">
                                     </div>    
                                     <div>
                                         <label for="max">Max</label>
-                                        <input type="number" name="max" value="{{ $prixMax }}">
+                                        <input type="number" name="prix-max" value="{{ $prixMax }}" step="0.01">
                                     </div>    
                                 </div>
                             </div>  
-                        </div> -->
+                        </div>
                         <!-- <div class="form-input-container">
                             <label for="alcohol-range">Degré d'alcool (%)</label>
                             <div class="form-range">

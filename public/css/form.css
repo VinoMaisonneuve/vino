@@ -200,6 +200,6 @@ details {
     width: 100px;
     padding: var(--space-xs);
 }
-.form-range-number input:first-of-type {
+/* .form-range-number input:first-of-type {
     margin-right: 15px;
-}
+} */

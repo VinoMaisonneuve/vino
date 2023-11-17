@@ -7,11 +7,11 @@ function updateRangeSlider(sliderGroup) {
   const rangeInputs = sliderGroup.querySelectorAll('.form-range-input input');
   const numberInputs = sliderGroup.querySelectorAll('.form-range-number input');
 
-  let minVal = parseInt(rangeInputs[0].value);
-  let maxVal = parseInt(rangeInputs[1].value);
+  let minVal = parseFloat(rangeInputs[0].value);
+  let maxVal = parseFloat(rangeInputs[1].value);
 
   if (maxVal - minVal < rangeMin) {
-    if (minVal === parseInt(numberInputs[0].value)) {
+    if (minVal === parseFloat(numberInputs[0].value)) {
       minVal = maxVal - rangeMin;
     } else {
       maxVal = minVal + rangeMin;
@@ -37,12 +37,12 @@ document.querySelectorAll('.form-range').forEach((sliderGroup) => {
 
   numberInputs.forEach((input) => {
     input.addEventListener('input', () => {
-      let minVal = parseInt(numberInputs[0].value);
-      let maxVal = parseInt(numberInputs[1].value);
+      let minVal = parseFloat(numberInputs[0].value);
+      let maxVal = parseFloat(numberInputs[1].value);
 
       // Vérifier la contrainte de distance minimale et limites des curseurs
-      if (minVal < parseInt(rangeInputs[0].min)) minVal = parseInt(rangeInputs[0].min);
-      if (maxVal > parseInt(rangeInputs[1].max)) maxVal = parseInt(rangeInputs[1].max);
+      if (minVal < parseFloat(rangeInputs[0].min)) minVal = parseFloat(rangeInputs[0].min);
+      if (maxVal > parseFloat(rangeInputs[1].max)) maxVal = parseFloat(rangeInputs[1].max);
 
       if (maxVal - minVal < rangeMin) {
         if (input === numberInputs[0]) {
