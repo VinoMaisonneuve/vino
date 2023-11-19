@@ -20,7 +20,7 @@
                 </svg>
             </a>
         </h1>
-        <a href="{{ route('bouteille.index') }}" class="btn-arrow btn-round">
+        <a href="{{ route('ajoutListe.index', ['liste_id' => $liste->id]) }}" class="btn-arrow btn-round">
             Ajouter une bouteille
             <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.83728 7C1.285 7 0.83728 7.44772 0.83728 8C0.83728 8.55228 1.285 9 1.83728 9L1.83728 7ZM18.5986 8.70711C18.9891 8.31658 18.9891 7.68342 18.5986 7.29289L12.2347 0.928933C11.8441 0.538409 11.211 0.538409 10.8205 0.928933C10.4299 1.31946 10.4299 1.95262 10.8205 2.34315L16.4773 8L10.8204 13.6569C10.4299 14.0474 10.4299 14.6805 10.8204 15.0711C11.211 15.4616 11.8441 15.4616 12.2347 15.0711L18.5986 8.70711ZM1.83728 9L17.8915 9L17.8915 7L1.83728 7L1.83728 9Z" fill="white"/>
@@ -70,14 +70,14 @@
                 </div>
                 <div class="card-bouteille-qt">
                     <button class="btn-decrement">-</button>
-                    <input type="text" value="{{ $bouteillesListes->quantite }}" min="0" readonly>
+                    <input type="text" value="{{ $bouteillesListes->quantite }}" min="0" id="quantite-bouteille" readonly>
                     <button class="btn-increment">+</button>
                     <form action="{{ route('bouteilleListe.delete', ['liste_id' => $liste->id, 'bouteille_liste' => $bouteillesListes->id]) }}" class="form-delete" method="post">
                         @csrf
                         @method('delete')
                     </form>
                 </div>
-                <a href="#deplacerbouteille" class="btn-deplacer">Déplacer</a>
+                <a href="#deplacerbouteille" class="btn-deplacer" data-bouteille-id="{{ $bouteillesListes->bouteille->id }}">Déplacer</a>
             </div>
         </section>
         @endforeach
@@ -85,7 +85,7 @@
         <dialog id="modal-deplacer" class="modal">
                 <h2>Déplacer vers un cellier</h2>
                 <hr>
-                <form action="" class="form-modal">
+                <form action="" class="form-modal" id="form-deplacer">
                     <div class="form-input-container">
                         <label for="cellier-location">CELLIER</label>
                         <select name="cellier-location" id="cellier-location">
@@ -96,17 +96,19 @@
                             @endforelse
                         </select>
                     </div>
-                    <div class="card-bouteille-qt">
+                    <!--<div class="card-bouteille-qt-modal">
                         <button class="btn-decrement">-</button>
-                        <input type="text" value="1" min="1" readonly>
+                        <input type="text" value="1" min="1" id="quantite-bouteille" readonly>
                         <button class="btn-increment">+</button>
-                        <form action="" class="form-delete" method="post">
-                            @csrf
-                            @method('delete')
-                        </form>
-                    </div>
+                    </div>-->
                     <div class="btn-modal-container">
-                        <button class="btn-modal-action">déplacer</button>
+                        <button class="btn-modal-action">
+                            @if ($celliers->isEmpty()) 
+                                créer un cellier
+                            @else 
+                                déplacer 
+                            @endif
+                        </button>
                         <button class="btn-modal-cancel">annuler</button>
                     </div>
                 </form>

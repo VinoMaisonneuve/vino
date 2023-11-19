@@ -23,10 +23,10 @@
         </div>
     @endif
     <div class="form-container">
-        <form action="">
+        <form id="searchForm" action="{{ route('admin.search-users') }}" method="GET">
             <div class="form-input-container">
                 <label for="search_users">RECHERCHE</label>
-                <input type="text" id="search_users" placeholder="Nom / Identifiant">
+                <input type="text" id="search_users" name="search_users" placeholder="Nom / Identifiant">
             </div>
         </form>
     </div>

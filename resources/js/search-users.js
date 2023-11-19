@@ -1,19 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const searchForm = document.getElementById('searchForm');
     const searchInput = document.getElementById('search_users');
-    const tableRows = document.querySelectorAll('.user-row');
+    const tableContainer = document.querySelector('.admin-table-container');
 
     searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
+        const searchTerm = this.value;
 
-        tableRows.forEach(function(row) {
-            const userName = row.querySelector('.user-name').textContent.toLowerCase();
-            const userId = row.querySelector('.user-id').textContent.toLowerCase();
-
-            if (userName.includes(searchTerm) || userId.includes(searchTerm)) {
-                row.style.display = 'table-row';
-            } else {
-                row.style.display = 'none';
+        fetch(`${window.location.origin}/admin/search-users?search_users=${searchTerm}`, {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
             }
-        });
+        })
+            .then(response => response.text())
+            .then(html => {
+                tableContainer.innerHTML = html;
+            })
+            .catch(error => console.error('Error:', error));
     });
 });
