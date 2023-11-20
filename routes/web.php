@@ -61,8 +61,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/bouteilles-modifier/{bouteille_id}', [BouteilleController::class, 'update']);
     // Suppression d'une bouteille personnalisée
     Route::delete('/bouteilles-modifier/{bouteille_id}', [BouteilleController::class, 'destroy'])->name('bouteille.destroy');
-
-   Route::get('/search', [BouteilleController::class, 'search']);
+    // Recherche d'une bouteille
+    Route::get('/search', [BouteilleController::class, 'search']);
 
     // *************** Commentaires ****************
 
@@ -152,6 +152,14 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/admin/users-edit/{user}', [AdminController::class, 'update']);
         // Suppression d'un utilisateur
         Route::delete('/admin/users-delete/{user}', [AdminController::class, 'destroy'])->name('admin.destroy-user');
+        // Affichage des statistiques de tous les utilisateurs
+        Route::get('/statistics', [StatistiqueController::class, 'index'])->name('statistics.index');
+        // Affichage des statistiques par utilisateur
+        Route::get('/statistics-details/{user}', [StatistiqueController::class, 'detail'])->name('statistics.details');
+        // Affichage de toutes les statistiques, catégories confondues
+        Route::get('/statistics-all', [StatistiqueController::class, 'all'])->name('statistics.all');
+        // Affichage des statistiques par mois
+        Route::get('/statistics-monthly', [StatistiqueController::class, 'monthlyStatistics']);
     });
 
 });
