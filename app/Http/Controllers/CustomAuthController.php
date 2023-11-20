@@ -15,9 +15,9 @@ use App\Http\Controllers\CellierController;
 class CustomAuthController extends Controller
 {
     /**
-     * Display a dashboard of the cellars and lists.
+     * Affichage de la page d'accueil avec les totaux des celliers et des listes.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -33,9 +33,9 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Show the form for creating a new user.
+     * Affichage du formulaire de création d'un utilisateur.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -43,10 +43,10 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Store a newly created user in storage.
+     * Enregistre un nouvel utilisateur dans le système.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function store(Request $request)
     {
@@ -82,7 +82,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Authentification / log in of a user.
+     * Authentification d'un utilisateur.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -123,7 +123,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Log out a user in storage.
+     * Déconnexion d'un utilisateur.
      *
      * @return \Illuminate\Http\Response
      */
@@ -134,10 +134,10 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Display the user's informations.
+     * Affichage des informations d'un utilisateur.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(User $user)
     {
@@ -145,10 +145,10 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Show the form for editing the user's informations.
+     * Affichage du formulaire de modification des informations d'un utilisateur.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(User $user)
     {
@@ -156,7 +156,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Update the user's informations in storage.
+     * Enregistrement des changements des informations d'un utilisateur
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user
@@ -190,10 +190,10 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Show the form for changing the password.
+     * Affichage du formulaire de changement de mot de passe.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function changePassword(User $user)
     {
@@ -201,7 +201,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Change and stock the new password.
+     * Enregistrement du nouveau mot de passe
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user
@@ -236,16 +236,16 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Display a forgot-password form.
+     * Affichage du formulaire d'oubli de mot de passe.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function forgotPassword() {
         return view('auth.password-reset');
     }
 
     /**
-     * Send an email to user with a temporary password.
+     * Envoi de courriel à un utilisateur contenant un mot de passe temporaire.
      *
      * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -281,10 +281,12 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Display a form for the user to create a new password.
+     * Affichage du formulaire de création d'un nouveau mot de passe.
      *
      * @param \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\User  $user
+     * @param  string  $tempPassword
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function newPassword(User $user, $tempPassword)
     {
@@ -294,6 +296,14 @@ class CustomAuthController extends Controller
         return redirect('password.forgot')->withErrors("L'adresse courriel ou le mot de passe est incorrect");
     }
 
+    /**
+     * Enregistrement du nouveau mot de passe de l'utilisateur après avoir vérifié le mot de passe temporaire.
+     *
+     * @param  \App\Models\User  $user
+     * @param  string  $tempPassword
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function storeNewPassword(User $user, $tempPassword, Request $request)
     {
         if ($user->temp_password === $tempPassword) {
@@ -314,13 +324,12 @@ class CustomAuthController extends Controller
         return redirect('password.forgot')->withErrors('Le mot de passe temporaire ne correspond pas');
     }
 
-
     /**
-     * Remove the user from storage.
+     * Supprime le compte de l'utilisateur après avoir vérifié le mot de passe.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Request  $user
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function destroy(User $user, Request $request)
     {
