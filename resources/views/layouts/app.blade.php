@@ -20,8 +20,9 @@
             <li class="nav-item">        
                 <a href="{{ route('admin.index') }}">
                     <figure class="nav-icon-container 
-                    @if(Route::currentRouteName() == 'admin.index' || Route::currentRouteName() == 'admin.search-users')
-                    active
+                    @if(Route::currentRouteName() == 'admin.index' || Route::currentRouteName() == 'admin.search-users' || Route::currentRouteName() == 'admin.show-user' ||
+                    Route::currentRouteName() == 'admin.edit-user')
+                    active 
                     @endif">
                         <img src="{{ asset('assets/icons/admin_users_icon.svg') }}" alt="Accueil">
                         <figcaption>utilisateurs</figcaption>
