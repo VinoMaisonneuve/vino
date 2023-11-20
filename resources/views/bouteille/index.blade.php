@@ -251,7 +251,9 @@
                             <span>{{$bouteille->type}} | {{ $bouteille->format }} | {{$bouteille->pays}}</span>
                             <p>{{$bouteille->prix}} $</p>
                         </div>
+                        @if(!Auth::user()->hasRole("Admin"))
                         <a href="#" class="btn-ajouter" data-bouteille-id="{{ $bouteille->id }}">+ Ajouter</a>
+                        @endif
                     </div>
                 </section>
                 @endforeach

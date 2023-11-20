@@ -16,7 +16,9 @@
                     <span>{{ $result->type }} | {{ $result->format }} | {{ $result->pays }}</span>
                     <p>{{ $result->prix }} $</p>
                 </div>
+                @if(!Auth::user()->hasRole("Admin"))
                 <a href="#" class="btn-ajouter" data-bouteille-id="{{ $result->id }}">+ Ajouter</a>
+                @endif
             </div>
         </section>
         @endforeach
