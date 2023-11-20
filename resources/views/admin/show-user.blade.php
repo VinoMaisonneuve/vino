@@ -10,7 +10,7 @@
     </a>
 </header>
 <main class="nav-margin">
-    <section>
+    <section class="admin-user-section">
         <h2>Informations de l'utilisateur</h2>
         @if($errors->any())
             <div>
@@ -42,8 +42,6 @@
                 Modifier le compte
             </a>
         </div>
-    </section>
-    <section>
         <div class="btn-container">
             <a href="{{ route('admin.destroy-user', $user->id) }}" class="btn-action btn-round btn-red btn-supprimer">
                 Supprimer le compte
