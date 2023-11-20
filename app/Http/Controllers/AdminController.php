@@ -7,13 +7,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\CustomAuthController;
 use Illuminate\Support\Facades\Auth;
-// AJOUT
 use Illuminate\Support\Facades\View;
 
 class AdminController extends Controller
 {
     /**
-     * Display a listing of all the users.
+     * Affichage de tous les utilisateurs de l'application.
      *
      * @return \Illuminate\Http\Response
      */
@@ -24,10 +23,10 @@ class AdminController extends Controller
     }
 
     /**
-     * Display a listing of all the users.
+     * Recherche d'un utilisateur à l'aide de son nom ou de son identifiant
      *
      * @param \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View|\Illuminate\Http\Response
      */
     public function searchUsers(Request $request)
     {
@@ -47,9 +46,9 @@ class AdminController extends Controller
 
 
     /**
-     * Show the form for creating a new user.
+     * Affichage du formulaire de création d'un nouvel utilisateur par l'administrateur
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -57,7 +56,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Store a newly created user in storage.
+     * Enregistrement d'un nouvel utilisateur par l'administrateur
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -98,10 +97,10 @@ class AdminController extends Controller
     }
 
     /**
-     * Display a specific user.
+     * Affichage d'un utilisateur et de ses informations
      *
      * @param  \App\Models\User $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(User $user)
     {
@@ -109,10 +108,11 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the form for editing a specific user.
+     * Affichage du formulaire de modification des informations d'un utilisateur par l'administrateur
      *
      * @param  \App\Models\User $user
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
      */
     public function edit(Request $request, User $user)
     {
@@ -120,7 +120,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Update the specific user in storage.
+     * Enregistrement des modifications des informations d'un utilisateur par l'administrateur
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user
@@ -154,7 +154,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Remove the specific user from storage with password confirmation.
+     * Suppression d'un utilisateur de la base de données par l'administrateur
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Request  $request
