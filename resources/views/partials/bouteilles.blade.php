@@ -6,7 +6,7 @@
             <p>{{$results->total()}} bouteilles :</p>
         </div>
         @foreach ($results as $result)
-        <section class="card-bouteille">
+        <section class="card-bouteille {{ $result->couleur == 'Blanc' ? 'bg-jaune' : ($result->couleur == 'Rouge' ? 'bg-rouge' : ($result->couleur == 'Rosé' ? 'bg-rose' : '')) }}">
             <picture>
                 <img src="{{ $result->srcImage }}" alt="{{ $result->nom }}">
             </picture>

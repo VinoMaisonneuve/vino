@@ -9,6 +9,10 @@
     --dark-red-opacity: rgba(88, 0, 25, 0.5);
     --white: #FEFEFF;
 
+    --purple-blue: rgba(82, 90, 162, 1);
+    --purple-blue-pale: rgba(146, 155, 231, 1);
+    --off-white: rgb(248, 248, 241);
+
     --space-xs: .25rem; 
     --space-s: .5rem; 
     --space: 1rem; 
@@ -26,7 +30,13 @@
 .bg-rouge {
     background: 
         radial-gradient(50% 50% at 50% 50%, 
-        rgba(225, 99, 99, 1) 0%, rgba(225, 99, 99, .2) 50%, 
-        rgba(255, 255, 255, 0) 100% );
+        rgba(225, 99, 99, .6) 0%, rgba(225, 99, 99, .2) 40%, 
+        rgba(255, 255, 255, 0) 80% );
+}
+.bg-rose {
+    background: 
+        radial-gradient(50% 50% at 50% 50%, 
+        rgba(255, 117, 183, .7) 0%, rgba(255, 117, 183, .2) 40%,
+        rgba(217, 217, 217, 0) 80%);
 }
 

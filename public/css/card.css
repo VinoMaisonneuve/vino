@@ -6,8 +6,10 @@
 
 .card-cellier {
     color: white;
-    background-color: rgba(59, 59, 59, 1);
+    background-color: var(--purple-blue-pale);
+    border: none;
     border-radius: 25px;
+    color: black;
     position: relative; /* Pour que le SVG soit positionné par rapport au lien <a> */
 }
 .card-cellier .card-container-qt {
@@ -15,7 +17,7 @@
     font-weight: normal;
 }
 .card-cellier .card-container-total {
-    border-right: .5px solid white;
+    border-right: .5px solid black;
     font-weight: normal;
 }
 .card-container-stats {
@@ -68,7 +70,7 @@
 .card-bouteille {
     display: flex;
     border-radius: 25px;
-    border: 1px solid black;
+    border: 1px solid var(--purple-blue);
     text-align: left;
     position: relative;
     align-items: center;

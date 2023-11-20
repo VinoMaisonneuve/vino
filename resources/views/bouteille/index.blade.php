@@ -239,7 +239,7 @@
                 @include('partials.bouteilles')
 
                 @foreach ($bouteilles as $bouteille)
-                <section class="card-bouteille">
+                <section class="card-bouteille {{ $bouteille->couleur == 'Blanc' ? 'bg-jaune' : ($bouteille->couleur == 'Rouge' ? 'bg-rouge' : ($bouteille->couleur == 'Rosé' ? 'bg-rose' : '')) }}">
                     <picture>
                         <img src="{{ $bouteille->srcImage }}" alt="{{ $bouteille->nom}}">
                     </picture>

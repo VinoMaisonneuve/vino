@@ -36,9 +36,10 @@ form {
 }
 .form-input-container input:not(input[type='range']) {
     padding: var(--space-xs) var(--space-s);
+    background-color: rgba(255, 255, 255, 0.75);
 }
 .form-input-container select {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.75);
     border: 0.5px solid #000;
     padding: var(--space-xs) var(--space-s);
     border-radius: var(--radius-m);
@@ -89,6 +90,7 @@ summary {
 .form-ajouter-bouteille {
     padding-bottom: var(--space);
     max-width: 100%;
+    border: none;
 }
 
 .form-ajouter-bouteille div.form-container {

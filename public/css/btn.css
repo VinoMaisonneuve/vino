@@ -3,20 +3,22 @@
 
 /* Bouton submit dans les formulaires */
 .btn-submit {
-    background-color: black;
+    background-color: var(--purple-blue);
+    box-shadow: 0px 0px 2px 0px var(--purple-blue);
     padding: calc(var(--space-xs) - 2px) calc(var(--space-s) - 2px) calc(var(--space-xs) - 2px) calc(var(--space-s) - 2px);
     border: 2px solid transparent;
     color: var(--white);
     font-size: 1rem;
     border-radius: var(--radius-s);
     min-width: 100%;
-    margin-top: var(--space);
-    margin-bottom: var(--space);
+    margin-top: var(--space-s);
+    margin-bottom: var(--space-s);
     text-transform: uppercase;
     font-weight: bold;
 }
 .btn-submit:hover {
-    border-color: black; /* Changement de border à border-color */
+    border-color: var(--purple-blue); /* Changement de border à border-color */
+    box-shadow: 0px 0px 2px 0px var(--purple-blue);
     background-color: white;
     color: black;
 }
@@ -27,7 +29,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: var(--radius-wide);
     gap: var(--space-s);
     min-width: 100%;
@@ -56,6 +58,7 @@ header>.btn-arrow-top:hover svg {
     padding: var(--space-s) var(--space) var(--space-s) var(--space);
     padding-right: var(--space);
     transition: gap 0.3s ease-in-out, padding-right 0.3s ease-in-out;
+    /* box-shadow: 0px 0px 2px 0px var(--purple-blue); */
 }
 .btn-arrow:hover {
     padding-right: var(--space-s);
@@ -73,9 +76,10 @@ header>.btn-arrow-top:hover svg {
     transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 .btn-action:hover {
-    border-color: black; /* Changement de border à border-color */
+    border-color: var(--purple-blue); /* Changement de border à border-color */
     background-color: white;
-    color: black;
+    color: var(--purple-blue);
+    box-shadow: 0px 0px 2px 0px var(--purple-blue);
 }
 
 /* bouton arrondi de base */
@@ -86,10 +90,11 @@ header>.btn-arrow-top:hover svg {
     font-weight: 600;
     font-size: 1rem;
     text-transform: uppercase;
-    background-color: black;
+    background-color: var(--purple-blue);
+    box-shadow: 0px 0px 2px 0px var(--purple-blue);
     color: white;
     border-radius: var(--radius-wide);
-    box-shadow: none;
+    /* box-shadow: none; */
 }
 
 /* Boutons dans le carousel de l'accueil */
@@ -152,7 +157,8 @@ header>.btn-arrow-top:hover svg {
     justify-content: center;
     text-transform: uppercase;
     font-weight: bold;
-    background-color: black;
+    background-color: var(--purple-blue);
+    box-shadow: 0px 0px 2px 0px var(--purple-blue);
     color: white;
     border-radius: var(--radius-wide);
     padding: var(--space-xs) var(--space-s);

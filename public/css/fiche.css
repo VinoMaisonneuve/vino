@@ -37,15 +37,15 @@ td {
 
 table {
     border-collapse:separate;
-    border:solid black 1px;
+    border:solid var(--purple-blue) 1px;
     border-radius:10px;
     border-spacing: 0;
     min-width: 100%;
 }
 
 td, th {
-    border-left:solid black 1px;
-    border-top:solid black 1px;
+    border-left:solid var(--purple-blue) 1px;
+    border-top:solid var(--purple-blue) 1px;
     padding: var(--space-s) var(--space);
     text-align: left;
 }

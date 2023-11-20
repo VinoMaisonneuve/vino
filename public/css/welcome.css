@@ -11,16 +11,98 @@
     font-weight: 900;
 }
 
+.welcome-animation-container {
+    position: relative;
+    /* height: 220px;
+    width: 220px; */
+    /* display: grid; */
+    /* place-items: center; */
+    /* background: white; */
+    /* padding: 0; */
+    /* height: 100vh; */
+    /* overflow: hidden; */
+}
+
+/* .welcome-animation-container svg, */
+.welcome-animation-container img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .welcome-img-container {
     height: 180px;
 }
 
 /* à résoudre */
 .welcome-img {
-    max-height: 180px;
+    max-height: 170px;
+    mix-blend-mode: multiply;
+}
+.welcome-rounded-text {
+    width: 20.625rem;
+    height: 20.625rem;
+    text-transform: uppercase;
+    transform: rotate(-103deg);
+    color: black;
+    z-index: -1;
+    font-family: Helvetica;
+    letter-spacing: 0.75px;
+    font-weight: bold;
+}
+.white {
+    fill: black;
+}
+.yellow {
+    fill: #ffda2a;
+}
+.green {
+    fill: #00d3b9;
+}
+@keyframes rotating {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+.rotating {
+    animation: rotating 12s linear infinite;
+}
+@keyframes coloring {
+    0% {
+        fill: black;
+    }
+    35% {
+        fill: #ffda2a;
+    }
+    75% {
+        fill: #00d3b9;
+    }
+    100% {
+        fill: black;
+    }
+}
+.coloring {
+    animation: coloring 12s linear infinite;
+}
+/* Bonjour NomUtilisateur */
+.welcome-bonjour {
+    min-width: 100%;
+    background: radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(255, 138, 0, 0.7) 0%,
+        rgba(255, 138, 0, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
 }
 
-
-
-
-
+.bg-rose {
+    background: radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(255, 117, 183, 0.7) 0%,
+        rgba(255, 117, 183, 0.2) 40%,
+        rgba(217, 217, 217, 0) 80%
+    );
+}
