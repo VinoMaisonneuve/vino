@@ -16,9 +16,7 @@
                 </picture>
                 <div class="card-bouteille-content">
                     <div class="card-bouteille-info">
-                        <a href="">
                             <h2>{{ $bouteille->nom}}</h2>
-                        </a>
                         <span>{{$bouteille->type}} | {{ $bouteille->format }} | {{$bouteille->pays}}</span>
                         <p>{{$bouteille->prix}}  $</p>
                     </div>
