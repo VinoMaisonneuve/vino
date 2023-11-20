@@ -38,8 +38,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#">
-                    <figure class="nav-icon-container">
+                <a href="{{ route('statistics.index') }}">
+                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'statistics.index' || Route::currentRouteName() == 'statistics.stats-users' || Route::currentRouteName() == 'statistics.stats-user' || Route::currentRouteName() == 'statistics.monthly') active @endif">
                         <img src="{{ asset('assets/icons/admin_stats_icon.svg') }}" alt="Liste d'achats">
                         <figcaption>statistiques</figcaption>
                     </figure>

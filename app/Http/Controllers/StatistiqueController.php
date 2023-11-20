@@ -35,7 +35,7 @@ class StatistiqueController extends Controller
             ];
         });
     
-        return view('statistics.index', [
+        return view('admin.statistics.index', [
             'userData' => $userData,
         ]);
     }
@@ -62,7 +62,7 @@ class StatistiqueController extends Controller
         // Récupération des listes de l'utilisateur avec la quantité de bouteilles pour chaque liste
         $listes = Liste::where('user_id', $userId)->get();
 
-        return view('statistics.details', [
+        return view('admin.statistics.stats-user', [
             'user' => $user,
             'celliers' => $celliers,
             'listes' => $listes,
@@ -79,7 +79,7 @@ class StatistiqueController extends Controller
         // Récupération des statistiques de tous les utilisateurs avec le nombre de celliers et de listes
         $usersWithCellierAndListeCount = User::withCount(['celliers', 'listes'])->get();
 
-        return view('statistics.all', [
+        return view('admin.statistics.index', [
             'usersWithCellierAndListeCount' => $usersWithCellierAndListeCount,
         ]);
     }

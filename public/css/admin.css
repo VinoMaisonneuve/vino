@@ -12,6 +12,7 @@
 .admin-table td {
     width: 45%; 
     box-sizing: border-box;
+    text-align: center;
 }
 
 .admin-show-container {

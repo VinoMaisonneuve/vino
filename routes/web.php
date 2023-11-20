@@ -9,6 +9,7 @@ use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\Web2scraperController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ListeController;
+use App\Http\Controllers\StatistiqueController;
 use App\Http\Controllers\CommentaireController;
 use Spatie\Permission\Middlewares\RoleMiddleware;
 use App\Http\Middleware\CheckRole;
@@ -153,13 +154,13 @@ Route::middleware(['auth'])->group(function () {
         // Suppression d'un utilisateur
         Route::delete('/admin/users-delete/{user}', [AdminController::class, 'destroy'])->name('admin.destroy-user');
         // Affichage des statistiques de tous les utilisateurs
-        Route::get('/statistics', [StatistiqueController::class, 'index'])->name('statistics.index');
+        Route::get('/statistics', [StatistiqueController::class, 'index'])->name('statistics.stats-users');
         // Affichage des statistiques par utilisateur
-        Route::get('/statistics-details/{user}', [StatistiqueController::class, 'detail'])->name('statistics.details');
+        Route::get('/statistics-details/{user}', [StatistiqueController::class, 'detail'])->name('statistics.stats-user');
         // Affichage de toutes les statistiques, catégories confondues
-        Route::get('/statistics-all', [StatistiqueController::class, 'all'])->name('statistics.all');
+        Route::get('/statistics-all', [StatistiqueController::class, 'all'])->name('statistics.index');
         // Affichage des statistiques par mois
-        Route::get('/statistics-monthly', [StatistiqueController::class, 'monthlyStatistics']);
+        Route::get('/statistics-monthly', [StatistiqueController::class, 'monthlyStatistics'])->name('statistics.monthly');
     });
 
 });
