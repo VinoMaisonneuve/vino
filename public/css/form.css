@@ -203,3 +203,8 @@ details {
 /* .form-range-number input:first-of-type {
     margin-right: 15px;
 } */
+
+/* entre search et filter */
+.form-mb {
+    margin-bottom: var(--space-s);
+}

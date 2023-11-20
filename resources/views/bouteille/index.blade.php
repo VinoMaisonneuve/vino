@@ -7,7 +7,7 @@
     <main class="nav-margin">
     <section class="form-ajouter-bouteille"> <!-- encadré noir (formulaires, filtres et tris) --> 
             <div class="form-container">
-                <form action="" method="" id="form-search">
+                <form action="" method="" id="form-search" class="form-mb">
                     <!-- @csrf -->
                     <div class="form-input-container">
                         <label for="search">RECHERCHE</label>
@@ -16,9 +16,9 @@
                 </form>
                 
             </div>
-            <div class="link link-right">
+            <!-- <div class="link link-right">
                 <a href="#">BOUTEILLE PERSONNALISÉE</a>
-            </div>
+            </div> -->
             <div class="form-container">
                 <form action="" method="" id="form-filter">
                     <hr>

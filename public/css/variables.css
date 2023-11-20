@@ -19,3 +19,14 @@
     --radius-m: 10px;
     --radius-wide: 25px;
     }
+
+.bg-jaune {
+    background: radial-gradient(50% 50% at 50% 50%, #FEFFB6 0%, rgba(255, 255, 255, 0) 80%);
+}
+.bg-rouge {
+    background: 
+        radial-gradient(50% 50% at 50% 50%, 
+        rgba(225, 99, 99, 1) 0%, rgba(225, 99, 99, .2) 50%, 
+        rgba(255, 255, 255, 0) 100% );
+}
+
