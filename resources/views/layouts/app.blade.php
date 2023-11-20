@@ -31,7 +31,7 @@
             </li>
             <li class="nav-item">        
                 <a href="{{ route('bouteille.index') }}">
-                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'bouteille.index') active @endif">
+                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'bouteille.index' || Route::currentRouteName() == 'bouteille.show') active @endif">
                         <img src="{{ asset('assets/icons/add_icon.svg') }}" alt="Recherche">
                         <figcaption class="icons-label">bouteilles</figcaption>
                     </figure>
