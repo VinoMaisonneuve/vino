@@ -47,7 +47,7 @@
             </li>
             <li class="nav-item">         
                 <a href="{{ route('profil.show', Auth::user()->id) }}">
-                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'profil.show') active @endif">
+                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'profil.show' || Route::currentRouteName() == 'profil.edit') active @endif">
                         <img src="{{ asset('assets/icons/profile_icon.svg') }}" alt="Profil">
                         <figcaption>profil</figcaption>
                     </figure>
