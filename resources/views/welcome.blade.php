@@ -86,7 +86,7 @@
                 @foreach($derniersAjouts as $dernierAjout)
                 <div class="carousel-slide">
                     <img src="{{ $dernierAjout->srcImage }}" alt="{{ $dernierAjout->id }}" />
-                    <a href="#">{{ $dernierAjout->nom }}</a>
+                    <a href="{{ route('bouteille.show',['bouteille_id'=> $dernierAjout->id]) }}">{{ $dernierAjout->nom }}</a>
                 </div>
                 @endforeach
             </div>
