@@ -40,24 +40,25 @@
     mix-blend-mode: multiply;
 }
 .welcome-rounded-text {
-    width: 20.625rem;
-    height: 20.625rem;
+    font-family: "Helvetica";
+    width: 18rem;
+    height: 18rem;
     text-transform: uppercase;
     transform: rotate(-103deg);
-    color: black;
+    color: rgba(95, 72, 190, 1);
     z-index: -1;
-    font-family: Helvetica;
-    letter-spacing: 0.75px;
+    /* font-family: Helvetica; */
+    /* letter-spacing: 0.5px; */
     font-weight: bold;
 }
 .white {
-    fill: black;
+    fill: rgba(95, 72, 190, 1);
 }
 .yellow {
     fill: #ffda2a;
 }
 .green {
-    fill: #00d3b9;
+    fill: rgba(144, 125, 28, 1)
 }
 @keyframes rotating {
     from {
@@ -72,23 +73,26 @@
 }
 @keyframes coloring {
     0% {
-        fill: black;
+        fill: var(--purple-blue);
     }
-    35% {
-        fill: #ffda2a;
+    /* 35% {
+        fill: rgba(249, 178, 83, 1);
     }
     75% {
-        fill: #00d3b9;
+        fill: rgba(144, 125, 28, 1);
+    } */
+    50% {
+        fill: rgb(119, 93, 224);
     }
     100% {
-        fill: black;
+        fill: var(--purple-blue);
     }
 }
 .coloring {
     animation: coloring 12s linear infinite;
 }
 /* Bonjour NomUtilisateur */
-.welcome-bonjour {
+/* .welcome-bonjour {
     min-width: 100%;
     background: radial-gradient(
         50% 50% at 50% 50%,
@@ -105,4 +109,4 @@
         rgba(255, 117, 183, 0.2) 40%,
         rgba(217, 217, 217, 0) 80%
     );
-}
+} */

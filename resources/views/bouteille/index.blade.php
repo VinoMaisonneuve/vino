@@ -241,7 +241,7 @@
                 @foreach ($bouteilles as $bouteille)
                 <section class="card-bouteille {{ $bouteille->couleur == 'Blanc' ? 'bg-jaune' : ($bouteille->couleur == 'Rouge' ? 'bg-rouge' : ($bouteille->couleur == 'Rosé' ? 'bg-rose' : '')) }}">
                     <picture>
-                        <img src="{{ $bouteille->srcImage }}" alt="{{ $bouteille->nom}}">
+                        <img src="{{ $bouteille->srcImage }}" height="120" width="80" loading="lazy" alt="{{ $bouteille->nom}}">
                     </picture>
                     <div class="card-bouteille-content">
                         <div class="card-bouteille-info">
@@ -298,10 +298,10 @@
             </dialog>
         <!-- </div> -->
 
-        <script src="{{ asset('js/queryBottles.js') }}"></script>
-        <script src="{{ asset('js/bottleCounterModal.js') }}"></script>
-        <script src="{{ asset('js/modalAjouterBouteilleIndex.js') }}"></script>
-        <script src="{{ asset('js/filterSlider.js') }}"></script>
+        <script src="{{ asset('js/queryBottles.js') }}" defer></script>
+        <script src="{{ asset('js/bottleCounterModal.js') }}" defer></script>
+        <script src="{{ asset('js/modalAjouterBouteilleIndex.js') }}" defer></script>
+        <script src="{{ asset('js/filterSlider.js') }}" defer></script>
 
         
     </main>

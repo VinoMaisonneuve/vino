@@ -127,7 +127,7 @@
         <div class="welcome-rounded-text rotating">
             <svg viewBox="0 0 200 200">
                 <path id="textPath" d="M 89,0 A 89,89 0 0 1 -89,0 A 89,89 0 0 1 89,0" transform="translate(100,100)" fill="none" stroke-width="0"></path>
-                <g font-size="11px">
+                <g font-size="12px">
                 <text text-anchor="start">
                     <textPath class="coloring" xlink:href="#textPath" startOffset="0%">L'outil le plus simple et efficace pour gérer vos celliers et vos achats SAQ ✦</textPath>
                 </text>
@@ -180,5 +180,6 @@
         </form>
     </div>
 </main>
+<script src="{{ asset('js/textCercle.js') }}" defer></script>
 @endauth
 @endsection
