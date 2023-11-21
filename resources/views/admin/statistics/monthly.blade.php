@@ -2,11 +2,27 @@
 @section('title', 'Statistiques mensuelles')
 
 @section('content')
-<h1>Statistiques mensuelles</h1>
-
-<p>Nombre d'utilisateurs de ce mois : {{ $monthlyStatistics['user_count'] }}</p>
-<p>Nombre de celliers de ce mois : {{ $monthlyStatistics['celliers_count'] }}</p>
-<p>Nombre de listes de ce mois : {{ $monthlyStatistics['listes_count'] }}</p>
-<p>Nombre total de bouteilles dans les celliers et les listes : {{ $monthlyStatistics['total_bottles_count'] }}</p>
-<a href="{{ route('statistics.index')}}">Plus de statistiques </a>
-@endcontent
+<header>
+    statistiques
+</header>
+<main class="nav-margin">
+    <section class="admin-monthly-stats">
+        <h1>Statistiques mensuelles pour le mois de {{ $month }}</h1>
+        <div class="info-profil">
+            <span>Nombre d'utilisateurs :</span><span class="info-value">{{ $monthlyStatistics['user_count'] }}</span>
+        </div>
+        <div class="info-profil">
+            <span>Nombre de celliers :</span><span class="info-value">{{ $monthlyStatistics['celliers_count'] }}</span>
+        </div>
+        <div class="info-profil">
+            <span>Nombre de listes :</span><span class="info-value">{{ $monthlyStatistics['listes_count'] }}</span>
+        </div>
+        <div class="info-profil">
+            <span>Nombre de bouteilles :</span><span class="info-value">{{ $monthlyStatistics['total_bottles_count'] }}</span>
+        </div>
+        <div class="btn-container">
+            <a href="{{ route('statistics.stats-users')}}" class="btn-action btn-round btn-mt">Plus de statistiques</a>
+        </div>
+    </section>
+</main>
+@endsection

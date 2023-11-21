@@ -325,7 +325,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Supprime le compte de l'utilisateur après avoir vérifié le mot de passe.
+     * Suppression du compte de l'utilisateur après avoir vérifié le mot de passe.
      *
      * @param  \App\Models\User  $user
      * @param  \Illuminate\Http\Request  $request
@@ -360,6 +360,44 @@ class CustomAuthController extends Controller
         } else {
             return back()->withErrors(['erreur' => 'Le mot de passe est incorrect.']);
         }
+    }
+
+    /**
+     * Affichage du formulaire de signalement de problème.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function formulaireSignalerErreur()
+    {
+        return view('utilisateur.problem');
+    }
+
+    /**
+     * Envoi du courriel de signalement d'erreur à l'administration.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function signalerErreur(Request $request)
+    {
+        $user = auth()->user();
+
+        $nomUtilisateur = $user->nom;
+        $idUtilisateur = $user->id;
+        $probleme = $request->input('probleme');
+
+        if (empty($probleme)) {
+            return redirect()->back()->with('error', 'Veuillez choisir un problème avant de soumettre le formulaire.');
+        }
+
+        $toName = 'Administration';
+        $toEmail = 'vino.app@outlook.com';
+
+        Mail::send('email.problem', ['nomUtilisateur' => $nomUtilisateur, 'idUtilisateur' => $idUtilisateur, 'probleme' => $probleme], function ($message) use ($toName, $toEmail) {
+            $message->to($toEmail, $toName)->subject('Signalement de problème');
+        });
+
+        return redirect()->back()->with('success', 'Le problème a été signalé avec succès.');
     }
 
 }

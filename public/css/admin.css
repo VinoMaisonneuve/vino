@@ -15,6 +15,10 @@
     text-align: center;
 }
 
+.user-table th, .admin-table th {
+    text-align: center;
+}
+
 .admin-show-container {
     width: 100%; 
 }
@@ -64,4 +68,12 @@
 .info-profil span {
     flex: 1; 
     word-break: break-all;
+}
+
+.admin-img-container {
+    height: 275px;
+}
+
+.admin-img {
+    max-height: 275px;
 }
