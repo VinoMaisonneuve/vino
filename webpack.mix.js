@@ -25,6 +25,7 @@ mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/search-users.js', 'public/js')
    .js('resources/js/search-cellar.js', 'public/js')
    .js('resources/js/modalAjouterBouteilleIndex.js', 'public/js')
+   .js('resources/js/statsUser.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);

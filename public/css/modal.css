@@ -92,5 +92,5 @@ dialog[id="zoomModal"] {
 /* .zoomable-image:hover {
     opacity: 0.7;
     transition: 0.3s;
-    cursor: pointer;
-} */
+    cursor: zoom-in;
+}

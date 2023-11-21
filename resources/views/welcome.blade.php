@@ -8,7 +8,13 @@
 @if(Auth::user()->hasRole("Admin"))
 <!-- En attendant -->
 <main class="nav-margin">
-    <h1>Bienvenue sur l'interface d'administration {{ Auth::user()->nom}}!</h1>
+    <div class="welcome">
+        <h1 class="welcome-title">Bonjour {{ Auth::user()->nom}}!</h1>
+        <p class="welcome-text">Bienvenue sur l'interface administrateur.</p>
+    </div>
+    <picture class="admin-image-container">
+        <img src="{{ asset('assets/img/admin_bottle.jpeg') }}" alt="Bouteille au marché" class="admin-img">
+    </picture>
 </main>
 @else
 <main class="nav-margin">

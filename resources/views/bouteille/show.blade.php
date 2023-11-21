@@ -23,11 +23,13 @@
                 </picture>
                 <div class="card-bouteille-content">
                     <div class="card-bouteille-info">
-                        <h2>{{ $bouteille->nom}}</h2>
+                            <h2>{{ $bouteille->nom}}</h2>
                         <span>{{$bouteille->type}} | {{ $bouteille->format }} | {{$bouteille->pays}}</span>
                         <p>{{$bouteille->prix}}  $</p>
                     </div>
+                    @if(!Auth::user()->hasRole("Admin"))
                     <a href="#" class="btn-ajouter" data-bouteille-id="{{ $bouteille->id }}">+ Ajouter</a>
+                    @endif
                 </div>
             </section>
             <table>
@@ -96,6 +98,7 @@
                     </tr>
                 </tbody>
             </table>
+            @if(!Auth::user()->hasRole("Admin"))
             @if(!$commentaire)
             <section>
                 <h2>Ajouter une note</h2>
@@ -160,6 +163,7 @@
                     </div>
                 </form>
             </dialog>
+            @endif
             @endif
 
             <!-- Zoom de l'image (EN DEV - VICTOR) -->

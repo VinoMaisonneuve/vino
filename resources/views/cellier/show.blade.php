@@ -33,8 +33,6 @@
                     <input type="text" id="search_cellar" placeholder="Nom">
                 </div>
             </form>
-        </div>
-        <div class="form-container">
             <form action="{{ route('cellier.show', ['cellier_id' => $cellier->id]) }}" method="">
                 @csrf
                 <div class="form-input-container">
