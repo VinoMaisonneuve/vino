@@ -70,4 +70,7 @@
     </dialog>
     <script src="{{ asset('js/modalSupprimer.js') }}"></script>
 </main>
+<footer>
+    © <span>vino</span> 2023. (version 1.1) - Tous droits réservés.
+</footer>
 @endsection
