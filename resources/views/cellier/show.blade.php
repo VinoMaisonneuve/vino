@@ -132,7 +132,7 @@
         </section>
         @endforeach
         
-        <script src="{{ asset('js/sortBottles.js') }}"></script>
+        <!-- <script src="{{ asset('js/sortBottles.js') }}"></script> -->
         <script src="{{ asset('js/bottleCounter.js') }}"></script>
         <script src="{{ asset('js/search-cellar.js') }}"></script>
     </main>

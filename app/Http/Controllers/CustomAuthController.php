@@ -357,7 +357,6 @@ class CustomAuthController extends Controller
         return redirect('password.forgot')->withErrors('Le mot de passe temporaire ne correspond pas');
     }
 
-
     /**
      * Suppression du compte de l'utilisateur après avoir vérifié le mot de passe.
      *

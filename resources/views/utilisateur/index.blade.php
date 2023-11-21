@@ -43,6 +43,13 @@
             </a>
         </div>
     </section>
+    <div class="btn-container">
+        <a href="{{ route('signalerErreur') }}" class="btn-action btn-round btn-red">
+            Signaler un problème
+        </a>
+    </div>
+
+    <!-- Fenêtre modale de suppression de compte -->
     <dialog id="modal-supprimer" class="modal">
         <h2>Suppression de compte</h2>
         <hr>
@@ -63,4 +70,7 @@
     </dialog>
     <script src="{{ asset('js/modalSupprimer.js') }}"></script>
 </main>
+<footer>
+    © <span>vino</span> 2023. (version 1.1) - Tous droits réservés.
+</footer>
 @endsection

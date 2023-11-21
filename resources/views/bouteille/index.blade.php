@@ -7,7 +7,7 @@
     <main class="nav-margin">
     <section class="form-ajouter-bouteille"> <!-- encadré noir (formulaires, filtres et tris) --> 
             <div class="form-container">
-                <form action="" method="" id="form-search">
+                <form action="" method="" id="form-search" class="form-mb">
                     <!-- @csrf -->
                     <div class="form-input-container">
                         <label for="search">RECHERCHE</label>
@@ -16,9 +16,9 @@
                 </form>
                 
             </div>
-            <div class="link link-right">
+            <!-- <div class="link link-right">
                 <a href="#">BOUTEILLE PERSONNALISÉE</a>
-            </div>
+            </div> -->
             <div class="form-container">
                 <form action="" method="" id="form-filter">
                     <hr>
@@ -32,28 +32,28 @@
                             Réinitialiser les filtres
                         </button>
                         <!-- SLIDERS À IMPLÉMENTER (EN DEV - VICTOR)-->
-                        <!-- <div class="form-input-container">
+                        <div class="form-input-container">
                             <label for="prix-range">Prix ($)</label>
                             <div class="form-range">
                                 <div class="form-range-slider">
                                     <span class="form-range-selected"></span>
                                 </div>
                                 <div class="form-range-input">
-                                    <input type="range" class="min" min="{{ $prixMin }}" max="{{ $prixMax }}" value="{{ $prixMin }}" step="1">
-                                    <input type="range" class="max" min="{{ $prixMin }}" max="{{ $prixMax }}" value="{{ $prixMax }}" step="1">
+                                    <input type="range" class="min" name="range-min" min="{{ $prixMin }}" max="{{ $prixMax }}" value="{{ $prixMin }}" step="0.01">
+                                    <input type="range" class="max" name="range-max" min="{{ $prixMin }}" max="{{ $prixMax }}" value="{{ $prixMax }}" step="0.01">
                                 </div>
                                 <div class="form-range-number">      
                                     <div>
                                         <label for="min">Min</label>
-                                        <input type="number" name="min" value="{{ $prixMin }}">
+                                        <input type="number" name="prix-min" value="{{ $prixMin }}" step="0.01">
                                     </div>    
                                     <div>
                                         <label for="max">Max</label>
-                                        <input type="number" name="max" value="{{ $prixMax }}">
+                                        <input type="number" name="prix-max" value="{{ $prixMax }}" step="0.01">
                                     </div>    
                                 </div>
                             </div>  
-                        </div> -->
+                        </div>
                         <!-- <div class="form-input-container">
                             <label for="alcohol-range">Degré d'alcool (%)</label>
                             <div class="form-range">
@@ -166,7 +166,7 @@
                         </div>
 
                         <!-- Type -->
-                        <div class="form-input-container">
+                        <!-- <div class="form-input-container">
                             <label for="select_type">Type</label>
                             <select name="type" id="select_type">
                                 <option value="">Choisir des options</option>
@@ -174,7 +174,7 @@
                                     <option value="{{ $type }}">{{ $type }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> -->
 
                         <!-- Millésime -->
                         <div class="form-input-container">
@@ -239,9 +239,9 @@
                 @include('partials.bouteilles')
 
                 @foreach ($bouteilles as $bouteille)
-                <section class="card-bouteille">
+                <section class="card-bouteille {{ $bouteille->couleur == 'Blanc' ? 'bg-jaune' : ($bouteille->couleur == 'Rouge' ? 'bg-rouge' : ($bouteille->couleur == 'Rosé' ? 'bg-rose' : '')) }}">
                     <picture>
-                        <img src="{{ $bouteille->srcImage }}" alt="{{ $bouteille->nom}}">
+                        <img src="{{ $bouteille->srcImage }}" height="120" width="80" loading="lazy" alt="{{ $bouteille->nom}}">
                     </picture>
                     <div class="card-bouteille-content">
                         <div class="card-bouteille-info">
@@ -251,7 +251,9 @@
                             <span>{{$bouteille->type}} | {{ $bouteille->format }} | {{$bouteille->pays}}</span>
                             <p>{{$bouteille->prix}} $</p>
                         </div>
+                        @if(!Auth::user()->hasRole("Admin"))
                         <a href="#" class="btn-ajouter" data-bouteille-id="{{ $bouteille->id }}">+ Ajouter</a>
+                        @endif
                     </div>
                 </section>
                 @endforeach
@@ -298,10 +300,10 @@
             </dialog>
         <!-- </div> -->
 
-        <script src="{{ asset('js/queryBottles.js') }}"></script>
-        <script src="{{ asset('js/bottleCounterModal.js') }}"></script>
-        <script src="{{ asset('js/modalAjouterBouteilleIndex.js') }}"></script>
-        <script src="{{ asset('js/filterSlider.js') }}"></script>
+        <script src="{{ asset('js/queryBottles.js') }}" defer></script>
+        <script src="{{ asset('js/bottleCounterModal.js') }}" defer></script>
+        <script src="{{ asset('js/modalAjouterBouteilleIndex.js') }}" defer></script>
+        <script src="{{ asset('js/filterSlider.js') }}" defer></script>
 
         
     </main>

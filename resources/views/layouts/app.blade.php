@@ -5,9 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="svg" href="{{ asset('assets/icons/intitle_icon.svg')}}">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.typekit.net/dox8qou.css">
-    <link href="{{ asset('css/pagination.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('css/pagination.css') }}" rel="stylesheet"> -->
     <title>Vino - @yield('title')</title>
 </head>
 <body>
@@ -20,8 +21,9 @@
             <li class="nav-item">        
                 <a href="{{ route('admin.index') }}">
                     <figure class="nav-icon-container 
-                    @if(Route::currentRouteName() == 'admin.index' || Route::currentRouteName() == 'admin.search-users')
-                    active
+                    @if(Route::currentRouteName() == 'admin.index' || Route::currentRouteName() == 'admin.search-users' || Route::currentRouteName() == 'admin.show-user' ||
+                    Route::currentRouteName() == 'admin.edit-user')
+                    active 
                     @endif">
                         <img src="{{ asset('assets/icons/admin_users_icon.svg') }}" alt="Accueil">
                         <figcaption>utilisateurs</figcaption>
@@ -30,15 +32,15 @@
             </li>
             <li class="nav-item">        
                 <a href="{{ route('bouteille.index') }}">
-                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'bouteille.index') active @endif">
+                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'bouteille.index' || Route::currentRouteName() == 'bouteille.show') active @endif">
                         <img src="{{ asset('assets/icons/add_icon.svg') }}" alt="Recherche">
                         <figcaption class="icons-label">bouteilles</figcaption>
                     </figure>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#">
-                    <figure class="nav-icon-container">
+                <a href="{{ route('statistics.monthly') }}">
+                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'statistics.index' || Route::currentRouteName() == 'statistics.stats-users' || Route::currentRouteName() == 'statistics.stats-user' || Route::currentRouteName() == 'statistics.monthly') active @endif">
                         <img src="{{ asset('assets/icons/admin_stats_icon.svg') }}" alt="Liste d'achats">
                         <figcaption>statistiques</figcaption>
                     </figure>
@@ -46,7 +48,7 @@
             </li>
             <li class="nav-item">         
                 <a href="{{ route('profil.show', Auth::user()->id) }}">
-                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'profil.show') active @endif">
+                    <figure class="nav-icon-container @if(Route::currentRouteName() == 'profil.show' || Route::currentRouteName() == 'profil.edit') active @endif">
                         <img src="{{ asset('assets/icons/profile_icon.svg') }}" alt="Profil">
                         <figcaption>profil</figcaption>
                     </figure>

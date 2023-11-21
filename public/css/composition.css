@@ -34,7 +34,7 @@ header {
 
 section {
     min-width: 100%;
-    border: .5px black solid;
+    border: .5px var(--purple-blue) solid;
     border-radius: var(--radius-m);
     padding: var(--space-s);
 }

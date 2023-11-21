@@ -8,11 +8,19 @@
 @if(Auth::user()->hasRole("Admin"))
 <!-- En attendant -->
 <main class="nav-margin">
-    <h1>Bienvenue sur l'interface d'administration {{ Auth::user()->nom}}!</h1>
+    <div class="welcome">
+        <h1 class="welcome-title">Bonjour {{ Auth::user()->nom}}!</h1>
+        <p class="welcome-text">Bienvenue sur l'interface administrateur.</p>
+    </div>
+    <picture class="admin-image-container">
+        <img src="{{ asset('assets/img/admin_bottle.jpeg') }}" alt="Bouteille au marché" class="admin-img">
+    </picture>
 </main>
 @else
 <main class="nav-margin">
-    <h1>Bonjour {{ Auth::user()->nom }}!</h1>
+    <div class="welcome-bonjour">
+        <h1>Bonjour {{ Auth::user()->nom }}!</h1>
+    </div>
     <section>
         <h2>Mes celliers</h2>
         <div class="card-container-stats">
@@ -82,8 +90,17 @@
                 </div>
                 @endforeach
             </div>
-            <button class="carousel-btn btn-prev">‹</button>
-            <button class="carousel-btn btn-next">›</button>
+            <button class="carousel-btn btn-prev">
+            <svg width="15" height="28" viewBox="0 0 15 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.90798e-07 14L14.25 0.143593L14.25 27.8564L1.90798e-07 14Z" fill="black"/>
+            </svg>
+
+            </button>
+            <button class="carousel-btn btn-next">
+                <svg width="15" height="28" viewBox="0 0 15 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 14L0.749997 27.8564L0.749998 0.143593L15 14Z" fill="black"/>
+                </svg>
+            </button>
         </div>
     </section>
     <div>
@@ -104,11 +121,23 @@
 <main>
     <div class="welcome">
         <h1 class="welcome-title">Bienvenue chez <span class="welcome-vino">vino</span>!</h1>
-        <p class="welcome-text">L'outil le plus simple et efficace pour gérer vos celliers et vos achats SAQ.</p>
+        <!-- <p class="welcome-text">L'outil le plus simple et efficace pour gérer vos celliers et vos achats SAQ.</p> -->
     </div>
-    <picture class="welcome-image-container">
-        <img src="{{ asset('assets/img/img_connexion.jpeg') }}" alt="Bouteille au marché" class="welcome-img">
-    </picture>
+    <div class="welcome-animation-container">
+        <div class="welcome-rounded-text rotating">
+            <svg viewBox="0 0 200 200">
+                <path id="textPath" d="M 89,0 A 89,89 0 0 1 -89,0 A 89,89 0 0 1 89,0" transform="translate(100,100)" fill="none" stroke-width="0"></path>
+                <g font-size="12px">
+                <text text-anchor="start">
+                    <textPath class="coloring" xlink:href="#textPath" startOffset="0%">L'outil le plus simple et efficace pour gérer vos celliers et vos achats SAQ ✦</textPath>
+                </text>
+                </g>
+            </svg>
+        </div>
+        <picture class="welcome-image-container">
+            <img src="{{ asset('assets/img/img_connexion.jpeg') }}" alt="Bouteille au marché" class="welcome-img">
+        </picture>
+    </div>
     @if(session('success'))
         <div>
             {{ session('success') }}
@@ -151,5 +180,6 @@
         </form>
     </div>
 </main>
+<script src="{{ asset('js/textCercle.js') }}" defer></script>
 @endauth
 @endsection

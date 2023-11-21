@@ -24,6 +24,9 @@
 .carousel-slide p {
     margin-top: var(--space-s);
 }
+.carousel-slide a {
+    text-decoration: underline;
+}
 
 .carousel-btn {
     position: absolute;

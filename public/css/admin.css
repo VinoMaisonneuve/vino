@@ -12,6 +12,11 @@
 .admin-table td {
     width: 45%; 
     box-sizing: border-box;
+    text-align: center;
+}
+
+.user-table th, .admin-table th {
+    text-align: center;
 }
 
 .admin-show-container {
@@ -46,4 +51,29 @@
     max-width: 100%;
     word-break: break-all;
     margin: var(--space);
+}
+
+.admin-user-section {
+    max-width: 100%;
+}
+
+.info-profil {
+    display: flex;
+}
+
+.info-profil span:first-child {
+    text-align: left;
+}
+
+.info-profil span {
+    flex: 1; 
+    word-break: break-all;
+}
+
+.admin-img-container {
+    height: 275px;
+}
+
+.admin-img {
+    max-height: 275px;
 }

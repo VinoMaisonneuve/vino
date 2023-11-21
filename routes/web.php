@@ -197,10 +197,7 @@ Route::get('new-password/{user}/{tempPassword}', [CustomAuthController::class,
 // Envoi du formulaire de nouveau mot de passe
 Route::post('new-password/{user}/{tempPassword}', [CustomAuthController::class,
 'storeNewPassword']);
-// Affichage du formulaire de signalement de problème
-Route::get('/signaler-erreur', [CustomAuthController::class, 'formulaireSignalerErreur'])->name('signalerErreur');
-// Envoi du formulaire de signalement de problème
-Route::post('/signaler-erreur', [CustomAuthController::class, 'signalerErreur'])->name('signalerErreur');
+
 // *************** Importation des données de la SAQ ****************
 
 Route::get('/scrape', [Web2scraperController::class, 'scrapeData']);
