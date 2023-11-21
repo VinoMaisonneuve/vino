@@ -8,11 +8,10 @@ document.querySelectorAll('.card-bouteille-qt').forEach(function(counter) {
     let bouteilleType; 
     let deplacerButton; 
     if (input.getAttribute('data-bouteille-personnalisee')) {
-        bouteilleType = input.getAttribute('data-bouteille-personnalisee');
-        console.log('hello'); 
+        bouteilleType = input.getAttribute('data-bouteille-personnalisee'); 
     }
-    if (card.querySelectorAll('.btn-deplacer')) {
-        deplacerButton = document.querySelectorAll('.btn-deplacer');
+    if (card.querySelector('.btn-deplacer')) {
+        deplacerButton = card.querySelector('.btn-deplacer');
     }
   
     // SVG pour le bouton supprimer
@@ -43,6 +42,9 @@ document.querySelectorAll('.card-bouteille-qt').forEach(function(counter) {
         let id = card.id;
         let location = card.getAttribute('data-location'); 
         let url = `/bouteilles-${location}-modifier/${id}`;
+        if (bouteilleType == 'personnalisees') {
+            url = `/bouteilles-personnalisees-celliers-modifier/${id}`
+        }
         try {
             const response = await fetch(url, { 
                 method: 'PUT',
@@ -69,14 +71,15 @@ document.querySelectorAll('.card-bouteille-qt').forEach(function(counter) {
         if (currentValue === 0) {
             card.classList.add('card-transparent');
             deleteButton.style.display = 'block';
-            if (deplacerButton.length != 0) {
+            if (deplacerButton != undefined) {
                 deplacerButton.style.display = 'none'; 
+                console.log(deplacerButton);
             }
         } else {
             card.classList.remove('card-transparent');
             deleteButton.style.display = 'none';
-            if (deplacerButton.length != 0) {
-                deplacerButton.style.display = 'none'; 
+            if (deplacerButton != undefined) {
+                deplacerButton.style.display = 'block'; 
             }
         }
     }

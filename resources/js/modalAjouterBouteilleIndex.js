@@ -79,7 +79,7 @@ function onCellierRadioChange(event) {
             form.querySelector('.btn-modal-action').innerHTML = "Créer un cellier"; 
         }
         else {
-            form.querySelector('.btn-modal-action').innerHTML = "Ajouter"; 
+            form.querySelector('.btn-modal-action').innerHTML = "ajouter"; 
         }
     }
 }
@@ -160,18 +160,19 @@ async function loadOptions(type) {
 
 //Fonction appelé par l'événement d'écouteur de changement de l'envoi du formulaire
 function onFormSubmit(event) {
-    if(selectLocation.querySelector('option').textContent != "Ajouter") {
-        if(selectLocation.querySelector('option').textContent == "Vous n'avez pas de liste") {        
-            window.location.href = "/listes-ajouter"; 
+    event.preventDefault(); 
+    console.log(form.querySelector('.btn-modal-action').textContent);
+    if(form.querySelector('.btn-modal-action').textContent != "ajouter") {
+        if(form.querySelector('.btn-modal-action').textContent == "Vous n'avez pas de liste") {        
+            //window.location.href = "/listes-ajouter"; 
         }
         else {
-            window.location.href = "/celliers-ajouter"; 
+            //window.location.href = "/celliers-ajouter"; 
         }
     }
     else {
         const quantiteBouteille = document.querySelector('#quantite-bouteille').value; 
         const idLocation = document.querySelector('#select-location').value;
-        event.preventDefault(); 
         ajouterBouteille(quantiteBouteille, idLocation, bouteilleID); 
       
         async function ajouterBouteille(newQuantity, locationId, bouteilleId) {

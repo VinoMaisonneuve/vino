@@ -53,9 +53,14 @@ class User extends Authenticatable
         return $this->hasMany(Cellier::class);
     }
 
-    public function commentaires() 
+    public function commentairesBouteilles() 
     {
-        return $this->hasMany(Commentaire::class);
+        return $this->hasMany(CommentaireBouteille::class);
+    }
+
+    public function commentairesBouteillesPersonnalisees() 
+    {
+        return $this->hasMany(CommentaireBouteillePersonnalisee::class);
     }
 
     public function favoris() 
