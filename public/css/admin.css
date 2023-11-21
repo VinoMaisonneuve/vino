@@ -1,5 +1,5 @@
 .admin-welcome {
-    margin-top: 5rem; 
+    margin-top: var(--space); 
 }
 
 .admin-table-container {
@@ -76,4 +76,5 @@
 
 .admin-img {
     max-height: 275px;
+    mix-blend-mode: multiply;
 }
