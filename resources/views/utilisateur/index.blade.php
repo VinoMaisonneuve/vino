@@ -42,12 +42,12 @@
                 Supprimer mon compte
             </a>
         </div>
+        <div class="btn-container">
+            <a href="{{ route('signalerErreur') }}" class="btn-action btn-round btn-red">
+                Signaler un problème
+            </a>
+        </div>
     </section>
-    <div class="btn-container">
-        <a href="{{ route('signalerErreur') }}" class="btn-action btn-round btn-red">
-            Signaler un problème
-        </a>
-    </div>
 
     <!-- Fenêtre modale de suppression de compte -->
     <dialog id="modal-supprimer" class="modal">
