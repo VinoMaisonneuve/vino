@@ -1,16 +1,7 @@
 @extends('layouts.app')
 @section('title','Recherche')
 @section('content')
-        <header>
-            <!-- <a href="{{ route('bouteille.index') }}" class="btn-arrow-top">
-                <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17.4247 7C17.977 7 18.4247 7.44772 18.4247 8C18.4247 8.55228 17.977 9 17.4247 9L17.4247 7ZM0.498398 8.70711C0.107874 8.31658 0.107874 7.68342 0.498398 7.29289L6.86236 0.928933C7.25288 0.538409 7.88605 0.538409 8.27657 0.928933C8.6671 1.31946 8.6671 1.95262 8.27657 2.34315L2.61972 8L8.27657 13.6569C8.6671 14.0474 8.6671 14.6805 8.27657 15.0711C7.88605 15.4616 7.25288 15.4616 6.86236 15.0711L0.498398 8.70711ZM17.4247 9L1.20551 9L1.20551 7L17.4247 7L17.4247 9Z" fill="black"/>
-                </svg>
-                bouteilles
-            </a> --> 
-            <!-- pas de lien retour parce que cette page peut être accessible de accueil, cellier/show, liste/show et bouteilles/index  -->
-            fiche bouteille
-        </header>
+        <header>fiche bouteille</header>
         <main class="nav-margin">
             <section class="card-bouteille fiche-main-info {{ $bouteille->couleur == 'Blanc' ? 'bg-jaune' : ($bouteille->couleur == 'Rouge' ? 'bg-rouge' : ($bouteille->couleur == 'Rosé' ? 'bg-rose' : '')) }}">
                 <picture class="fiche-picture" id="zoomableImage">
@@ -35,20 +26,12 @@
             <table>
                 <tbody>
                     <tr>
-                        <th>Producteur</th>
-                        <td>{{$bouteille->producteur ?? '-'}}</td>
-                    </tr>
-                    <tr>
                         <th>Région</th>
                         <td>{{$bouteille->region ?? '-'}}</td>
                     </tr>
                     <tr>
-                        <th>Désignation réglementée</th>
-                        <td>{{$bouteille->designation ?? '-'}}</td>
-                    </tr>
-                    <tr>
-                        <th>Agent promotionnel</th>
-                        <td>{{$bouteille->agentPromotion ?? '-'}}</td>
+                        <th>Producteur</th>
+                        <td>{{$bouteille->producteur ?? '-'}}</td>
                     </tr>
                     <tr>
                         <th>Cépage</th>
@@ -62,27 +45,14 @@
                         <th>Taux de sucre</th>
                         <td>{{$bouteille->tauxSucre ?? '-'}}</td>
                     </tr>
-                    <!-- <tr>
-                        <th>Appellation</th>
-                        <td>{{ $bouteille->nom ?? '-'}}</td>
+                    <tr>
+                        <th>Désignation réglementée</th>
+                        <td>{{$bouteille->designation ?? '-'}}</td>
                     </tr>
-                        <tr>
-                        <th>Millésime</th>
-                        <td>{{$bouteille->millesime ?? '-'}}</td>
-                    </tr> -->
-                    <!-- <tr>
-                        <th>Couleur</th>
-                        <td>{{$bouteille->couleur ?? '-'}}</td>
-                    </tr> -->
-
-                    <!-- <tr>
-                        <th>Type</th>
-                        <td>{{$bouteille->type ?? '-'}}</td>
-                    </tr> -->
-                    <!-- <tr>
-                        <th>Pastille de goût</th>
-                        <td>{{$bouteille->pastilleGoutTitre ?? '-'}}</td>
-                    </tr> -->
+                    <tr>
+                        <th>Agent promotionnel</th>
+                        <td>{{$bouteille->agentPromotion ?? '-'}}</td>
+                    </tr>
                     <tr>
                         <th>Disponibilité</th>
                         <td>            
@@ -98,73 +68,7 @@
                     </tr>
                 </tbody>
             </table>
-            @if(!Auth::user()->hasRole("Admin"))
-            @if(!$commentaire)
-            <section>
-                <h2>Ajouter une note</h2>
-                <form action="{{ route('comment.store', ['bouteille_id' => $bouteille->id]) }}" method="post" id="comment">
-                    @csrf
-                    <div class="form-input-container">
-                        <label for="comment"></label>
-                        <input type="text" id="body" name="comment" placeholder="NOTE">
-                        @error('comment')
-                            <span class="error-message">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="form-button">
-                        <button type="submit" class="btn-submit">ajouter</button>
-                    </div>
-                </form>
-            </section>
-            @else
-            <section>
-                <h2>Note</h2>
-                @if(session()->has('successMessage'))
-                    <div>
-                        {{ session('successMessage') }}
-                    </div>
-                @endif
-                <div class="form-container">
-                    <form action="{{ route('comment.update', ['commentaire' => $commentaire->id]) }}" method="post" id="comment">
-                        @csrf
-                        @method('put')
-                        <div class="form-input-container">
-                            <label for="comment"></label>
-                            <input type="text" id="body" name="comment" value="{{ $commentaire->corps }}">
-                            @error('comment')
-                                <span class="error-message">{{ $message }}</span>
-                            @enderror
-                            <p><span>Ajouté le: </span>{{ $commentaire->updated_at->setTimezone('America/Toronto') }}</p>
-                        </div>
-                        <div class="form-button">
-                            <button type="submit" class="btn-submit">modifier</button>
-                        </div>
-                    </form> 
-                </div>
-                <form action="{{ route('comment.destroy', ['commentaire' => $commentaire->id]) }}" method="post" id="supprimerCommentaire">
-                    @method('delete')
-                    @csrf
-                    <div class="form-button">
-                        <button type="submit" form="supprimerCommentaire" class="link btn-supprimer">supprimer</button>
-                    </div>
-                </form>
-            </section>
-            <!-- Modale suppression -->
-            <dialog id="modal-supprimer" class="modal">
-                <h2>Suppression de la note</h2>
-                <hr>
-                <p>Êtes-vous certain de vouloir supprimer la note?</p>
-                <form action="{{ route('comment.destroy', ['commentaire' => $commentaire->id]) }}" method="post" class="form-modal" id="supprimerCommentaire">
-                    @csrf
-                    @method('DELETE')
-                    <div class="btn-modal-container">
-                        <button type="submit" form="supprimerCommentaire" class="btn-modal-action btn-red">oui, supprimer</button>
-                        <button class="btn-modal-cancel btn-green">annuler</button>
-                    </div>
-                </form>
-            </dialog>
-            @endif
-            @endif
+            @include('partials.commentaires')
 
             <!-- Zoom de l'image (EN DEV - VICTOR) -->
             <dialog id="zoomModal" class="modal">
