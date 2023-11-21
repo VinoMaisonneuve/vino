@@ -12,8 +12,8 @@ use App\Http\Controllers\Web2scraperController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ListeController;
 use App\Http\Controllers\StatistiqueController;
-use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\CommentaireBouteilleController;
+use App\Http\Controllers\CommentaireBouteillePersonnaliseeController;
 use Spatie\Permission\Middlewares\RoleMiddleware;
 use App\Http\Middleware\CheckRole;
 
@@ -76,12 +76,18 @@ Route::middleware(['auth'])->group(function () {
 
     // *************** Commentaires ****************
 
-    // Stockage du commentaire sur une bouteille
+    // Stockage du commentaire sur une bouteille de la saq
     Route::post('/commentaires/{bouteille_id}', [CommentaireBouteilleController::class, 'store'])->name('comment.store');
-    // Stockage de la modification d'un commentaire dans la BDD
+    // Stockage de la modification d'un commentaire sur une bouteille de la saq dans la BDD
     Route::put('/commentaires-modifier/{commentaire_bouteille}', [CommentaireBouteilleController::class, 'update'])->name('comment.update');
-    // Suppression d'un commentaire sur une bouteille
+    // Suppression d'un commentaire sur une bouteille de la saq
     Route::delete('/commentaires-modifier/{commentaire_bouteille}', [CommentaireBouteilleController::class, 'destroy'])->name('comment.destroy');
+    // Stockage du commentaire sur une bouteille personnalisée
+    Route::post('/celliers/{cellier_id}/commentaires/{bouteille_personnalisee_id}', [CommentaireBouteillePersonnaliseeController::class, 'store'])->name('commentPersonnalisee.store');
+    // Stockage de la modification d'un commentaire sur une bouteille personnalisée dans la BDD
+    Route::put('/commentaires-modifier/{commentaire_bouteille_personnalisee}', [CommentaireBouteillePersonnaliseeController::class, 'update'])->name('commentPersonnalisee.update');
+    // Suppression d'un commentaire sur une bouteille personnalisée
+    Route::delete('/commentaires-modifier/{commentaire_bouteille_personnalisee}', [CommentaireBouteillePersonnaliseeController::class, 'destroy'])->name('commentPersonnalisee.destroy');
 
     // *************** Gestion des celliers ****************
 

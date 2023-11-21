@@ -3,7 +3,7 @@
             @if(!$commentaire)
             <section>
                 <h2>Ajouter une note</h2>
-                <form action="{{ route('comment.store', ['bouteille_id' => $bouteille->id]) }}" method="post" id="comment">
+                <form action="{{ $route_store }}" method="post" id="comment">
                     @csrf
                     <div class="form-input-container">
                         <label for="comment"></label>
@@ -26,7 +26,7 @@
                     </div>
                 @endif
                 <div class="form-container">
-                    <form action="{{ route('comment.update', ['commentaire_bouteille' => $commentaire->id]) }}" method="post" id="comment">
+                    <form action="{{ $route_update }}" method="post" id="comment">
                         @csrf
                         @method('put')
                         <div class="form-input-container">
@@ -42,7 +42,7 @@
                         </div>
                     </form> 
                 </div>
-                <form action="{{ route('comment.destroy', ['commentaire_bouteille' => $commentaire->id]) }}" method="post" id="supprimerCommentaire">
+                <form action="{{ $route_delete }}" method="post" id="supprimerCommentaire">
                     @method('delete')
                     @csrf
                     <div class="form-button">
@@ -55,7 +55,7 @@
                 <h2>Suppression de la note</h2>
                 <hr>
                 <p>Êtes-vous certain de vouloir supprimer la note?</p>
-                <form action="{{ route('comment.destroy', ['commentaire_bouteille' => $commentaire->id]) }}" method="post" class="form-modal" id="supprimerCommentaire">
+                <form action="{{ $route_delete }}" method="post" class="form-modal" id="supprimerCommentaire">
                     @csrf
                     @method('DELETE')
                     <div class="btn-modal-container">

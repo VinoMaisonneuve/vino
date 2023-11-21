@@ -54,7 +54,11 @@
                     </tr>
                 </tbody>
             </table>
-            @include('partials.commentaires')
+            @if ($commentaire)
+                @include('partials.commentaires', ['route_update' => route('commentPersonnalisee.update', ['commentaire_bouteille_personnalisee' => $commentaire->id]), 'route_delete' => route('commentPersonnalisee.destroy', ['commentaire_bouteille_personnalisee' => $commentaire->id])])
+            @else 
+                @include('partials.commentaires', ['route_store' => route('commentPersonnalisee.store', ['cellier_id' => $cellier_id, 'bouteille_personnalisee_id' => $bouteille->id])])
+            @endif 
 
             <script src="{{ asset('js/modalSupprimer.js') }}"></script>
         </main>
