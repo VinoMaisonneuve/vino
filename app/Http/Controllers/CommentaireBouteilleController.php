@@ -87,7 +87,7 @@ class CommentaireBouteilleController extends Controller
      * @param  \App\Models\CommentaireBouteille  $commentaireBouteille
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CommentaireBouteille $commentaireBouteille)
+    public function update(Request $request, CommentaireBouteille $commentaire_bouteille)
     {
         $request->validate([
             'comment'  => 'required|min:2'
@@ -98,12 +98,12 @@ class CommentaireBouteilleController extends Controller
         ]);
 
         try {
-            $commentaireBouteille->update([
+            $commentaire_bouteille->update([
                 'corps' => $request->comment
             ]);
     
             return redirect()->back()->with('successMessage', 'Commentaire modifié avec succès')
-            ->with('commentaire', $commentaireBouteille);;
+            ->with('commentaire', $commentaire_bouteille);;
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['erreur' => "Une erreur s'est produite lors de la mise à jour du commentaire"]);
         }
@@ -115,11 +115,11 @@ class CommentaireBouteilleController extends Controller
      * @param  \App\Models\CommentaireBouteille  $commentaireBouteille
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CommentaireBouteille $commentaireBouteille)
+    public function destroy(CommentaireBouteille $commentaire_bouteille)
     {
         try {
 
-            $commentaireBouteille->delete();
+            $commentaire_bouteille->delete();
 
             return redirect()->back()->withSuccess('Commentaire supprimé avec succès');
         } catch (\Exception $e) {

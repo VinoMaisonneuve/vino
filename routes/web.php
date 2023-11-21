@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ListeController;
 use App\Http\Controllers\StatistiqueController;
 use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\CommentaireBouteilleController;
 use Spatie\Permission\Middlewares\RoleMiddleware;
 use App\Http\Middleware\CheckRole;
 
@@ -76,11 +77,11 @@ Route::middleware(['auth'])->group(function () {
     // *************** Commentaires ****************
 
     // Stockage du commentaire sur une bouteille
-    Route::post('/commentaires/{bouteille_id}', [CommentaireController::class, 'store'])->name('comment.store');
+    Route::post('/commentaires/{bouteille_id}', [CommentaireBouteilleController::class, 'store'])->name('comment.store');
     // Stockage de la modification d'un commentaire dans la BDD
-    Route::put('/commentaires-modifier/{commentaire}', [CommentaireController::class, 'update'])->name('comment.update');
+    Route::put('/commentaires-modifier/{commentaire_bouteille}', [CommentaireBouteilleController::class, 'update'])->name('comment.update');
     // Suppression d'un commentaire sur une bouteille
-    Route::delete('/commentaires-modifier/{commentaire}', [CommentaireController::class, 'destroy'])->name('comment.destroy');
+    Route::delete('/commentaires-modifier/{commentaire_bouteille}', [CommentaireBouteilleController::class, 'destroy'])->name('comment.destroy');
 
     // *************** Gestion des celliers ****************
 
