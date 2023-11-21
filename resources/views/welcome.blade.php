@@ -83,18 +83,12 @@
         <h2>Derniers ajouts</h2>
         <div class="carousel-container">
             <div class="carousel-slides">
+                @foreach($derniersAjouts as $dernierAjout)
                 <div class="carousel-slide">
-                    <img src="https://www.saq.com/media/catalog/product/1/1/11794344-1_1637193034.png" alt="Produit 1" />
-                    <a href="#">Titre Produit 1</a>
+                    <img src="{{ $dernierAjout->srcImage }}" alt="{{ $dernierAjout->id }}" />
+                    <a href="#">{{ $dernierAjout->nom }}</a>
                 </div>
-                <div class="carousel-slide">
-                    <img src="https://www.saq.com/media/catalog/product/1/1/11888682-1_1606406165.png" alt="Produit 2" />
-                    <a href="#">Titre Produit 2</a>
-                </div>
-                <div class="carousel-slide">
-                    <img src="https://www.saq.com/media/catalog/product/1/5/15179138-1_1697549583.png" alt="Produit 2" />
-                    <a href="#">Titre Produit 3</a>
-                </div>
+                @endforeach
             </div>
             <button class="carousel-btn btn-prev">
             <svg width="15" height="28" viewBox="0 0 15 28" fill="none" xmlns="http://www.w3.org/2000/svg">

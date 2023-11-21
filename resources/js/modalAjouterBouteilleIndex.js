@@ -57,7 +57,6 @@ function onListRadioChange(event) {
         }); 
         if (selectLocation.querySelector('option').textContent == "Vous n'avez pas de liste") {
             form.querySelector('.btn-modal-action').innerHTML = "Créer une liste"; 
-            window.location.href = "/listes-ajouter"; 
         }
         else {
             form.querySelector('.btn-modal-action').innerHTML = "Ajouter"; 
@@ -78,7 +77,6 @@ function onCellierRadioChange(event) {
         }); 
         if (selectLocation.querySelector('option').textContent == "Vous n'avez pas de cellier") {
             form.querySelector('.btn-modal-action').innerHTML = "Créer un cellier"; 
-            window.location.href = "/celliers-ajouter"; 
         }
         else {
             form.querySelector('.btn-modal-action').innerHTML = "Ajouter"; 
@@ -90,6 +88,8 @@ var windowLocation = window.location.toString();
 if (windowLocation.includes('listes')) {
     url = '/listes-json'; 
     loadOptions('liste');
+    listRadio.checked = true; 
+
 }
 else {
     url = '/celliers-json'; 
@@ -141,11 +141,9 @@ async function loadOptions(type) {
             selectLocation.appendChild(optionElement);
             if (type === 'cellier') {
                 form.querySelector('.btn-modal-action').innerHTML = "Créer un cellier"; 
-                window.location.href = "/celliers-ajouter"; 
             }
             else if (type === 'liste') {
                 form.querySelector('.btn-modal-action').innerHTML = "Créer une liste"; 
-                window.location.href = "/listes-ajouter"; 
             }
             if (type === "cellier") {
                 selectCelliers.push(optionElement); 
@@ -162,37 +160,47 @@ async function loadOptions(type) {
 
 //Fonction appelé par l'événement d'écouteur de changement de l'envoi du formulaire
 function onFormSubmit(event) {
-  const quantiteBouteille = document.querySelector('#quantite-bouteille').value; 
-  const idLocation = document.querySelector('#select-location').value;
-  event.preventDefault(); 
-  ajouterBouteille(quantiteBouteille, idLocation, bouteilleID); 
-
-  async function ajouterBouteille(newQuantity, locationId, bouteilleId) {
-      try {
-          const response = await fetch(url, { 
-              method: 'POST',
-              headers: {
-                  'Content-Type' : 'application/json', 
-                  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-              }, 
-              body: JSON.stringify({ 
-                  quantite: newQuantity,
-                  location_id: locationId,
-                  bouteille_id: bouteilleId
-              })
-          });
-          
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-  
-          const data = await response.json();
-          console.log(data.message); 
-          modal.close(); 
-      } catch (error) {
-          console.error('Error: ', error); 
-      }
-  }
+    if(selectLocation.querySelector('option').textContent != "Ajouter") {
+        if(selectLocation.querySelector('option').textContent == "Vous n'avez pas de liste") {        
+            window.location.href = "/listes-ajouter"; 
+        }
+        else {
+            window.location.href = "/celliers-ajouter"; 
+        }
+    }
+    else {
+        const quantiteBouteille = document.querySelector('#quantite-bouteille').value; 
+        const idLocation = document.querySelector('#select-location').value;
+        event.preventDefault(); 
+        ajouterBouteille(quantiteBouteille, idLocation, bouteilleID); 
+      
+        async function ajouterBouteille(newQuantity, locationId, bouteilleId) {
+            try {
+                const response = await fetch(url, { 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type' : 'application/json', 
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    }, 
+                    body: JSON.stringify({ 
+                        quantite: newQuantity,
+                        location_id: locationId,
+                        bouteille_id: bouteilleId
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+        
+                const data = await response.json();
+                console.log(data.message); 
+                modal.close(); 
+            } catch (error) {
+                console.error('Error: ', error); 
+            }
+        }
+    }
 }
 
 // LISTENER au chargement de la page
