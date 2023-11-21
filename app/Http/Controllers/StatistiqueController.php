@@ -115,7 +115,7 @@ class StatistiqueController extends Controller
                 'total_bottles_count' => 0,
             ]);
 
-        return view('statistics.monthly', ['monthlyStatistics' => $monthlyStatistics]);
+        return view('admin.statistics.monthly', ['monthlyStatistics' => $monthlyStatistics]);
     }
 
 }
