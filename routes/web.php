@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BouteilleCellierController;
 use App\Http\Controllers\BouteilleListeController;
+use App\Http\Controllers\BouteillePersonnaliseeController;
+use App\Http\Controllers\BouteillePersonnaliseeCellierController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\CellierController;
 use App\Http\Controllers\BouteilleController;
@@ -52,16 +54,22 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/bouteilles', [BouteilleController::class, 'index'])->name('bouteille.index');
     // Affichage des informations d'une bouteille 
     Route::get('/bouteilles/{bouteille_id}', [BouteilleController::class, 'show'])->name('bouteille.show');
+    // Affichage des informations d'une bouteille personnalisée
+    Route::get('/celliers/{cellier_id}/bouteilles-personnalisees/{bouteille_id}', [BouteillePersonnaliseeController::class, 'show'])->name('personnalisee.show');
     // Création d'une bouteille personnalisée
-    Route::get('/bouteilles-ajouter/{bouteille_id}', [BouteilleController::class, 'create'])->name('bouteille.create');
+    Route::get('/celliers/{cellier_id}/bouteilles-ajouter', [BouteillePersonnaliseeController::class, 'create'])->name('bouteille.create');
     // Stockage d'une bouteille personnalisée dans la BDD
-    Route::post('/bouteilles-ajouter', [BouteilleController::class, 'store']);
+    Route::post('/celliers/{cellier_id}/bouteilles-ajouter', [BouteillePersonnaliseeController::class, 'store'])->name('bouteille.store');
+    // Ajout d'une bouteille personnalisée dans un cellier
+    Route::post('/celliers/{cellier_id}/bouteilles-ajouter-cellier', [BouteillePersonnaliseeCellierController::class, 'store'])->name('bouteillePersonnalisee.store');
     // Modification d'une bouteille personnalisée 
-    Route::get('/bouteilles-modifier/{bouteille_id}', [BouteilleController::class, 'edit'])->name('bouteille.edit');
+    Route::get('/celliers/{cellier_id}/bouteilles-personnalisees-modifier/{bouteille_id}', [BouteillePersonnaliseeController::class, 'edit'])->name('bouteille.edit');
     // Stockage de la modification d'une bouteille personnalisée dans la BDD
-    Route::put('/bouteilles-modifier/{bouteille_id}', [BouteilleController::class, 'update']);
-    // Suppression d'une bouteille personnalisée
-    Route::delete('/bouteilles-modifier/{bouteille_id}', [BouteilleController::class, 'destroy'])->name('bouteille.destroy');
+    Route::put('/celliers/{cellier_id}/bouteilles-personnalisees-modifier/{bouteille_id}', [BouteillePersonnaliseeController::class, 'update']);
+    // Suppression d'une bouteille personnalisée d'un cellier
+    Route::delete('/celliers/{cellier_id}/bouteilles-personnalisees-modifier/{bouteille_id}', [BouteillePersonnaliseeController::class, 'destroy'])->name('bouteillePersonnalisee.destroy');
+    // Suppression d'une bouteille personnalisée d'un cellier
+    Route::delete('/celliers/{cellier_id}/bouteilles-modifier/{bouteille_personnalisee_cellier}', [BouteillePersonnaliseeCellierController::class, 'destroy'])->name('bouteille.destroy');
     // Recherche d'une bouteille
     Route::get('/search', [BouteilleController::class, 'search']);
 
@@ -103,6 +111,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/celliers/{cellier_id}/bouteilles-celliers-modifier/{bouteille_cellier}', [BouteilleCellierController::class, 'destroy'])->name('bouteilleCellier.delete');
     // Modification de la quantité de bouteilles se trouvant dans un même cellier
     Route::put('/bouteilles-celliers-modifier/{id}', [BouteilleCellierController::class, 'update']);
+    // Modification de la quantité de bouteilles personnalisées se trouvant dans un même cellier
+    Route::put('/bouteilles-personnalisees-celliers-modifier/{id}', [BouteillePersonnaliseeCellierController::class, 'update']);
 
     // *************** Gestion des listes ****************
 
