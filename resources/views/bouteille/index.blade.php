@@ -156,7 +156,7 @@
 
                         <!-- Agent Promotion -->
                         <div class="form-input-container">
-                            <label for="select_agentPromotion">Agent de promotion</label>
+                            <label for="select_agentPromotion">Agent promotionnel</label>
                             <select name="agentPromotion" id="select_agentPromotion">
                                 <option value="">Choisir des options</option>
                                 @foreach($agentPromotions as $agentPromotion)

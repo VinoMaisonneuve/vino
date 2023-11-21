@@ -89,7 +89,7 @@ dialog[id="zoomModal"] {
     position: relative;
 }
 /* style pour assombrir l'image lorsqu'elle est survolée */
-/* .zoomable-image:hover {
+.zoomable-image:hover {
     opacity: 0.7;
     transition: 0.3s;
     cursor: zoom-in;
