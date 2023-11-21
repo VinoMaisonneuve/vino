@@ -34,7 +34,7 @@ form {
     width: 100%;
     margin-top: var(--space-s);
 }
-.form-input-container input:not(input[type='range']) {
+.form-input-container input:not(input[type='range'], .fiche-note-container input[type="text"]) {
     padding: var(--space-xs) var(--space-s);
     background-color: rgba(255, 255, 255, 0.75);
 }

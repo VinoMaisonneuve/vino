@@ -117,7 +117,7 @@
                 </form>
             </section>
             @else
-            <section>
+            <section class="fiche-note-container">
                 <h2>Note</h2>
                 @if(session()->has('successMessage'))
                 <div id="snackbar">
@@ -176,6 +176,7 @@
                     </div>
                 </form>
             </dialog>
+            <script src="{{ asset('js/modalSupprimer.js') }}"></script>
             @endif
             @endif
 
@@ -223,7 +224,7 @@
 
             <script src="../../js/bottleCounterModal.js"></script>
             <script src="../../js/modalAjouter.js"></script>
-            <!-- <script src="{{ asset('js/modalSupprimer.js') }}"></script> -->
+
             <script src="{{ asset('js/zoom.js')  }}"></script>
         </main>
         @endsection

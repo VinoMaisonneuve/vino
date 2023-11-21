@@ -111,7 +111,8 @@ class CustomAuthController extends Controller
         $liste->user_id = $user->id;
         $liste->save();
 
-        return view('welcome', ['successMessage' => 'Compte créé avec succès, vous pouvez maintenant vous connecter.']);
+        // return view('welcome', ['successMessage' => 'Compte créé avec succès, vous pouvez maintenant vous connecter.']);
+        return view('welcome', ['successMessage' => 'Compte créé avec succès!']);
     }
 
     /**
