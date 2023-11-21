@@ -59,7 +59,7 @@ function onListRadioChange(event) {
             form.querySelector('.btn-modal-action').innerHTML = "Créer une liste"; 
         }
         else {
-            form.querySelector('.btn-modal-action').innerHTML = "Ajouter"; 
+            form.querySelector('.btn-modal-action').innerHTML = "ajouter"; 
         }
     }
 }
