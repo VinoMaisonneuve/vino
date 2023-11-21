@@ -15,10 +15,10 @@ class CellierController extends Controller
      */
     public function index()
     {
-        $celliers = Cellier::withCount('bouteillesCelliers')
-                            ->with('bouteillesCelliers.bouteille')
+        $celliers = Cellier::withCount(['bouteillesCelliers', 'bouteillesPersonnaliseesCelliers'])
+                            ->with(['bouteillesCelliers.bouteille', 'bouteillesPersonnaliseesCelliers.bouteillePersonnalisee'])
                             ->where('user_id', Auth::id())
-                            ->get(); 
+                            ->get();  
 
         $celliers->each(function ($cellier) {
             $cellier->prixTotal = 0; 
@@ -26,6 +26,12 @@ class CellierController extends Controller
             foreach($cellier->bouteillesCelliers as $bouteilleCellier) {
                 $cellier->prixTotal += $bouteilleCellier->bouteille->prix * $bouteilleCellier->quantite;
                 $cellier->quantiteTotal += $bouteilleCellier->quantite;
+            }
+            foreach ($cellier->bouteillesPersonnaliseesCelliers as $bouteillePersonnaliseeCellier) {
+                if ($bouteillePersonnaliseeCellier->bouteillePersonnalisee->prix != null) {
+                    $cellier->prixTotal  += $bouteillePersonnaliseeCellier->bouteillePersonnalisee->prix * $bouteillePersonnaliseeCellier->quantite;
+                }
+                $cellier->quantiteTotal += $bouteillePersonnaliseeCellier->quantite;
             }
         }); 
         
@@ -116,8 +122,10 @@ class CellierController extends Controller
         foreach($cellier->bouteillesCelliers as $bouteilleCellier) {
             $cellier->quantiteTotal += $bouteilleCellier->quantite;
         }
+        foreach($cellier->bouteillesPersonnaliseesCelliers as $bouteillePersonnaliseeCellier) {
+            $cellier->quantiteTotalPersonnalisee += $bouteillePersonnaliseeCellier->quantite;
+        }
 
-    
         return view('cellier.show', ['cellier' => $cellier]);
     }
 
@@ -185,7 +193,7 @@ class CellierController extends Controller
      */
     public static function calculerTotalCellier()
     {
-        $celliers = Cellier::with('bouteillesCelliers.bouteille')
+        $celliers = Cellier::with(['bouteillesCelliers.bouteille', 'bouteillesPersonnaliseesCelliers.bouteillePersonnalisee'])
         ->where('user_id', Auth::id())
         ->get();
 
@@ -196,6 +204,12 @@ class CellierController extends Controller
             foreach ($cellier->bouteillesCelliers as $bouteilleCellier) {
                 $totalPrix += $bouteilleCellier->bouteille->prix * $bouteilleCellier->quantite;
                 $totalQuantite += $bouteilleCellier->quantite;
+            }
+            foreach ($cellier->bouteillesPersonnaliseesCelliers as $bouteillePersonnaliseeCellier) {
+                if ($bouteillePersonnaliseeCellier->bouteillePersonnalisee->prix != null) {
+                    $totalPrix += $bouteillePersonnaliseeCellier->bouteillePersonnalisee->prix * $bouteillePersonnaliseeCellier->quantite;
+                }
+                $totalQuantite += $bouteillePersonnaliseeCellier->quantite;
             }
         }
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Cellier;
+use App\Models\Liste;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -23,13 +25,30 @@ class CustomAuthController extends Controller
     {
         $totalsCelliers = CellierController::calculerTotalCellier();
         $totalsListes = ListeController::calculerTotalListe();
+        $celliers = Cellier::withCount('bouteillesCelliers')
+                                ->with('bouteillesCelliers.bouteille')
+                                ->where('user_id', Auth::id())
+                                ->get(); 
+        $derniersAjouts = collect(); 
+        foreach($celliers as $cellier) {
+            $cellier->bouteillesCelliers = $cellier->bouteillesCelliers->sortByDesc('updated_at'); 
+            foreach($cellier->bouteillesCelliers as $bouteilleCellier) {
+                $derniersAjouts = $derniersAjouts->push($bouteilleCellier->bouteille); 
+            }
+        } 
+        
+        $listes = Liste::withCount('bouteillesListes')
+                                ->with('bouteillesListes.bouteille')
+                                ->where('user_id', Auth::id())
+                                ->get(); 
 
         $totalPrixCelliers = $totalsCelliers['totalPrixCelliers'];
         $totalQuantiteCelliers = $totalsCelliers['totalQuantiteCelliers'];
         $totalPrixListes = $totalsListes['totalPrixListes'];
         $totalQuantiteListes = $totalsListes['totalQuantiteListes'];
+        $derniersAjouts = $derniersAjouts->take(3); 
     
-        return view('welcome', compact('totalPrixCelliers', 'totalQuantiteCelliers', 'totalPrixListes', 'totalQuantiteListes'));
+        return view('welcome', compact('totalPrixCelliers', 'totalQuantiteCelliers', 'totalPrixListes', 'totalQuantiteListes', 'derniersAjouts'));
     }
 
     /**
@@ -78,6 +97,20 @@ class CustomAuthController extends Controller
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->save();
+
+        // Créez un cellier vide par defaut
+        $cellier = new Cellier();
+        $cellier->nom = 'Favoris';
+        $cellier->user_id = $user->id;
+        $cellier->save();
+
+        // Créez une liste  vide par defaut
+
+        $liste = new Liste();
+        $liste->nom = 'Favoris  '; 
+        $liste->user_id = $user->id;
+        $liste->save();
+
         return view('welcome', ['successMessage' => 'Compte créé avec succès, vous pouvez maintenant vous connecter.']);
     }
 

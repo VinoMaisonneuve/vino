@@ -27,9 +27,9 @@ class BouteillePersonnalisee extends Model
         'user_id'
     ]; 
 
-    public function bouteillesCelliers() 
+    public function bouteillesPersonnaliseesCelliers() 
     {
-        return $this->hasMany(BouteilleCellier::class);
+        return $this->hasMany(BouteillePersonnaliseeCellier::class, 'bouteille_id');
     }
 
     public function commentaires() 

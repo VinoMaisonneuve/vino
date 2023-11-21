@@ -5,8 +5,14 @@ document.querySelectorAll('.card-bouteille-qt').forEach(function(counter) {
     let incrementButton = counter.querySelector('.btn-increment');
     let deleteButton = document.createElement('button');
     let deleteForm = counter.querySelector('.form-delete');
+    let bouteilleType; 
+    let deplacerButton; 
+    if (input.getAttribute('data-bouteille-personnalisee')) {
+        bouteilleType = input.getAttribute('data-bouteille-personnalisee');
+        console.log('hello'); 
+    }
     if (card.querySelectorAll('.btn-deplacer')) {
-        let deplacerButton = document.querySelectorAll('.btn-deplacer');
+        deplacerButton = document.querySelectorAll('.btn-deplacer');
     }
   
     // SVG pour le bouton supprimer
@@ -63,13 +69,13 @@ document.querySelectorAll('.card-bouteille-qt').forEach(function(counter) {
         if (currentValue === 0) {
             card.classList.add('card-transparent');
             deleteButton.style.display = 'block';
-            if (deplacerButton) {
+            if (deplacerButton.length != 0) {
                 deplacerButton.style.display = 'none'; 
             }
         } else {
             card.classList.remove('card-transparent');
             deleteButton.style.display = 'none';
-            if (deplacerButton) {
+            if (deplacerButton.length != 0) {
                 deplacerButton.style.display = 'none'; 
             }
         }
