@@ -8,7 +8,7 @@
 @if(Auth::user()->hasRole("Admin"))
 <!-- En attendant -->
 <main class="nav-margin">
-    <div class="welcome">
+    <div class="welcome admin-welcome">
         <h1 class="welcome-title">Bonjour {{ Auth::user()->nom}}!</h1>
         <p class="welcome-text">Bienvenue sur l'interface administrateur.</p>
     </div>
