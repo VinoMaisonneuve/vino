@@ -118,7 +118,7 @@
 
             <script src="../../js/bottleCounterModal.js"></script>
             <script src="../../js/modalAjouter.js"></script>
-            <!-- <script src="{{ asset('js/modalSupprimer.js') }}"></script> -->
+
             <script src="{{ asset('js/zoom.js')  }}"></script>
         </main>
         @endsection

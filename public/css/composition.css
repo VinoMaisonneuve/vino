@@ -20,7 +20,7 @@ main {
     margin: 0 var(--space-s);
 }
 
-main>div {
+main>div:not(div[id="snackbar"]) {
     display: flex;
     flex-direction: column;
     gap: var(--space-s);

@@ -17,7 +17,7 @@ class BouteilleController extends Controller
      */
     public function index()
     {
-        $bouteilles = Bouteille::orderBy('nom')->paginate(7)->onEachSide(2);
+        $bouteilles = Bouteille::orderBy('nom')->paginate(25)->onEachSide(2);
                         
         $celliers = Cellier::where('user_id', Auth::id())->get();
         
@@ -65,7 +65,7 @@ class BouteilleController extends Controller
      */
     public function search(Request $request)
     {
-        $bouteilles = Bouteille::paginate(7);
+        $bouteilles = Bouteille::paginate(25);
         $allHtml = view('partials.bouteilles', compact('bouteilles'))->render();
 
         $bouteillesQuery = Bouteille::query();
@@ -126,7 +126,7 @@ class BouteilleController extends Controller
         }
 
         $page = $request->input('page');
-        $results = $bouteillesQuery->paginate(7)->appends([
+        $results = $bouteillesQuery->paginate(25)->appends([
             'search' => $query,
             'sort' => $sortOption,
             'page' => $page,

@@ -15,6 +15,7 @@
     margin-bottom: var(--space-s);
     text-transform: uppercase;
     font-weight: bold;
+    cursor: pointer;
 }
 .btn-submit:hover {
     border-color: var(--purple-blue); /* Changement de border à border-color */
