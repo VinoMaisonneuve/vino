@@ -35,8 +35,8 @@ class StatistiqueController extends Controller
             ];
         });
     
-        return view('admin.statistics.index', [
-            'userData' => $userData,
+        return view('admin.statistics.stats-users', [
+            'userData' => $userData
         ]);
     }
     
@@ -77,7 +77,7 @@ class StatistiqueController extends Controller
     public function all()
     {
         // Récupération des statistiques de tous les utilisateurs avec le nombre de celliers et de listes
-        $usersWithCellierAndListeCount = User::withCount(['celliers', 'listes'])->get();
+        $usersWithCellierAndListeCount = User::withCount(['celliers', 'listes'])->paginate(10);
 
         return view('admin.statistics.index', [
             'usersWithCellierAndListeCount' => $usersWithCellierAndListeCount,
@@ -114,8 +114,14 @@ class StatistiqueController extends Controller
                 'listes_count' => 0,
                 'total_bottles_count' => 0,
             ]);
+        
+        // Obtenir la date actuelle pour le mois dynamique
+        $currentCarbonDate= Carbon::now();
+        $currentCarbonDate->setLocale('fr');
+        // Obtenir le mois dynamique en lettre
+        $currentMonthLetters = $currentCarbonDate->formatLocalized('%B');
 
-        return view('admin.statistics.monthly', ['monthlyStatistics' => $monthlyStatistics]);
+        return view('admin.statistics.monthly', ['monthlyStatistics' => $monthlyStatistics, 'month' => $currentMonthLetters]);
     }
 
 }
