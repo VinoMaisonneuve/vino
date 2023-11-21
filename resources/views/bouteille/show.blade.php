@@ -134,8 +134,8 @@
                             @error('comment')
                                 <span class="error-message">{{ $message }}</span>
                             @enderror
-                            <p><span>Ajouté le: </span>{{ $commentaire->updated_at->setTimezone('America/Toronto') }}</p>
                         </div>
+                        <h3>Ajouté le: {{ $commentaire->updated_at->setTimezone('America/Toronto') }}</h3>
                         <div class="form-button">
                             <button type="submit" class="btn-submit">modifier</button>
                         </div>
