@@ -27,34 +27,6 @@
                         @endif
                     </div>
                     <div class="form-input-container">
-                        <label for="millesime">Millésime</label> 
-                        <input type="text" id="millesime" name="millesime" value="{{ $bouteille->millesime }}">
-                        @if ($errors->has('millesime')) 
-                            <div>{{ $errors->first('millesime') }}</div>
-                        @endif
-                    </div>
-                    <div class="form-input-container">
-                        <label for="degre">Degré d'alcool</label>
-                        <input type="text" id="degre" name="degre" value="{{ $bouteille->degre }}">
-                        @if ($errors->has('degre')) 
-                            <div>{{ $errors->first('degre') }}</div>
-                        @endif
-                    </div>
-                    <div class="form-input-container">
-                        <label for="couleur">Couleur</label>
-                        <input type="text" id="couleur" name="couleur" value="{{ $bouteille->couleur }}">
-                        @if ($errors->has('couleur')) 
-                            <div>{{ $errors->first('couleur') }}</div>
-                        @endif
-                    </div>
-                    <div class="form-input-container">
-                        <label for="producteur">Producteur</label>
-                        <input type="text" id="producteur" name="producteur" value="{{ $bouteille->producteur }}">
-                        @if ($errors->has('producteur')) 
-                            <div>{{ $errors->first('producteur') }}</div>
-                        @endif
-                    </div>
-                    <div class="form-input-container">
                         <label for="type">Type</label>
                         <input type="text" id="type" name="type" value="{{ $bouteille->type }}">
                         @if ($errors->has('type')) 
@@ -62,24 +34,10 @@
                         @endif
                     </div>
                     <div class="form-input-container">
-                        <label for="cepage">Cépage</label>
-                        <input type="text" id="cepage" name="cepage" value="{{ $bouteille->cepage }}">
-                        @if ($errors->has('cepage')) 
-                            <div>{{ $errors->first('cepage') }}</div>
-                        @endif
-                    </div>
-                    <div class="form-input-container">
-                        <label for="region">Région</label>
-                        <input type="text" id="region" name="region" value="{{ $bouteille->region }}">
-                        @if ($errors->has('region')) 
-                            <div>{{ $errors->first('region') }}</div>
-                        @endif
-                    </div>
-                    <div class="form-input-container">
-                        <label for="pays">Pays</label>
-                        <input type="text" id="pays" name="pays" value="{{ $bouteille->pays }}">
-                        @if ($errors->has('pays')) 
-                            <div>{{ $errors->first('pays') }}</div>
+                        <label for="format">Format</label>
+                        <input type="text" id="format" name="format" value="{{ $bouteille->format }}">
+                        @if ($errors->has('format')) 
+                            <div>{{ $errors->first('format') }}</div>
                         @endif
                     </div>
                     <div class="form-input-container">
@@ -90,10 +48,45 @@
                         @endif
                     </div>
                     <div class="form-input-container">
-                        <label for="format">Format</label>
-                        <input type="text" id="format" name="format" value="{{ $bouteille->format }}">
-                        @if ($errors->has('format')) 
-                            <div>{{ $errors->first('format') }}</div>
+                        <label for="pays">Pays</label>
+                        <input type="text" id="pays" name="pays" value="{{ $bouteille->pays }}">
+                        @if ($errors->has('pays')) 
+                            <div>{{ $errors->first('pays') }}</div>
+                        @endif
+                    </div>
+                    <div class="form-input-container">
+                        <label for="region">Région</label>
+                        <input type="text" id="region" name="region" value="{{ $bouteille->region }}">
+                        @if ($errors->has('region')) 
+                            <div>{{ $errors->first('region') }}</div>
+                        @endif
+                    </div>
+                    <div class="form-input-container">
+                        <label for="producteur">Producteur</label>
+                        <input type="text" id="producteur" name="producteur" value="{{ $bouteille->producteur }}">
+                        @if ($errors->has('producteur')) 
+                            <div>{{ $errors->first('producteur') }}</div>
+                        @endif
+                    </div>
+                    <div class="form-input-container">
+                        <label for="cepage">Cépage</label>
+                        <input type="text" id="cepage" name="cepage" value="{{ $bouteille->cepage }}">
+                        @if ($errors->has('cepage')) 
+                            <div>{{ $errors->first('cepage') }}</div>
+                        @endif
+                    </div>
+                    <div class="form-input-container">
+                        <label for="degre">Degré d'alcool</label>
+                        <input type="text" id="degre" name="degre" value="{{ $bouteille->degre }}">
+                        @if ($errors->has('degre')) 
+                            <div>{{ $errors->first('degre') }}</div>
+                        @endif
+                    </div>
+                    <div class="form-input-container">
+                        <label for="millesime">Millésime</label> 
+                        <input type="text" id="millesime" name="millesime" value="{{ $bouteille->millesime }}">
+                        @if ($errors->has('millesime')) 
+                            <div>{{ $errors->first('millesime') }}</div>
                         @endif
                     </div>
                     <div class="form-button">
