@@ -113,10 +113,14 @@
                         <h2 class="bottle-name">{{ $bouteillesPersonnaliseesCelliers->bouteillePersonnalisee->nom }}</h2>
                     </a>
                     <span>
-                        {{ $bouteillesPersonnaliseesCelliers->bouteillePersonnalisee->type ?? '-' }} | {{ $bouteillesPersonnaliseesCelliers->bouteillePersonnalisee->format ?? '-' }} | {{ $bouteillesPersonnaliseesCelliers->bouteillePersonnalisee->pays ?? '-' }}
+                        {{ $bouteillesPersonnaliseesCelliers->bouteillePersonnalisee->type ?? 'Type inconnu' }} | {{ $bouteillesPersonnaliseesCelliers->bouteillePersonnalisee->format ?? 'Format inconnu' }} | {{ $bouteillesPersonnaliseesCelliers->bouteillePersonnalisee->pays ?? 'Pays inconnu' }}
                     </span>
                     <p>
-                        {{ number_format($bouteillesPersonnaliseesCelliers->bouteillePersonnalisee->prix, 2) . '$' ?? '-' }}
+                        @if ($bouteillesPersonnaliseesCelliers->bouteillePersonnalisee->prix)                    
+                            {{ number_format($bouteillesPersonnaliseesCelliers->bouteillePersonnalisee->prix, 2) }} $
+                        @else 
+                            Prix inconnu
+                        @endif
                     </p>
                 </div>
                 <div class="card-bouteille-qt">
