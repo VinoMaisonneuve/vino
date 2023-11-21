@@ -19,7 +19,7 @@ class BouteillePersonnaliseeCellier extends Model
 
     public function bouteillePersonnalisee() 
     {
-        return $this->belongsTo(BouteillePersonnalisee::class);
+        return $this->belongsTo(BouteillePersonnalisee::class, 'bouteille_id');
     }
 
     public function cellier() 
