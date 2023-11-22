@@ -207,7 +207,8 @@ Route::post('new-password/{user}/{tempPassword}', [CustomAuthController::class,
 // Affichage du formulaire de signalement de problème
 Route::get('/signaler-erreur', [CustomAuthController::class, 'formulaireSignalerErreur'])->name('signalerErreur');
 // Envoi du formulaire de signalement de problème
-Route::post('/signaler-erreur', [CustomAuthController::class, 'signalerErreur']);
+Route::post('/signaler-erreur', [CustomAuthController::class, 'signalerErreur'])->name('signalerErreur');
+
 
 // *************** Importation des données de la SAQ ****************
 
