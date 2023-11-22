@@ -69,6 +69,7 @@ class BouteilleCellierController extends Controller
     public function destroy($cellier_id, BouteilleCellier $bouteille_cellier)
     {
         BouteilleCellier::select()->where('id', $bouteille_cellier->id)->delete(); 
-        return redirect(route('cellier.show', $cellier_id));
+        return redirect(route('cellier.show', $cellier_id))
+        ->withSuccess('Bouteille supprimée du cellier avec succès');;
     }
 }

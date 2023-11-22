@@ -75,7 +75,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
       
                     const data = await response.json(); 
-                    console.log(data.message); 
+                    console.log(data.message);
+
+                    // Ajouter le message au toast et l'afficher avec saut de nav-item
+                    afficherToastEtSauterNav(quantiteBouteille, "celliers");
+
                     modal.close(); 
                 } catch(error) {
                     console.error('Error: ',  error)
@@ -84,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
             async function modifierQuantite() {
                 let id = card.id;
                 let url = `/bouteilles-listes-modifier/${id}`;
+                console.log(document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
                 try {
                     const response = await fetch(url, { 
                         method: 'PUT',
@@ -93,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         }, 
                         body: JSON.stringify({ quantite: 0 })
                     });
-                    
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
@@ -102,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     card.querySelector('#quantite-bouteille').value = 0; 
                     console.log(data.message); 
                     checkValue(); 
+                    card.querySelector('.btn-deplacer').style.display = 'none'; 
                 } catch (error) {
                     console.error('Error: ', error); 
                 }
@@ -113,4 +118,35 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     })
-});
+    
+    // FONCTION pour message toast et animation sur nav-item
+    function afficherToastEtSauterNav(quantiteBouteille, toastLocation) {
+        // Afficher le toast
+        afficherToast(`${quantiteBouteille} bouteille(s) déplacée(s) dans ${toastLocation}`);
+        modal.close();
+
+        // Identifier l'élément de navigation à animer
+        let navItemId = toastLocation === 'celliers' ? 'nav-celliers' : 'nav-listes';
+        let navItem = document.getElementById(navItemId);
+
+        // Appliquer l'animation
+        navItem.classList.add('jump-animation');
+
+        // Optionnel: retirer l'animation après qu'elle soit terminée
+        setTimeout(() => {
+            navItem.classList.remove('jump-animation');
+        }, 500); // 500 ms correspond à la durée de l'animation
+    }
+
+    // FONCTION pour afficher le message toast
+    function afficherToast(message) {
+        const snackbar = document.getElementById('snackbar');
+        const messageElement = document.getElementById('snackbar-message');
+        messageElement.textContent = message; // Mettre à jour le message seulement
+
+        snackbar.className = 'show'; // Afficher le toast
+
+        // Cacher le toast après 3 secondes
+        setTimeout(function() { snackbar.className = snackbar.className.replace('show', ''); }, 3000);
+    }
+  });

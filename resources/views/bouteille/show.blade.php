@@ -72,7 +72,7 @@
                 @include('partials.commentaires', ['route_update' => route('comment.update', ['commentaire_bouteille' => $commentaire->id]), 'route_delete' => route('comment.destroy', ['commentaire_bouteille' => $commentaire->id])])
             @else 
                 @include('partials.commentaires', ['route_store' => route('comment.store', ['bouteille_id' => $bouteille->id])])
-            @endif 
+            @endif
 
             <!-- Zoom de l'image (EN DEV - VICTOR) -->
             <dialog id="zoomModal" class="modal">

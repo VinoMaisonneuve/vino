@@ -130,6 +130,7 @@ async function loadOptions(type) {
                 //Trouver l'ID du cellier dans l'URL
                 var cellier_id = windowLocation.match(/\/celliers\/(\d+)\//)[1];
                 //Selectionner le cellier à partir duquel l'utilisateur est venu
+                labelLocation.innerHTML = 'Choisir le cellier';
                 var cellierOrigine = selectLocation.querySelector('option[value="' + cellier_id + '"]'); 
                 cellierOrigine.selected = 'selected'; 
                 console.log(cellierOrigine); 
@@ -137,6 +138,7 @@ async function loadOptions(type) {
             else if (windowLocation.includes('listes') && listRadio.checked) {
                 //Trouver l'ID du cellier dans l'URL
                 var liste_id = windowLocation.match(/\/listes\/(\d+)\//)[1];
+                labelLocation.innerHTML = 'Choisir la liste';
                 //Selectionner le cellier à partir duquel l'utilisateur est venu
                 var listeOrigine = selectLocation.querySelector('option[value="' + liste_id + '"]'); 
                 listeOrigine.selected = 'selected'; 
