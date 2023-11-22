@@ -7,9 +7,13 @@
     padding: var(--space) var(--space);
 }
 
+.admin-table, .admin-user-section {
+    max-width: 100%; 
+}
+
 .admin-table th:nth-child(1),
 .admin-table td:nth-child(1) {
-    width: 10%; 
+    max-width: 25%; 
 }
 
 .admin-table th,
@@ -49,12 +53,7 @@
 .table-data {
     width: 66.66%; /* 2/3 de la largeur */
     max-width: 100%;
-    word-break: break-all;
     margin: var(--space);
-}
-
-.admin-user-section {
-    max-width: 100%;
 }
 
 .info-profil {
@@ -65,9 +64,12 @@
     text-align: left;
 }
 
+.table-data, .info-profil span, .admin-table td {
+    word-break: break-all;
+}
+
 .info-profil span {
     flex: 1; 
-    word-break: break-all;
 }
 
 .admin-img-container {
@@ -77,4 +79,8 @@
 .admin-img {
     max-height: 275px;
     mix-blend-mode: multiply;
+}
+
+textarea {
+    width: 100%;
 }

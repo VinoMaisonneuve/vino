@@ -27,7 +27,7 @@
         @endif
         
         @if($errors->any())
-            <div class="alert alert-danger">
+            <div>
                 <ul>
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -56,18 +56,9 @@
                 Supprimer mon compte
             </a>
         </div>
-        <div class="btn-container">
-            <a href="{{ route('signalerErreur') }}" class="btn-action btn-round btn-red">
-                Signaler un problème
-            </a>
-        </div>
     </section>
-    <!-- <div class="btn-container">
-        <a href="{{ route('signalerErreur') }}" class="btn-action btn-round btn-red">
-            Signaler un problème
-        </a>
-    </div>     -->
     <br>
+    @if(!Auth::user()->hasRole("Admin"))
     <div>
         <p>Afin de nous aider à améliorer votre expérience, <br>signaler tout problème:</p>
         <a href="{{ route('signalerErreur') }}" class="link" target="_blank">
@@ -80,6 +71,7 @@
 
         </a>
     </div>
+    @endif
 
     <!-- Fenêtre modale de suppression de compte -->
     <dialog id="modal-supprimer" class="modal">
