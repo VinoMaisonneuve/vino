@@ -209,6 +209,7 @@ Route::get('/signaler-erreur', [CustomAuthController::class, 'formulaireSignaler
 // Envoi du formulaire de signalement de problème
 Route::post('/signaler-erreur', [CustomAuthController::class, 'signalerErreur'])->name('signalerErreur');
 
+
 // *************** Importation des données de la SAQ ****************
 
 Route::get('/scrape', [Web2scraperController::class, 'scrapeData']);

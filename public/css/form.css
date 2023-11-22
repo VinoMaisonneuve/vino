@@ -21,6 +21,10 @@
     min-width: 100%;
 }
 
+.form-container-welcome {
+    padding-top: 0;
+}
+
 form {
     flex-grow: 1;
     display: flex;

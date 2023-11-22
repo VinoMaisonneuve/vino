@@ -45,3 +45,13 @@ div[id="snackbar"].show {
     from {bottom: 85px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
 }
+
+/* Animation pour nav-item qui saute */
+@keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.jump-animation {
+    animation: jump 0.5s ease;
+}

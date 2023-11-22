@@ -76,7 +76,7 @@
                     </figure>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="nav-listes">
                 <a href="{{ route('liste.index') }}">
                     <figure class="nav-icon-container @if(Route::currentRouteName() == 'liste.index') active @endif">
                         <img src="{{ asset('assets/icons/list_icon.svg') }}" alt="Liste d'achats">
@@ -84,7 +84,7 @@
                     </figure>
                 </a>
             </li>
-            <li class="nav-item">        
+            <li class="nav-item" id="nav-celliers">        
                 <a href="{{ route('cellier.index') }}">
                     <figure class="nav-icon-container @if(Route::currentRouteName() == 'cellier.index') active @endif">
                         <img src="{{ asset('assets/icons/cellars_icon.svg') }}" alt="Celliers">
