@@ -205,11 +205,14 @@ header>.btn-arrow-top:hover svg {
 
 /* COULEURS =============================================================================== */
 .btn-grey {
-    background-color: rgb(63, 63, 63);
+    /* background-color: rgb(63, 63, 63); */
+    background-color: var(--purple-blue-pale);
+    color: black;
 }
 .btn-grey:hover {
     border-color: grey;
     background-color: grey;
+    color: black;
 }
 
 .btn-red {
@@ -218,6 +221,7 @@ header>.btn-arrow-top:hover svg {
 .btn-red:hover {
     border-color: rgb(197, 23, 23);
     background-color: rgb(197, 23, 23);
+    color: white;
 }
 
 .btn-green {
@@ -231,3 +235,29 @@ header>.btn-arrow-top:hover svg {
 .btn-mt {
     margin-top: var(--space);
 }
+
+/* Boutons dans le cellier: "Voir bouteilles personnalisées" et "Voir bouteilles SAQ" */
+.btn-cellier {
+    font-size: 12px;
+    border: .5px solid black;
+    border-radius: 4px;
+    background-color: #d8d8d8;
+    padding: .25rem .5rem;
+    cursor: pointer;
+}
+/* Container pour bouton ancre btn-cellier */
+.btn-cellier-container {
+    display: flex;
+    justify-content: right;
+}
+
+/* Bouton x pour supprimer commentaire */
+
+.btn-c-delete {
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
