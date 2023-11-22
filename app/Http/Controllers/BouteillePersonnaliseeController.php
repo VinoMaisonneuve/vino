@@ -43,16 +43,16 @@ class BouteillePersonnaliseeController extends Controller
         $request->validate(
             [
                 'nom' => 'required|max:255|unique:bouteilles_personnalisees,nom,NULL,id,user_id,' . Auth::id(),
-                'millesime' => 'integer',
-                'degre' => 'max:255',
-                'couleur' => 'max:255',
-                'producteur' => 'max:255',
-                'type' => 'max:255',
-                'cepage' => 'max:255',
-                'region' => 'max:255',
-                'pays' => 'max:255',
+                'millesime' => 'nullable|integer',
+                'degre' => 'nullable|max:255',
+                'couleur' => 'nullable|max:255',
+                'producteur' => 'nullable|max:255',
+                'type' => 'nullable|max:255',
+                'cepage' => 'nullable|max:255',
+                'region' => 'nullable|max:255',
+                'pays' => 'nullable|max:255',
                 'prix' => 'nullable|numeric|regex:/^\d+(\.\d{1,2})?$/',
-                'format' => 'max:255'
+                'format' => 'nullable|max:255'
             ],
             [
                 'nom.required' => 'Le nom de la bouteille est obligatoire.', 
@@ -137,22 +137,22 @@ class BouteillePersonnaliseeController extends Controller
                 'nom' => ['required', 'max:255', Rule::unique('bouteilles_personnalisees', 'nom')
                 ->ignore($bouteille_id, 'id')
                 ->where('user_id', Auth::id()),],
-                'millesime' => 'max:255',
-                'degre' => 'max:255',
-                'couleur' => 'max:255',
-                'producteur' => 'max:255',
-                'type' => 'max:255',
-                'cepage' => 'max:255',
-                'region' => 'max:255',
-                'pays' => 'max:255',
+                'millesime' => 'nullable|integer',
+                'degre' => 'nullable|max:255',
+                'couleur' => 'nullable|max:255',
+                'producteur' => 'nullable|max:255',
+                'type' => 'nullable|max:255',
+                'cepage' => 'nullable|max:255',
+                'region' => 'nullable|max:255',
+                'pays' => 'nullable|max:255',
                 'prix' => 'nullable|numeric|regex:/^\d+(\.\d{1,2})?$/',
-                'format' => 'max:255'
+                'format' => 'nullable|max:255'
             ],
             [
                 'nom.required' => 'Le nom de la bouteille est obligatoire.', 
                 'nom.unique' => 'Vous avez déjà une bouteille avec ce nom.', 
                 'nom.max' => 'Le nom ne doit pas dépasser 255 caractères.',
-                'millesime.max' => 'Le millésime ne doit pas dépasser 255 caractères.',
+                'millesime.integer' => 'Le millésime doit être un nombre entier',
                 'degre.max' => 'Le degré ne doit pas dépasser 255 caractères.',
                 'couleur.max' => 'La couleur ne doit pas dépasser 255 caractères.',
                 'producteur.max' => 'Le producteur ne doit pas dépasser 255 caractères.',

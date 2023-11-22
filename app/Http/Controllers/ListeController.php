@@ -170,7 +170,9 @@ class ListeController extends Controller
             'nom' => $request->nom
         ]);
 
-        return redirect(route('liste.index'));
+        $liste = Liste::findOrFail($liste_id);
+
+        return redirect(route('liste.show', ['liste_id' => $liste_id, 'liste' => $liste]));
     }
 
     /**
