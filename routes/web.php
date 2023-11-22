@@ -67,7 +67,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/celliers/{cellier_id}/bouteilles-personnalisees-modifier/{bouteille_id}', [BouteillePersonnaliseeController::class, 'edit'])->name('bouteille.edit');
     // Stockage de la modification d'une bouteille personnalisée dans la BDD
     Route::put('/celliers/{cellier_id}/bouteilles-personnalisees-modifier/{bouteille_id}', [BouteillePersonnaliseeController::class, 'update']);
-    // Suppression d'une bouteille personnalisée d'un cellier
+    // Suppression d'une bouteille personnalisée
     Route::delete('/celliers/{cellier_id}/bouteilles-personnalisees-modifier/{bouteille_id}', [BouteillePersonnaliseeController::class, 'destroy'])->name('bouteillePersonnalisee.destroy');
     // Suppression d'une bouteille personnalisée d'un cellier
     Route::delete('/celliers/{cellier_id}/bouteilles-modifier/{bouteille_personnalisee_cellier}', [BouteillePersonnaliseeCellierController::class, 'destroy'])->name('bouteille.destroy');
@@ -85,9 +85,9 @@ Route::middleware(['auth'])->group(function () {
     // Stockage du commentaire sur une bouteille personnalisée
     Route::post('/celliers/{cellier_id}/commentaires/{bouteille_personnalisee_id}', [CommentaireBouteillePersonnaliseeController::class, 'store'])->name('commentPersonnalisee.store');
     // Stockage de la modification d'un commentaire sur une bouteille personnalisée dans la BDD
-    Route::put('/commentaires-modifier/{commentaire_bouteille_personnalisee}', [CommentaireBouteillePersonnaliseeController::class, 'update'])->name('commentPersonnalisee.update');
+    Route::put('/commentaires-personnalisees-modifier/{commentaire_bouteille_id}', [CommentaireBouteillePersonnaliseeController::class, 'update'])->name('commentP.update'); 
     // Suppression d'un commentaire sur une bouteille personnalisée
-    Route::delete('/commentaires-modifier/{commentaire_bouteille_personnalisee}', [CommentaireBouteillePersonnaliseeController::class, 'destroy'])->name('commentPersonnalisee.destroy');
+    Route::delete('/commentaires-personnalisees-modifier/{commentaire_bouteille_id}', [CommentaireBouteillePersonnaliseeController::class, 'destroy'])->name('commentP.destroy');
 
     // *************** Gestion des celliers ****************
 
@@ -207,7 +207,7 @@ Route::post('new-password/{user}/{tempPassword}', [CustomAuthController::class,
 // Affichage du formulaire de signalement de problème
 Route::get('/signaler-erreur', [CustomAuthController::class, 'formulaireSignalerErreur'])->name('signalerErreur');
 // Envoi du formulaire de signalement de problème
-Route::post('/signaler-erreur', [CustomAuthController::class, 'signalerErreur'])->name('signalerErreur');
+//Route::post('/signaler-erreur', [CustomAuthController::class, 'signalerErreur'])->name('signalerErreur');
 
 // *************** Importation des données de la SAQ ****************
 

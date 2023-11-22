@@ -80,9 +80,10 @@ class CellierController extends Controller
     public function store(Request $request)
     {
         $request->validate(
-            ['nom' => 'required|max:255'],
+            ['nom' => 'required|max:255|unique:celliers,nom,NULL,id,user_id,' . Auth::id()],
             [
                 'nom.required' => 'Le nom du cellier est obligatoire.', 
+                'nom.unique' => 'Vous avez déjà un cellier avec ce nom.', 
                 'nom.max' => 'Le nom ne doit pas dépasser 255 caractères.'
             ]
         ); 
@@ -142,8 +143,12 @@ class CellierController extends Controller
     public function edit($cellier_id)
     {
         $cellier = Cellier::findOrFail($cellier_id); 
-
-        return view('cellier.edit', ['cellier' => $cellier]); 
+        if ($cellier->nom != 'Favoris') {
+            return view('cellier.edit', ['cellier' => $cellier]); 
+        }
+        else {
+            return redirect(route('cellier.index')); 
+        }
     }
 
     /**
@@ -156,9 +161,10 @@ class CellierController extends Controller
     public function update(Request $request, $cellier_id)
     {
         $request->validate(
-            ['nom' => 'required|max:255'],
+            ['nom' => 'required|max:255|unique:celliers,nom,NULL,id,user_id,' . Auth::id()],
             [
                 'nom.required' => 'Le nom du cellier est obligatoire.', 
+                'nom.unique' => 'Vous avez déjà un cellier avec ce nom.', 
                 'nom.max' => 'Le nom ne doit pas dépasser 255 caractères.'
             ]
         ); 
@@ -180,9 +186,15 @@ class CellierController extends Controller
     {
         try {
             $cellier = Cellier::findOrFail($cellier_id); 
-            $cellier->bouteillesCelliers()->delete(); 
-            $cellier->delete(); 
-            return redirect(route('cellier.index')); 
+            if ($cellier->nom != 'Favoris') {
+                $cellier->bouteillesCelliers()->delete(); 
+                $cellier->bouteillesPersonnaliseesCelliers()->delete(); 
+                $cellier->delete(); 
+                return redirect(route('cellier.index')); 
+            }
+            else {
+                return redirect(route('cellier.index'))->with('error', 'Vous ne pouvez pas effacer le cellier Favoris.'); 
+            }
         }
         catch (\Exception $e) {
             return redirect(route('cellier.index'))->with('error', 'Le cellier n\'existe pas'); 
