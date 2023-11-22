@@ -443,7 +443,7 @@ class CustomAuthController extends Controller
             $message->to($toEmail, $toName)->subject('Signalement de problème');
         });
 
-        return redirect()->back()->with('success', 'Le problème a été signalé avec succès.');
+        return redirect()->route('profil.show', ['user' => $user])->with('success', 'Le problème a été signalé avec succès.');
     }
 
 }

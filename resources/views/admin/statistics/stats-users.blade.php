@@ -31,14 +31,14 @@
         </div>
         @foreach($userData as $user)
     </section>
-    <table class="user-table" style="display: none;" data-user-id="{{ $user['id_key'] }}">
+    <table class="admin-table" style="display: none;" data-user-id="{{ $user['id_key'] }}">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Courriel</th>
                 <th>Nb Celliers</th>
                 <th>Nb Listes</th>
-                <th>+</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
