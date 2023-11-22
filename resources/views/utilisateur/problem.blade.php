@@ -11,11 +11,6 @@
     </a>
 </header>
 <main class="nav-margin">
-    @if(session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
     @if(session('success'))
         <div id="snackbar">
             <svg width="35" height="34" viewBox="0 0 46 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,6 +32,11 @@
     <section>
         <p>Veuillez entrer la catégorie d'erreur que vous rencontrez. <br> Nous vous contacterons dans les plus brefs délais.</p>
         <div class="form-container">
+            @if(session('error'))
+                <div>
+                    {{ session('error') }}
+                </div>
+            @endif
             <form action="{{ route('signalerErreur') }}" method="post" id="signalerErreur">
                 @csrf
                 <div class="form-input-container">
@@ -51,6 +51,10 @@
                         <option value="Problème lié à l'application générale">Problème lié à l'application générale</option>
                         <option value="Plainte">Plainte</option>
                     </select>
+                </div>
+                <div class="form-input-container">
+                    <label for="description_probleme">Décrivez-nous les détails du problème que vous rencontrez.</label>
+                    <textarea name="description_probleme" id="description_probleme" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-button">
                     <button type="submit" form="signalerErreur" class="btn-submit">Signaler</button>
