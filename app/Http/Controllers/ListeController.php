@@ -6,6 +6,7 @@ use App\Models\Liste;
 use App\Models\Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class ListeController extends Controller
 {
@@ -153,7 +154,11 @@ class ListeController extends Controller
     public function update(Request $request, $liste_id)
     {
         $request->validate(
-            ['nom' => 'required|max:255|unique:listes,nom,user_id,' . Auth::id()],
+            [
+                'nom' => ['required', 'max:255', Rule::unique('listes', 'nom')
+                ->ignore($liste_id, 'id')
+                ->where('user_id', Auth::id()),]
+            ],
             [
                 'nom.required' => 'Le nom de de la liste est obligatoire.', 
                 'nom.unique' => 'Vous avez déjà une liste avec ce nom.', 

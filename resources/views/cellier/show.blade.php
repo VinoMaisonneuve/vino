@@ -53,18 +53,23 @@
         </form>
     </div>
     @endif
-    
-        <div class="card-count" id="card-count-saq">
-            <p>
-                @if($cellier->bouteillesCelliers->count() > 0)
-                    @if($cellier->bouteillesPersonnaliseesCelliers->count() > 0)
-                    <div class="btn-cellier-container"><a class="btn-cellier" href="#card-count-perso">Voir Bouteilles personnalisées ↓</a></div>
-                    @endif
-                {{ $cellier->quantiteTotal }} bouteille(s) SAQ :
-                @else
-                Aucune bouteille SAQ
+        <div class="card-count">
+            <p>                
+                @if($cellier->bouteillesCelliers->count() > 0 || $cellier->bouteillesPersonnaliseesCelliers->count() > 0)
+                    {{ ($cellier->quantiteTotal + $cellier->quantiteTotalPersonnalisee) }} bouteille(s)
+                @else 
+                    Aucune bouteille
                 @endif
             </p>
+        </div>
+        <p>
+            @if($cellier->bouteillesCelliers->count() > 0)
+                @if($cellier->bouteillesPersonnaliseesCelliers->count() > 0)
+                <div class="btn-cellier-container"><a class="btn-cellier" href="#card-count-perso">Voir Bouteilles personnalisées ↓</a></div>
+                @endif
+                Bouteille(s) SAQ :
+            @endif
+        </p>
         </div>
         @foreach($cellier->bouteillesCelliers as $bouteillesCelliers)
         <section class="card-bouteille" id="{{ $bouteillesCelliers->id }}" data-location="celliers">
@@ -107,22 +112,16 @@
     <br>
     <br>
     @if($cellier->bouteillesPersonnaliseesCelliers->count() > 0)
-        <div class="card-count" id="card-count-perso">
-            <p>
-                @if($cellier->bouteillesPersonnaliseesCelliers->count() > 0)
-                    @if($cellier->bouteillesCelliers->count() > 0)
-                    <div class="btn-cellier-container"><a class="btn-cellier" href="#card-count-saq">Voir Bouteilles SAQ ↑</a></div>
-                    @endif
-                {{ $cellier->quantiteTotalPersonnalisee }} bouteille(s) personnalisée(s) :
-                @else
-                Aucune bouteille personnalisée
-                @endif
-            </p>
-        </div>
+        <p>
+            @if($cellier->bouteillesCelliers->count() > 0)
+                <div class="btn-cellier-container"><a class="btn-cellier" href="#card-count-saq">Voir Bouteilles SAQ ↑</a></div>
+            @endif
+            Bouteille(s) SAQ :
+        </p>
         @foreach($cellier->bouteillesPersonnaliseesCelliers as $bouteillesPersonnaliseesCelliers)
         <section class="card-bouteille" id="{{ $bouteillesPersonnaliseesCelliers->id }}" data-location="celliers">
             <picture>
-                <img src="{{ asset('assets/img/bouteille_perso.webp') }}" alt="{{ $bouteillesPersonnaliseesCelliers->bouteillePersonnalisee->nom }}">
+                <img src="{{ asset('assets/img/bouteille_personnalisee.webp') }}" alt="{{ $bouteillesPersonnaliseesCelliers->bouteillePersonnalisee->nom }}">
             </picture>
             <div class="card-bouteille-content">
                 <div class="card-bouteille-info">

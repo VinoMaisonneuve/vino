@@ -20,7 +20,7 @@
             </h1> -->
             <section class="card-bouteille fiche-main-info {{ $bouteille->couleur == 'Blanc' ? 'bg-jaune' : ($bouteille->couleur == 'Rouge' ? 'bg-rouge' : ($bouteille->couleur == 'Rosé' ? 'bg-rose' : '')) }}">
                 <picture class="fiche-picture">
-                    <img src="{{ asset('assets/img/bouteille_perso.webp') }}" alt="Image défaut pour Bouteille personnalisée" >
+                    <img src="{{ asset('assets/img/bouteille_personnalisee.webp') }}" alt="Image défaut pour Bouteille personnalisée" >
                 </picture>
                 <div class="card-bouteille-content">
                     <div class="card-bouteille-info">
