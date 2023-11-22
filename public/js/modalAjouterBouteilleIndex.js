@@ -202,13 +202,55 @@ function onFormSubmit(event) {
                 }
         
                 const data = await response.json();
-                console.log(data.message); 
+                console.log(data.message);
+                console.log(url);
+
+                if(url == '/celliers-json') {
+                    var toastLocation = "celliers";
+                }
+                else {
+                    var toastLocation = "listes"
+                }
+
+                // Ajouter le message au toast et l'afficher avec saut de nav-item
+                afficherToastEtSauterNav(quantiteBouteille, toastLocation);
                 modal.close(); 
             } catch (error) {
                 console.error('Error: ', error); 
             }
         }
     }
+}
+
+// FONCTION pour message toast et animation sur nav-item
+function afficherToastEtSauterNav(quantiteBouteille, toastLocation) {
+    // Afficher le toast
+    afficherToast(`${quantiteBouteille} bouteille(s) ajoutée(s) dans ${toastLocation}`);
+    modal.close();
+
+    // Identifier l'élément de navigation à animer
+    let navItemId = toastLocation === 'celliers' ? 'nav-celliers' : 'nav-listes';
+    let navItem = document.getElementById(navItemId);
+
+    // Appliquer l'animation
+    navItem.classList.add('jump-animation');
+
+    // Optionnel: retirer l'animation après qu'elle soit terminée
+    setTimeout(() => {
+        navItem.classList.remove('jump-animation');
+    }, 500); // 500 ms correspond à la durée de l'animation
+}
+
+// FONCTION pour afficher le message toast
+function afficherToast(message) {
+    const snackbar = document.getElementById('snackbar');
+    const messageElement = document.getElementById('snackbar-message');
+    messageElement.textContent = message; // Mettre à jour le message seulement
+
+    snackbar.className = 'show'; // Afficher le toast
+
+    // Cacher le toast après 3 secondes
+    setTimeout(function() { snackbar.className = snackbar.className.replace('show', ''); }, 3000);
 }
 
 // LISTENER au chargement de la page

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Recherche')
+@section('title','Fiche bouteille')
 @section('content')
         <header>
             <a href="{{ route('cellier.show', $cellier_id) }}" class="btn-arrow-top">
