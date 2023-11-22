@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BouteillePersonnalisee;
 use App\Models\Cellier;
-use App\Models\Commentaire;
+use App\Models\CommentaireBouteillePersonnalisee;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -102,7 +102,7 @@ class BouteillePersonnaliseeController extends Controller
     {
         $bouteille = BouteillePersonnalisee::findOrFail($id);
         $celliers = Cellier::where('user_id', Auth::id())->get();
-        $commentaire = Commentaire::where('user_id', Auth::id())
+        $commentaire = CommentaireBouteillePersonnalisee::where('user_id', Auth::id())
         ->where('bouteille_id', $id)
         ->first();
         return view('bouteille.show-personnalisee', ['bouteille'=> $bouteille, 'celliers' => $celliers, 'commentaire' => $commentaire, 'cellier_id' => $cellier_id]);
@@ -118,7 +118,7 @@ class BouteillePersonnaliseeController extends Controller
     public function edit($cellier_id, $bouteille_id)
     {
         $bouteille = BouteillePersonnalisee::findOrFail($bouteille_id);
-        return view('bouteille.edit', ['bouteille'=> $bouteille, 'cellier_id' => $cellier_id]);
+        return view('bouteille.edit', ['bouteille'=> $bouteille, 'cellier_id' => $cellier_id, 'bouteille_id' => $bouteille_id]);
     }
 
     /**

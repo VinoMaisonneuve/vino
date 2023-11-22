@@ -111,12 +111,16 @@ class CellierController extends Controller
     
         if ($sort == 'name-asc') {
             $cellier->bouteillesCelliers = $cellier->bouteillesCelliers->sortBy('bouteille.nom');
+            $cellier->bouteillesPersonnaliseesCelliers = $cellier->bouteillesPersonnaliseesCelliers->sortBy('bouteillePersonnalisee.nom');
         } elseif ($sort == 'name-desc') {
             $cellier->bouteillesCelliers = $cellier->bouteillesCelliers->sortByDesc('bouteille.nom');
+            $cellier->bouteillesPersonnaliseesCelliers = $cellier->bouteillesPersonnaliseesCelliers->sortByDesc('bouteillePersonnalisee.nom');
         } elseif ($sort == 'price-asc') {
             $cellier->bouteillesCelliers = $cellier->bouteillesCelliers->sortBy('bouteille.prix');
+            $cellier->bouteillesPersonnaliseesCelliers = $cellier->bouteillesPersonnaliseesCelliers->sortBy('bouteillePersonnalisee.prix');
         } elseif ($sort == 'price-desc') {
             $cellier->bouteillesCelliers = $cellier->bouteillesCelliers->sortByDesc('bouteille.prix');
+            $cellier->bouteillesPersonnaliseesCelliers = $cellier->bouteillesPersonnaliseesCelliers->sortByDesc('bouteillePersonnalisee.prix');
         }
 
         foreach($cellier->bouteillesCelliers as $bouteilleCellier) {
