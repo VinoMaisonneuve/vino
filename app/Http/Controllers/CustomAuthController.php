@@ -31,8 +31,11 @@ class CustomAuthController extends Controller
                                 ->get(); 
         $derniersAjouts = collect(); 
         foreach($celliers as $cellier) {
+            $cellier->bouteillesCelliers = $cellier->bouteillesCelliers->sortByDesc('updated_at'); 
             foreach($cellier->bouteillesCelliers as $bouteilleCellier) {
-                $derniersAjouts = $derniersAjouts->push($bouteilleCellier->bouteille); 
+                $dernierAjout = $bouteilleCellier->bouteille; 
+                $dernierAjout->ajout_updated_at = $bouteilleCellier->updated_at; 
+                $derniersAjouts = $derniersAjouts->push($dernierAjout);
             }
         } 
         
@@ -41,8 +44,11 @@ class CustomAuthController extends Controller
                                 ->where('user_id', Auth::id())
                                 ->get(); 
         foreach($listes as $liste) {
+            $liste->bouteillesListes = $liste->bouteillesListes->sortByDesc('updated_at'); 
             foreach($liste->bouteillesListes as $bouteilleListe) {
-                $derniersAjouts = $derniersAjouts->push($bouteilleListe->bouteille); 
+                $dernierAjout = $bouteilleListe->bouteille; 
+                $dernierAjout->ajout_updated_at = $bouteilleListe->updated_at; 
+                $derniersAjouts = $derniersAjouts->push($dernierAjout);
             }
         } 
 
@@ -50,11 +56,10 @@ class CustomAuthController extends Controller
         $totalQuantiteCelliers = $totalsCelliers['totalQuantiteCelliers'];
         $totalPrixListes = $totalsListes['totalPrixListes'];
         $totalQuantiteListes = $totalsListes['totalQuantiteListes'];
+        $derniersAjouts = $derniersAjouts->sortByDesc('ajout_updated_at'); 
         $derniersAjouts = $derniersAjouts->unique('id'); 
-        $derniersAjouts = $derniersAjouts->sortByDesc('updated_at')->values(); 
-        $derniersAjouts = $derniersAjouts->take(3); 
-        $derniersAjouts = $derniersAjouts->sortBy('updated_at'); 
-    
+        $derniersAjouts = $derniersAjouts->slice(0, 3); 
+
         return view('welcome', compact('totalPrixCelliers', 'totalQuantiteCelliers', 'totalPrixListes', 'totalQuantiteListes', 'derniersAjouts'));
     }
 
@@ -446,5 +451,4 @@ class CustomAuthController extends Controller
 
         return redirect()->route('profil.show', ['user' => $user])->with('success', 'Le problème a été signalé avec succès.');
     }
-
 }
