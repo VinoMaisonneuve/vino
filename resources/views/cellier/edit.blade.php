@@ -20,7 +20,7 @@
                 @csrf
                 <div class="form-input-container">
                     <label for="nom">Nom du cellier</label>
-                    <input type="text" id="nom" name="nom" value="{{ $cellier->nom }}">
+                    <input type="text" id="nom" name="nom" value="{{ old('nom') ?? $cellier->nom }}">
                     @if ($errors->has('nom')) 
                         <div>{{ $errors->first('nom') }}</div>
                     @endif

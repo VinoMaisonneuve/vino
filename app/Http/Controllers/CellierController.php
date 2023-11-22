@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class CellierController extends Controller
 {
@@ -112,10 +113,10 @@ class CellierController extends Controller
     
         if ($sort == 'name-asc') {
             $cellier->bouteillesCelliers = $cellier->bouteillesCelliers->sortBy('bouteille.nom');
-            $cellier->bouteillesPersonnaliseesCelliers = $cellier->bouteillesPersonnaliseesCelliers->sortBy('bouteillePersonnalisee.nom');
+            $cellier->bouteillesPersonnaliseesCelliers = $cellier->bouteillesPersonnaliseesCelliers->sortBy(function ($string) { return strtolower($string->bouteillePersonnalisee->nom); });
         } elseif ($sort == 'name-desc') {
             $cellier->bouteillesCelliers = $cellier->bouteillesCelliers->sortByDesc('bouteille.nom');
-            $cellier->bouteillesPersonnaliseesCelliers = $cellier->bouteillesPersonnaliseesCelliers->sortByDesc('bouteillePersonnalisee.nom');
+            $cellier->bouteillesPersonnaliseesCelliers = $cellier->bouteillesPersonnaliseesCelliers->sortByDesc(function ($string) { return strtolower($string->bouteillePersonnalisee->nom); });
         } elseif ($sort == 'price-asc') {
             $cellier->bouteillesCelliers = $cellier->bouteillesCelliers->sortBy('bouteille.prix');
             $cellier->bouteillesPersonnaliseesCelliers = $cellier->bouteillesPersonnaliseesCelliers->sortBy('bouteillePersonnalisee.prix');
@@ -161,7 +162,11 @@ class CellierController extends Controller
     public function update(Request $request, $cellier_id)
     {
         $request->validate(
-            ['nom' => 'required|max:255|unique:celliers,nom,NULL,id,user_id,' . Auth::id()],
+            [
+                'nom' => ['required', 'max:255', Rule::unique('celliers', 'nom')
+                ->ignore($cellier_id, 'id')
+                ->where('user_id', Auth::id()),]
+            ],
             [
                 'nom.required' => 'Le nom du cellier est obligatoire.', 
                 'nom.unique' => 'Vous avez déjà un cellier avec ce nom.', 

@@ -7,6 +7,7 @@ use App\Models\Cellier;
 use App\Models\CommentaireBouteillePersonnalisee;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class BouteillePersonnaliseeController extends Controller
 {
@@ -42,7 +43,7 @@ class BouteillePersonnaliseeController extends Controller
         $request->validate(
             [
                 'nom' => 'required|max:255|unique:bouteilles_personnalisees,nom,NULL,id,user_id,' . Auth::id(),
-                'millesime' => 'max:255',
+                'millesime' => 'integer',
                 'degre' => 'max:255',
                 'couleur' => 'max:255',
                 'producteur' => 'max:255',
@@ -57,7 +58,7 @@ class BouteillePersonnaliseeController extends Controller
                 'nom.required' => 'Le nom de la bouteille est obligatoire.', 
                 'nom.unique' => 'Vous avez déjà une bouteille avec ce nom.', 
                 'nom.max' => 'Le nom ne doit pas dépasser 255 caractères.',
-                'millesime.max' => 'Le millésime ne doit pas dépasser 255 caractères.',
+                'millesime.integer' => 'Le millésime doit être un nombre entier',
                 'degre.max' => 'Le degré ne doit pas dépasser 255 caractères.',
                 'couleur.max' => 'La couleur ne doit pas dépasser 255 caractères.',
                 'producteur.max' => 'Le producteur ne doit pas dépasser 255 caractères.',
@@ -88,7 +89,7 @@ class BouteillePersonnaliseeController extends Controller
 
         $newBouteille->save(); 
 
-        return redirect('/celliers\\' . $cellier_id . '/bouteilles'); 
+        return redirect('/celliers\\' . $cellier_id . '/bouteilles-ajouter'); 
     }
 
 
@@ -129,11 +130,13 @@ class BouteillePersonnaliseeController extends Controller
      * @param  \App\Models\BouteillePersonnalisee  $bouteillePersonnalisee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $bouteille_id, $cellier_id)
+    public function update(Request $request, $cellier_id, $bouteille_id)
     {
         $request->validate(
             [
-                'nom' => 'required|max:255|unique:bouteilles_personnalisees,nom,NULL,id,user_id,' . Auth::id(),
+                'nom' => ['required', 'max:255', Rule::unique('bouteilles_personnalisees', 'nom')
+                ->ignore($bouteille_id, 'id')
+                ->where('user_id', Auth::id()),],
                 'millesime' => 'max:255',
                 'degre' => 'max:255',
                 'couleur' => 'max:255',
