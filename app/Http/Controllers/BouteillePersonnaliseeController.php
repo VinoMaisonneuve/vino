@@ -137,7 +137,7 @@ class BouteillePersonnaliseeController extends Controller
                 'nom' => ['required', 'max:255', Rule::unique('bouteilles_personnalisees', 'nom')
                 ->ignore($bouteille_id, 'id')
                 ->where('user_id', Auth::id()),],
-                'millesime' => 'nullable|max:255',
+                'millesime' => 'nullable|integer',
                 'degre' => 'nullable|max:255',
                 'couleur' => 'nullable|max:255',
                 'producteur' => 'nullable|max:255',
@@ -152,7 +152,7 @@ class BouteillePersonnaliseeController extends Controller
                 'nom.required' => 'Le nom de la bouteille est obligatoire.', 
                 'nom.unique' => 'Vous avez déjà une bouteille avec ce nom.', 
                 'nom.max' => 'Le nom ne doit pas dépasser 255 caractères.',
-                'millesime.max' => 'Le millésime ne doit pas dépasser 255 caractères.',
+                'millesime.integer' => 'Le millésime doit être un nombre entier',
                 'degre.max' => 'Le degré ne doit pas dépasser 255 caractères.',
                 'couleur.max' => 'La couleur ne doit pas dépasser 255 caractères.',
                 'producteur.max' => 'Le producteur ne doit pas dépasser 255 caractères.',
