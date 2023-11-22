@@ -178,7 +178,9 @@ class CellierController extends Controller
             'nom' => $request->nom
         ]);
 
-        return redirect(route('cellier.index'));
+        $cellier = Cellier::findOrFail($cellier_id);
+
+        return redirect(route('cellier.show', ['cellier_id' => $cellier_id, 'cellier' => $cellier]));
     }
 
     /**
