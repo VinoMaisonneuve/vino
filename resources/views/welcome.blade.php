@@ -123,7 +123,7 @@
 @else
 <main>
     <div class="welcome">
-        <h1 class="welcome-title">Bienvenue chez <span class="welcome-vino">vino</span>!</h1>
+        <h1 class="welcome-title">Bienvenue <br> chez <span class="welcome-vino">vino</span>!</h1>
         <!-- <p class="welcome-text">L'outil le plus simple et efficace pour gérer vos celliers et vos achats SAQ.</p> -->
     </div>
     <div class="welcome-animation-container">
@@ -132,7 +132,7 @@
                 <path id="textPath" d="M 89,0 A 89,89 0 0 1 -89,0 A 89,89 0 0 1 89,0" transform="translate(100,100)" fill="none" stroke-width="0"></path>
                 <g font-size="12px">
                 <text text-anchor="start">
-                    <textPath class="coloring" xlink:href="#textPath" startOffset="0%">L'outil le plus simple et efficace pour gérer vos celliers et vos achats SAQ ✦</textPath>
+                    <textPath class="coloring" xlink:href="#textPath" startOffset="0%">L'outil le plus simple et efficace pour gérer vos celliers et vos achats SAQ✦</textPath>
                 </text>
                 </g>
             </svg>
@@ -183,7 +183,7 @@
             {{ $errors->first('erreur') }}
         </div>
     @endif
-    <div class="form-container">
+    <div class="form-container form-container-welcome">
         <form action="{{ route('login.authentication') }}" method="post" id="login">
             @csrf
             <div class="form-input-container">
