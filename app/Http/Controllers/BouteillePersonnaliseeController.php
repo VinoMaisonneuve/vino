@@ -41,7 +41,7 @@ class BouteillePersonnaliseeController extends Controller
     {
         $request->validate(
             [
-                'nom' => 'required|max:255',
+                'nom' => 'required|max:255|unique:bouteilles_personnalisees,nom,NULL,id,user_id,' . Auth::id(),
                 'millesime' => 'max:255',
                 'degre' => 'max:255',
                 'couleur' => 'max:255',
@@ -55,6 +55,7 @@ class BouteillePersonnaliseeController extends Controller
             ],
             [
                 'nom.required' => 'Le nom de la bouteille est obligatoire.', 
+                'nom.unique' => 'Vous avez déjà une bouteille avec ce nom.', 
                 'nom.max' => 'Le nom ne doit pas dépasser 255 caractères.',
                 'millesime.max' => 'Le millésime ne doit pas dépasser 255 caractères.',
                 'degre.max' => 'Le degré ne doit pas dépasser 255 caractères.',
@@ -132,7 +133,7 @@ class BouteillePersonnaliseeController extends Controller
     {
         $request->validate(
             [
-                'nom' => 'required|max:255',
+                'nom' => 'required|max:255|unique:bouteilles_personnalisees,nom,NULL,id,user_id,' . Auth::id(),
                 'millesime' => 'max:255',
                 'degre' => 'max:255',
                 'couleur' => 'max:255',
@@ -146,6 +147,7 @@ class BouteillePersonnaliseeController extends Controller
             ],
             [
                 'nom.required' => 'Le nom de la bouteille est obligatoire.', 
+                'nom.unique' => 'Vous avez déjà une bouteille avec ce nom.', 
                 'nom.max' => 'Le nom ne doit pas dépasser 255 caractères.',
                 'millesime.max' => 'Le millésime ne doit pas dépasser 255 caractères.',
                 'degre.max' => 'Le degré ne doit pas dépasser 255 caractères.',
@@ -188,9 +190,10 @@ class BouteillePersonnaliseeController extends Controller
      */
     public function destroy($cellier_id, $bouteille_id)
     {
+        $bouteillePersonnalisee = BouteillePersonnalisee::findOrFail($bouteille_id); 
         try {
-            $bouteillePersonnalisee = BouteillePersonnalisee::findOrFail($bouteille_id); 
             $bouteillePersonnalisee->bouteillesPersonnaliseesCelliers()->delete(); 
+            $bouteillePersonnalisee->commentairesBouteillesPersonnalisees()->delete(); 
             $bouteillePersonnalisee->delete(); 
             return redirect('/celliers\\' . $cellier_id . '/bouteilles'); 
         }

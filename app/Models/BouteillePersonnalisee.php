@@ -34,7 +34,7 @@ class BouteillePersonnalisee extends Model
 
     public function commentairesBouteillesPersonnalisees() 
     {
-        return $this->hasMany(CommentaireBouteillePersonnalisee::class);
+        return $this->hasMany(CommentaireBouteillePersonnalisee::class, 'bouteille_id');
     }
 
     public function favoris() 

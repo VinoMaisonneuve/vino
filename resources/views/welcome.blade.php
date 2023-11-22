@@ -78,30 +78,34 @@
             </a>
         </div>
     </section>
-    <section>
-        <h2>Derniers ajouts</h2>
-        <div class="carousel-container">
-            <div class="carousel-slides">
-                @foreach($derniersAjouts as $dernierAjout)
-                <div class="carousel-slide">
-                    <img src="{{ $dernierAjout->srcImage }}" alt="{{ $dernierAjout->id }}" />
-                    <a href="{{ route('bouteille.show',['bouteille_id'=> $dernierAjout->id]) }}">{{ $dernierAjout->nom }}</a>
+    @if ($derniersAjouts->isNotEmpty())
+        <section>
+            <h2>Derniers ajouts</h2>
+            <div class="carousel-container">
+                <div class="carousel-slides">
+                    @foreach($derniersAjouts as $dernierAjout)
+                    <div class="carousel-slide">
+                        <img src="{{ $dernierAjout->srcImage }}" alt="{{ $dernierAjout->id }}" />
+                        <a href="{{ route('bouteille.show',['bouteille_id'=> $dernierAjout->id]) }}">{{ $dernierAjout->nom }}</a>
+                    </div>
+                    @endforeach
                 </div>
-                @endforeach
-            </div>
-            <button class="carousel-btn btn-prev">
-            <svg width="15" height="28" viewBox="0 0 15 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.90798e-07 14L14.25 0.143593L14.25 27.8564L1.90798e-07 14Z" fill="black"/>
-            </svg>
+                @if ($derniersAjouts->count() > 1)
+                    <button class="carousel-btn btn-prev">
+                    <svg width="15" height="28" viewBox="0 0 15 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.90798e-07 14L14.25 0.143593L14.25 27.8564L1.90798e-07 14Z" fill="black"/>
+                    </svg>
 
-            </button>
-            <button class="carousel-btn btn-next">
-                <svg width="15" height="28" viewBox="0 0 15 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 14L0.749997 27.8564L0.749998 0.143593L15 14Z" fill="black"/>
-                </svg>
-            </button>
-        </div>
-    </section>
+                    </button>
+                    <button class="carousel-btn btn-next">
+                        <svg width="15" height="28" viewBox="0 0 15 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 14L0.749997 27.8564L0.749998 0.143593L15 14Z" fill="black"/>
+                        </svg>
+                    </button>
+                @endif
+            </div>
+        </section>
+    @endif
     <div>
         <p>Pour trouver un SAQ le plus proche,<br>
             consulter ce lien externe Google Maps:</p>
