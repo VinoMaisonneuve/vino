@@ -210,3 +210,7 @@ details {
 .form-mb {
     margin-bottom: var(--space-s);
 }
+
+textarea {
+    width: 100%;
+}
