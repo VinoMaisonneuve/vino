@@ -8,8 +8,9 @@
 </head>
 <body>
     <p>
-        Un problème a été signalé par {{ $nomUtilisateur }}, identifiant: {{ $idUtilisateur }}: 
-        {{ $probleme }}.
+        Un problème a été signalé par {{ $nomUtilisateur }}, identifiant: {{ $idUtilisateur }}. <br>
+        Problème: {{ $probleme }}. <br> 
+        Description du problème: {{ $description }}
     </p>
 </body>
 </html>

@@ -419,15 +419,16 @@ class CustomAuthController extends Controller
         $nomUtilisateur = $user->nom;
         $idUtilisateur = $user->id;
         $probleme = $request->input('probleme');
+        $description = $request->input('description_probleme'); 
 
-        if (empty($probleme)) {
-            return redirect()->back()->with('error', 'Veuillez choisir un problème avant de soumettre le formulaire.');
+        if (empty($probleme) || empty($description)) {
+            return redirect()->back()->with('error', 'Veuillez choisir un problème et entrer une description avant de soumettre le formulaire.');
         }
 
         $toName = 'Administration';
         $toEmail = 'vino.app@outlook.com';
 
-        Mail::send('email.problem', ['nomUtilisateur' => $nomUtilisateur, 'idUtilisateur' => $idUtilisateur, 'probleme' => $probleme], function ($message) use ($toName, $toEmail) {
+        Mail::send('email.problem', ['nomUtilisateur' => $nomUtilisateur, 'idUtilisateur' => $idUtilisateur, 'probleme' => $probleme, 'description' => $description], function ($message) use ($toName, $toEmail) {
             $message->to($toEmail, $toName)->subject('Signalement de problème');
         });
 
