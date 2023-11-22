@@ -87,7 +87,7 @@ class CommentaireBouteillePersonnaliseeController extends Controller
      * @param  \App\Models\CommentaireBouteillePersonnalisee  $commentaireBouteillePersonnalisee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CommentaireBouteillePersonnalisee $commentaire_bouteille_personnalisee)
+    public function update(Request $request, CommentaireBouteillePersonnalisee $commentaire_bouteille_id)
     {
         $request->validate([
             'comment'  => 'required|min:2'
@@ -98,12 +98,12 @@ class CommentaireBouteillePersonnaliseeController extends Controller
         ]);
 
         try {
-            $commentaire_bouteille_personnalisee->update([
+            $commentaire_bouteille_id->update([
                 'corps' => $request->comment
             ]);
     
             return redirect()->back()->with('successMessage', 'Commentaire modifié avec succès')
-            ->with('commentaire', $commentaire_bouteille_personnalisee);;
+            ->with('commentaire', $commentaire_bouteille_id);;
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['erreur' => "Une erreur s'est produite lors de la mise à jour du commentaire"]);
         }
@@ -115,11 +115,11 @@ class CommentaireBouteillePersonnaliseeController extends Controller
      * @param  \App\Models\CommentaireBouteillePersonnalisee  $commentaireBouteillePersonnalisee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CommentaireBouteillePersonnalisee $commentaire_bouteille_personnalisee)
+    public function destroy(CommentaireBouteillePersonnalisee $commentaire_bouteille_id)
     {
         try {
 
-            $commentaire_bouteille_personnalisee->delete();
+            $commentaire_bouteille_id->delete();
 
             return redirect()->back()->withSuccess('Commentaire supprimé avec succès');
         } catch (\Exception $e) {

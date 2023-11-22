@@ -31,7 +31,6 @@ class CustomAuthController extends Controller
                                 ->get(); 
         $derniersAjouts = collect(); 
         foreach($celliers as $cellier) {
-            $cellier->bouteillesCelliers = $cellier->bouteillesCelliers->sortByDesc('updated_at'); 
             foreach($cellier->bouteillesCelliers as $bouteilleCellier) {
                 $derniersAjouts = $derniersAjouts->push($bouteilleCellier->bouteille); 
             }
@@ -41,12 +40,20 @@ class CustomAuthController extends Controller
                                 ->with('bouteillesListes.bouteille')
                                 ->where('user_id', Auth::id())
                                 ->get(); 
+        foreach($listes as $liste) {
+            foreach($liste->bouteillesListes as $bouteilleListe) {
+                $derniersAjouts = $derniersAjouts->push($bouteilleListe->bouteille); 
+            }
+        } 
 
         $totalPrixCelliers = $totalsCelliers['totalPrixCelliers'];
         $totalQuantiteCelliers = $totalsCelliers['totalQuantiteCelliers'];
         $totalPrixListes = $totalsListes['totalPrixListes'];
         $totalQuantiteListes = $totalsListes['totalQuantiteListes'];
+        $derniersAjouts = $derniersAjouts->unique('id'); 
+        $derniersAjouts = $derniersAjouts->sortByDesc('updated_at')->values(); 
         $derniersAjouts = $derniersAjouts->take(3); 
+        $derniersAjouts = $derniersAjouts->sortBy('updated_at'); 
     
         return view('welcome', compact('totalPrixCelliers', 'totalQuantiteCelliers', 'totalPrixListes', 'totalQuantiteListes', 'derniersAjouts'));
     }
@@ -379,6 +386,7 @@ class CustomAuthController extends Controller
             $celliers = $user->celliers;
             foreach($celliers as $cellier){
                 $cellier->bouteillesCelliers()->delete(); 
+                $cellier->bouteillesPersonnaliseesCelliers()->delete(); 
             }
             $user->celliers()->delete();
         
@@ -387,6 +395,10 @@ class CustomAuthController extends Controller
                 $liste->bouteillesListes()->delete(); 
             }
             $user->listes()->delete();
+
+            $user->commentairesBouteillesPersonnalisees()->delete();
+            $user->commentairesBouteilles()->delete();
+            $user->bouteillesPersonnalisees()->delete();
 
             $user->delete();
             auth()->logout();

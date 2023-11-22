@@ -124,7 +124,6 @@ async function loadOptions(type) {
                 }
                 else {
                     selectListes.push(optionElement); 
-                    console.log(selectListes); 
                 }
             });
             if (windowLocation.includes('celliers') && cellierRadio.checked) {
@@ -132,7 +131,15 @@ async function loadOptions(type) {
                 var cellier_id = windowLocation.match(/\/celliers\/(\d+)\//)[1];
                 //Selectionner le cellier à partir duquel l'utilisateur est venu
                 var cellierOrigine = selectLocation.querySelector('option[value="' + cellier_id + '"]'); 
-                cellierOrigine.selected = true; 
+                cellierOrigine.selected = 'selected'; 
+                console.log(cellierOrigine); 
+            }
+            else if (windowLocation.includes('listes') && listRadio.checked) {
+                //Trouver l'ID du cellier dans l'URL
+                var liste_id = windowLocation.match(/\/listes\/(\d+)\//)[1];
+                //Selectionner le cellier à partir duquel l'utilisateur est venu
+                var listeOrigine = selectLocation.querySelector('option[value="' + liste_id + '"]'); 
+                listeOrigine.selected = 'selected'; 
             }
         }
         else {

@@ -76,9 +76,10 @@ class ListeController extends Controller
     public function store(Request $request)
     {
         $request->validate(
-            ['nom' => 'required|max:255'],
+            ['nom' => 'required|max:255|unique:listes,nom,NULL,id,user_id,' . Auth::id()],
             [
                 'nom.required' => 'Le nom de de la liste est obligatoire.', 
+                'nom.unique' => 'Vous avez déjà une liste avec ce nom.', 
                 'nom.max' => 'Le nom ne doit pas dépasser 255 caractères.'
             ]
         ); 
@@ -133,8 +134,13 @@ class ListeController extends Controller
     public function edit($liste_id)
     {
         $liste = Liste::findOrFail($liste_id); 
+        if ($liste->nom != 'Favoris') {
+            return view('liste.edit', ['liste' => $liste]); 
+        }
+        else {
+            return redirect(route('liste.index')); 
+        }
 
-        return view('liste.edit', ['liste' => $liste]); 
     }
 
     /**
@@ -147,9 +153,10 @@ class ListeController extends Controller
     public function update(Request $request, $liste_id)
     {
         $request->validate(
-            ['nom' => 'required|max:255'],
+            ['nom' => 'required|max:255|unique:listes,nom,user_id,' . Auth::id()],
             [
-                'nom.required' => 'Le nom de la liste est obligatoire.', 
+                'nom.required' => 'Le nom de de la liste est obligatoire.', 
+                'nom.unique' => 'Vous avez déjà une liste avec ce nom.', 
                 'nom.max' => 'Le nom ne doit pas dépasser 255 caractères.'
             ]
         ); 
@@ -171,9 +178,14 @@ class ListeController extends Controller
     {
         try {
             $liste = Liste::findOrFail($liste_id); 
-            $liste->bouteillesListes()->delete(); 
-            $liste->delete(); 
-            return redirect(route('liste.index')); 
+            if ($liste->nom != 'Favoris') { 
+                $liste->bouteillesListes()->delete(); 
+                $liste->delete(); 
+                return redirect(route('liste.index')); 
+            }
+            else {
+                return redirect(route('liste.index'))->with('error', 'Vous ne pouvez pas effacer la liste Favoris.'); 
+            }
         }
         catch (\Exception $e) {
             return redirect(route('liste.index'))->with('error', 'La liste n\'existe pas'); 

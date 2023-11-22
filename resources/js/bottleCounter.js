@@ -7,6 +7,8 @@ document.querySelectorAll('.card-bouteille-qt').forEach(function(counter) {
     let deleteForm = counter.querySelector('.form-delete');
     let bouteilleType; 
     let deplacerButton; 
+    let cardCount = document.querySelector('.card-count'); 
+    let totalBouteilles = cardCount.querySelector('p').innerHTML; 
     if (input.getAttribute('data-bouteille-personnalisee')) {
         bouteilleType = input.getAttribute('data-bouteille-personnalisee'); 
     }
@@ -24,8 +26,10 @@ document.querySelectorAll('.card-bouteille-qt').forEach(function(counter) {
   
     decrementButton.addEventListener('click', function() {
         let currentValue = parseInt(input.value, 10);
+        let totalBouteillesValeur = parseInt(totalBouteilles, 10); 
         if (currentValue > 0) {
             input.value = currentValue - 1;
+            totalBouteilles = totalBouteillesValeur - 1; 
             updateQuantity(input.value);
         }
         checkValue();

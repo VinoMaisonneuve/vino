@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
             loadOptions('liste');
         }
         else {
+          url = '/listes-json'; 
             selectLocation.innerHTML = ""; 
             selectListes.forEach(function(liste) {
                 selectLocation.appendChild(liste);
@@ -69,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = "/listes-ajouter"; 
             }
             else {
-                form.querySelector('.btn-modal-action').innerHTML = "Ajouter"; 
+                form.querySelector('.btn-modal-action').innerHTML = "ajouter"; 
             }
         }
     }); 
@@ -79,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
             loadOptions('cellier');
         }
         else {
+            url = '/celliers-json'; 
             selectLocation.innerHTML = ""; 
             selectCelliers.forEach(function(cellier) {
                 selectLocation.appendChild(cellier);
@@ -88,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = "/celliers-ajouter"; 
             }
             else {
-                form.querySelector('.btn-modal-action').innerHTML = "Ajouter"; 
+                form.querySelector('.btn-modal-action').innerHTML = "ajouter"; 
             }
         }
     }); 
