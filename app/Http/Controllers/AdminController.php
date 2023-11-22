@@ -174,6 +174,7 @@ class AdminController extends Controller
             $celliers = $user->celliers;
             foreach($celliers as $cellier){
                 $cellier->bouteillesCelliers()->delete(); 
+                $cellier->bouteillesPersonnaliseesCelliers()->delete(); 
             }
             $user->celliers()->delete();
         
