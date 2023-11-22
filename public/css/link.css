@@ -1,7 +1,7 @@
 /* liens qui ne sont pas visuellement des boutons */
 /* Ex.: "LOCALISER UN SAQ" */
 
-.link {
+.link:not(.link-right) {
     font-size: 14px;
     text-transform: uppercase;
     margin-top: var(--space-s);
@@ -11,7 +11,11 @@
 .link-right {
     text-align: right;
     padding-right:  var(--space);
-    font-size: 12px;
+    font-size: 14px;
+    min-width: 100%;
+}
+.link a {
+    text-decoration: underline;
 }
 
 form.link {
@@ -19,6 +23,6 @@ form.link {
 }
 
 .link-intro {
-    font-size: 14px;
+    font-size: 12px;
     font-family: Helvetica, sans-serif;
 }

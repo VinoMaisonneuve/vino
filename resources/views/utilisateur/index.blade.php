@@ -62,6 +62,24 @@
             </a>
         </div>
     </section>
+    <!-- <div class="btn-container">
+        <a href="{{ route('signalerErreur') }}" class="btn-action btn-round btn-red">
+            Signaler un problème
+        </a>
+    </div>     -->
+    <br>
+    <div>
+        <p>Afin de nous aider à améliorer votre expérience, <br>signaler tout problème:</p>
+        <a href="{{ route('signalerErreur') }}" class="link" target="_blank">
+            Signaler un problème
+            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.50098 4.77832V6.66721" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9.50098 10.4548L9.51042 10.4443" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 17.329V2.88889C1 1.84568 1.84568 1 2.88889 1H16.1111C17.1543 1 18 1.84568 18 2.88889V12.3333C18 13.3766 17.1543 14.2222 16.1111 14.2222H5.68562C5.11181 14.2222 4.56911 14.4831 4.21065 14.9311L2.00916 17.683C1.67453 18.1012 1 17.8647 1 17.329Z" stroke="black"/>
+            </svg>
+
+        </a>
+    </div>
 
     <!-- Fenêtre modale de suppression de compte -->
     <dialog id="modal-supprimer" class="modal">
