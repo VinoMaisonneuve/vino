@@ -30,6 +30,12 @@
         </a>
         @if($liste->bouteillesListes->count() > 1)
         <div class="form-container">
+            <form action="">
+                <div class="form-input-container">
+                    <label for="search_cellar">RECHERCHE</label>
+                    <input type="text" id="search_cellar" placeholder="Nom">
+                </div>
+            </form>
             <form action="{{ route('liste.show', ['liste_id' => $liste->id]) }}" method="">
                 @csrf
                 <div class="form-input-container">
@@ -61,7 +67,7 @@
             <div class="card-bouteille-content">
                 <div class="card-bouteille-info">
                     <a href="{{ route('bouteille.show', ['bouteille_id' => $bouteillesListes->bouteille->id]) }}">
-                        <h2>{{ $bouteillesListes->bouteille->nom }}</h2>
+                        <h2 class="bottle-name">{{ $bouteillesListes->bouteille->nom }}</h2>
                     </a>
                     <span>
                         {{ $bouteillesListes->bouteille->type }} | {{ $bouteillesListes->bouteille->format }} | {{ $bouteillesListes->bouteille->pays }}
@@ -116,10 +122,12 @@
                 </form>
             </dialog>
         <!-- </div> -->
-        
+        @if($liste->bouteillesListes->count() > 1)
         <script src="{{ asset('js/sortBottles.js') }}"></script>
-        <script src="{{ asset('js/bottleCounter.js') }}"></script>
+        <script src="{{ asset('js/search-cellar.js') }}"></script>
+        @endif
         <script src="{{ asset('js/modalDeplacer.js') }}"></script>
+        <script src="{{ asset('js/bottleCounter.js') }}"></script>
     </main>
     @if(session('success'))
         <div id="snackbar">
