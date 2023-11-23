@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\View;
 class AdminController extends Controller
 {
     /**
-     * Affichage de tous les utilisateurs de l'application.
+     * Affichage de la liste des utilisateurs dans l'interface d'administration.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {

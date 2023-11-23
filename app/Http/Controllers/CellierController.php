@@ -10,9 +10,9 @@ use Illuminate\Validation\Rule;
 class CellierController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Affichage de la liste des celliers de l'utilisateur avec des informations sur les bouteilles.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -40,9 +40,9 @@ class CellierController extends Controller
     }
     
     /**
-     * Display a listing of the resource (version JSON).
+     * Renvoi des informations sur les celliers de l'utilisateur au format JSON.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function indexJSON()
     {
@@ -63,9 +63,9 @@ class CellierController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affichage du formulaire de création d'un nouveau cellier.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -73,10 +73,10 @@ class CellierController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Enregistrement d'un nouveau cellier pour l'utilisateur.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -101,10 +101,11 @@ class CellierController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Affichage des détails d'un cellier avec possibilité de tri des bouteilles.
      *
      * @param  \App\Models\Cellier  $cellier_id
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
      */
     public function show(Cellier $cellier_id, Request $request)
     {
@@ -137,10 +138,10 @@ class CellierController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affichage du formulaire d'édition d'un cellier.
      *
-     * @param  $cellier_id
-     * @return \Illuminate\Http\Response
+     * @param  int  $cellier_id Identifiant du cellier à éditer
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function edit($cellier_id)
     {
@@ -154,11 +155,11 @@ class CellierController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mise à jour des informations d'un cellier.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  $cellier_id
-     * @return \Illuminate\Http\Response
+     * @param  int  $cellier_id Identifiant du cellier à mettre à jour
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $cellier_id)
     {
@@ -186,10 +187,10 @@ class CellierController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Suppression d'un cellier et de ses relations associées.
      *
-     * @param  $cellier_id
-     * @return \Illuminate\Http\Response
+     * @param  int  $cellier_id Identifiant du cellier à supprimer
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($cellier_id)
     {
@@ -212,10 +213,9 @@ class CellierController extends Controller
     }
 
     /**
-     * Count the total price from a specific cellar.
+     * Calcul du total du prix et de la quantité de toutes les bouteilles dans les celliers de l'utilisateur.
      *
-     * @return $totalPrix Total price
-     * @return $totalBouteille Number of bottles
+     * @return array Tableau associatif contenant le total du prix et de la quantité des bouteilles dans les celliers
      */
     public static function calculerTotalCellier()
     {

@@ -11,9 +11,9 @@ use Illuminate\Validation\Rule;
 class ListeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Affichage de l'ensemble des listes de bouteilles de l'utilisateur.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -35,9 +35,9 @@ class ListeController extends Controller
     }
     
     /**
-     * Display a listing of the resource (version JSON).
+     * Renvoi des données des listes de bouteilles de l'utilisateur au format JSON.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function indexJSON()
     {
@@ -59,9 +59,9 @@ class ListeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affichage du formulaire de création d'une liste.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -69,10 +69,10 @@ class ListeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Stockage d'une nouvelle liste de bouteilles pour l'utilisateur.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -97,10 +97,11 @@ class ListeController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Affichage des détails d'une liste de bouteilles.
      *
-     * @param  \App\Models\Liste  $liste_id
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Liste $liste_id
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
      */
     public function show(Liste $liste_id, Request $request)
     {
@@ -128,10 +129,10 @@ class ListeController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affichage du formulaire d'édition d'une liste de bouteilles.
      *
-     * @param  $liste_id
-     * @return \Illuminate\Http\Response
+     * @param int $liste_id
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function edit($liste_id)
     {
@@ -142,15 +143,14 @@ class ListeController extends Controller
         else {
             return redirect(route('liste.index')); 
         }
-
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mise à jour des informations d'une liste de bouteilles.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  $liste_id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param int $liste_id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $liste_id)
     {
@@ -178,10 +178,10 @@ class ListeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Suppression d'une liste de bouteilles.
      *
-     * @param  $liste_id
-     * @return \Illuminate\Http\Response
+     * @param int $liste_id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($liste_id)
     {
@@ -203,10 +203,9 @@ class ListeController extends Controller
     }
 
     /**
-     * Count the total price from a specific cellar.
+     * Calcul du total des prix et quantités pour toutes les listes de bouteilles de l'utilisateur.
      *
-     * @return $totalPrix Total price
-     * @return $totalBouteille Number of bottles
+     * @return array Tableau contenant le total en quantité et de prix de toutes listes confondues
      */
     public static function calculerTotalListe()
     {

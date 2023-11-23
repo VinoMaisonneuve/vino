@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 class CommentaireBouteilleController extends Controller
 {
     /**
-     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -19,7 +18,6 @@ class CommentaireBouteilleController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -29,10 +27,10 @@ class CommentaireBouteilleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Enregistrement d'un nouveau commentaire pour une bouteille de la SAQ.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -59,7 +57,6 @@ class CommentaireBouteilleController extends Controller
     }
 
     /**
-     * Display the specified resource.
      *
      * @param  \App\Models\CommentaireBouteille  $commentaireBouteille
      * @return \Illuminate\Http\Response
@@ -70,7 +67,6 @@ class CommentaireBouteilleController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
      *
      * @param  \App\Models\CommentaireBouteille  $commentaireBouteille
      * @return \Illuminate\Http\Response
@@ -81,11 +77,11 @@ class CommentaireBouteilleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mise à jour d'un commentaire sur une bouteille de la SAQ.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CommentaireBouteille  $commentaireBouteille
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\CommentaireBouteille $commentaire_bouteille
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, CommentaireBouteille $commentaire_bouteille)
     {
@@ -110,10 +106,10 @@ class CommentaireBouteilleController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Suppression d'un commentaire sur une bouteille de la SAQ.
      *
-     * @param  \App\Models\CommentaireBouteille  $commentaireBouteille
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\CommentaireBouteille $commentaire_bouteille
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(CommentaireBouteille $commentaire_bouteille)
     {

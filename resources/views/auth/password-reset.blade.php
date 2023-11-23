@@ -10,13 +10,6 @@
         Mot de passe oublié
     </h1>
     <div class="form-container">
-        <!-- @if($errors)
-            @foreach($errors->all() as $error)
-            <div>
-                {{ $error }}
-            </div>
-            @endforeach
-        @endif -->
         <form action="{{ route('password.temp') }}" method="post" id="forgot-password">
             @csrf
             <div class="form-input-container">
