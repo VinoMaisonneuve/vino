@@ -8,7 +8,6 @@ document.querySelectorAll('.card-bouteille-qt').forEach(function(counter) {
     let bouteilleType; 
     let deplacerButton; 
     let cardCount = document.querySelector('.card-count'); 
-    let totalBouteilles = cardCount.querySelector('p').innerHTML; 
     if (input.getAttribute('data-bouteille-personnalisee')) {
         bouteilleType = input.getAttribute('data-bouteille-personnalisee'); 
     }
@@ -25,11 +24,13 @@ document.querySelectorAll('.card-bouteille-qt').forEach(function(counter) {
     deleteButton.style.display = 'none';
   
     decrementButton.addEventListener('click', function() {
+        let totalBouteilles = cardCount.querySelector('p').innerHTML.trim(); 
+        totalBouteilles = totalBouteilles.slice(0, -13); 
         let currentValue = parseInt(input.value, 10);
         let totalBouteillesValeur = parseInt(totalBouteilles, 10); 
         if (currentValue > 0) {
             input.value = currentValue - 1;
-            totalBouteilles = totalBouteillesValeur - 1; 
+            cardCount.querySelector('p').innerHTML = totalBouteillesValeur - 1 + " bouteille(s)"; 
             updateQuantity(input.value);
         }
         checkValue();
@@ -37,7 +38,12 @@ document.querySelectorAll('.card-bouteille-qt').forEach(function(counter) {
   
     incrementButton.addEventListener('click', function() {
         let currentValue = parseInt(input.value, 10);
+        let totalBouteilles = cardCount.querySelector('p').innerHTML.trim(); 
+        totalBouteilles = totalBouteilles.slice(0, -13); 
+        let totalBouteillesValeur = parseInt(totalBouteilles, 10); 
         input.value = currentValue + 1;
+        cardCount.querySelector('p').innerHTML = totalBouteillesValeur + 1 + " bouteille(s)"; 
+        totalBouteilles = totalBouteillesValeur + 1; 
         updateQuantity(input.value);
         checkValue();
     });
