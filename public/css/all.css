@@ -1,0 +1,1505 @@
+.admin-welcome {
+    margin-top: 6rem; 
+}
+
+.admin-table-container {
+    width: 100%; 
+    padding: var(--space) var(--space);
+}
+
+.admin-table, .admin-user-section {
+    max-width: 100%; 
+}
+
+.admin-table th:nth-child(1),
+.admin-table td:nth-child(1) {
+    max-width: 25%; 
+}
+
+.admin-table th,
+.admin-table td {
+    width: 45%; 
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.admin-show-container {
+    width: 100%; 
+}
+
+.admin-table-container-show {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000000;
+    border-radius: var(--radius-m);
+    margin: var(--space-s);
+}
+
+.table-row {
+    display: flex;
+    align-items: center;
+}
+
+.table-row:not(:last-child) {
+    border-bottom: 1px solid #000000;
+}
+
+.table-header {
+    width: 33.33%; /* 1/3 de la largeur */
+    text-align: left;
+    margin: var(--space);
+}
+
+.table-data {
+    width: 66.66%; /* 2/3 de la largeur */
+    max-width: 100%;
+    margin: var(--space);
+}
+
+.info-profil {
+    display: flex;
+}
+
+.info-profil span:first-child {
+    text-align: left;
+}
+
+.table-data, .info-profil span, .admin-table td {
+    word-break: break-all;
+}
+
+.info-profil span {
+    flex: 1; 
+}
+
+.admin-img-container {
+    height: 275px;
+}
+
+.admin-img {
+    max-height: 275px;
+    mix-blend-mode: multiply;
+}
+/*
+	(composante) */
+
+/* Bouton submit dans les formulaires */
+.btn-submit {
+    background-color: var(--purple-blue);
+    box-shadow: 0px 0px 2px 0px var(--purple-blue);
+    padding: calc(var(--space-xs) - 2px) calc(var(--space-s) - 2px) calc(var(--space-xs) - 2px) calc(var(--space-s) - 2px);
+    border: 2px solid transparent;
+    color: var(--white);
+    font-size: 1rem;
+    border-radius: var(--radius-s);
+    min-width: 100%;
+    margin-top: var(--space-s);
+    margin-bottom: var(--space-s);
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn-submit:hover {
+    border-color: var(--purple-blue); /* Changement de border à border-color */
+    box-shadow: 0px 0px 2px 0px var(--purple-blue);
+    background-color: white;
+    color: black;
+}
+
+/* Bouton dans <Header> - Ex.: "<- celliers" */
+.btn-arrow-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* border: 2px solid black; */
+    border-radius: var(--radius-wide);
+    gap: var(--space-s);
+    min-width: 100%;
+    padding: 0 var(--space-sx) 0 var(--space-sx);
+    /* Ajout de la transition pour padding-left */
+    transition: gap 0.3s ease-in-out, padding-left 0.3s ease-in-out;
+}
+.btn-arrow-top>svg {
+    position: absolute;
+    left: var(--space-s);
+    top: 50%;
+    transform: translateY(-50%); /* Pour le centrer verticalement */
+    transition: left 0.3s ease-in-out;
+}
+header>.btn-arrow-top:hover svg {
+    left: var(--space-xs);
+}
+
+/* Bouton "direction" avec une flèche; Ex.: "Voir vos cellier ->" */
+.btn-arrow {
+    display: flex;
+    justify-content: space-between;
+    font-style: italic;
+    gap: var(--space-s);
+    min-width: 100%;
+    padding: var(--space-s) var(--space) var(--space-s) var(--space);
+    padding-right: var(--space);
+    transition: gap 0.3s ease-in-out, padding-right 0.3s ease-in-out;
+    /* box-shadow: 0px 0px 2px 0px var(--purple-blue); */
+}
+.btn-arrow:hover {
+    padding-right: var(--space-s);
+}
+
+/* Ex.: Bouton "+ AJOUTER UN CELLIER" */
+.btn-action {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-s);
+    min-width: 100%;
+    /* padding de sorte que le bouton ne bouge pas en hover */
+    padding: calc(var(--space-s) - 2px) calc(var(--space) - 2px) calc(var(--space-s) - 2px) calc(var(--space) - 2px);
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.btn-action:hover {
+    border-color: var(--purple-blue); /* Changement de border à border-color */
+    background-color: white;
+    color: var(--purple-blue);
+    box-shadow: 0px 0px 2px 0px var(--purple-blue);
+}
+
+/* bouton arrondi de base */
+.btn-round {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    background-color: var(--purple-blue);
+    box-shadow: 0px 0px 2px 0px var(--purple-blue);
+    color: white;
+    border-radius: var(--radius-wide);
+    /* box-shadow: none; */
+}
+
+/* Boutons dans le carousel de l'accueil */
+.btn-prev {
+    left: 0;
+}
+.btn-next {
+    right: 0;
+}
+
+/* Bouton pour modifier le nom du cellier ou de la liste */
+.btn-modify {
+    margin: var(--space-s) 0;
+    position: relative;
+    min-width: 100%;
+}
+.btn-modify svg {
+    position: absolute;
+    right: var(--space-s); /* Positionner le SVG à la limite droite de la balise h1 */
+    top: 50%;
+    transform: translateY(-50%); /* Pour le centrer verticalement par rapport au texte */
+}
+
+/* boutons - et + dans les card-bouteille */
+.btn-decrement, .btn-increment {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: white;
+    border: none;
+    background-color: black;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-decrement:hover, .btn-increment:hover {
+    background-color: #919191;
+    color: black;
+}
+
+/* icone poubelle et button DEPLACER */
+.btn-delete, .btn-deplacer {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 8px;
+    right: 20px;
+}
+.btn-deplacer {
+    font-size: 14px;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+/* Bouton "+ AJOUTER" sur les cartes */
+.btn-ajouter {
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: var(--purple-blue);
+    box-shadow: 0px 0px 2px 0px var(--purple-blue);
+    color: white;
+    border-radius: var(--radius-wide);
+    padding: var(--space-xs) var(--space-s);
+    width: 8rem;
+}
+
+/* Pour fenêtres modales */
+.btn-modal-container {
+    display: flex;
+    min-width: 100%;
+    gap: var(--space-xs);
+    margin-top: var(--space-s);
+}
+.btn-modal-container button {
+    text-transform: uppercase;
+    border-radius: var(--radius-s);
+    padding: .5em 0;
+    font-weight: bold;
+    /* background-color: black; */
+    color: white;
+    font-size: 16px;
+}
+.btn-modal-container button:not(.btn-red, .btn-green) {
+    background-color: black;
+}
+.btn-modal-action {
+    flex-grow: 2;
+}
+.btn-modal-cancel {
+    flex-grow: 1;
+}
+
+/* Bouton reset pour les filtres */
+.btn-reset {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-s);
+    border-radius: var(--radius-m);
+    margin-top: var(--space-s);
+    cursor: pointer;
+}
+
+/* COULEURS =============================================================================== */
+.btn-grey {
+    /* background-color: rgb(63, 63, 63); */
+    background-color: var(--purple-blue-pale);
+    color: black;
+}
+.btn-grey:hover {
+    border-color: grey;
+    background-color: grey;
+    color: black;
+}
+
+.btn-red {
+    background-color: rgba(213, 0, 0, 1);
+}
+.btn-red:hover {
+    border-color: rgb(197, 23, 23);
+    background-color: rgb(197, 23, 23);
+    color: white;
+}
+
+.btn-green {
+    background-color: rgba(45, 142, 0, 1);
+}
+.btn-green:hover {
+    border-color: rgb(34, 108, 0);
+    background-color: rgb(34, 108, 0);
+}
+
+.btn-mt {
+    margin-top: var(--space);
+}
+
+/* Boutons dans le cellier: "Voir bouteilles personnalisées" et "Voir bouteilles SAQ" */
+.btn-cellier {
+    font-size: 12px;
+    border: .5px solid black;
+    border-radius: 4px;
+    background-color: #d8d8d8;
+    padding: .25rem .5rem;
+    cursor: pointer;
+}
+/* Container pour bouton ancre btn-cellier */
+.btn-cellier-container {
+    min-width: 100%;
+}
+.btn-cellier-container span {
+    display: flex;
+    justify-content: right;
+}
+
+/* Bouton x pour supprimer commentaire */
+
+.btn-c-delete {
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+
+/*
+	(composante) */
+
+
+/* CARTE APERÇU DANS /CELLIERS et /LISTES ======================================================= */
+
+.card-cellier {
+    color: white;
+    background-color: var(--purple-blue-pale);
+    border: none;
+    border-radius: 25px;
+    color: black;
+    position: relative; /* Pour que le SVG soit positionné par rapport au lien <a> */
+}
+.card-cellier .card-container-qt {
+    border-left: none;
+    font-weight: normal;
+}
+.card-cellier .card-container-total {
+    border-right: .5px solid black;
+    font-weight: normal;
+}
+.card-container-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-container-total {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    font-weight: bold;
+}
+.card-container-qt {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-xs);
+    border-left: .5px solid black;
+    font-weight: bold;
+}
+.card-container-qt div span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space);
+}
+.card-arrow-icon {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    right: var(--space); /* Pour le positionner à droite avec un peu d'espace */
+    transition: right 0.3s ease-in-out; /* Ajout de la transition */
+}
+.card-cellier a:hover .card-arrow-icon {
+    right: var(--space-s); /* Pour le déplacer légèrement vers la droite lors du survol */
+}
+
+
+/* CARTES BOUTEILLES ======================================================================= */
+
+/* Ex. 12 bouteilles: */
+.card-count {
+    min-width: 100%;
+    text-align: left;
+}
+/* carte bouteille */
+.card-bouteille {
+    display: flex;
+    border-radius: 25px;
+    border: 1px solid var(--purple-blue);
+    text-align: left;
+    position: relative;
+    align-items: center;
+}
+.card-bouteille picture {
+    margin: 0 var(--space-xs);
+}
+.card-bouteille img {
+    height: 120px;
+}
+.card-bouteille a:not(.btn-ajouter) {
+    text-decoration: underline;
+}
+.card-bouteille-info> * + * {
+    margin-top: var(--space-xs);
+    font-size: 12px;
+}
+.card-bouteille-info p {
+    font-size: 16px;
+}
+.card-bouteille-label { /* "Bouteilles SAQ" ou "Bouteilles personnalisées" */
+    min-width: 100%;
+    /* font-family: Helvetica; */
+    text-transform: uppercase;
+    font-size: 14px;
+    text-align: left;
+}
+
+/* CARTE BOUTEILLE seulement dans CELLIERS ou LISTES */
+.card-bouteille-qt {
+    display: flex;
+    align-items: center;
+}
+.card-bouteille-qt input {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin: 0 var(--space-s);
+}
+/* Lorsqu'il y a zéro bouteille */
+.card-transparent {
+    opacity: 0.5;
+}
+
+/* CARTE BOUTEILLE seulement dans /BOUTEILLES */
+.card-bouteille-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-xs);
+}
+
+/* Conteneur des CARTES BOUTEILLES */
+.card-container {
+    min-width: 100%;
+}
+.card-container>div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+}
+.carousel-container {
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+}
+
+.carousel-slides {
+    display: flex;
+    transition: transform 0.5s;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    text-align: center;
+    margin: var(--space-s) 0;
+}
+
+.carousel-slide img {
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+}
+
+.carousel-slide p {
+    margin-top: var(--space-s);
+}
+.carousel-slide a {
+    text-decoration: underline;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+}
+/*
+	(balises HTML de haut niveau seulement. 
+	 pourrait inclure des classes à la place) */
+
+
+/* -- pile verticale de contenu avec rythme */
+body {
+	display: flex;
+	flex-direction: column;
+    min-height: 100vh;
+}
+
+/* .container, */
+main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: var(--space-s);
+    align-items: center;
+    margin: 0 var(--space-s);
+}
+
+main>div:not(div[id="snackbar"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    margin: var(--space-xs) var(--space-s);
+}
+
+section {
+    min-width: 100%;
+    border: .5px var(--purple-blue) solid;
+    border-radius: var(--radius-m);
+    padding: var(--space-s);
+}
+a>div > * + *,
+section:not(.card-bouteille) > * + * {
+	margin-top: var(--space-s);
+}
+
+.fiche-main-info {
+    display: flex;
+    border: none;
+    justify-content: space-around;
+}
+.fiche-main-info picture {
+    flex: 40%;
+    display: flex;
+    justify-content: center;
+}
+.fiche-main-info>div {
+    flex: 60%;
+}
+.fiche-picture {
+    position: relative;
+}
+.fiche-picture svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+
+table {
+    /* border-collapse: collapse; */
+    /* border: 1px solid black; */
+	/* border-radius: var(--radius-m); */
+}
+
+
+th {
+    width: 40%;
+}
+td {
+    width: 60%;
+}
+
+table {
+    border-collapse:separate;
+    border:solid var(--purple-blue) 1px;
+    border-radius:10px;
+    border-spacing: 0;
+    min-width: 100%;
+}
+
+td, th {
+    border-left:solid var(--purple-blue) 1px;
+    border-top:solid var(--purple-blue) 1px;
+    padding: var(--space-s) var(--space);
+    text-align: left;
+}
+
+td:first-child, th:first-child {
+     border-left: none;
+}
+
+tr:first-child th, tr:first-child td {
+    border-top: none;
+}
+
+.fiche-note-container {
+    min-width: 100%;
+    position: relative;
+    /* background-color: rgb(253, 253, 253); */
+    background-color: rgb(248, 249, 219);
+    /* padding: 1.25rem; */
+    /* border-radius: 2px; */
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 0;
+    border: none;
+    margin: 1rem;
+}
+.fiche-note-container input[type="text"] {
+    /* border: none; */
+    padding: .5rem 1rem;
+    background-color: rgb(248, 249, 219);
+    font-size: 14px;
+    border-color: rgb(138, 138, 138);
+}
+.fiche-note-container p {
+    /* font-style: italic; */
+    font-size: 14px;
+}
+/* section:not(.fiche-c-container) {
+    min-width: 100%;
+    border: .5px var(--purple-blue) solid;
+    border-radius: var(--radius-m);
+    padding: var(--space-s);
+} */
+footer {
+    font-size: 12px;
+    text-align: center;
+}
+
+footer span {
+    font-family: "dreamboat", sans-serif;
+    font-weight: 900;
+    color: var(--black);
+    font-size: 1rem;
+}
+/*
+	(composante) */
+
+/* form button -> voir btn.css */
+
+.form-forgot-psw {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-forgot-psw a {
+    text-align: right;
+}
+
+/* j'essaye de faire centrer le formulaire qui aura un max-width */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--space) var(--space);
+    min-width: 100%;
+}
+
+.form-container-welcome {
+    padding-top: 0;
+}
+
+form {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+}
+.form-input-container {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: var(--space-s);
+}
+.form-input-container input:not(input[type='range'], .fiche-note-container input[type="text"]) {
+    padding: var(--space-xs) var(--space-s);
+    background-color: rgba(255, 255, 255, 0.75);
+}
+.form-input-container select {
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 0.5px solid #000;
+    padding: var(--space-xs) var(--space-s);
+    border-radius: var(--radius-m);
+    width: 100%;
+}
+option {
+    word-wrap: break-word;
+    white-space: normal;
+    overflow: auto;
+    max-width: 100%;
+}
+
+.form-input-container input[type='number'] {
+    border-radius: var(--radius-s);
+}
+
+form
+    input:not(
+        .card-bouteille-qt input,
+        .form-range-input input,
+        .form-range-number input
+    ) {
+    min-width: 100%;
+    border: 0.5px solid var(--black);
+}
+
+form label,
+summary {
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.form-border {
+    border: 0.5px black solid;
+    border-radius: var(--radius-m);
+}
+
+.form-button {
+    flex-grow: 1;
+    align-items: flex-end;
+}
+
+/* seulement pour les h1 qui est titre du formulaire */
+.form-h1 {
+    margin-top: var(--space);
+}
+
+.form-ajouter-bouteille {
+    padding-bottom: var(--space);
+    max-width: 100%;
+    border: none;
+}
+
+.form-ajouter-bouteille div.form-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+summary {
+    list-style: none;
+    cursor: pointer;
+}
+summary::after {
+    content: url("data:image/svg+xml,%3Csvg width='11' height='6' viewBox='0 0 11 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 0.999511L4.70454 4.70405C5.14204 5.14155 5.85795 5.14155 6.29545 4.70405L10 0.999512' stroke='black' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    float: right;
+    margin-right: 0.5em;
+}
+details[open] summary::after {
+    content: url("data:image/svg+xml,%3Csvg width='11' height='6' viewBox='0 0 11 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 5.03223L6.29546 1.32769C5.85796 0.890186 5.14205 0.890186 4.70455 1.32769L1 5.03223' stroke='black' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    float: right;
+}
+details {
+    text-transform: uppercase;
+    text-align: left;
+}
+
+/* MODALE AJOUTER */
+.form-modal {
+    margin: 0 var(--space-s) 0 var(--space-s) var(--space);
+    padding: var(--space) var(--space-s) 0 var(--space-s);
+}
+
+.form-radio {
+    display: flex;
+}
+.form-radio input[type="radio"],
+.form-radio label {
+    min-width: auto;
+    display: inline-block;
+    margin-right: var(--space-s);
+}
+
+/* SLIDER */
+.form-range {
+    min-width: 100%;
+    margin-top: var(--space);
+}
+.form-range-slider {
+    height: var(--space-xs);
+    position: relative;
+    background-color: #e1e9f6;
+    border-radius: 2px;
+}
+.form-range-selected {
+    height: 100%;
+    left: 0%;
+    right: 0%;
+    position: absolute;
+    border-radius: var(--radius-s);
+    background-color: #1b53c0;
+}
+
+.form-range-input {
+    position: relative;
+}
+.form-range-input input {
+    position: absolute;
+    width: 100%;
+    height: var(--space-xs);
+    top: -7px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.form-range-input input::-webkit-slider-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid #1b53c0;
+    background-color: #fff;
+    pointer-events: auto;
+    -webkit-appearance: none;
+}
+.form-range-input input::-moz-range-thumb {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 3px solid #1b53c0;
+    background-color: #fff;
+    pointer-events: auto;
+    -moz-appearance: none;
+}
+.form-range-number {
+    display: flex;
+    justify-content: space-between;
+    margin: var(--space) 0;
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+.form-range-number label {
+    margin-right: var(--space-xs);
+}
+.form-range-number input {
+    border: 0.5px solid black;
+    width: 100px;
+    padding: var(--space-xs);
+}
+/* .form-range-number input:first-of-type {
+    margin-right: 15px;
+} */
+
+/* entre search et filter */
+.form-mb {
+    margin-bottom: var(--space-s);
+}
+
+.error-message {
+    color: red;
+    text-align: left;
+}
+
+/* texte p dans formulaire "Signaler un problème" */
+.form-p {
+    text-align: left;
+    margin-bottom: .5rem;
+}
+
+/* general.css ------------
+	(ne devrait contenir que des sélecteurs de balises et
+	 appliquer très peu de propriétés à la fois) */
+
+/* -- rétablir le rythme */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--off-white);
+}
+
+/* -- hériter de la couleur principale (plutôt que le bleu « Google » */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* -- pas de barre au-dessous des liens de navigation */
+nav a {
+    text-decoration: none;
+}
+
+input,
+button {
+    border-style: none;
+}
+
+
+/* -- limiter les images à la largeur de leur parent */
+img {
+    max-width: 100%;
+}
+
+/* -- limiter la largeur pour la lisibilité */
+p {
+    max-width: 75ch;
+}
+
+textarea {
+    width: 100%;
+}
+
+/* Information dans la page profil */
+
+.info-profil {
+    display: flex;
+    justify-items: space-between;
+}
+.info-value {
+    flex-grow: 1;
+    text-align: right;
+}
+.info-profil-user {
+    display: flex;
+    justify-items: space-between;
+}
+/* liens qui ne sont pas visuellement des boutons */
+/* Ex.: "LOCALISER UN SAQ" */
+
+.link:not(.link-right) {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-top: var(--space-s);
+    margin-bottom:  var(--space);
+    text-decoration: underline;
+}
+.link-right {
+    text-align: right;
+    padding-right:  var(--space);
+    font-size: 14px;
+    min-width: 100%;
+}
+.link a {
+    text-decoration: underline;
+}
+
+form.link {
+    font-size: 12px;
+}
+
+.link-intro {
+    font-size: 12px;
+    font-family: Helvetica, sans-serif;
+}
+.modal h2 {
+    text-transform: uppercase;
+    font-size: 14px;
+    padding-bottom: var(--space-s);
+}
+
+.modal {
+    border-radius: var(--radius-m);
+}
+.modal:focus {
+    outline: none; /* Supprime l'outline */
+}
+.modal img {
+    max-height: 400px;
+}
+
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+dialog {
+    margin-top: 10%;
+    width: 100%;
+    /* max-width: 400px; */
+}
+
+dialog {
+	min-width: 100%;
+	padding:  var(--space);
+	border: none;
+    box-shadow: 0px 0px 25px 0px white;
+}
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5); /* fond semi-transparent noir */
+}
+
+dialog p {
+    text-align: left;
+    margin:  var(--space)  var(--space) var(--space-s)  var(--space);
+}
+
+
+/* Par Ismail avec le Zoom =================================================================== */
+/* Ceci est commenté parce que ça brise les autres fenêtres modales */
+/*  style pour centrer le contenu du modal */
+/* .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; 
+    max-width: 250px; 
+    height: 80%; 
+    max-height: 400px; 
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 60px;
+} */
+/*  ce style pour centrer l'image dans le modal */
+/* .modal-content {
+    margin: auto;
+    display: block;
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain;
+} */
+/* style pour fermer le modal avec une croix en haut à droite */
+.modal-close {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 2rem;
+    color: black;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+dialog[id="zoomModal"] {
+    position: relative;
+}
+/* style pour assombrir l'image lorsqu'elle est survolée */
+.zoomable-image:hover {
+    opacity: 0.7;
+    transition: 0.3s;
+    cursor: zoom-in;
+}
+
+.nav-list {
+    grid-template-columns: repeat(5, minmax(20%, auto));
+}
+
+.nav-list,
+.nav-admin-list {
+    width: 100%;
+    display: grid;
+    position: fixed;
+    bottom: 0;
+    padding-bottom: 0.5em;
+    background-color: var(--off-white);
+}
+
+.nav-admin-list {
+    grid-template-columns: repeat(4, minmax(20%, auto));
+}
+
+.nav-item {
+    list-style: none;
+    font-weight: lighter;
+}
+
+.nav-item a {
+    text-decoration: none;
+}
+
+.nav-icon-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 0.35em;
+}
+
+.active,
+.nav-active {
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
+    text-underline-offset: .5em;
+}
+
+.nav-margin {
+    margin-bottom: 85px;
+}
+/* styles.css */
+
+/* Personnalisation de la pagination */
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: var(--space-s);
+    justify-content: center;
+    margin-bottom: 80px;
+    gap: var(--space-s);
+}
+
+.pagination-item {
+    margin: 0 2px;
+    padding: var(--space-s);
+}
+
+li.active,
+.pagination-link {
+    display: inline-block;
+    padding:  var(--space-xs)  var(--space-s);
+    border: 1px solid #e2e8f0;
+    background-color: #fff;
+    color: #2d3748;
+    text-decoration: none;
+}
+li.active {
+    text-decoration: underline;
+    font-weight: bold;
+    border: 1px solid black;
+}
+
+.pagination-link:hover {
+    background-color: #edf2f7;
+}
+
+.pagination-link-active {
+    background-color: #2d3748;
+    color: #fff;
+}
+
+@import url('admin.css'); 
+@import url('btn.css');
+@import url('card.css');
+@import url('carousel.css');
+@import url('composition.css');
+@import url('fiche.css');
+@import url('form.css');
+@import url('footer.css');
+@import url('general.css');
+@import url('info.css');
+@import url('link.css');
+@import url('modal.css');
+@import url('nav.css');
+@import url('pagination.css');
+@import url('tag.css');
+@import url('toast.css');
+@import url('typography.css');
+@import url('variables.css');
+@import url('welcome.css');
+
+/* dev.css */
+
+/* * {
+	outline: 1px dashed red;
+} */
+.tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap:  var(--space-s);
+    margin-bottom:  var(--space-s);
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+    padding: var(--space-xs)  var(--space-s);
+    background-color: #ddd;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.tag:hover {
+    background-color: #ccc;
+}
+
+.tag::after {
+    content: "×";
+    display: block;
+    margin-left: var(--space-s);
+    font-weight: bold;
+}
+div[id="snackbar"] {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: .5rem;
+    font-family: helvetica;
+    visibility: hidden;
+    min-width: 200px;
+    background-color: rgba(202, 205, 239, 1);
+    color: black;
+    text-align: left;
+    border-radius: 25px;
+    padding: .5rem 2rem;
+    position: fixed;
+    z-index: 1;
+    left: .5rem;
+    bottom: 85px;
+    font-size: 14px;
+    /* box-shadow: 0px 0px 4px 1px rgba(202, 205, 239, .75); */
+    box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.25);
+      /* text-shadow: 0px 0px 1px 0px white; */
+}
+div[id="snackbar"].show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 3s;
+    animation: fadein 0.5s, fadeout 0.5s 3s;
+}
+   
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 85px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 85px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 85px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 85px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+/* Animation pour nav-item qui saute */
+@keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.jump-animation {
+    animation: jump 0.5s ease;
+}
+/* typography.css -------------
+	(contient seulement les règles de base) */
+
+/* @font-face {
+    font-family: 'Helvetica';
+    src: url('../../assets/fonts/helvetica_light.ttf');
+    font-weight: lighter;
+} */
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../../assets/fonts/helvetica.ttf');
+    font-style: normal;
+    /* font-display: swap; */
+}
+
+/* @font-face {
+    font-family: 'Dreamboat';
+    src: url('../../assets/fonts/dreamboat.ttf');
+    font-display: swap;
+} */
+
+@font-face {
+    font-family: 'Dreamboat';
+    src: url('../../assets/fonts/dreamboat-black.ttf');
+    font-style: normal;
+    font-weight: 900;
+    /* font-display: swap; */
+}
+
+body {
+	font-family: "Helvetica", Helvetica, Arial, Verdana, sans-serif;
+	line-height: 1.5;
+}
+
+main {
+    text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	line-height: 1.1;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1rem;
+    font-weight: bold;
+}
+h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+/* h1, */
+header,
+footer span {
+    font-family: "dreamboat", sans-serif;
+    font-weight: 900;
+    color: var(--black);
+}
+
+header {
+    font-size: 1.5rem;
+}
+/*	(toute valeur se répétant plus que 3 fois
+  	 devrait se retrouver ici) */
+
+:root {
+    --black: #000000;
+    --light-red: #8F002A; 
+    --light-red-opacity: rgba(143, 0, 42, 0.5);
+    --dark-red: #580019; 
+    --dark-red-opacity: rgba(88, 0, 25, 0.5);
+    --white: #FEFEFF;
+
+    /* --purple-blue: rgba(82, 90, 162, 1); */
+    --purple-blue: rgba(63, 71, 140, 1);
+    --purple-blue-pale: rgba(156, 161, 205, 1);
+    --off-white: rgb(248, 248, 241);
+
+    --space-xs: .25rem; 
+    --space-s: .5rem; 
+    --space: 1rem; 
+    --space-wide: 2rem; 
+    --h1-size: 20px;
+
+    --radius-s: 5px;
+    --radius-m: 10px;
+    --radius-wide: 25px;
+    }
+
+/* .bg-jaune {
+    background: radial-gradient(50% 50% at 50% 50%, #FEFFB6 0%, rgba(255, 255, 255, 0) 80%);
+}
+.bg-rouge {
+    background: 
+        radial-gradient(50% 50% at 50% 50%, 
+        rgba(225, 99, 99, .6) 0%, rgba(225, 99, 99, .2) 40%, 
+        rgba(255, 255, 255, 0) 80% );
+}
+.bg-rose {
+    background: 
+        radial-gradient(50% 50% at 50% 50%, 
+        rgba(255, 117, 183, .7) 0%, rgba(255, 117, 183, .2) 40%,
+        rgba(217, 217, 217, 0) 80%);
+} */
+
+
+.welcome {
+    padding: 0 3rem;
+}
+
+.welcome-title {
+    font-size: 2rem;
+    margin-top: 2rem;
+}
+
+.welcome-vino {
+    font-family: "dreamboat", sans-serif;
+    font-weight: 900;
+}
+
+.welcome-animation-container {
+    position: relative;
+    margin-top: 1rem;
+    /* height: 220px;
+    width: 220px; */
+    /* display: grid; */
+    /* place-items: center; */
+    /* background: white; */
+    /* padding: 0; */
+    /* height: 100vh; */
+    /* overflow: hidden; */
+}
+
+/* .welcome-animation-container svg, */
+.welcome-animation-container img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.welcome-img-container {
+    height: 180px;
+}
+
+/* à résoudre */
+.welcome-img {
+    max-height: 170px;
+    mix-blend-mode: multiply;
+}
+.welcome-rounded-text {
+    font-family: "Helvetica";
+    width: 18rem;
+    height: 18rem;
+    text-transform: uppercase;
+    transform: rotate(-103deg);
+    color: rgba(95, 72, 190, 1);
+    z-index: -1;
+    /* font-family: Helvetica; */
+    /* letter-spacing: 0.5px; */
+    font-weight: bold;
+}
+.white {
+    fill: rgba(95, 72, 190, 1);
+}
+.yellow {
+    fill: #ffda2a;
+}
+.green {
+    fill: rgba(144, 125, 28, 1)
+}
+@keyframes rotating {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+.rotating {
+    animation: rotating 12s linear infinite;
+}
+@keyframes coloring {
+    0% {
+        fill: var(--purple-blue);
+    }
+    /* 35% {
+        fill: rgba(249, 178, 83, 1);
+    }
+    75% {
+        fill: rgba(144, 125, 28, 1);
+    } */
+    50% {
+        fill: rgb(119, 93, 224);
+    }
+    100% {
+        fill: var(--purple-blue);
+    }
+}
+.coloring {
+    animation: coloring 12s linear infinite;
+}
+/* Bonjour NomUtilisateur */
+/* .welcome-bonjour {
+    min-width: 100%;
+    background: radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(255, 138, 0, 0.7) 0%,
+        rgba(255, 138, 0, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+
+.bg-rose {
+    background: radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(255, 117, 183, 0.7) 0%,
+        rgba(255, 117, 183, 0.2) 40%,
+        rgba(217, 217, 217, 0) 80%
+    );
+} */
+

@@ -7,6 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" type="image/svg+xml" href="{{ asset('assets/icons/intitle_icon.svg')}}">
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+        <!-- <link href="{{ asset('css/all.css') }}" rel="stylesheet"> -->
         <!-- <link rel="stylesheet" href="https://use.typekit.net/dox8qou.css"> -->
         <title>Vino - @yield('title')</title>
     </head>
