@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 class BouteilleCellierController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Stockage d'une bouteille dans un cellier.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {   
@@ -35,11 +35,11 @@ class BouteilleCellierController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mise à jour la quantité d'une bouteille dans le cellier.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -60,11 +60,11 @@ class BouteilleCellierController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Suppression d'une bouteille du cellier.
      *
-     * @param $cellier_id
-     * @param  \App\Models\BouteilleCellier  $bouteille_cellier
-     * @return \Illuminate\Http\Response
+     * @param int $cellier_id
+     * @param \App\Models\BouteilleCellier $bouteille_cellier
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($cellier_id, BouteilleCellier $bouteille_cellier)
     {
