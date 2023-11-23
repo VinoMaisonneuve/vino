@@ -7,7 +7,7 @@
                     @csrf
                     <div class="form-input-container">
                         <label for="comment"></label>
-                        <input type="text" id="body" name="comment" placeholder="Ajouter une note">
+                        <input type="text" id="body" name="comment" placeholder="Ajouter une note" required>
                         @error('comment')
                             <span class="error-message">{{ $message }}</span>
                         @enderror
@@ -26,7 +26,7 @@
                         @method('put')
                         <div class="form-input-container">
                             <label for="comment"></label>
-                            <input type="text" id="body" name="comment" value="{{ $commentaire->corps }}">
+                            <input type="text" id="body" name="comment" value="{{ $commentaire->corps }}" required>
                             @error('comment')
                                 <span class="error-message">{{ $message }}</span>
                             @enderror
@@ -51,7 +51,7 @@
             <dialog id="modal-supprimer" class="modal">
                 <h2>Suppression de la note</h2>
                 <hr>
-                <p>Êtes-vous certain de vouloir supprimer la note?</p>
+                <p>Êtes-vous certain(e) de vouloir supprimer la note?</p>
                 <form action="{{ $route_delete }}" method="post" class="form-modal" id="supprimerCommentaire">
                     @csrf
                     @method('DELETE')

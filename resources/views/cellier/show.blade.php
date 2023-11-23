@@ -122,7 +122,7 @@
             </div>
         @endif
         <div class="card-bouteille-label">
-            <span id="anchor-bouteilles-saq">
+            <span id="bouteilles-perso">
                 Bouteilles personnalisées :
             </span>
         </div>

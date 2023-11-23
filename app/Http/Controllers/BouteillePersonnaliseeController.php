@@ -28,7 +28,9 @@ class BouteillePersonnaliseeController extends Controller
      */
     public function create($cellier_id)
     {
-        $bouteilles = BouteillePersonnalisee::where('user_id', Auth::id())->get(); 
+        $bouteilles = BouteillePersonnalisee::where('user_id', Auth::id())
+                ->orderBy('created_at', 'desc') // pour afficher le plus récemment créée
+                ->get(); 
         return view('bouteille.create', ['cellier_id' => $cellier_id, 'bouteilles' => $bouteilles]);
     }
 
@@ -181,7 +183,8 @@ class BouteillePersonnaliseeController extends Controller
             'user_id' => Auth::id()
         ]);
 
-        return redirect('/celliers\\' . $cellier_id . '/bouteilles-personnalisees\\' . $bouteille_id); 
+        return redirect('/celliers\\' . $cellier_id . '/bouteilles-personnalisees\\' . $bouteille_id)
+        ->withSuccess('Bouteille personnalisée modifiée'); ; 
     }
 
     /**
@@ -198,7 +201,8 @@ class BouteillePersonnaliseeController extends Controller
             $bouteillePersonnalisee->bouteillesPersonnaliseesCelliers()->delete(); 
             $bouteillePersonnalisee->commentairesBouteillesPersonnalisees()->delete(); 
             $bouteillePersonnalisee->delete(); 
-            return redirect('/celliers\\' . $cellier_id . '/bouteilles'); 
+            // return redirect('/celliers\\' . $cellier_id . '/bouteilles')->withSuccess('Bouteille personnalisée supprimée'); ; 
+            return redirect('/celliers\\' . $cellier_id . '/bouteilles-ajouter')->withSuccess('Bouteille personnalisée supprimée'); ; 
         }
         catch (\Exception $e) {
             return redirect('/celliers\\' . $cellier_id . '/bouteilles')->with('error', 'Le cellier n\'existe pas'); 

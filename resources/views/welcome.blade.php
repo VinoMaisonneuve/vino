@@ -146,27 +146,28 @@
     </div>
 
 
-    @if($errors->has('erreur'))
-        <div>
-            {{ $errors->first('erreur') }}
-        </div>
-    @endif
+
     <div class="form-container form-container-welcome">
         <form action="{{ route('login.authentication') }}" method="post" id="login">
             @csrf
             <div class="form-input-container">
                 <label for="email">EMAIL</label>
-                <input type="text" id="email" name="email">
+                <input type="text" id="email" name="email" value="{{old('email')}}" required>
                 @error('email')
                     <span class="error-message">{{ $message }}</span>
                 @enderror
             </div>
             <div class="form-input-container">
                 <label for="password">PASSWORD</label>
-                <input type="password" id="password" name="password">
+                <input type="password" id="password" name="password" required>
                 @error('password')
                     <span class="error-message">{{ $message }}</span>
                 @enderror
+                @if($errors->has('erreur'))
+                    <span class="error-message">
+                        {{ $errors->first('erreur') }}
+                    </span>
+                @endif
             </div>
             <div class="form-forgot-psw link">
                 <a href="{{ route('password.forgot') }}">MOT DE PASSE OUBLIÉ</a>

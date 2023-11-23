@@ -321,7 +321,7 @@ class CustomAuthController extends Controller
             Mail::send('email.mail', ['name' => $to_name, 'body' => $body], function ($message) use ($to_name, $to_email) {
                 $message->to($to_email, $to_name)->subject('Réinitialisation du mot de passe');
             });
-            return redirect()->back()->withSuccess("Un mot de passe temporaire vous a été envoyé. Veuillez consulter vos courriels.");    
+            return redirect()->back()->withSuccess("Mot de passe temporaire envoyé. Vérifiez vos emails.");    
         }
         return redirect()->back()->withErrors("Ce courriel n'est pas associé à un compte existant");
     }

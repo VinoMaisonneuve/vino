@@ -215,6 +215,8 @@ details {
     margin-bottom: var(--space-s);
 }
 
-.form-error-red {
+.error-message {
     color: red;
+    text-align: left;
 }
+
