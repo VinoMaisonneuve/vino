@@ -14,7 +14,7 @@
             Modifier votre profil
         </h1>
         @if($errors->has('erreur'))
-            <div>
+            <div class="error-message">
                 {{ $errors->first('erreur') }}
             </div>
         @endif
