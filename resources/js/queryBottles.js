@@ -401,5 +401,17 @@ resetButton.addEventListener("click", function () {
       const range = sliderGroup.querySelector(".form-range-selected");
       range.style.left = (slider.min / slider.max) * 100 + "%";
       range.style.right = (1 - slider.value / slider.max) * 100 + "%";
+
+      
   });
+
+  // Appel de loadProducts avec les valeurs réinitialisées
+  loadProducts(
+    document.getElementById('search-input').value, 
+    document.getElementById('sort').value, 
+    document.querySelector('input[name="prix-min"]').value,
+    document.querySelector('input[name="prix-max"]').value,
+    getSelectedTags(),
+    pageReload ? currentPage : 1
+  );
 });

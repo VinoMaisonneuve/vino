@@ -6,12 +6,16 @@
     "/js/filterSlider.js": "/js/filterSlider.js",
     "/js/filterTag.js": "/js/filterTag.js",
     "/js/modalAjouter.js": "/js/modalAjouter.js",
+    "/js/modalAjouterBouteilleIndex.js": "/js/modalAjouterBouteilleIndex.js",
     "/js/modalDeplacer.js": "/js/modalDeplacer.js",
     "/js/modalSupprimer.js": "/js/modalSupprimer.js",
     "/js/queryBottles.js": "/js/queryBottles.js",
-    "/js/sortBottles.js": "/js/sortBottles.js",
-    "/js/search-users.js": "/js/search-users.js",
     "/js/search-cellar.js": "/js/search-cellar.js",
-    "/js/modalAjouterBouteilleIndex.js": "/js/modalAjouterBouteilleIndex.js",
-    "/css/app.css": "/css/app.css"
+    "/js/search-users.js": "/js/search-users.js",
+    "/js/sortBottles.js": "/js/sortBottles.js",
+    "/js/statsUser.js": "/js/statsUser.js",
+    "/js/textCercle.js": "/js/textCercle.js",
+    "/js/zoom.js": "/js/zoom.js",
+    "/css/app.css": "/css/app.css",
+    "/css/all.css": "/css/all.css"
 }

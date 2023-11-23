@@ -3,10 +3,10 @@
         <p>Aucun résultat trouvé.</p>
     @else
         <div class="card-count">
-            <p>{{$results->total()}} bouteilles :</p>
+            <p>{{$results->total()}} bouteille(s) :</p>
         </div>
         @foreach ($results as $result)
-        <section class="card-bouteille {{ $result->couleur == 'Blanc' ? 'bg-jaune' : ($result->couleur == 'Rouge' ? 'bg-rouge' : ($result->couleur == 'Rosé' ? 'bg-rose' : '')) }}">
+        <section class="card-bouteille">
             <picture>
                 <img src="{{ $result->srcImage }}"  height="120" width="80" alt="{{ $result->nom }}">
             </picture>

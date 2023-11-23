@@ -32,11 +32,12 @@
         <div class="form-container">
             <form action="">
                 <div class="form-input-container">
-                    <label for="search_cellar">RECHERCHE</label>
+                    <label for="search_cellar">RECHERCHE DANS LA LISTE</label>
                     <input type="text" id="search_cellar" placeholder="Nom">
                 </div>
             </form>
-            <form action="{{ route('liste.show', ['liste_id' => $liste->id]) }}" method="">
+            <!-- EN DEV -->
+            <!-- <form action="{{ route('liste.show', ['liste_id' => $liste->id]) }}" method="">
                 @csrf
                 <div class="form-input-container">
                     <label for="sortCellier">TRIER</label>
@@ -47,7 +48,7 @@
                         <option value="price-desc" {{ request('sort') == 'price-desc' ? 'selected' : '' }}>Prix ($$$-$)</option>
                     </select>
                 </div>
-            </form>
+            </form> -->
         </div>
         @endif
         <div class="card-count">
@@ -62,7 +63,7 @@
         @foreach($liste->bouteillesListes as $bouteillesListes)
         <section class="card-bouteille" id="{{ $bouteillesListes->id }}" data-location="listes">
             <picture>
-                <img src="{{ $bouteillesListes->bouteille->srcImage }}" alt="{{ $bouteillesListes->bouteille->nom }}">
+                <img src="{{ $bouteillesListes->bouteille->srcImage }}" height="120" width="80" alt="{{ $bouteillesListes->bouteille->nom }}">
             </picture>
             <div class="card-bouteille-content">
                 <div class="card-bouteille-info">
@@ -123,7 +124,8 @@
             </dialog>
         <!-- </div> -->
         @if($liste->bouteillesListes->count() > 1)
-        <script src="{{ asset('js/sortBottles.js') }}"></script>
+        <!-- EN DEV -->
+        <!-- <script src="{{ asset('js/sortBottles.js') }}"></script> -->
         <script src="{{ asset('js/search-cellar.js') }}"></script>
         @endif
         <script src="{{ asset('js/modalDeplacer.js') }}"></script>
