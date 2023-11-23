@@ -51,70 +51,70 @@
                 @csrf
                 <div class="form-input-container">
                     <label for="nom">Nom de la bouteille</label>
-                    <input type="text" id="nom" name="nom" value="{{ old('nom') }}" required>
+                    <input type="text" id="nom" name="nom" value="{{ old('nom') }}" placeholder="Lan Gran Reserva" required>
                     @if ($errors->has('nom'))
                         <div class="error-message">{{ $errors->first('nom') }}</div>
                     @endif
                 </div>
                 <div class="form-input-container">
                     <label for="type">Type</label>
-                    <input type="text" id="type" name="type" value="{{ old('type') }}">
+                    <input type="text" id="type" name="type" value="{{ old('type') }}" placeholder="Rouge">
                     @if ($errors->has('type'))
                         <div class="error-message">{{ $errors->first('type') }}</div>
                     @endif
                 </div>
                 <div class="form-input-container">
                     <label for="format">Format</label>
-                    <input type="text" id="format" name="format" value="{{ old('format') }}">
+                    <input type="text" id="format" name="format" value="{{ old('format') }}" placeholder="750ml">
                     @if ($errors->has('format'))
                         <div class="error-message">{{ $errors->first('format') }}</div>
                     @endif
                 </div>
                 <div class="form-input-container">
                     <label for="prix">Prix</label>
-                    <input type="text" id="prix" name="prix" value="{{ old('prix') }}">
+                    <input type="text" id="prix" name="prix" value="{{ old('prix') }}" placeholder="32.00">
                     @if ($errors->has('prix'))
                         <div class="error-message">{{ $errors->first('prix') }}</div>
                     @endif
                 </div>
                 <div class="form-input-container">
                     <label for="pays">Pays</label>
-                    <input type="text" id="pays" name="pays" value="{{ old('pays') }}">
+                    <input type="text" id="pays" name="pays" value="{{ old('pays') }}" placeholder="Espagne">
                     @if ($errors->has('pays'))
                         <div class="error-message">{{ $errors->first('pays') }}</div>
                     @endif
                 </div>
                 <div class="form-input-container">
                     <label for="region">Région</label>
-                    <input type="text" id="region" name="region" value="{{ old('region') }}">
+                    <input type="text" id="region" name="region" value="{{ old('region') }}" placeholder="Vallée de l'Ebre">
                     @if ($errors->has('region'))
                         <div class="error-message">{{ $errors->first('region') }}</div>
                     @endif
                 </div>
                 <div class="form-input-container">
                     <label for="producteur">Producteur</label>
-                    <input type="text" id="producteur" name="producteur" value="{{ old('producteur') }}">
+                    <input type="text" id="producteur" name="producteur" value="{{ old('producteur') }}" placeholder="Bodegas Lan SA">
                     @if ($errors->has('producteur'))
                         <div class="error-message">{{ $errors->first('producteur') }}</div>
                     @endif
                 </div>
                 <div class="form-input-container">
                     <label for="cepage">Cépage</label>
-                    <input type="text" id="cepage" name="cepage" value="{{ old('cepage') }}">
+                    <input type="text" id="cepage" name="cepage" value="{{ old('cepage') }}" placeholder="Tempranillo 90 %, Mazuelo 10 %">
                     @if ($errors->has('cepage'))
                         <div class="error-message">{{ $errors->first('cepage') }}</div>
                     @endif
                 </div>
                 <div class="form-input-container">
                     <label for="degre">Degré d'alcool</label>
-                    <input type="text" id="degre" name="degre" value="{{ old('degre') }}">
+                    <input type="text" id="degre" name="degre" value="{{ old('degre') }}" placeholder="14%">
                     @if ($errors->has('degre'))
                         <div class="error-message">{{ $errors->first('degre') }}</div>
                     @endif
                 </div>
                 <div class="form-input-container">
                     <label for="millesime">Millésime</label>
-                    <input type="text" id="millesime" name="millesime" value="{{ old('millesime') }}">
+                    <input type="text" id="millesime" name="millesime" value="{{ old('millesime') }}" placeholder="2016">
                     @if ($errors->has('millesime'))
                         <div class="error-message">{{ $errors->first('millesime') }}</div>
                     @endif

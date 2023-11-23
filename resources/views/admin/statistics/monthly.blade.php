@@ -7,7 +7,8 @@
 </header>
 <main class="nav-margin">
     <section class="admin-monthly-stats">
-        <h1>Statistiques mensuelles pour le mois de {{ $month }}</h1>
+        <!-- <h1>Statistiques mensuelles pour le mois de {{ $month }}</h1> -->
+        <h1>Statistiques mensuelles pour le mois de Novembre</h1>
         <div class="info-profil">
             <span>Nombre d'utilisateurs :</span><span class="info-value">{{ $monthlyStatistics['user_count'] }}</span>
         </div>

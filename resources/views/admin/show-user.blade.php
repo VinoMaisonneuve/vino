@@ -51,7 +51,7 @@
             @endif
           </span>
         </div>
-        <div class="info-profil"><span>Mot de passe :</span><span class="info-value">{{ $user->password }}</span></div>
+        <!-- <div class="info-profil"><span>Mot de passe :</span><span class="info-value">{{ $user->password }}</span></div> -->
         <div class="info-profil"><span>Date de création :</span><span class="info-value" readonly>{{ $user->created_at }}</span></div>
         <div class="info-profil"><span>Date de modification :</span><span class="info-value" readonly>{{ $user->updated_at }}</span></div>
 
