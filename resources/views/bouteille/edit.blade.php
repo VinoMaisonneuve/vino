@@ -21,72 +21,72 @@
                     @method('put')
                     <div class="form-input-container">
                         <label for="nom">Nom de la bouteille</label>
-                        <input type="text" id="nom" name="nom" value="{{ old('nom') ?? $bouteille->nom }}">
+                        <input type="text" id="nom" name="nom" value="{{ old('nom') ?? $bouteille->nom }}" required>
                         @if ($errors->has('nom')) 
-                            <div>{{ $errors->first('nom') }}</div>
+                            <div class="error-message">{{ $errors->first('nom') }}</div>
                         @endif
                     </div>
                     <div class="form-input-container">
                         <label for="type">Type</label>
                         <input type="text" id="type" name="type" value="{{ old('type') ?? $bouteille->type }}">
                         @if ($errors->has('type')) 
-                            <div>{{ $errors->first('type') }}</div>
+                            <div class="error-message">{{ $errors->first('type') }}</div>
                         @endif
                     </div>
                     <div class="form-input-container">
                         <label for="format">Format</label>
                         <input type="text" id="format" name="format" value="{{ old('format') ?? $bouteille->format }}">
                         @if ($errors->has('format')) 
-                            <div>{{ $errors->first('format') }}</div>
+                            <div class="error-message">{{ $errors->first('format') }}</div>
                         @endif
                     </div>
                     <div class="form-input-container">
                         <label for="prix">Prix</label>
                         <input type="text" id="prix" name="prix" value="{{ old('prix') ?? $bouteille->prix }}">
                         @if ($errors->has('prix')) 
-                            <div>{{ $errors->first('prix') }}</div>
+                            <div class="error-message">{{ $errors->first('prix') }}</div>
                         @endif
                     </div>
                     <div class="form-input-container">
                         <label for="pays">Pays</label>
                         <input type="text" id="pays" name="pays" value="{{ old('pays') ?? $bouteille->pays }}">
                         @if ($errors->has('pays')) 
-                            <div>{{ $errors->first('pays') }}</div>
+                            <div class="error-message">{{ $errors->first('pays') }}</div>
                         @endif
                     </div>
                     <div class="form-input-container">
                         <label for="region">Région</label>
                         <input type="text" id="region" name="region" value="{{ old('region') ?? $bouteille->region }}">
                         @if ($errors->has('region')) 
-                            <div>{{ $errors->first('region') }}</div>
+                            <div class="error-message">{{ $errors->first('region') }}</div>
                         @endif
                     </div>
                     <div class="form-input-container">
                         <label for="producteur">Producteur</label>
                         <input type="text" id="producteur" name="producteur" value="{{ old('producteur') ?? $bouteille->producteur }}">
                         @if ($errors->has('producteur')) 
-                            <div>{{ $errors->first('producteur') }}</div>
+                            <div class="error-message">{{ $errors->first('producteur') }}</div>
                         @endif
                     </div>
                     <div class="form-input-container">
                         <label for="cepage">Cépage</label>
                         <input type="text" id="cepage" name="cepage" value="{{ old('cepage') ?? $bouteille->cepage }}">
                         @if ($errors->has('cepage')) 
-                            <div>{{ $errors->first('cepage') }}</div>
+                            <div class="error-message">{{ $errors->first('cepage') }}</div>
                         @endif
                     </div>
                     <div class="form-input-container">
                         <label for="degre">Degré d'alcool</label>
                         <input type="text" id="degre" name="degre" value="{{ old('degre') ?? $bouteille->degre }}">
                         @if ($errors->has('degre')) 
-                            <div>{{ $errors->first('degre') }}</div>
+                            <div class="error-message">{{ $errors->first('degre') }}</div>
                         @endif
                     </div>
                     <div class="form-input-container">
                         <label for="millesime">Millésime</label> 
                         <input type="text" id="millesime" name="millesime" value="{{ old('millesime') ?? $bouteille->millesime }}">
                         @if ($errors->has('millesime')) 
-                            <div>{{ $errors->first('millesime') }}</div>
+                            <div class="error-message">{{ $errors->first('millesime') }}</div>
                         @endif
                     </div>
                     <div class="form-button">
@@ -106,7 +106,7 @@
             <dialog id="modal-supprimer" class="modal">
                 <h2>Suppression de la bouteille {{ $bouteille->nom }}</h2>
                 <hr>
-                <p>Êtes-vous certain de vouloir supprimer la bouteille {{ $bouteille->nom }}?</p>
+                <p>Êtes-vous certain(e) de vouloir supprimer la bouteille {{ $bouteille->nom }}? Cette action supprimera également cette bouteille de tous vos celliers.</p>
                 <form action="{{ route('bouteillePersonnalisee.destroy', ['cellier_id' => $cellier_id, 'bouteille_id' => $bouteille->id]) }}" method="post" class="form-modal" id="supprimerBouteille">
                     @csrf
                     @method('DELETE')

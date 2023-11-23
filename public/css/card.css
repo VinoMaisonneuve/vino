@@ -91,6 +91,13 @@
 .card-bouteille-info p {
     font-size: 16px;
 }
+.card-bouteille-label { /* "Bouteilles SAQ" ou "Bouteilles personnalisées" */
+    min-width: 100%;
+    /* font-family: Helvetica; */
+    text-transform: uppercase;
+    font-size: 14px;
+    text-align: left;
+}
 
 /* CARTE BOUTEILLE seulement dans CELLIERS ou LISTES */
 .card-bouteille-qt {

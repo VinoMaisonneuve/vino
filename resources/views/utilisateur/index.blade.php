@@ -35,8 +35,8 @@
                 </ul>
             </div>
         @endif
-        <div class="info-profil"><span>Nom :</span><span class="info-value">{{ $user->nom }}</span></div>
-        <div class="info-profil"><span>Courriel :</span><span class="info-value">{{ $user->email }}</span></div>
+        <div class="info-profil-user"><span>Nom :</span><span class="info-value">{{ $user->nom }}</span></div>
+        <div class="info-profil-user"><span>Courriel :</span><span class="info-value">{{ $user->email }}</span></div>
 
         <div class="btn-container">
             <a href="{{ route('profil.edit', $user->id) }}" class="btn-action btn-round btn-mt">

@@ -5,10 +5,9 @@
         ajouter une bouteille
     </header>
     <main class="nav-margin">
-    <section class="form-ajouter-bouteille"> <!-- encadré noir (formulaires, filtres et tris) --> 
+    <section class="form-ajouter-bouteille">
             <div class="form-container">
                 <form action="" method="" id="form-search" class="form-mb">
-                    <!-- @csrf -->
                     <div class="form-input-container">
                         <label for="search">RECHERCHE</label>
                         <input type="search" id="search-input" name="search">
@@ -16,9 +15,6 @@
                 </form>
                 
             </div>
-            <!-- <div class="link link-right">
-                <a href="#">BOUTEILLE PERSONNALISÉE</a>
-            </div> -->
             <div class="form-container">
                 <form action="" method="" id="form-filter">
                     <hr>
@@ -31,7 +27,6 @@
                             </svg>
                             Réinitialiser les filtres
                         </button>
-                        <!-- SLIDERS À IMPLÉMENTER (EN DEV - VICTOR)-->
                         <div class="form-input-container">
                             <label for="prix-range">Prix ($)</label>
                             <div class="form-range">
@@ -54,50 +49,6 @@
                                 </div>
                             </div>  
                         </div>
-                        <!-- <div class="form-input-container">
-                            <label for="alcohol-range">Degré d'alcool (%)</label>
-                            <div class="form-range">
-                                <div class="form-range-slider">
-                                    <span class="form-range-selected"></span>
-                                </div>
-                                <div class="form-range-input">
-                                    <input type="range" class="min" min="0" max="1000" value="0" step="1">
-                                    <input type="range" class="max" min="0" max="1000" value="1000" step="1">
-                                </div>
-                                <div class="form-range-number">      
-                                    <div>
-                                        <label for="min">Min</label>
-                                        <input type="number" name="min" value="0">
-                                    </div>    
-                                    <div>
-                                        <label for="max">Max</label>
-                                        <input type="number" name="max" value="1000">
-                                    </div>    
-                                </div>
-                            </div>  
-                        </div> -->
-                        <!-- <div class="form-input-container">
-                            <label for="sugar-range">Taux de sucre (g/L)</label>
-                            <div class="form-range">
-                                <div class="form-range-slider">
-                                    <span class="form-range-selected"></span>
-                                </div>
-                                <div class="form-range-input">
-                                    <input type="range" class="min" min="0" max="1000" value="0" step="1">
-                                    <input type="range" class="max" min="0" max="1000" value="1000" step="1">
-                                </div>
-                                <div class="form-range-number">      
-                                    <div>
-                                        <label for="min">Min</label>
-                                        <input type="number" name="min" value="0">
-                                    </div>    
-                                    <div>
-                                        <label for="max">Max</label>
-                                        <input type="number" name="max" value="1000">
-                                    </div>    
-                                </div>
-                            </div>  
-                        </div> -->
 
                         <!-- Couleur -->
                         <div class="form-input-container">
@@ -165,17 +116,6 @@
                             </select>
                         </div>
 
-                        <!-- Type -->
-                        <!-- <div class="form-input-container">
-                            <label for="select_type">Type</label>
-                            <select name="type" id="select_type">
-                                <option value="">Choisir des options</option>
-                                @foreach($types as $type)
-                                    <option value="{{ $type }}">{{ $type }}</option>
-                                @endforeach
-                            </select>
-                        </div> -->
-
                         <!-- Millésime -->
                         <div class="form-input-container">
                             <label for="select_millesime">Millésime</label>
@@ -217,7 +157,6 @@
             <div class="form-container">
                 <hr>
                 <form action="" method="" id="">
-                    <!-- @csrf -->
                     <div class="form-input-container">
                         <label for="sort">TRIER</label>
                         <select name="sort" id="sort">
@@ -239,7 +178,7 @@
                 @include('partials.bouteilles')
 
                 @foreach ($bouteilles as $bouteille)
-                <section class="card-bouteille {{ $bouteille->couleur == 'Blanc' ? 'bg-jaune' : ($bouteille->couleur == 'Rouge' ? 'bg-rouge' : ($bouteille->couleur == 'Rosé' ? 'bg-rose' : '')) }}">
+                <section class="card-bouteille">
                     <picture>
                         <img src="{{ $bouteille->srcImage }}" height="120" width="80" loading="lazy" alt="{{ $bouteille->nom}}">
                     </picture>
@@ -264,7 +203,6 @@
         </div>
 
     </main>
-        <!-- <div class="modal-container"> -->
             <dialog id="modal-ajouter" class="modal">
                     <h2>Confirmation d'ajout</h2>
                     <hr>
@@ -298,7 +236,6 @@
                             </div>
                     </form>
             </dialog>
-        <!-- </div> -->
 
         <script src="{{ asset('js/queryBottles.js') }}" defer></script>
         <script src="{{ asset('js/bottleCounterModal.js') }}" defer></script>

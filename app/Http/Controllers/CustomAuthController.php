@@ -123,8 +123,7 @@ class CustomAuthController extends Controller
         $liste->user_id = $user->id;
         $liste->save();
 
-        // return view('welcome', ['successMessage' => 'Compte créé avec succès, vous pouvez maintenant vous connecter.']);
-        return view('welcome', ['successMessage' => 'Compte créé avec succès!']);
+        return view('welcome', ['successMessage' => 'Compte créé!']);
     }
 
     /**
@@ -176,7 +175,7 @@ class CustomAuthController extends Controller
     public function logout(){
         Auth::logout();
         Session::flush();
-        return redirect(route('login'))->withSuccess('Vous êtes déconnecté');
+        return redirect(route('login'))->withSuccess('Vous êtes déconnecté(e)!');
     }
 
     /**
@@ -229,7 +228,7 @@ class CustomAuthController extends Controller
                 'email' => $request->email
             ]);
     
-            return redirect(route('profil.show', $user->id))->withSuccess('Profil mis à jour avec succès');
+            return redirect(route('profil.show', $user->id))->withSuccess('Profil mis à jour!');
         } catch (\Exception $e) {
             return redirect(route('profil.edit', $user->id))->withErrors(['erreur' => "Une erreur s'est produite lors de la mise à jour du profil"]);
         }
@@ -272,7 +271,7 @@ class CustomAuthController extends Controller
             try {
                 $user->password = Hash::make($request->input('password'));
                 $user->save();
-                return redirect(route('profil.show', $user->id))->withSuccess('Mot de passe mis à jour avec succès');
+                return redirect(route('profil.show', $user->id))->withSuccess('Mot de passe mis à jour!');
             } catch (\Exception $e) {
                 return redirect(route('profil.edit', $user->id))->withErrors(['erreur' => "Une erreur s'est produite lors du changement du mot de passe"]);
             }
@@ -321,7 +320,7 @@ class CustomAuthController extends Controller
             Mail::send('email.mail', ['name' => $to_name, 'body' => $body], function ($message) use ($to_name, $to_email) {
                 $message->to($to_email, $to_name)->subject('Réinitialisation du mot de passe');
             });
-            return redirect()->back()->withSuccess("Un mot de passe temporaire vous a été envoyé. Veuillez consulter vos courriels.");    
+            return redirect()->back()->withSuccess("Mot de passe temporaire envoyé. Vérifiez vos emails.");    
         }
         return redirect()->back()->withErrors("Ce courriel n'est pas associé à un compte existant");
     }
@@ -365,7 +364,7 @@ class CustomAuthController extends Controller
             $user->password = Hash::make($request->password);
             $user->temp_password = NULL;
             $user->save();
-            return redirect('login')->withSuccess('Mot de passe modifié avec succès ');
+            return redirect('login')->withSuccess('Mot de passe modifié!');
         }
         return redirect('password.forgot')->withErrors('Le mot de passe temporaire ne correspond pas');
     }
@@ -407,7 +406,7 @@ class CustomAuthController extends Controller
 
             $user->delete();
             auth()->logout();
-            return view('welcome', ['successMessage' => 'Compte supprimé avec succès.']);
+            return view('welcome', ['successMessage' => 'Compte supprimé!']);
         } else {
             return back()->withErrors(['erreur' => 'Le mot de passe est incorrect.']);
         }
@@ -449,6 +448,6 @@ class CustomAuthController extends Controller
             $message->to($toEmail, $toName)->subject('Signalement de problème');
         });
 
-        return redirect()->route('profil.show', ['user' => $user])->with('success', 'Le problème a été signalé avec succès.');
+        return redirect()->route('profil.show', ['user' => $user])->with('success', 'Le problème a été signalé. Merci!');
     }
 }

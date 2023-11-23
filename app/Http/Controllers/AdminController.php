@@ -90,7 +90,7 @@ class AdminController extends Controller
                 $user->assignRole('Admin');
             }
 
-            return redirect(route('admin.index'))->withSuccess('Nouvel utilisateur enregistré');
+            return redirect(route('admin.index'))->withSuccess('Nouvel utilisateur enregistré!');
         } catch (\Exception $e) {
             return redirect(route('admin.create-user'))->withErrors(["Erreur d'enregistrement"]);
         }
@@ -147,7 +147,7 @@ class AdminController extends Controller
     
             $user->syncRoles([$request->role]);
 
-            return redirect(route('admin.show-user', $user->id))->withSuccess('Profil mis à jour avec succès');
+            return redirect(route('admin.show-user', $user->id))->withSuccess('Profil mis à jour!');
         } catch (\Exception $e) {
             return redirect(route('admin.edit-user', $user->id))->withErrors(['erreur' => "Une erreur s'est produite lors de la mise à jour du profil"]);
         }
@@ -185,7 +185,7 @@ class AdminController extends Controller
             $user->listes()->delete();
 
             $user->delete();
-            return redirect()->route('welcome')->withSuccess('Compte supprimé avec succès.');
+            return redirect()->route('welcome')->withSuccess('Compte supprimé!');
         } else {
             return back()->withErrors(['erreur' => 'Le mot de passe est incorrect.']);
         }

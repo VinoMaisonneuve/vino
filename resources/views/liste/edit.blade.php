@@ -21,7 +21,7 @@
                 <label for="nom">Nom de la liste</label>
                 <input type="text" id="nom" name="nom" value="{{ old('nom') ?? $liste->nom }}">
                 @if ($errors->has('nom')) 
-                    <div>{{ $errors->first('nom') }}</div>
+                    <div class="error-message">{{ $errors->first('nom') }}</div>
                 @endif
             </div>
             <div class="form-button">
@@ -41,7 +41,7 @@
     <dialog id="modal-supprimer" class="modal">
         <h2>Suppression de la liste {{ $liste->nom }}</h2>
         <hr>
-        <p>Êtes-vous certain de vouloir supprimer la liste {{ $liste->nom }}?</p>
+        <p>Êtes-vous certain de vouloir supprimer la liste {{ $liste->nom }}?  Cette action supprimera également tous les éléments présents dans son inventaire.</p>
         <form action="{{ route('liste.destroy', $liste->id) }}" method="post" class="form-modal" id="supprimerListe">
             @csrf
             @method('DELETE')

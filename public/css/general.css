@@ -40,4 +40,6 @@ p {
     max-width: 75ch;
 }
 
-
+textarea {
+    width: 100%;
+}

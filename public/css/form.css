@@ -215,6 +215,13 @@ details {
     margin-bottom: var(--space-s);
 }
 
-textarea {
-    width: 100%;
+.error-message {
+    color: red;
+    text-align: left;
+}
+
+/* texte p dans formulaire "Signaler un problème" */
+.form-p {
+    text-align: left;
+    margin-bottom: .5rem;
 }

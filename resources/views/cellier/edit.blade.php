@@ -22,7 +22,7 @@
                     <label for="nom">Nom du cellier</label>
                     <input type="text" id="nom" name="nom" value="{{ old('nom') ?? $cellier->nom }}">
                     @if ($errors->has('nom')) 
-                        <div>{{ $errors->first('nom') }}</div>
+                        <div class="error-message">{{ $errors->first('nom') }}</div>
                     @endif
                 </div>
                 <div class="form-button">
@@ -42,7 +42,7 @@
         <dialog id="modal-supprimer" class="modal">
             <h2>Suppression du cellier {{ $cellier->nom }}</h2>
             <hr>
-            <p>Êtes-vous certain de vouloir supprimer le cellier {{ $cellier->nom }}?</p>
+            <p>Êtes-vous certain(e) de vouloir supprimer le cellier {{ $cellier->nom }}?  Cette action supprimera également tous les éléments présents dans son inventaire.</p>
             <form action="{{ route('cellier.destroy', $cellier->id) }}" method="post" class="form-modal" id="supprimerCellier">
                 @csrf
                 @method('DELETE')

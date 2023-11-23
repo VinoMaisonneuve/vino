@@ -55,8 +55,7 @@
                     </tr>
                     <tr>
                         <th>Disponibilité</th>
-                        <td>            
-                            <!-- <p>Consulter ce lien externe SAQ: <br> -->
+                        <td>
                             <a href="{{ $bouteille->lienProduit }}" class="link" target="_blank">
                                 lien produit SAQ
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +73,6 @@
                 @include('partials.commentaires', ['route_store' => route('comment.store', ['bouteille_id' => $bouteille->id])])
             @endif
 
-            <!-- Zoom de l'image (EN DEV - VICTOR) -->
             <dialog id="zoomModal" class="modal">
                 <span class="modal-close" id="modalClose">×</span>
                 <img src="{{ $bouteille->bigImageUrl() }}" alt="{{ $bouteille->nom }}" class="modal-content">

@@ -247,6 +247,9 @@ header>.btn-arrow-top:hover svg {
 }
 /* Container pour bouton ancre btn-cellier */
 .btn-cellier-container {
+    min-width: 100%;
+}
+.btn-cellier-container span {
     display: flex;
     justify-content: right;
 }
