@@ -97,7 +97,7 @@ class CellierController extends Controller
         $newCellier->save(); 
 
         return redirect(route('cellier.index'))
-        ->withSuccess('Cellier ajouté'); 
+        ->withSuccess('Cellier ajouté!'); 
     }
 
     /**
@@ -182,7 +182,7 @@ class CellierController extends Controller
         $cellier = Cellier::findOrFail($cellier_id);
 
         return redirect(route('cellier.show', ['cellier_id' => $cellier_id, 'cellier' => $cellier]))
-        ->withSuccess('Cellier modifié');
+        ->withSuccess('Cellier modifié!');
     }
 
     /**
@@ -200,7 +200,7 @@ class CellierController extends Controller
                 $cellier->bouteillesPersonnaliseesCelliers()->delete(); 
                 $cellier->delete(); 
                 return redirect(route('cellier.index'))
-                ->withSuccess('Cellier supprimé'); 
+                ->withSuccess('Cellier supprimé!'); 
             }
             else {
                 return redirect(route('cellier.index'))->with('error', 'Vous ne pouvez pas effacer le cellier Favoris.'); 

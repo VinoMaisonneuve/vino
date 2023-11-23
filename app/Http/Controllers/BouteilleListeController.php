@@ -70,6 +70,6 @@ class BouteilleListeController extends Controller
     {
         BouteilleListe::select()->where('id', $bouteille_liste->id)->delete(); 
         return redirect(route('liste.show', $liste_id))
-        ->withSuccess('Bouteille supprimée de la liste avec succès');
+        ->withSuccess('Bouteille supprimée de la liste!');
     }
 }

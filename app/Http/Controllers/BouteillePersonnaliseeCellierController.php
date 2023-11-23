@@ -32,7 +32,7 @@ class BouteillePersonnaliseeCellierController extends Controller
         }
         $quantite = $request->quantite;
         return redirect('/celliers\\' . $cellier_id . '/bouteilles#bouteilles-perso') //retourne vers le cellier à l'ancre des bouteilles personnalisées
-        ->withSuccess($quantite . ' bouteille(s) personnalisée(s) ajoutée(s)');
+        ->withSuccess($quantite . ' bouteille(s) personnalisée(s) ajoutée(s)!');
     }
 
     /**

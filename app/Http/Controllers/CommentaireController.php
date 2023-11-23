@@ -54,7 +54,7 @@ class CommentaireController extends Controller
         $commentaire = Commentaire::find($commentaire->id);
 
         return redirect()->route('bouteille.show', ['bouteille_id' => $bouteille_id])
-            ->with('successMessage', 'Commentaire ajouté avec succès')
+            ->with('successMessage', 'Commentaire ajouté!')
             ->with('commentaire', $commentaire);
     }
 
@@ -102,7 +102,7 @@ class CommentaireController extends Controller
                 'corps' => $request->comment
             ]);
     
-            return redirect()->back()->with('successMessage', 'Commentaire modifié avec succès')
+            return redirect()->back()->with('successMessage', 'Commentaire modifié!')
             ->with('commentaire', $commentaire);;
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['erreur' => "Une erreur s'est produite lors de la mise à jour du commentaire"]);
@@ -121,7 +121,7 @@ class CommentaireController extends Controller
 
             $commentaire->delete();
 
-            return redirect()->back()->withSuccess('Commentaire supprimé avec succès');
+            return redirect()->back()->withSuccess('Commentaire supprimé!');
         } catch (\Exception $e) {
 
             return redirect()->back()->withErrors(['erreur' => "Une erreur s'est produite lors de la suppression du commentaire"]);

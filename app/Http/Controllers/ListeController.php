@@ -93,7 +93,7 @@ class ListeController extends Controller
         $newListe->save(); 
 
         return redirect(route('liste.index'))
-        ->withSuccess('Liste ajoutée'); 
+        ->withSuccess('Liste ajoutée!'); 
     }
 
     /**
@@ -174,7 +174,7 @@ class ListeController extends Controller
         $liste = Liste::findOrFail($liste_id);
 
         return redirect(route('liste.show', ['liste_id' => $liste_id, 'liste' => $liste]))
-        ->withSuccess('Liste modifiée');
+        ->withSuccess('Liste modifiée!');
     }
 
     /**
@@ -191,7 +191,7 @@ class ListeController extends Controller
                 $liste->bouteillesListes()->delete(); 
                 $liste->delete(); 
                 return redirect(route('liste.index'))
-                    ->withSuccess('Liste supprimée'); 
+                    ->withSuccess('Liste supprimée!'); 
             }
             else {
                 return redirect(route('liste.index'))->with('error', 'Vous ne pouvez pas effacer la liste Favoris.'); 

@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // FONCTION pour message toast et animation sur nav-item
     function afficherToastEtSauterNav(quantiteBouteille, toastLocation) {
         // Afficher le toast
-        afficherToast(`${quantiteBouteille} bouteille(s) déplacée(s) dans ${toastLocation}`);
+        afficherToast(`${quantiteBouteille} bouteille(s) déplacée(s) dans ${toastLocation}!`);
         modal.close();
 
         // Identifier l'élément de navigation à animer

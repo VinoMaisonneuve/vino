@@ -91,7 +91,7 @@ class BouteillePersonnaliseeController extends Controller
 
         $newBouteille->save(); 
 
-        return redirect('/celliers\\' . $cellier_id . '/bouteilles-ajouter')->withSuccess('Bouteille personnalisée créée'); 
+        return redirect('/celliers\\' . $cellier_id . '/bouteilles-ajouter')->withSuccess('Bouteille personnalisée créée!'); 
     }
 
 
@@ -184,7 +184,7 @@ class BouteillePersonnaliseeController extends Controller
         ]);
 
         return redirect('/celliers\\' . $cellier_id . '/bouteilles-personnalisees\\' . $bouteille_id)
-        ->withSuccess('Bouteille personnalisée modifiée'); ; 
+        ->withSuccess('Bouteille personnalisée modifiée!'); ; 
     }
 
     /**
@@ -202,7 +202,7 @@ class BouteillePersonnaliseeController extends Controller
             $bouteillePersonnalisee->commentairesBouteillesPersonnalisees()->delete(); 
             $bouteillePersonnalisee->delete(); 
             // return redirect('/celliers\\' . $cellier_id . '/bouteilles')->withSuccess('Bouteille personnalisée supprimée'); ; 
-            return redirect('/celliers\\' . $cellier_id . '/bouteilles-ajouter')->withSuccess('Bouteille personnalisée supprimée'); ; 
+            return redirect('/celliers\\' . $cellier_id . '/bouteilles-ajouter')->withSuccess('Bouteille personnalisée supprimée!'); ; 
         }
         catch (\Exception $e) {
             return redirect('/celliers\\' . $cellier_id . '/bouteilles')->with('error', 'Le cellier n\'existe pas'); 

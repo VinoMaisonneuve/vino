@@ -227,7 +227,7 @@ function onFormSubmit(event) {
 // FONCTION pour message toast et animation sur nav-item
 function afficherToastEtSauterNav(quantiteBouteille, toastLocation) {
     // Afficher le toast
-    afficherToast(`${quantiteBouteille} bouteille(s) ajoutée(s) dans ${toastLocation}`);
+    afficherToast(`${quantiteBouteille} bouteille(s) ajoutée(s) dans ${toastLocation}!`);
     modal.close();
 
     // Identifier l'élément de navigation à animer
