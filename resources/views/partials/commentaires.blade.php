@@ -26,7 +26,7 @@
                         @method('put')
                         <div class="form-input-container">
                             <label for="comment"></label>
-                            <input type="text" id="body" name="comment" value="{{ $commentaire->corps }}" required>
+                            <input type="text" id="body" name="comment" value="{{ $commentaire->corps }}">
                             @error('comment')
                                 <span class="error-message">{{ $message }}</span>
                             @enderror

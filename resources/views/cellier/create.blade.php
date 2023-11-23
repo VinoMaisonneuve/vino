@@ -19,9 +19,9 @@
                 @csrf
                 <div class="form-input-container">
                     <label for="nom">Nom du cellier</label>
-                    <input type="text" id="nom" name="nom" value="{{ old('nom') }}">
+                    <input type="text" id="nom" name="nom" value="{{ old('nom') }}" required>
                     @if ($errors->has('nom')) 
-                        <div>{{ $errors->first('nom') }}</div>
+                        <div class="error-message">{{ $errors->first('nom') }}</div>
                     @endif
                 </div>
                 <div class="form-button">

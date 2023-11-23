@@ -96,7 +96,8 @@ class CellierController extends Controller
 
         $newCellier->save(); 
 
-        return redirect(route('cellier.index')); 
+        return redirect(route('cellier.index'))
+        ->withSuccess('Cellier ajouté'); 
     }
 
     /**
@@ -180,7 +181,8 @@ class CellierController extends Controller
 
         $cellier = Cellier::findOrFail($cellier_id);
 
-        return redirect(route('cellier.show', ['cellier_id' => $cellier_id, 'cellier' => $cellier]));
+        return redirect(route('cellier.show', ['cellier_id' => $cellier_id, 'cellier' => $cellier]))
+        ->withSuccess('Cellier modifié');
     }
 
     /**
