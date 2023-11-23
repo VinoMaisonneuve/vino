@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 class BouteilleListeController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Enregistre une bouteille dans la liste correspondante.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -35,11 +35,11 @@ class BouteilleListeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mise à jour du nombre d'une bouteille en particulier dans une liste
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param $id
-     * @return \Illuminate\Http\Response
+    * @param  \Illuminate\Http\Request  $request
+    * @param  int  $id Identifiant de l'entité BouteilleListe
+    * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -60,11 +60,11 @@ class BouteilleListeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Suppression d'une entité BouteilleListe lors de la suppression d'une liste.
      *
-     * @param $liste_id
-     * @param  \App\Models\BouteilleListe  $bouteilleListe
-     * @return \Illuminate\Http\Response
+     * @param  int  $liste_id Identifiant de la liste
+     * @param  \App\Models\BouteilleListe  $bouteille_liste Instance de BouteilleListe à supprimer
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($liste_id, BouteilleListe $bouteille_liste)
     {

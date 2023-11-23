@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 class CommentaireBouteillePersonnaliseeController extends Controller
 {
     /**
-     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -19,7 +18,6 @@ class CommentaireBouteillePersonnaliseeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -29,10 +27,11 @@ class CommentaireBouteillePersonnaliseeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Stocke un nouveau commentaire pour une bouteille personnalisée.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param int $cellier_id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request, $cellier_id)
     {
@@ -59,7 +58,6 @@ class CommentaireBouteillePersonnaliseeController extends Controller
     }
 
     /**
-     * Display the specified resource.
      *
      * @param  \App\Models\CommentaireBouteillePersonnalisee  $commentaireBouteillePersonnalisee
      * @return \Illuminate\Http\Response
@@ -70,7 +68,6 @@ class CommentaireBouteillePersonnaliseeController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
      *
      * @param  \App\Models\CommentaireBouteillePersonnalisee  $commentaireBouteillePersonnalisee
      * @return \Illuminate\Http\Response
@@ -81,11 +78,11 @@ class CommentaireBouteillePersonnaliseeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mise à jour d'un commentaire de bouteille personnalisée.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CommentaireBouteillePersonnalisee  $commentaireBouteillePersonnalisee
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\CommentaireBouteillePersonnalisee $commentaire_bouteille_id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, CommentaireBouteillePersonnalisee $commentaire_bouteille_id)
     {
@@ -110,10 +107,10 @@ class CommentaireBouteillePersonnaliseeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Suppression d'un commentaire de bouteille personnalisée.
      *
-     * @param  \App\Models\CommentaireBouteillePersonnalisee  $commentaireBouteillePersonnalisee
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\CommentaireBouteillePersonnalisee $commentaire_bouteille_id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(CommentaireBouteillePersonnalisee $commentaire_bouteille_id)
     {

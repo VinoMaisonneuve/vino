@@ -12,7 +12,6 @@ use Illuminate\Validation\Rule;
 class BouteillePersonnaliseeController extends Controller
 {
     /**
-     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -22,9 +21,10 @@ class BouteillePersonnaliseeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affichage du formulaire de création d'une nouvelle bouteille personnalisée dans un cellier.
      *
-     * @return \Illuminate\Http\Response
+     * @param  int  $cellier_id Identifiant du cellier
+     * @return \Illuminate\View\View
      */
     public function create($cellier_id)
     {
@@ -35,10 +35,11 @@ class BouteillePersonnaliseeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Enregistrement d'une nouvelle bouteille personnalisée et affichage dans un cellier.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  int  $cellier_id Identifiant du cellier
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request, $cellier_id)
     {
@@ -96,11 +97,11 @@ class BouteillePersonnaliseeController extends Controller
 
 
     /**
-     * Display the specified resource.
+     * Affichage des détails d'une bouteille personnalisée dans un cellier.
      *
-     * @param $cellier_id
-     * @param $id
-     * @return \Illuminate\Http\Response
+     * @param  int  $cellier_id Identifiant du cellier
+     * @param  int  $id Identifiant de la bouteille personnalisée
+     * @return \Illuminate\View\View
      */
     public function show($cellier_id, $id)
     {
@@ -114,10 +115,11 @@ class BouteillePersonnaliseeController extends Controller
 
 
     /**
-     * Show the form for editing the specified resource.
+     * Affichage du formulaire d'édition d'une bouteille personnalisée dans un cellier.
      *
-     * @param  \App\Models\BouteillePersonnalisee  $bouteillePersonnalisee
-     * @return \Illuminate\Http\Response
+     * @param  int  $cellier_id Identifiant du cellier
+     * @param  int  $bouteille_id Identifiant de la bouteille personnalisée à éditer
+     * @return \Illuminate\View\View
      */
     public function edit($cellier_id, $bouteille_id)
     {
@@ -126,11 +128,12 @@ class BouteillePersonnaliseeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mise à jour des informations d'une bouteille personnalisée dans un cellier.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BouteillePersonnalisee  $bouteillePersonnalisee
-     * @return \Illuminate\Http\Response
+     * @param  int  $cellier_id Identifiant du cellier
+     * @param  int  $bouteille_id Identifiant de la bouteille personnalisée à mettre à jour
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $cellier_id, $bouteille_id)
     {
@@ -188,11 +191,11 @@ class BouteillePersonnaliseeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Suppression d'une bouteille personnalisée et de ses relations associées dans un cellier.
      *
-     * @param $cellier_id
-     * @param $bouteille_id
-     * @return \Illuminate\Http\Response
+     * @param  int  $cellier_id Identifiant du cellier
+     * @param  int  $bouteille_id Identifiant de la bouteille personnalisée à supprimer
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($cellier_id, $bouteille_id)
     {

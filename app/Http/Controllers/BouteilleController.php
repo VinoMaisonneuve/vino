@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Auth;
 class BouteilleController extends Controller
 {
     /**
-     * Affiche la page "Ajouter une bouteille" initiale avec toutes les bouteilles.
+     * Affichage de la liste des bouteilles avec des filtres et des informations supplémentaires.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -59,9 +59,10 @@ class BouteilleController extends Controller
     }    
 
     /**
-     * Affiche une partie de la page "Ajouter une bouteille" avec résultats des bouteilles.
+     * Exécution d'une recherche avancée de bouteilles en fonction des critères spécifiés.
      *
-     * @return resultsHtml en JSON
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function search(Request $request)
     {
@@ -137,9 +138,9 @@ class BouteilleController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affichage du formulaire de création d'une nouvelle bouteille.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -147,9 +148,8 @@ class BouteilleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * 
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -158,10 +158,10 @@ class BouteilleController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Affichage des détails d'une bouteille spécifique.
      *
-     * @param  \App\Models\Bouteille  $bouteille
-     * @return \Illuminate\Http\Response
+     * @param int $id L'identifiant de la bouteille.
+     * @return \Illuminate\View\View
      */
     public function show($id)
     {
@@ -174,7 +174,6 @@ class BouteilleController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Bouteille  $bouteille
      * @return \Illuminate\Http\Response
@@ -185,7 +184,6 @@ class BouteilleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Bouteille  $bouteille
@@ -197,7 +195,6 @@ class BouteilleController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
      *
      * @param  \App\Models\Bouteille  $bouteille
      * @return \Illuminate\Http\Response

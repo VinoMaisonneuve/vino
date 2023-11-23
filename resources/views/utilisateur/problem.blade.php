@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('title', 'Signalement')
-
 @section('content')
 <header>
     <a href="{{ route('profil.show', Auth::user()->id) }}" class="btn-arrow-top">

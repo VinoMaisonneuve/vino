@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 
 class BouteillePersonnaliseeCellierController extends Controller
 {
+
     /**
-     * Store a newly created resource in storage.
+     * Enregistrement d'une nouvelle bouteille personnalisée dans le cellier.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  int  $cellier_id Identifiant du cellier
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request, $cellier_id)
     {   
@@ -36,11 +38,11 @@ class BouteillePersonnaliseeCellierController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mise à jour des informations d'une bouteille personnalisée dans le cellier.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param $id
-     * @return \Illuminate\Http\Response
+     * @param  int  $id Identifiant de la bouteille personnalisée dans le cellier
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -61,11 +63,11 @@ class BouteillePersonnaliseeCellierController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Suppression d'une bouteille personnalisée spécifique à un cellier.
      *
-     * @param $cellier_id
-     * @param  \App\Models\BouteillePersonnaliseeCellier  $bouteille_personnalisee_cellier_id
-     * @return \Illuminate\Http\Response
+     * @param  int  $cellier_id Identifiant du cellier
+     * @param  \App\Models\BouteillePersonnaliseeCellier  $bouteille_personnalisee_cellier Instance du lien entre la bouteille personnalisée et le cellier à supprimer
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($cellier_id, BouteillePersonnaliseeCellier $bouteille_personnalisee_cellier)
     {

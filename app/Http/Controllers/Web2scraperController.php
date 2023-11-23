@@ -11,10 +11,7 @@ use Symfony\Component\DomCrawler\Crawler;
 class Web2scraperController extends Controller
 {
     /**
-     * Fonction de récupération de données à partir du site web de la SAQ .
-     *
-     * Cette fonction extrait des informations telles que le nom, le code, le lien, l'image, le prix,
-     * le type, le format et des détails supplémentaires pour chaque bouteille de vin à partir de plusieurs pages.
+     * Extraction et importation des données depuis le site web de la SAQ.
      *
      * @param  Request  $request
      * @return void
