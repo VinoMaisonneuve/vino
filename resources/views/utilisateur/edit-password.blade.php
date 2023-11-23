@@ -41,6 +41,16 @@
             <div class="form-button">
                 <button type="submit" form="edit-password" class="btn-submit">Mettre à jour</button>
             </div>
+            <!-- Affichage des autres erreurs -->
+            @if($errors->any())
+                @foreach($errors->getMessages() as $key => $errorMessages)
+                    @if(!in_array($key, ['oldPassword', 'password', 'password_confirmation']))
+                        @foreach($errorMessages as $errorMessage)
+                            <div class="error-message">{{ $errorMessage }}</div>
+                        @endforeach
+                    @endif
+                @endforeach
+            @endif
         </form>
     </div>
 </main>
