@@ -44,32 +44,5 @@
             </div>
         </form>
     </div>
-    @endif
-    <div class="form-container">
-        <form method="post" id="modifierUtilisateur">
-            @method('put')
-            @csrf
-            <div class="form-input-container">
-                <label for="nom">Nom</label>
-                <input type="text" id="nom" name="nom" value="{{ $user->nom }}">
-                @error('nom')
-                <span class="error-message">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="form-input-container">
-                <label for="email">Courriel</label>
-                <input type="email" id="email" name="email" value="{{ $user->email }}">
-                @error('email')
-                <span class="error-message">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="form-forgot-psw link">
-                <a href="{{ route('profil.change-password', $user->id) }}">Changer mot de passe</a>
-            </div>
-            <div class="form-button">
-                <button type="submit" form="modifierUtilisateur" class="btn-submit">Mettre à jour</button>
-            </div>
-        </form>
-    </div>
 </main>
 @endsection
