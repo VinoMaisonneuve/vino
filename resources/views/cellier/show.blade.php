@@ -62,14 +62,19 @@
                 @endif
             </p>
         </div>
-        <p>
-            @if($cellier->bouteillesCelliers->count() > 0)
-                @if($cellier->bouteillesPersonnaliseesCelliers->count() > 0)
-                <div class="btn-cellier-container"><a class="btn-cellier" href="#card-count-perso">Voir Bouteilles personnalisées ↓</a></div>
-                @endif
-                Bouteille(s) SAQ :
+        
+        @if($cellier->bouteillesCelliers->count() > 0)
+            @if($cellier->bouteillesPersonnaliseesCelliers->count() > 0)
+            <div class="btn-cellier-container"  id="anchor-bouteilles-saq">
+                <span><a class="btn-cellier" href="#anchor-bouteilles-perso">Voir Bouteilles personnalisées ↓</a></span>
+            </div>
             @endif
-        </p>
+            <div class="card-bouteille-label">
+                <span>
+                    Bouteilles SAQ :
+                </span>
+            </div>
+        @endif
         </div>
         @foreach($cellier->bouteillesCelliers as $bouteillesCelliers)
         <section class="card-bouteille" id="{{ $bouteillesCelliers->id }}" data-location="celliers">
@@ -110,14 +115,17 @@
             </svg>
         </a> -->
     <br>
-    <br>
     @if($cellier->bouteillesPersonnaliseesCelliers->count() > 0)
-        <p>
-            @if($cellier->bouteillesCelliers->count() > 0)
-                <div class="btn-cellier-container"><a class="btn-cellier" href="#card-count-saq">Voir Bouteilles SAQ ↑</a></div>
-            @endif
-            Bouteille(s) SAQ :
-        </p>
+        @if($cellier->bouteillesCelliers->count() > 0)
+            <div class="btn-cellier-container" id="anchor-bouteilles-perso">
+                <span><a class="btn-cellier" href="#anchor-bouteilles-saq">Voir Bouteilles SAQ ↑</a></span>
+            </div>
+        @endif
+        <div class="card-bouteille-label">
+            <span id="anchor-bouteilles-saq">
+                Bouteilles personnalisées :
+            </span>
+        </div>
         @foreach($cellier->bouteillesPersonnaliseesCelliers as $bouteillesPersonnaliseesCelliers)
         <section class="card-bouteille" id="{{ $bouteillesPersonnaliseesCelliers->id }}" data-location="celliers">
             <picture>

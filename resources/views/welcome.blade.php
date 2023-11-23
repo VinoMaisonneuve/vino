@@ -1,10 +1,11 @@
 @extends('layouts.app')
 @section('title', 'Bienvenue')
 @section('content')
+
+@auth
 <header>
     vino
 </header>
-@auth
 @if(Auth::user()->hasRole("Admin"))
 <main class="nav-margin">
     <div class="welcome admin-welcome">
@@ -85,7 +86,7 @@
                 <div class="carousel-slides">
                     @foreach($derniersAjouts as $dernierAjout)
                     <div class="carousel-slide">
-                        <img src="{{ $dernierAjout->srcImage }}" alt="{{ $dernierAjout->id }}" />
+                        <img src="{{ $dernierAjout->srcImage }}" alt="{{ $dernierAjout->id }}">
                         <a href="{{ route('bouteille.show',['bouteille_id'=> $dernierAjout->id]) }}">{{ $dernierAjout->nom }}</a>
                     </div>
                     @endforeach
@@ -122,27 +123,64 @@
 @endif
 @else
 <main>
-    <div class="welcome">
-        <h1 class="welcome-title">Bienvenue <br> chez <span class="welcome-vino">vino</span>!</h1>
-        <!-- <p class="welcome-text">L'outil le plus simple et efficace pour gérer vos celliers et vos achats SAQ.</p> -->
-    </div>
-    <div class="welcome-animation-container">
-        <div class="welcome-rounded-text rotating">
-            <svg viewBox="0 0 200 200">
-                <path id="textPath" d="M 89,0 A 89,89 0 0 1 -89,0 A 89,89 0 0 1 89,0" transform="translate(100,100)" fill="none" stroke-width="0"></path>
-                <g font-size="12px">
-                <text text-anchor="start">
-                    <textPath class="coloring" xlink:href="#textPath" startOffset="0%">L'outil le plus simple et efficace pour gérer vos celliers et vos achats SAQ✦</textPath>
-                </text>
-                </g>
-            </svg>
+    <div class="welcome-container">
+        <div class="welcome">
+            <h1 class="welcome-title">Bienvenue <br> chez <span class="welcome-vino">vino</span>!</h1>
+            <!-- <p class="welcome-text">L'outil le plus simple et efficace pour gérer vos celliers et vos achats SAQ.</p> -->
         </div>
-        <picture class="welcome-image-container">
-            <img src="{{ asset('assets/img/img_connexion.jpeg') }}" alt="Bouteille au marché" class="welcome-img">
-        </picture>
+        <div class="welcome-animation-container">
+            <div class="welcome-rounded-text rotating">
+                <svg viewBox="0 0 200 200">
+                    <path id="textPath" d="M 89,0 A 89,89 0 0 1 -89,0 A 89,89 0 0 1 89,0" transform="translate(100,100)" fill="none" stroke-width="0"></path>
+                    <g font-size="12px">
+                    <text text-anchor="start">
+                        <textPath class="coloring" xlink:href="#textPath" startOffset="0%">L'outil le plus simple et efficace pour gérer vos celliers et vos achats SAQ✦</textPath>
+                    </text>
+                    </g>
+                </svg>
+            </div>
+            <picture class="welcome-image-container">
+                <img src="{{ asset('assets/img/img_connexion.jpeg') }}" alt="Bouteille au marché" class="welcome-img">
+            </picture>
+        </div>
     </div>
 
-    @if(session('success'))
+
+    @if($errors->has('erreur'))
+        <div>
+            {{ $errors->first('erreur') }}
+        </div>
+    @endif
+    <div class="form-container form-container-welcome">
+        <form action="{{ route('login.authentication') }}" method="post" id="login">
+            @csrf
+            <div class="form-input-container">
+                <label for="email">EMAIL</label>
+                <input type="text" id="email" name="email">
+                @error('email')
+                    <span class="error-message">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-input-container">
+                <label for="password">PASSWORD</label>
+                <input type="password" id="password" name="password">
+                @error('password')
+                    <span class="error-message">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-forgot-psw link">
+                <a href="{{ route('password.forgot') }}">MOT DE PASSE OUBLIÉ</a>
+            </div>
+            <button type="submit" form="login" class="btn-submit">CONNECTER</button>
+            <div class="link">
+                <a href="{{ route('register') }}">CRÉER UN COMPTE</a>
+            </div>
+        </form>
+    </div>
+</main>
+<script src="{{ asset('js/textCercle.js') }}" defer></script>
+@endauth
+@if(session('success'))
         <div id="snackbar">
             <svg width="35" height="34" viewBox="0 0 46 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M39.3583 19.0013C40.6562 21.6749 40.9157 24.4263 40.1111 27.2816C39.9813 27.7747 39.7477 28.2679 39.5141 28.7092C38.0864 31.1751 35.8282 31.4087 33.9334 29.2802C31.9347 27.0479 31.156 24.3744 31.13 20.8702C31.0781 19.832 31.3896 18.3265 32.1943 16.9508C33.1806 15.2376 34.8938 14.7963 36.6069 15.8087C37.8528 16.5874 38.7354 17.7035 39.3583 19.0013ZM35.6984 19.6243C35.7244 18.4563 34.9457 17.3142 34.167 17.392C33.1027 17.4959 32.921 18.2746 32.947 19.183C32.973 20.3511 33.5959 21.2596 34.4525 21.2336C35.5167 21.2077 35.6984 20.4549 35.6984 19.6243Z" fill="black"/>
@@ -178,38 +216,4 @@
         </div>
         <script src="{{ asset('js/showToast.js')  }}"></script>
     @endif
-    @if($errors->has('erreur'))
-        <div>
-            {{ $errors->first('erreur') }}
-        </div>
-    @endif
-    <div class="form-container form-container-welcome">
-        <form action="{{ route('login.authentication') }}" method="post" id="login">
-            @csrf
-            <div class="form-input-container">
-                <label for="email">EMAIL</label>
-                <input type="text" id="email" name="email">
-                @error('email')
-                    <span class="error-message">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="form-input-container">
-                <label for="password">PASSWORD</label>
-                <input type="password" id="password" name="password">
-                @error('password')
-                    <span class="error-message">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="form-forgot-psw link">
-                <a href="{{ route('password.forgot') }}">MOT DE PASSE OUBLIÉ</a>
-            </div>
-            <button type="submit" form="login" class="btn-submit">CONNECTER</button>
-            <div class="link">
-                <a href="{{ route('register') }}">CRÉER UN COMPTE</a>
-            </div>
-        </form>
-    </div>
-</main>
-<script src="{{ asset('js/textCercle.js') }}" defer></script>
-@endauth
 @endsection

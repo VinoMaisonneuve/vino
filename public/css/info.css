@@ -8,3 +8,7 @@
     flex-grow: 1;
     text-align: right;
 }
+.info-profil-user {
+    display: flex;
+    justify-items: space-between;
+}

@@ -89,7 +89,7 @@ class BouteillePersonnaliseeController extends Controller
 
         $newBouteille->save(); 
 
-        return redirect('/celliers\\' . $cellier_id . '/bouteilles-ajouter'); 
+        return redirect('/celliers\\' . $cellier_id . '/bouteilles-ajouter')->withSuccess('Bouteille personnalisée créée'); 
     }
 
 

@@ -215,6 +215,6 @@ details {
     margin-bottom: var(--space-s);
 }
 
-textarea {
-    width: 100%;
+.form-error-red {
+    color: red;
 }

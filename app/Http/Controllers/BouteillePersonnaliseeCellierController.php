@@ -30,8 +30,9 @@ class BouteillePersonnaliseeCellierController extends Controller
                 'quantite' => $request->quantite
             ]);
         }
-
-        return redirect('/celliers\\' . $cellier_id . '/bouteilles'); 
+        $quantite = $request->quantite;
+        return redirect('/celliers\\' . $cellier_id . '/bouteilles')
+        ->withSuccess($quantite . ' bouteille(s) personnalisée(s) ajoutée(s)');
     }
 
     /**

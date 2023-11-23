@@ -176,7 +176,7 @@ class CustomAuthController extends Controller
     public function logout(){
         Auth::logout();
         Session::flush();
-        return redirect(route('login'))->withSuccess('Vous êtes déconnecté');
+        return redirect(route('login'))->withSuccess('Vous êtes déconnecté(e)');
     }
 
     /**

@@ -1,17 +1,16 @@
 /* typography.css -------------
 	(contient seulement les règles de base) */
 
-@font-face {
+/* @font-face {
     font-family: 'Helvetica';
     src: url('../../assets/fonts/helvetica_light.ttf');
     font-weight: lighter;
-    /* font-display: swap; */
-}
+} */
 
 @font-face {
     font-family: 'Helvetica';
     src: url('../../assets/fonts/helvetica.ttf');
-    font-weight: normal;
+    font-style: normal;
     /* font-display: swap; */
 }
 
