@@ -35,11 +35,12 @@
     <div class="form-container">
         <form action="">
             <div class="form-input-container">
-                <label for="search_cellar">RECHERCHE</label>
+                <label for="search_cellar">RECHERCHE DANS LE CELLIER</label>
                 <input type="text" id="search_cellar" placeholder="Nom">
             </div>
         </form>
-        <form action="{{ route('cellier.show', ['cellier_id' => $cellier->id]) }}" method="">
+        <!-- EN DEV -->
+        <!-- <form action="{{ route('cellier.show', ['cellier_id' => $cellier->id]) }}" method="">
             @csrf
             <div class="form-input-container">
                 <label for="sortCellier">TRIER</label>
@@ -50,7 +51,7 @@
                     <option value="price-desc" {{ request('sort') == 'price-desc' ? 'selected' : '' }}>Prix ($$$-$)</option>
                 </select>
             </div>
-        </form>
+        </form> -->
     </div>
     @endif
         <div class="card-count">
@@ -79,7 +80,7 @@
         @foreach($cellier->bouteillesCelliers as $bouteillesCelliers)
         <section class="card-bouteille" id="{{ $bouteillesCelliers->id }}" data-location="celliers">
             <picture>
-                <img src="{{ $bouteillesCelliers->bouteille->srcImage }}" alt="{{ $bouteillesCelliers->bouteille->nom }}">
+                <img src="{{ $bouteillesCelliers->bouteille->srcImage }}" height="120" width="80" alt="{{ $bouteillesCelliers->bouteille->nom }}">
             </picture>
             <div class="card-bouteille-content">
                 <div class="card-bouteille-info">
@@ -120,7 +121,7 @@
         @foreach($cellier->bouteillesPersonnaliseesCelliers as $bouteillesPersonnaliseesCelliers)
         <section class="card-bouteille" id="{{ $bouteillesPersonnaliseesCelliers->id }}" data-location="celliers">
             <picture>
-                <img src="{{ asset('assets/img/bouteille_personnalisee.webp') }}" alt="{{ $bouteillesPersonnaliseesCelliers->bouteillePersonnalisee->nom }}">
+                <img src="{{ asset('assets/img/bouteille_personnalisee.webp') }}" height="120" width="80" alt="{{ $bouteillesPersonnaliseesCelliers->bouteillePersonnalisee->nom }}">
             </picture>
             <div class="card-bouteille-content">
                 <div class="card-bouteille-info">
@@ -153,7 +154,8 @@
     @endif
     <script src="{{ asset('js/bottleCounter.js') }}"></script>
     @if($cellier->bouteillesCelliers->count() > 1 || ($cellier->bouteillesPersonnaliseesCelliers->count() > 1))
-    <script src="{{ asset('js/sortBottles.js') }}"></script>
+    <!-- EN DEV -->
+    <!-- <script src="{{ asset('js/sortBottles.js') }}"></script> -->
     <script src="{{ asset('js/search-cellar.js') }}"></script>
     @endif
 </main>
