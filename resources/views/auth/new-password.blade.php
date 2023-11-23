@@ -9,9 +9,6 @@
     <h1 class="form-h1">
         Nouveau mot de passe
     </h1>
-    <!-- @if(session('success'))
-        <span>{{session('success')}}</span>
-    @endif -->
     <div class="form-container">
         <form method="post" id="newPassword">
             @csrf

@@ -10,11 +10,6 @@
         Mot de passe oublié
     </h1>
     <div class="form-container">
-        <!-- @if(session('success'))
-        <div>
-            {{ session('success') }}
-        </div>
-        @endif -->
         <!-- @if($errors)
             @foreach($errors->all() as $error)
             <div>

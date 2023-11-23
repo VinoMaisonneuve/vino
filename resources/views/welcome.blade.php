@@ -126,7 +126,6 @@
     <div class="welcome-container">
         <div class="welcome">
             <h1 class="welcome-title">Bienvenue <br> chez <span class="welcome-vino">vino</span>!</h1>
-            <!-- <p class="welcome-text">L'outil le plus simple et efficace pour gérer vos celliers et vos achats SAQ.</p> -->
         </div>
         <div class="welcome-animation-container">
             <div class="welcome-rounded-text rotating">
