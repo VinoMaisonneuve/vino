@@ -58,7 +58,7 @@
                     <td class="user-id">{{ $user->id }}</td>
                     <td class="user-name">{{ $user->nom }}</td>
                     @if($user->getRoleNames()->first() == "Admin")
-                        <td>Administrateur</td>
+                        <td>Admin</td>
                     @else
                         <td>Utilisateur</td>
                     @endif
