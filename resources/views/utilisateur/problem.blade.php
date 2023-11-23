@@ -30,19 +30,22 @@
         <script src="{{ asset('js/showToast.js')  }}"></script>
     @else
     <section>
-        <p>Veuillez entrer la catégorie d'erreur que vous rencontrez. <br> Nous vous contacterons dans les plus brefs délais.</p>
+        <h1 class="form-h1">
+            Signaler un problème
+        </h1>
         <div class="form-container">
+            <p class="form-p">Veuillez entrer la catégorie d'erreur que vous rencontrez. Nous vous contacterons dans les plus brefs délais.</p>
             @if(session('error'))
-                <div>
+                <div class="error-message">
                     {{ session('error') }}
                 </div>
             @endif
             <form action="{{ route('signalerErreur') }}" method="post" id="signalerErreur">
                 @csrf
                 <div class="form-input-container">
-                    <label for="select_issue">Signaler un problème</label>
-                    <select name="probleme" id="select_issue">
-                        <option value="Choisir un problème">Choisir un problème</option>
+                    <label for="select_issue">Choisir une catégorie de problème</label>
+                    <select name="probleme" id="select_issue" required>
+                        <!-- <option value="Choisir un problème">Choisir un problème</option> -->
                         <option value="Gestion du profil">Gestion du profil</option>
                         <option value="Erreurs d'informations d'une bouteille">Erreurs d'informations d'une bouteille</option>
                         <option value="Erreurs de gestion de celliers">Erreurs de gestion de celliers</option>
@@ -53,8 +56,8 @@
                     </select>
                 </div>
                 <div class="form-input-container">
-                    <label for="description_probleme">Décrivez-nous les détails du problème que vous rencontrez.</label>
-                    <textarea name="description_probleme" id="description_probleme" cols="30" rows="10"></textarea>
+                    <label for="description_probleme">Description du problème</label>
+                    <textarea name="description_probleme" id="description_probleme" cols="30" rows="10" required placeholder="Décrivez le problème en détail ici"></textarea>
                 </div>
                 <div class="form-button">
                     <button type="submit" form="signalerErreur" class="btn-submit">Signaler</button>

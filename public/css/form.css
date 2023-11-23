@@ -220,3 +220,8 @@ details {
     text-align: left;
 }
 
+/* texte p dans formulaire "Signaler un problème" */
+.form-p {
+    text-align: left;
+    margin-bottom: .5rem;
+}

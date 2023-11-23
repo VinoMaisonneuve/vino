@@ -199,7 +199,8 @@ class CellierController extends Controller
                 $cellier->bouteillesCelliers()->delete(); 
                 $cellier->bouteillesPersonnaliseesCelliers()->delete(); 
                 $cellier->delete(); 
-                return redirect(route('cellier.index')); 
+                return redirect(route('cellier.index'))
+                ->withSuccess('Cellier supprimé'); 
             }
             else {
                 return redirect(route('cellier.index'))->with('error', 'Vous ne pouvez pas effacer le cellier Favoris.'); 

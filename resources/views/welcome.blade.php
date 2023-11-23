@@ -103,6 +103,7 @@
                             <path d="M15 14L0.749997 27.8564L0.749998 0.143593L15 14Z" fill="black"/>
                         </svg>
                     </button>
+                    <script src="{{ asset('js/carousel.js') }}"></script>
                 @endif
             </div>
         </section>
@@ -118,7 +119,6 @@
             </svg>
         </a>
     </div>
-    <script src="{{ asset('js/carousel.js') }}"></script>
 </main>
 @endif
 @else
@@ -144,9 +144,6 @@
             </picture>
         </div>
     </div>
-
-
-
     <div class="form-container form-container-welcome">
         <form action="{{ route('login.authentication') }}" method="post" id="login">
             @csrf

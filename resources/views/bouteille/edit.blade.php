@@ -106,7 +106,7 @@
             <dialog id="modal-supprimer" class="modal">
                 <h2>Suppression de la bouteille {{ $bouteille->nom }}</h2>
                 <hr>
-                <p>Êtes-vous certain de vouloir supprimer la bouteille {{ $bouteille->nom }}? Cette action supprimera également cette bouteille de tous vos celliers.</p>
+                <p>Êtes-vous certain(e) de vouloir supprimer la bouteille {{ $bouteille->nom }}? Cette action supprimera également cette bouteille de tous vos celliers.</p>
                 <form action="{{ route('bouteillePersonnalisee.destroy', ['cellier_id' => $cellier_id, 'bouteille_id' => $bouteille->id]) }}" method="post" class="form-modal" id="supprimerBouteille">
                     @csrf
                     @method('DELETE')
