@@ -1,5 +1,3 @@
-listes/show
-
 @extends('layouts.app')
 @section('title', 'Liste')
 @section('content')
