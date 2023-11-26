@@ -9,24 +9,6 @@ use Illuminate\Support\Facades\Auth;
 class CommentaireBouteillePersonnaliseeController extends Controller
 {
     /**
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Stocke un nouveau commentaire pour une bouteille personnalisée.
      *
      * @param \Illuminate\Http\Request $request
@@ -55,26 +37,6 @@ class CommentaireBouteillePersonnaliseeController extends Controller
         return redirect()->route('personnalisee.show', ['cellier_id' => $cellier_id, 'bouteille_id' => $bouteille_id])
             ->with('successMessage', 'Commentaire ajouté!')
             ->with('commentaire', $commentaire);
-    }
-
-    /**
-     *
-     * @param  \App\Models\CommentaireBouteillePersonnalisee  $commentaireBouteillePersonnalisee
-     * @return \Illuminate\Http\Response
-     */
-    public function show(CommentaireBouteillePersonnalisee $commentaireBouteillePersonnalisee)
-    {
-        //
-    }
-
-    /**
-     *
-     * @param  \App\Models\CommentaireBouteillePersonnalisee  $commentaireBouteillePersonnalisee
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CommentaireBouteillePersonnalisee $commentaireBouteillePersonnalisee)
-    {
-        //
     }
 
     /**
