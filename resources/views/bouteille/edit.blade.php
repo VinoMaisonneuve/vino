@@ -16,7 +16,7 @@
         Modifier une bouteille
     </h1>
     <div class="form-container">
-        <form action="" method="post" id="modifierBouteille">
+        <form method="post" id="modifierBouteille">
             @csrf
             @method('put')
             <div class="form-input-container">

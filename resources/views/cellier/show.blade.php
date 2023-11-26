@@ -33,14 +33,14 @@
     </div>
     @if($cellier->bouteillesCelliers->count() > 1 || $cellier->bouteillesPersonnaliseesCelliers->count() > 1)
     <div class="form-container">
-        <form action="">
+        <form>
             <div class="form-input-container">
                 <label for="search_cellar">RECHERCHE DANS LE CELLIER</label>
                 <input type="text" id="search_cellar" placeholder="Nom">
             </div>
         </form>
-        <!-- EN DEV -->
-        <!-- <form action="{{ route('cellier.show', ['cellier_id' => $cellier->id]) }}" method="">
+        <!-- EN DEV - fonctionne, mais ne s'applique pas encore sur les résultats de search -->
+        <!-- <form action="{{ route('cellier.show', ['cellier_id' => $cellier->id]) }}" >
             @csrf
             <div class="form-input-container">
                 <label for="sortCellier">TRIER</label>

@@ -11,21 +11,13 @@
     font-family: 'Helvetica';
     src: url('../../assets/fonts/helvetica.ttf');
     font-style: normal;
-    /* font-display: swap; */
 }
-
-/* @font-face {
-    font-family: 'Dreamboat';
-    src: url('../../assets/fonts/dreamboat.ttf');
-    font-display: swap;
-} */
 
 @font-face {
     font-family: 'Dreamboat';
     src: url('../../assets/fonts/dreamboat-black.ttf');
     font-style: normal;
     font-weight: 900;
-    /* font-display: swap; */
 }
 
 body {

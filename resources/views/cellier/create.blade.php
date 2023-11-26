@@ -14,7 +14,7 @@
         Ajouter un cellier
     </h1>
     <div class="form-container">
-        <form action="" method="post" id="ajouterCellier">
+        <form method="post" id="ajouterCellier">
             @csrf
             <div class="form-input-container">
                 <label for="nom">Nom du cellier</label>

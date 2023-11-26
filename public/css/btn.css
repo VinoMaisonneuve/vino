@@ -206,7 +206,6 @@ header>.btn-arrow-top:hover svg {
 
 /* COULEURS =============================================================================== */
 .btn-grey {
-    /* background-color: rgb(63, 63, 63); */
     background-color: var(--purple-blue-pale);
     color: black;
 }

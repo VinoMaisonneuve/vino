@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Liste')
 @section('content')
-    <!-- <header class="title-container"> -->
     <header>
         <a href="{{ route('liste.index') }}" class="btn-arrow-top">
             <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -10,7 +9,6 @@
             listes
         </a>
     </header>
-    <!-- <main> -->
     <main class="nav-margin">
         <h1 class="btn-modify">{{ $liste->nom }}
             @if ($liste->nom != 'Favoris')
@@ -30,14 +28,14 @@
         </a>
         @if($liste->bouteillesListes->count() > 1)
         <div class="form-container">
-            <form action="">
+            <form>
                 <div class="form-input-container">
                     <label for="search_cellar">RECHERCHE DANS LA LISTE</label>
                     <input type="text" id="search_cellar" placeholder="Nom">
                 </div>
             </form>
-            <!-- EN DEV -->
-            <!-- <form action="{{ route('liste.show', ['liste_id' => $liste->id]) }}" method="">
+            <!-- EN DEV - fonctionne, mais ne s'applique pas encore sur les résultats de search -->
+            <!-- <form action="{{ route('liste.show', ['liste_id' => $liste->id]) }}" >
                 @csrf
                 <div class="form-input-container">
                     <label for="sortCellier">TRIER</label>
@@ -90,11 +88,10 @@
             </div>
         </section>
         @endforeach
-        <!-- <div class="modal-container"> -->
         <dialog id="modal-deplacer" class="modal">
                 <h2>Déplacer vers un cellier</h2>
                 <hr>
-                <form action="" class="form-modal" id="form-deplacer">
+                <form  class="form-modal" id="form-deplacer">
                     <div class="form-input-container">
                         <label for="cellier-location">CELLIER</label>
                         <select name="cellier-location" id="cellier-location">
@@ -105,11 +102,6 @@
                             @endforelse
                         </select>
                     </div>
-                    <!--<div class="card-bouteille-qt-modal">
-                        <button class="btn-decrement">-</button>
-                        <input type="text" value="1" min="1" id="quantite-bouteille" readonly>
-                        <button class="btn-increment">+</button>
-                    </div>-->
                     <div class="btn-modal-container">
                         <button class="btn-modal-action">
                             @if ($celliers->isEmpty()) 
@@ -122,7 +114,6 @@
                     </div>
                 </form>
             </dialog>
-        <!-- </div> -->
         @if($liste->bouteillesListes->count() > 1)
         <!-- EN DEV -->
         <!-- <script src="{{ asset('js/sortBottles.js') }}"></script> -->

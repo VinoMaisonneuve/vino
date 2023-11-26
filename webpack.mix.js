@@ -50,6 +50,7 @@ mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/sortBottles.js', 'public/js')
    .js('resources/js/statsUser.js', 'public/js')
    .js('resources/js/textCercle.js', 'public/js')
+   .js('resources/js/showToast.js', 'public/js')
    .js('resources/js/zoom.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //

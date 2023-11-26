@@ -14,7 +14,7 @@
         Ajouter une liste
     </h1>
     <div class="form-container">
-        <form action="" method="post" id="ajouterListe">
+        <form method="post" id="ajouterListe">
             @csrf
             <div class="form-input-container">
                 <label for="nom">Nom de la liste</label>
