@@ -46,14 +46,6 @@
                 <th>Taux de sucre</th>
                 <td>{{$bouteille->tauxSucre ?? '-'}}</td>
             </tr>
-            <tr>
-                <th>Désignation réglementée</th>
-                <td>{{$bouteille->designation ?? '-'}}</td>
-            </tr>
-            <tr>
-                <th>Agent promotionnel</th>
-                <td>{{$bouteille->agentPromotion ?? '-'}}</td>
-            </tr>
         </tbody>
     </table>
     @if ($commentaire)
