@@ -206,7 +206,6 @@ header>.btn-arrow-top:hover svg {
 
 /* COULEURS =============================================================================== */
 .btn-grey {
-    /* background-color: rgb(63, 63, 63); */
     background-color: var(--purple-blue-pale);
     color: black;
 }
@@ -243,7 +242,7 @@ header>.btn-arrow-top:hover svg {
     border: .5px solid black;
     border-radius: 4px;
     background-color: white;
-    padding: .25rem .5rem;
+    padding: var(--space-xs) var(--space-s);
     cursor: pointer;
 }
 /* Container pour bouton ancre btn-cellier */
@@ -259,9 +258,9 @@ header>.btn-arrow-top:hover svg {
 
 .btn-c-delete {
     position: absolute;
-    top: .5rem;
+    top: var(--space-s);
     right: 1rem;
-    font-size: 1rem;
+    font-size: var(--space);
     cursor: pointer;
 }
 

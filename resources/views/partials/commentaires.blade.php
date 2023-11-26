@@ -12,7 +12,6 @@
                 @enderror
             </div>
             <div class="form-button">
-                <!-- <button type="submit" class="btn-submit">ajouter</button> -->
             </div>
         </form>
     </section>
@@ -30,10 +29,8 @@
                         <span class="error-message">{{ $message }}</span>
                     @enderror
                     <p>{{ $commentaire->updated_at->setTimezone('America/Toronto') }}</p>
-                    <!-- <p><span>Ajouté le: </span>{{ $commentaire->updated_at->setTimezone('America/Toronto') }}</p> -->
                 </div>
                 <div class="form-button">
-                    <!-- <button type="submit" class="btn-submit">modifier</button> -->
                 </div>
             </form> 
         </div>
@@ -42,7 +39,6 @@
             @csrf
             <div class="form-button">
                 <span class="btn-c-delete btn-supprimer" id="cDelete">×</span>
-                <!-- <button type="submit" form="supprimerCommentaire" class="link btn-supprimer">supprimer</button> -->
             </div>
         </form>
     </section>

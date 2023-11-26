@@ -7,7 +7,7 @@
 <main class="nav-margin">
     <section class="form-ajouter-bouteille">
         <div class="form-container">
-            <form action="" method="" id="form-search" class="form-mb">
+            <form id="form-search" class="form-mb">
                 <div class="form-input-container">
                     <label for="search">RECHERCHE</label>
                     <input type="search" id="search-input" name="search">
@@ -16,7 +16,7 @@
             
         </div>
         <div class="form-container">
-            <form action="" method="" id="form-filter">
+            <form id="form-filter">
                 <hr>
                 <details>
                     <summary>Filtrer</summary>
@@ -156,7 +156,7 @@
         </div>
         <div class="form-container">
             <hr>
-            <form action="" method="" id="">
+            <form>
                 <div class="form-input-container">
                     <label for="sort">TRIER</label>
                     <select name="sort" id="sort">
@@ -201,12 +201,11 @@
             </div>
         </div>
     </div>
-</main>
 <!-- Fenêtre modale de confirmation d'ajout -->
 <dialog id="modal-ajouter" class="modal">
     <h2>Confirmation d'ajout</h2>
     <hr>
-    <form action="" class="form-modal" id="form-ajouter">
+    <form class="form-modal" id="form-ajouter">
         <div class="form-radio">
             <input type="radio" id="location-cellier" name="location" checked >
             <label for="location-cellier">Celliers</label><br>

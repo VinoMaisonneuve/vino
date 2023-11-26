@@ -8,7 +8,7 @@
     color: white;
     background-color: var(--purple-blue-pale);
     border: none;
-    border-radius: 25px;
+    border-radius: var(--radius-s);
     color: black;
     position: relative; /* Pour que le SVG soit positionné par rapport au lien <a> */
 }
@@ -69,7 +69,7 @@
 /* carte bouteille */
 .card-bouteille {
     display: flex;
-    border-radius: 25px;
+    border-radius: var(--radius-s);
     border: 1px solid var(--purple-blue);
     text-align: left;
     position: relative;

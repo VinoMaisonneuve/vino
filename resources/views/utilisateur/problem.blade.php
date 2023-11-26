@@ -44,7 +44,6 @@
                 <div class="form-input-container">
                     <label for="select_issue">Choisir une catégorie de problème</label>
                     <select name="probleme" id="select_issue" required>
-                        <!-- <option value="Choisir un problème">Choisir un problème</option> -->
                         <option value="Gestion du profil">Gestion du profil</option>
                         <option value="Erreurs d'informations d'une bouteille">Erreurs d'informations d'une bouteille</option>
                         <option value="Erreurs de gestion de celliers">Erreurs de gestion de celliers</option>

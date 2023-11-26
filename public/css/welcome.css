@@ -4,7 +4,7 @@
 
 .welcome-title {
     font-size: 2rem;
-    margin-top: 2rem;
+    margin-top: var(--space-wide);
 }
 
 .welcome-vino {
@@ -14,15 +14,7 @@
 
 .welcome-animation-container {
     position: relative;
-    margin-top: 1rem;
-    /* height: 220px;
-    width: 220px; */
-    /* display: grid; */
-    /* place-items: center; */
-    /* background: white; */
-    /* padding: 0; */
-    /* height: 100vh; */
-    /* overflow: hidden; */
+    margin-top: var(--space);
 }
 
 /* .welcome-animation-container svg, */
@@ -49,8 +41,6 @@
     transform: rotate(-103deg);
     color: rgba(95, 72, 190, 1);
     z-index: -1;
-    /* font-family: Helvetica; */
-    /* letter-spacing: 0.5px; */
     font-weight: bold;
 }
 .white {
@@ -77,12 +67,6 @@
     0% {
         fill: var(--purple-blue);
     }
-    /* 35% {
-        fill: rgba(249, 178, 83, 1);
-    }
-    75% {
-        fill: rgba(144, 125, 28, 1);
-    } */
     50% {
         fill: rgb(119, 93, 224);
     }
@@ -93,23 +77,4 @@
 .coloring {
     animation: coloring 12s linear infinite;
 }
-/* Bonjour NomUtilisateur */
-/* .welcome-bonjour {
-    min-width: 100%;
-    background: radial-gradient(
-        50% 50% at 50% 50%,
-        rgba(255, 138, 0, 0.7) 0%,
-        rgba(255, 138, 0, 0.2) 50%,
-        rgba(255, 255, 255, 0) 100%
-    );
-}
-
-.bg-rose {
-    background: radial-gradient(
-        50% 50% at 50% 50%,
-        rgba(255, 117, 183, 0.7) 0%,
-        rgba(255, 117, 183, 0.2) 40%,
-        rgba(217, 217, 217, 0) 80%
-    );
-} */
 
