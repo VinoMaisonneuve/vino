@@ -54,7 +54,7 @@ dialog p {
     font-size: 2rem;
     color: black;
     cursor: pointer;
-    border-radius: 25px;
+    border-radius: var(--radius-s);
 }
 
 dialog[id="zoomModal"] {

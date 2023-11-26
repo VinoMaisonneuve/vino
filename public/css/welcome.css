@@ -4,7 +4,7 @@
 
 .welcome-title {
     font-size: 2rem;
-    margin-top: 2rem;
+    margin-top: var(--space-wide);
 }
 
 .welcome-vino {
@@ -14,7 +14,7 @@
 
 .welcome-animation-container {
     position: relative;
-    margin-top: 1rem;
+    margin-top: var(--space);
 }
 
 /* .welcome-animation-container svg, */
