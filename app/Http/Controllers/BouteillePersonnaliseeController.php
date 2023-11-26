@@ -12,15 +12,6 @@ use Illuminate\Validation\Rule;
 class BouteillePersonnaliseeController extends Controller
 {
     /**
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Affichage du formulaire de création d'une nouvelle bouteille personnalisée dans un cellier.
      *
      * @param  int  $cellier_id Identifiant du cellier

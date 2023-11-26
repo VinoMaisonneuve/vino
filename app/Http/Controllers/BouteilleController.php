@@ -148,16 +148,6 @@ class BouteilleController extends Controller
     }
 
     /**
-     * 
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Affichage des détails d'une bouteille spécifique.
      *
      * @param int $id L'identifiant de la bouteille.
@@ -171,36 +161,5 @@ class BouteilleController extends Controller
         ->where('bouteille_id', $id)
         ->first();
         return view('bouteille.show', ['bouteille'=> $bouteille, 'celliers' => $celliers, 'commentaire' => $commentaire]);
-    }
-
-    /**
-     *
-     * @param  \App\Models\Bouteille  $bouteille
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Bouteille $bouteille)
-    {
-        //
-    }
-
-    /**
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Bouteille  $bouteille
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Bouteille $bouteille)
-    {
-        //
-    }
-
-    /**
-     *
-     * @param  \App\Models\Bouteille  $bouteille
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Bouteille $bouteille)
-    {
-        //
     }
 }

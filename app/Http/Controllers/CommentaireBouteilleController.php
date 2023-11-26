@@ -9,24 +9,6 @@ use Illuminate\Support\Facades\Auth;
 class CommentaireBouteilleController extends Controller
 {
     /**
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Enregistrement d'un nouveau commentaire pour une bouteille de la SAQ.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -54,26 +36,6 @@ class CommentaireBouteilleController extends Controller
         return redirect()->route('bouteille.show', ['bouteille_id' => $bouteille_id])
             ->with('successMessage', 'Commentaire ajouté!')
             ->with('commentaire', $commentaire);
-    }
-
-    /**
-     *
-     * @param  \App\Models\CommentaireBouteille  $commentaireBouteille
-     * @return \Illuminate\Http\Response
-     */
-    public function show(CommentaireBouteille $commentaireBouteille)
-    {
-        //
-    }
-
-    /**
-     *
-     * @param  \App\Models\CommentaireBouteille  $commentaireBouteille
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CommentaireBouteille $commentaireBouteille)
-    {
-        //
     }
 
     /**
