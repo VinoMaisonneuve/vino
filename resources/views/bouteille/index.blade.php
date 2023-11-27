@@ -9,7 +9,7 @@
         <div class="form-container">
             <form id="form-search" class="form-mb">
                 <div class="form-input-container">
-                    <label for="search">RECHERCHE</label>
+                    <label for="search-input">RECHERCHE</label>
                     <input type="search" id="search-input" name="search">
                 </div>
             </form>
@@ -40,11 +40,11 @@
                             <div class="form-range-number">      
                                 <div>
                                     <label for="min">Min</label>
-                                    <input type="number" name="prix-min" value="{{ $prixMin }}" step="0.01">
+                                    <input type="number" id="min" name="prix-min" value="{{ $prixMin }}" step="0.01">
                                 </div>    
                                 <div>
                                     <label for="max">Max</label>
-                                    <input type="number" name="prix-max" value="{{ $prixMax }}" step="0.01">
+                                    <input type="number" id="max" name="prix-max" value="{{ $prixMax }}" step="0.01">
                                 </div>    
                             </div>
                         </div>  

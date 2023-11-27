@@ -92,13 +92,13 @@
                     @endforeach
                 </div>
                 @if ($derniersAjouts->count() > 1)
-                    <button class="carousel-btn btn-prev">
+                    <button class="carousel-btn btn-prev" aria-label="Previous">
                     <svg width="15" height="28" viewBox="0 0 15 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1.90798e-07 14L14.25 0.143593L14.25 27.8564L1.90798e-07 14Z" fill="black"/>
                     </svg>
 
                     </button>
-                    <button class="carousel-btn btn-next">
+                    <button class="carousel-btn btn-next" aria-label="Next">
                         <svg width="15" height="28" viewBox="0 0 15 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 14L0.749997 27.8564L0.749998 0.143593L15 14Z" fill="black"/>
                         </svg>
